@@ -29,18 +29,6 @@ import platform
 import subprocess
 
 import admin
-
-
-def debug(msg, prefix='[DBG]'):
-    '''Print debugging message.
-
-    @param msg Debugging message
-
-    **NOTE**: This function could be turned off by `-O` or `-OO` option.
-    '''
-    if __debug__:
-        print('{0}:'.format(prefix), end=' ', file=sys.stderr)
-        print(msg, file=sys.stderr)
         
         
 def info(msg, end='\n'):
@@ -143,7 +131,7 @@ def setup(test=False):
                 
             git_version = subprocess.check_output('git version', shell=True)
             git_version = admin.decode_version(git_version, prefix='git version')
-            debug(git_version)
+            admin.debug(git_version)
             
             # Password cache (Git v1.7.10+)
             if admin.match_version(git_version, '1.7.10'):
@@ -165,18 +153,22 @@ def setup(test=False):
             info('Git [OK]')
         except subprocess.CalledProcessError as e:
             admin.error('Git [FAILED]: {0}'.format(e))
+            
+            
+def admin_unittest():
+    '''Admin Unit Testing.
+    '''
+    try:
+        subprocess.check_call('python admin/__init__.py', shell=True)
+    except subprocess.CalledProcessError as e:
+        sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
         
                 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         option = sys.argv[1]
         if option == 'test':
-            # Admin Unit Testing
-            try:
-                subprocess.check_call('python admin/__init__.py', shell=True)
-            except subprocess.CalledProcessError as e:
-                sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
-                
+            admin_unittest()
             setup(test=True)
     else:
         setup()

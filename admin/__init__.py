@@ -6,7 +6,7 @@ Admin Linux (Ubuntu)
 
 This file contains some common functions:
 
-  - error()
+  - error(), debug()
   - update_seq_type()
   - force_remove()
   - Version, decode_version(), match_version()
@@ -45,6 +45,19 @@ def error(msg):
     '''Print error messages.
     '''
     print(msg, file=sys.stderr)
+    
+    
+## Print debugging message.
+#
+# @param msg Debugging message
+#
+# **NOTE**: This function could be turned off by `-O` or `-OO` option.
+def debug(msg, prefix='[DBG]'):
+    '''Print debugging message.
+    '''
+    if __debug__:
+        print('{0}:'.format(prefix), end=' ', file=sys.stderr)
+        print(msg, file=sys.stderr)
     
     
 ## Update type of all elements in specific sequence.
@@ -154,5 +167,6 @@ class AdminTestCase(unittest.TestCase):
    
 if __name__ == '__main__':
     error('Test error()')
+    debug('Test debug()')
     unittest.main()
                 
