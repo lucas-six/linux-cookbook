@@ -1,0 +1,195 @@
+.TH "admin" 3 "Wed Aug 27 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "\fBproject\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBConfigFile\fP"
+.br
+.RI "\fIConfiguration file\&. \fP"
+.ti -1c
+.RI "class \fBAdminTestCase\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBerror\fP"
+.br
+.RI "\fIPrint error messages\&. \fP"
+.ti -1c
+.RI "def \fBdebug\fP"
+.br
+.RI "\fIPrint debugging message\&. \fP"
+.ti -1c
+.RI "def \fBupdate_seq_type\fP"
+.br
+.RI "\fIUpdate type of all elements in specific sequence\&. \fP"
+.ti -1c
+.RI "def \fBforce_remove\fP"
+.br
+.RI "\fILike command \fCrm -f\fP\&. \fP"
+.ti -1c
+.RI "def \fBdecode_version\fP"
+.br
+.RI "\fIDecode version information string\&. \fP"
+.ti -1c
+.RI "def \fBmatch_version\fP"
+.br
+.RI "\fIMatch the specific version\&. \fP"
+.ti -1c
+.RI "def \fBread_lines\fP"
+.br
+.RI "\fIRead specific line(s) with line number(s)\&. \fP"
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "tuple \fBVersion\fP = namedtuple('Version', 'major, minor, patch')"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "def admin\&.debug (msg, prefix = \fC'[DBG]'\fP)"
+
+.PP
+Print debugging message\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImsg\fP Debugging message
+.RE
+.PP
+\fBNOTE\fP: This function could be turned off by \fC-O\fP or \fC-OO\fP option\&. 
+.PP
+Definition at line 55 of file __init__\&.py\&.
+.SS "def admin\&.decode_version (version_info, prefix = \fC''\fP)"
+
+.PP
+Decode version information string\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIversion_info\fP version information string (e\&.g\&. Python 2\&.7\&.8) 
+.br
+\fIprefix\fP prefix string of version 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+Version named-tuple 
+.RE
+.PP
+
+.PP
+Definition at line 85 of file __init__\&.py\&.
+.SS "def admin\&.error (msg)"
+
+.PP
+Print error messages\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fImsg\fP error message 
+.RE
+.PP
+
+.PP
+Definition at line 46 of file __init__\&.py\&.
+.SS "def admin\&.force_remove (path)"
+
+.PP
+Like command \fCrm -f\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpath\fP Path name of entry to be removed 
+.RE
+.PP
+
+.PP
+Definition at line 73 of file __init__\&.py\&.
+.SS "def admin\&.match_version (version, match)"
+
+.PP
+Match the specific version\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIversion\fP Version named-tuple 
+.br
+\fImatch\fP version string (e\&.g\&. 1\&.2\&.3) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+True if match 
+.RE
+.PP
+
+.PP
+Definition at line 104 of file __init__\&.py\&.
+.SS "def admin\&.read_lines (filename, lineno)"
+
+.PP
+Read specific line(s) with line number(s)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfilename\fP file name 
+.br
+\fIlineno\fP line number(s) to read (starting with 1) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+generator object of line with no terminating line break 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fITypeError,IOError\fP 
+.RE
+.PP
+
+.PP
+Definition at line 122 of file __init__\&.py\&.
+.SS "def admin\&.update_seq_type (seq, typename)"
+
+.PP
+Update type of all elements in specific sequence\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIseq\fP (mutable) sequence to be update 
+.br
+\fItypename\fP Target type name 
+.RE
+.PP
+
+.PP
+Definition at line 65 of file __init__\&.py\&.
+.SH "Variable Documentation"
+.PP 
+.SS "tuple admin\&.Version = namedtuple('Version', 'major, minor, patch')"
+
+.PP
+Definition at line 40 of file __init__\&.py\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

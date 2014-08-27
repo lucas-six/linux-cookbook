@@ -29,6 +29,7 @@ import platform
 import subprocess
 
 import admin
+import admin.project
         
         
 def info(msg, end='\n'):
@@ -164,6 +165,13 @@ def admin_unittest():
     except subprocess.CalledProcessError as e:
         sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
         
+        
+def build():
+    '''Build projects.
+    '''
+    proj = admin.project.Project(lang=['python'])
+    proj.doxygen()
+    
                 
 if __name__ == '__main__':
     if len(sys.argv) != 2:
@@ -173,10 +181,11 @@ if __name__ == '__main__':
     if option == 'setup':
         setup()
     elif option == 'build':
-        raise NotImplementedError
+        build()
     elif option == 'test':
         admin_unittest()
         setup(test=True)
+        build()
     else:
         sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
         

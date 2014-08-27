@@ -1,0 +1,217 @@
+\hypertarget{namespaceadmin}{\section{admin Namespace Reference}
+\label{namespaceadmin}\index{admin@{admin}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceadmin_1_1project}{project}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classadmin_1_1ConfigFile}{Config\-File}
+\begin{DoxyCompactList}\small\item\em Configuration file. \end{DoxyCompactList}\item 
+class \hyperlink{classadmin_1_1AdminTestCase}{Admin\-Test\-Case}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{error}
+\begin{DoxyCompactList}\small\item\em Print error messages. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{debug}
+\begin{DoxyCompactList}\small\item\em Print debugging message. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{update\-\_\-seq\-\_\-type}
+\begin{DoxyCompactList}\small\item\em Update type of all elements in specific sequence. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}{force\-\_\-remove}
+\begin{DoxyCompactList}\small\item\em Like command {\ttfamily rm -\/f}. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}{decode\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Decode version information string. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}{match\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Match the specific version. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_ae034627a9fca691b23ee55d255113a81}{read\-\_\-lines}
+\begin{DoxyCompactList}\small\item\em Read specific line(s) with line number(s). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}{Version} = namedtuple('Version', 'major, minor, patch')
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{\index{admin@{admin}!debug@{debug}}
+\index{debug@{debug}!admin@{admin}}
+\subsubsection[{debug}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-debug (
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{prefix = {\ttfamily '\mbox{[}DBG\mbox{]}'}}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}
+
+
+Print debugging message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Debugging message\\
+\hline
+\end{DoxyParams}
+{\bfseries N\-O\-T\-E}\-: This function could be turned off by {\ttfamily -\/\-O} or {\ttfamily -\/\-O\-O} option. 
+
+Definition at line 55 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}{\index{admin@{admin}!decode\-\_\-version@{decode\-\_\-version}}
+\index{decode\-\_\-version@{decode\-\_\-version}!admin@{admin}}
+\subsubsection[{decode\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-decode\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{version\-\_\-info, }
+\item[{}]{prefix = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}
+
+
+Decode version information string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em version\-\_\-info} & version information string (e.\-g. Python 2.\-7.\-8) \\
+\hline
+{\em prefix} & prefix string of version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Version named-\/tuple 
+\end{DoxyReturn}
+
+
+Definition at line 85 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{\index{admin@{admin}!error@{error}}
+\index{error@{error}!admin@{admin}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-error (
+\begin{DoxyParamCaption}
+\item[{}]{msg}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}
+
+
+Print error messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & error message \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 46 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}{\index{admin@{admin}!force\-\_\-remove@{force\-\_\-remove}}
+\index{force\-\_\-remove@{force\-\_\-remove}!admin@{admin}}
+\subsubsection[{force\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-force\-\_\-remove (
+\begin{DoxyParamCaption}
+\item[{}]{path}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}
+
+
+Like command {\ttfamily rm -\/f}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path name of entry to be removed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}{\index{admin@{admin}!match\-\_\-version@{match\-\_\-version}}
+\index{match\-\_\-version@{match\-\_\-version}!admin@{admin}}
+\subsubsection[{match\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-match\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{version, }
+\item[{}]{match}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}
+
+
+Match the specific version. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em version} & Version named-\/tuple \\
+\hline
+{\em match} & version string (e.\-g. 1.\-2.\-3) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if match 
+\end{DoxyReturn}
+
+
+Definition at line 104 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae034627a9fca691b23ee55d255113a81}{\index{admin@{admin}!read\-\_\-lines@{read\-\_\-lines}}
+\index{read\-\_\-lines@{read\-\_\-lines}!admin@{admin}}
+\subsubsection[{read\-\_\-lines}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-read\-\_\-lines (
+\begin{DoxyParamCaption}
+\item[{}]{filename, }
+\item[{}]{lineno}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae034627a9fca691b23ee55d255113a81}
+
+
+Read specific line(s) with line number(s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & file name \\
+\hline
+{\em lineno} & line number(s) to read (starting with 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+generator object of line with no terminating line break 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Type\-Error,I\-O\-Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 122 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{\index{admin@{admin}!update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}}
+\index{update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}!admin@{admin}}
+\subsubsection[{update\-\_\-seq\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-update\-\_\-seq\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{}]{seq, }
+\item[{}]{typename}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}
+
+
+Update type of all elements in specific sequence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seq} & (mutable) sequence to be update \\
+\hline
+{\em typename} & Target type name \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 65 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}{\index{admin@{admin}!Version@{Version}}
+\index{Version@{Version}!admin@{admin}}
+\subsubsection[{Version}]{\setlength{\rightskip}{0pt plus 5cm}tuple admin.\-Version = namedtuple('Version', 'major, minor, patch')}}\label{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}
+
+
+Definition at line 40 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+

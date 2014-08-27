@@ -51,3 +51,9 @@ git clone https://github.com/leven-cn/admin-linux.git
 cd admin-linux
 python admin.py setup
 ```
+
+**STEP 3**: Build projects
+
+```bash
+python admin.py build
+```

@@ -4,12 +4,13 @@
 '''@package admin
 Admin Linux (Ubuntu)
 
-This file contains some common functions:
+This file contains some common functions and classes:
 
   - error(), debug()
   - update_seq_type()
   - force_remove()
   - Version, decode_version(), match_version()
+  - ConfigFile
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -33,6 +34,7 @@ import sys
 import os
 import unittest
 from collections import namedtuple
+from collections import OrderedDict
 
 
 Version = namedtuple('Version', 'major, minor, patch')
@@ -42,8 +44,6 @@ Version = namedtuple('Version', 'major, minor, patch')
 #
 # @param msg error message
 def error(msg):
-    '''Print error messages.
-    '''
     print(msg, file=sys.stderr)
     
     
@@ -53,8 +53,6 @@ def error(msg):
 #
 # **NOTE**: This function could be turned off by `-O` or `-OO` option.
 def debug(msg, prefix='[DBG]'):
-    '''Print debugging message.
-    '''
     if __debug__:
         print('{0}:'.format(prefix), end=' ', file=sys.stderr)
         print(msg, file=sys.stderr)
@@ -65,8 +63,6 @@ def debug(msg, prefix='[DBG]'):
 # @param seq (mutable) sequence to be update
 # @param typename Target type name
 def update_seq_type(seq, typename):
-    '''Update type of all elements in specific sequence.
-    '''
     for index, value in enumerate(seq[:]):
         seq[index] = typename(value)
         
@@ -75,8 +71,6 @@ def update_seq_type(seq, typename):
 #
 # @param path Path name of entry to be removed
 def force_remove(path):
-    '''Like command `rm -f`.
-    '''
     try:
         os.remove(path)
     except OSError:
@@ -89,8 +83,6 @@ def force_remove(path):
 # @param prefix prefix string of version 
 # @return Version named-tuple
 def decode_version(version_info, prefix=''):
-    '''Decode version information string.
-    '''
     # Skip if it already decoded
     if isinstance(version_info, Version):
         return version_info
@@ -110,8 +102,6 @@ def decode_version(version_info, prefix=''):
 # @param match version string (e.g. 1.2.3)
 # @return True if match
 def match_version(version, match):
-    '''Match the specific version.
-    '''
     version = decode_version(version)
     match = decode_version(match)
         
@@ -121,9 +111,100 @@ def match_version(version, match):
     return (version.major > match.major) \
             or (version.major == match.major and version.minor > match.minor) \
             or (version.minor == match.minor and version.patch >= match.patch)
+            
+            
+## Read specific line(s) with line number(s).
+#
+# @param filename file name
+# @param lineno line number(s) to read (starting with 1)
+# @return generator object of line with no terminating line break
+# @exception TypeError, IOError
+def read_lines(filename, lineno):
+    if isinstance(lineno, int):
+        lineno = [lineno]
+                
+    with open(filename) as f:
+        for n, line in enumerate(f):
+            if len(lineno) == 0:
+                break
+            if n+1 in lineno:
+                yield line.rstrip('\n') # Remove terminating line break (\n)
+                lineno.remove(n+1) # Reduce size for better performance
         
         
-## Test Case of Admin
+## Configuration file.
+#
+# ## Usage
+#
+# <pre><code>
+#     import os
+#     import admin
+#
+#     configs = {'PROJECT_NAME': '\"AAA\"',
+#           'PROJECT_NUMBER': '1.2.3'}
+#     try:
+#         with open(os.path.join(os.getcwd(), 'Doxyfile'), 'r+') as f:
+#             config_file = admin.ConfigFile(f)
+#             config_file.set(configs)
+#         except IOError as e:
+#             admin.error('error')
+class ConfigFile(object):
+    ## Parse configuration file.
+    #
+    # @param config_file configuration file object
+    # @param sep separator for option/value pair
+    # @param comments comments leading character
+    def __init__(self, config_file, sep='=', comments='#'):
+        self._config_file = config_file
+        self._sep = sep
+        self._comments = comments
+        self._config = OrderedDict()
+        for line in config_file:
+            # Skip blank line or comments
+            if line.strip() == '' or line.startswith(comments):
+                continue
+                
+            # Get "OPTION = value"
+            pair = line.split(sep)
+            self._config[pair[0].strip()] = pair[1].strip()
+                
+    
+    ## Get value of specific option.
+    #
+    # @param option option name
+    # @return option value
+    # @exception KeyError - no optinon exists
+    def get(self, option):
+        return self._config[option]
+        
+        
+    ## Set value of specific option.
+    #
+    # @param pairs Pairs of option name-value.
+    def set(self, pairs):
+        self._config_file.seek(0)
+        lines = []
+        for line in self._config_file:
+            # Skip blank line or comments
+            if line.strip() == '' or line.startswith(self._comments):
+                lines.append(line)
+                continue
+                
+            # Set option
+            pair = line.split(self._sep)
+            option = pair[0].strip()
+            if option in pairs:
+                pair[1] = ' ' + pairs[option] + '\n'
+                line = self._sep.join(pair)
+                del pairs[option] # Reduce size of pairs for better performance
+            
+            lines.append(line)
+        
+        # Update configuration file
+        self._config_file.seek(0)
+        self._config_file.writelines(lines)
+        
+        
 class AdminTestCase(unittest.TestCase):
     '''Test Case of Admin.
     '''
@@ -172,6 +253,30 @@ class AdminTestCase(unittest.TestCase):
         self.assertFalse(match_version(v, '3.6.8'))
         self.assertFalse(match_version(v, '3.7.6'))
         self.assertFalse(match_version(v, '3.7.9'))
+        
+    
+    def test_read_lines(self):
+        # Invalid file name
+        with self.assertRaises(TypeError):
+            for line in read_lines(None, 0):
+                pass
+                
+        # File not exists
+        with self.assertRaises(IOError):
+            for line in read_lines('Not-exist-file', 0):
+                pass
+                
+        # Normal
+        for line in read_lines(__file__, 1):
+            self.assertEqual(line, '#!/usr/bin/env python')
+        for index, line in enumerate(read_lines(__file__, [1, 2, 3])):
+            self.assertIn(index, [0, 1, 2])
+            if index == 0:
+                self.assertEqual(line, '#!/usr/bin/env python')
+            elif index == 1:
+                self.assertEqual(line, '# -*- coding: utf-8 -*-')
+            elif index == 2:
+                self.assertEqual(line, '')
     
    
 if __name__ == '__main__':
