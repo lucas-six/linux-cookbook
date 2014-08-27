@@ -1,10 +1,10 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''Setup Linux (Ubuntu)
+'''Admin Linux (Ubuntu)
 
-    - Vim
-    - Git
+    - Setup Linux (Server)
+    - Build Python projects
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
 
@@ -37,12 +37,13 @@ def info(msg, end='\n'):
     @param msg Informational message
     '''
     print(msg, end=end, file=sys.stderr)
-                        
-            
+    
+
 def setup(test=False):
-    '''Setup main.
+    '''Setup Linux.
     
     @param test True if testing usage.
+    @todo Git under Proxy
     '''
     # Determine current system type
     sys_type = platform.system()
@@ -165,11 +166,17 @@ def admin_unittest():
         
                 
 if __name__ == '__main__':
-    if len(sys.argv) == 2:
-        option = sys.argv[1]
-        if option == 'test':
-            admin_unittest()
-            setup(test=True)
-    else:
+    if len(sys.argv) != 2:
+        sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
+        
+    option = sys.argv[1]
+    if option == 'setup':
         setup()
+    elif option == 'build':
+        raise NotImplementedError
+    elif option == 'test':
+        admin_unittest()
+        setup(test=True)
+    else:
+        sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
         

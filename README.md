@@ -49,5 +49,5 @@ cd                                                  # choose your own path
 git clone https://github.com/leven-cn/admin-linux.git
 
 cd admin-linux
-python setup.py
+python admin.py setup
 ```
