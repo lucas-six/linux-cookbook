@@ -3,7 +3,7 @@ admin-linux
 
 Admin Linux
 
-## Setup on NON-Linux
+## STEP 0
 
 **STEP 1**: Install [VirtualBox](http://www.virtualbox.org/) and **Guest Additions**.
 

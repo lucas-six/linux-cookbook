@@ -1,0 +1,200 @@
+" vimrc - Vim Configuration
+"
+" Supported Platforms
+"
+"   - For Debian users:
+"
+"       All system-wide defaults are set in $VIMRUNTIME/debian.vim (usually
+"       `/usr/share/vim/vimcurrent/debian.vim`) and sourced by the call to
+"       :runtime` in the file `/etc/vim/vimrc`. To use this configuration,
+"       please copy this configuration file to `/etc/vim/vimrc.local` or your
+"       home directory `~/.vimrc`.
+"
+"   - For Mac OS X (10.8.5+) users:
+"
+"       There is no system-wide configuration file, therefore to use this
+"       configuration, please copy this file to your home directory `~/.vimrc`.
+"
+"
+" Key Bindings
+"
+"   - Default
+"
+"       - `Z=` - Spell suggesting
+"       - `gg` / `G` - Go to the first/ending line of file
+"       - `gt` / `gT` - Go to the right/left tab (Normal Mode)
+"       - `Ctrl-P` - Keyword completion (Insert Mode)
+"       - `Ctrl-X` + `Ctrl-L` - Line completion (Insert Mode)
+"       - `Ctrl-X` + `Ctrl-F` - Filename completion (Insert Mode)
+"       - `Ctrl-X` + `Ctrl-I` - C-style `#include` completion (Insert Mode)
+"       - `Ctrl-X` + `Ctrl-D` - C-style `#define` completion (Insert Mode)
+"       - `Ctrl-X` + `Ctrl-O` - Omni-compeltion (Insert Mode)
+"
+"   - LY
+"
+"       - `Ctrl-L` - Toggle cursor line highlighting
+"       - `Ctrl-T` - Replace tabs with spaces (Normal Mode)
+"       - `Ctrl-S` - Toggle spell checking (Normal Mode)
+"       - `Ctrl-D` - Diff buffer from disk
+"
+"
+" Get Started with **Vim**
+"
+"     ```$ vimtutor [en|zh]```
+"
+"
+" Copyright 2014 Li Yun <leven.cn@gmail.com>
+"
+" Licensed under the Apache License, Version 2.0 (the "License");
+" you may not use this file except in compliance with the License.
+" You may obtain a copy of the License at
+"
+"     http://www.apache.org/licenses/LICENSE-2.0
+"
+" Unless required by applicable law or agreed to in writing, software
+" distributed under the License is distributed on an "AS IS" BASIS,
+" WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+" See the License for the specific language governing permissions and
+" limitations under the License.
+
+set nobackup " DONOT keep backup files (*~), use versions instead
+
+if has("syntax")
+    set hlsearch " highlight last used search pattern
+endif
+
+" Indenting
+function! MyIndenter()
+    " find previous line and get its indentation
+    let prev_lineno = s:prevnonblank(v:lnum)
+    let ind = indent(prev_lineno)
+    return ind
+endfunction
+if has("autocmd")
+    au FileType text setlocal textwidth=78
+    set cindent
+    set indentexpr=MyIndenter()
+else
+    set autoindent " always set autoindenting on
+endif " has("autocmd")
+
+set number " show line numbers
+
+" File encoding
+set fileencoding=utf-8 " default encoding
+set fileencodings=utf-8,gb2312,gbk,gb18030,big5 " support Chinese
+
+" Cursor line (`Ctrl-L` to toggle)
+set cursorline
+highlight cursorLine cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+nnoremap <C-l> :set cursorline!<CR>
+
+" Tab width (`Ctrl-T` to replace tabs with spaces)
+set expandtab tabstop=4 shiftwidth=4
+map <C-t> :retab <CR>:w<CR> " replace tabs with spaces
+
+" Omni-completion
+set completeopt=longest,menu
+if has("autocmd")
+    au FileType c set omnifunc=ccomplete#Complete
+    au FileType python set omnifunc=pythoncomplete#Complete
+    au FileType html set omnifunc=htmlcomplete#CompleteTags
+    au FileType css set omnifunc=csscomplete#CompleteCSS
+    au FileType javascript set omnifunc=javascriptcompelte#CompleteJS
+    au FileType xml set omnifunc=xmlcomplete#CompleteTags
+endif
+
+" Spell checking and suggesting
+function! MySpellToggle()
+    if !exists("b:spell")
+        set spell spelllang=en spellsuggest=5
+        let b:spell=1
+    else
+        set nospell
+        unlet b:spell
+    endif
+endfunction
+map <C-s> :call MySpellToggle()<CR>
+
+" Status line
+"
+"     %F - Full path to the file in the buffer
+"     %m - Modified flag, '[+]'
+"     %r - Read-only flag, '[RO]'
+"     %y - Type of file in the buffer, '[vim]'
+"     %l - Line number
+"     %v - Virtual column number
+"     %p - Percentage through file in lines as in Ctrl-G
+"     %% - '%'
+"     \  - Space
+"
+set statusline=%F%m%r\ %y\ [%l/%L,%v]\ (%p%%)
+set laststatus=2
+
+" Foding
+"set foldenable
+"set foldmethod=syntax " method=indent, syntax
+"set foldcolumn=5
+"set foldlevel=2
+
+" Tab line
+function! MyTabLine()
+    let ret = ''
+    for i in range(tabpagenr('$'))
+        " select the color group for highlighting active tab
+        if i+1 == tabpagenr()
+            let ret .= '%#errorMsg#'
+        else
+            let ret .= '%#TabLine#'
+        endif
+
+        " find the buffer name for the tab label
+        let buflist = tabpagebuflist(i+1)
+        let winnr = tabpagewinnr(i+1)
+        let buffername = bufname(buflist[winnr-1])
+        let filename = fnamemodify(buffername, ':t')
+
+        " check if there is no name
+        if filename == ''
+            let filename = '[no name]'
+        endif
+
+        " only show the first 6 letters of the name and if the filename is
+        " more than 8 letters long
+        if strlen(filename) >= 8
+            let ret .= '[' . filename[0:5] . '..]'
+        else
+            let ret .= '[' . filename . ']'
+        endif
+    endfor
+
+    " after the last tab fill with TabLineFill and reset tab page #
+    let ret .= '%#TabLineFill#%%T'
+    return ret
+endfunction
+set tabline=%!MyTabLine()
+
+" Diff & Patch
+"
+"     :vert diffsplit <other-file>
+"     :vert diffpatch <patch-file>
+if &diff
+    "diff mode
+    set diffopt+=iwhite " ignore whitespace
+    set scrollbind
+    set nowrap
+    set diff foldmethod=diff foldlevel=1
+endif
+function! MyDiffFromDisk()
+    set scrollbind
+    set nowrap
+    set diff foldmethod=diff foldlevel=1
+    let filename = expand('%')
+    let diffname = filename . '.vimdiff'
+    exec 'saveas! ' . diffname
+    diffthis
+    vsplit
+    exec 'edit ' . filename
+    diffthis
+endfunction
+nmap <C-d> :call MyDiffFromDisk()<CR>
