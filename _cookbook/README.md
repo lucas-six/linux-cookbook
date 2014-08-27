@@ -3,16 +3,14 @@ cookbook
 
 Cookbook
 
-- [Linux User Tutorial](#linux-user-tutorial)
+- [Linux User Guide](#linux-user-guide)
 - [Bash Guide](#bash-guide)
 - [Regular Expression](#regular-expression)
 - [Python Coding Style](#python-coding-style)
 - [Doxygen Guide](#doxygen-guide)
 - [PyUnit](#pyunit)
 
-## Linux User Tutorial
-
-### Basic Commands
+## Linux User Guide
 
 ```bash
 sudo shutdown -h|-r now
@@ -32,6 +30,24 @@ rm [-r|-f]
 mkdir [-p]
 
 which|man <cmd>
+
+# New User/Group
+#
+# NOTE: `useradd` and `groupadd` are low-level utilities. On Debian, `adduser`
+# and `addgroup` should be used instead.
+#
+# By default, each normal user in Debian is given a corresponding group with
+# the same name, and the system users are placed in the `nogroup` group.
+sudo [--system] adduser <user>
+sudo passwd <user>
+sudo [--system] addgroup <group>
+
+# Add existing user to group (re-login required)
+sudo adduser <user> <group>  # for Debian
+sudo gpasswd -a <user> <group>  # for all Linux, as well as Debian
+
+# Change file ownership
+sudo chown <owner>[:<group>] <file> ...
 ```
 
 ## Bash Guide
