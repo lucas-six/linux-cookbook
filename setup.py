@@ -27,12 +27,8 @@ import sys
 import os
 import platform
 import subprocess
-from collections import namedtuple
 
 import admin
-
-
-Version = namedtuple('Version', 'major, minor, patch')
 
 
 def debug(msg, prefix='[DBG]'):
@@ -53,40 +49,6 @@ def info(msg, end='\n'):
     @param msg Informational message
     '''
     print(msg, end=end, file=sys.stderr)
-        
-        
-def decode_version(version_info, prefix=''):
-    '''Decode version information string.
-    
-    @param version_info_str Version information string (e.g. Python 2.7.8)
-    @param prefix Version prefix string
-    @return Version named-tuple
-    '''
-    # Skip if it already decoded
-    if isinstance(version_info, Version):
-        return version_info
-    
-    version_info.strip()
-    version_info = version_info[len(prefix):].strip().split('.')
-    
-    # Change version number from string to integer.
-    admin.update_seq_type(version_info, int)
-        
-    return Version._make(version_info)
-    
-    
-def match_version(version, match):
-    '''Match the specific version.
-    
-    @param version Version named-tuple
-    @param match Version string (e.g. 1.2.3)
-    '''
-    version = decode_version(version)
-    match = decode_version(match)
-        
-    return (version.major > match.major) \
-            or (version.major == match.major and version.minor > match.minor) \
-            or (version.minor == match.minor and version.patch >= match.patch)
                         
             
 def setup(test=False):
@@ -180,15 +142,15 @@ def setup(test=False):
                 _git_config_global('merge.tool vimdiff')
                 
             git_version = subprocess.check_output('git version', shell=True)
-            git_version = decode_version(git_version, prefix='git version')
+            git_version = admin.decode_version(git_version, prefix='git version')
             debug(git_version)
             
             # Password cache (Git v1.7.10+)
-            if match_version(git_version, '1.7.10'):
+            if admin.match_version(git_version, '1.7.10'):
                 _git_config_global('credential.helper "cache --timeout=3600"')
             
             # Push default
-            if match_version(git_version, '1.7.11'):
+            if admin.match_version(git_version, '1.7.11'):
                 _git_config_global('push.default simple')
             else:
                 _git_config_global('push.default upstream')

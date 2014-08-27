@@ -8,6 +8,8 @@ This file contains some common functions:
 
   - error()
   - update_seq_type()
+  - force_remove()
+  - Version, decode_version(), match_version()
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -30,6 +32,10 @@ from __future__ import print_function
 import sys
 import os
 import unittest
+from collections import namedtuple
+
+
+Version = namedtuple('Version', 'major, minor, patch')
 
 
 ## Print error messages.
@@ -63,13 +69,50 @@ def force_remove(path):
     except OSError:
         pass
         
+    
+## Decode version information string.
+#
+# @param version_info version information string (e.g. Python 2.7.8)
+# @param prefix prefix string of version 
+# @return Version named-tuple
+def decode_version(version_info, prefix=''):
+    '''Decode version information string.
+    '''
+    # Skip if it already decoded
+    if isinstance(version_info, Version):
+        return version_info
+    
+    version_info.strip()
+    version_info = version_info[len(prefix):].strip().split('.')
+    
+    # Change version number from string to integer.
+    update_seq_type(version_info, int)
+        
+    return Version._make(version_info)
+    
+    
+## Match the specific version.
+#
+# @param version Version named-tuple
+# @param match version string (e.g. 1.2.3)
+def match_version(version, match):
+    '''Match the specific version.
+    '''
+    version = decode_version(version)
+    match = decode_version(match)
+        
+    return (version.major > match.major) \
+            or (version.major == match.major and version.minor > match.minor) \
+            or (version.minor == match.minor and version.patch >= match.patch)
+        
         
 ## Test Case of Admin
 class AdminTestCase(unittest.TestCase):
     '''Test Case of Admin.
     '''
     def setUp(self):
-        pass
+        self.version_info = 'Python 2.7.8'
+        self.version_prefix = 'Python'
         
         
     def tearDown(self):
@@ -81,6 +124,32 @@ class AdminTestCase(unittest.TestCase):
         update_seq_type(seq, str)
         for item in seq:
             self.assertIsInstance(item, str)
+            
+            
+    def test_decode_version(self):
+        v = decode_version(self.version_info, self.version_prefix)
+        self.assertIsInstance(v, Version)
+        self.assertEqual(v.major, 2)
+        self.assertEqual(v.minor, 7)
+        self.assertEqual(v.patch, 8)
+        
+        
+    def test_match_version(self):
+        v = decode_version(self.version_info, self.version_prefix)
+        self.assertTrue(match_version(v, '2.7.8'))
+        self.assertTrue(match_version(v, '2.7.6'))
+        self.assertFalse(match_version(v, '2.7.9'))
+        self.assertTrue(match_version(v, '2.6.8'))
+        self.assertTrue(match_version(v, '2.6.6'))
+        self.assertTrue(match_version(v, '2.6.9'))
+        self.assertFalse(match_version(v, '2.8.8'))
+        self.assertFalse(match_version(v, '2.8.6'))
+        self.assertFalse(match_version(v, '2.8.9'))
+        self.assertTrue(match_version(v, '1.7.8'))
+        self.assertTrue(match_version(v, '1.8.8'))
+        self.assertTrue(match_version(v, '1.6.8'))
+        self.assertTrue(match_version(v, '1.7.6'))
+        self.assertTrue(match_version(v, '1.7.9'))
     
    
 if __name__ == '__main__':
