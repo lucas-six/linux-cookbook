@@ -3,11 +3,36 @@ cookbook
 
 Cookbook
 
+- [Linux User Tutorial](#linux-user-tutorial)
 - [Bash Guide](#bash-guide)
 - [Regular Expression](#regular-expression)
 - [Python Coding Style](#python-coding-style)
 - [Doxygen Guide](#doxygen-guide)
 - [PyUnit](#pyunit)
+
+## Linux User Tutorial
+
+### Basic Commands
+
+```bash
+sudo shutdown -h|-r now
+
+# Package Management on Debian/Ubuntu
+sudo apt-get update
+sudo apt-get install <pkg>
+sudo apt-get remove/purge <pkg>
+
+cd [~|-|..|<dir>]
+pwd
+ls [-l|-a|-r]
+less <text-file>
+ln -s <src> <sym-link>
+cp|mv [-r|-u]
+rm [-r|-f]
+mkdir [-p]
+
+which|man <cmd>
+```
 
 ## Bash Guide
 
