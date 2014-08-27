@@ -29,6 +29,8 @@ import platform
 import subprocess
 from collections import namedtuple
 
+import admin
+
 
 Version = namedtuple('Version', 'major, minor, patch')
 
@@ -159,7 +161,7 @@ def setup(test=False):
             vimrc_ok = True
             info('Vimrc [OK]')
         except OSError as e:
-            info('Vimrc [FAILED]: {0}'.format(e))
+            admin.error('Vimrc [FAILED]: {0}'.format(e))
             
         # Configure bashrc
         if not test:
@@ -171,9 +173,9 @@ def setup(test=False):
                         info('Set default editor to Vim [OK]')
                 subprocess.check_call('. ~/.bashrc', shell=True)
             except IOError as e:
-                info('Failed to set default editor to Vim: {0}'.format(e))
+                admin.error('Failed to set default editor to Vim: {0}'.format(e))
             except subprocess.CalledProcessError as e:
-                info('Failed to reload bashrc: {0}'.format(e))
+                admin.error('Failed to reload bashrc: {0}'.format(e))
                         
         # Configure Git
         # For more details on Git, please refer to the Pro Git online
@@ -222,13 +224,19 @@ def setup(test=False):
             info(git_conf)
             info('Git [OK]')
         except subprocess.CalledProcessError as e:
-            info('Git [FAILED]: {0}'.format(e))
+            admin.error('Git [FAILED]: {0}'.format(e))
         
                 
 if __name__ == '__main__':
     if len(sys.argv) == 2:
         option = sys.argv[1]
-        if option == 'test':                
+        if option == 'test':
+            # Admin Unit Testing
+            try:
+                subprocess.check_call('python admin/__init__.py', shell=True)
+            except subprocess.CalledProcessError as e:
+                sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
+                
             setup(test=True)
     else:
         setup()
