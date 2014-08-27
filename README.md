@@ -29,6 +29,15 @@ For convenience, you could create a symbolic link in your home directory.
 ln -s /media/sf_<share-dir> ~/.
 ```
 
+**STEP 6**: Configure *NAT* + *Host-Only* network mode.
+
+```bash
+# On Linux (Server) guest
+echo "" >> /etc/network/interfaces
+echo "auto eth1" >> /etc/network/interfaces
+echo "iface eth1 inet dhcp" >> /etc/network/interfaces
+```
+
 ## User Guide
 
 **STEP 1**: Install Git
