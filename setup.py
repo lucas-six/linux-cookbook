@@ -66,17 +66,6 @@ def force_remove(path):
         pass
         
         
-## Update type of all elements in specific sequence.
-#
-# @param seq (mutable) sequence to be update
-# @param typename Target type name
-def update_seq_type(seq, typename):
-    '''Update type of all elements in specific sequence.
-    '''
-    for index, value in enumerate(seq[:]):
-        seq[index] = typename(value)
-        
-        
 def decode_version(version_info, prefix=''):
     '''Decode version information string.
     
@@ -92,7 +81,7 @@ def decode_version(version_info, prefix=''):
     version_info = version_info[len(prefix):].strip().split('.')
     
     # Change version number from string to integer.
-    update_seq_type(version_info, int)
+    admin.update_seq_type(version_info, int)
         
     return Version._make(version_info)
     
