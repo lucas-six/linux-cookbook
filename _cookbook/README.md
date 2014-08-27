@@ -48,6 +48,35 @@ sudo gpasswd -a <user> <group>  # for all Linux, as well as Debian
 
 # Change file ownership
 sudo chown <owner>[:<group>] <file> ...
+
+# Network Interface Configuration
+#
+# NOTE: `ifconfig` uses **obsolete** kernel interface `ioctl()` to get full
+# address information, which limits hardware addresses to 8 bytes!
+ip addr show [dev <if-dev>]                       # ifconfig
+sudo ip addr add <ipv4>[/<prefix>] dev <if-dev>   # sudo ifconfig <if-dev> add <ipv4>
+sudo ip addr del <ipv4>/<prefix=32> dev <if-dev>  # sudo ifconfig <if-dev> del <ipv4>
+sudo ip link set <if-dev> up|down                 # sudo ifconfig <if-dev> up|down
+netstat -ie                                       # ifconfig
+sudo ip addr add 192.168.0.77/24 dev eth0         # sudo ifconfig eth0 192.168.0.77 netmask 255.255.255.0
+```
+
+### Network Configuration
+
+```
+# Debian: /etc/network/interfaces
+auto lo
+iface lo inet loopback
+
+auto eth0
+iface eth0 inet static
+	address 192.168.1.2
+	netmask 255.255.255.0
+	gateway 192.168.1.1
+	dns-nameservers <DNS-IP-1> <DNS-IP-2> ...
+
+auto eth1
+iface eth1 inet dhcp
 ```
 
 ## Bash Guide
