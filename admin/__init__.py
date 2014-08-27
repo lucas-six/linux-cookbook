@@ -28,6 +28,7 @@ limitations under the License.
 from __future__ import print_function
 
 import sys
+import os
 import unittest
 
 
@@ -49,6 +50,18 @@ def update_seq_type(seq, typename):
     '''
     for index, value in enumerate(seq[:]):
         seq[index] = typename(value)
+        
+
+## Like command `rm -f`.
+#
+# @param path Path name of entry to be removed
+def force_remove(path):
+    '''Like command `rm -f`.
+    '''
+    try:
+        os.remove(path)
+    except OSError:
+        pass
         
         
 ## Test Case of Admin

@@ -54,17 +54,6 @@ def info(msg, end='\n'):
     '''
     print(msg, end=end, file=sys.stderr)
         
-
-def force_remove(path):
-    '''Like command `rm -f`.
-
-    @param path Path name of entry to be removed
-    '''
-    try:
-        os.remove(path)
-    except OSError:
-        pass
-        
         
 def decode_version(version_info, prefix=''):
     '''Decode version information string.
@@ -143,7 +132,7 @@ def setup(test=False):
         try:
             if os.path.lexists(vimrc):
                 old_vimrc = vimrc + '.old'
-                force_remove(old_vimrc)
+                admin.force_remove(old_vimrc)
                 os.rename(vimrc, old_vimrc)
             myvimrc = os.path.join(os.getcwd(), '_setup', 'vimrc')
             os.symlink(myvimrc, vimrc)
