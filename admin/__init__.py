@@ -108,11 +108,15 @@ def decode_version(version_info, prefix=''):
 #
 # @param version Version named-tuple
 # @param match version string (e.g. 1.2.3)
+# @return True if match
 def match_version(version, match):
     '''Match the specific version.
     '''
     version = decode_version(version)
     match = decode_version(match)
+        
+    if version.major < match.major:
+        return False
         
     return (version.major > match.major) \
             or (version.major == match.major and version.minor > match.minor) \
@@ -163,6 +167,11 @@ class AdminTestCase(unittest.TestCase):
         self.assertTrue(match_version(v, '1.6.8'))
         self.assertTrue(match_version(v, '1.7.6'))
         self.assertTrue(match_version(v, '1.7.9'))
+        self.assertFalse(match_version(v, '3.7.8'))
+        self.assertFalse(match_version(v, '3.8.8'))
+        self.assertFalse(match_version(v, '3.6.8'))
+        self.assertFalse(match_version(v, '3.7.6'))
+        self.assertFalse(match_version(v, '3.7.9'))
     
    
 if __name__ == '__main__':
