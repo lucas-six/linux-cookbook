@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''@package _doctest
-Docstring testing.
+'''@package _cookbook
+Docstring Testing Cookbook.
 
 The `doctest` module searches for pieces of documents that look like
 interactive Python sessions, and then executes those sessions to verify that

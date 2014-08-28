@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''@package _unittest
-Unit testing framework.
+'''@package _cookbook
+Unit Testing Framework Cookbook.
 
 The Python unit testing framework, sometimes referred to as “PyUnit,” is a
 Python language version of JUnit, by *Kent Beck* and *Erich Gamma*. JUnit is,

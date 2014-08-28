@@ -6,6 +6,8 @@
 
 *~
 *.bak
+*.data
+*.log
 
 # Doxygen
 Doxyfile*

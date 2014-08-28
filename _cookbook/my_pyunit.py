@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''@package my_pyunit
+'''@package _cookbook
 MyPyUnit - My own unit testing framework, based on Erich Gamma's JUnit and
 Kent Beck's Smalltalk testing framework.
 
