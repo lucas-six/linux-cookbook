@@ -6,6 +6,7 @@ Python Cookbook
 
   - unittest
   - doctest
+  - Number Division
   - Loop Techniques
   - Unpack Iterable
   - Output Format
@@ -14,6 +15,7 @@ Python Cookbook
   - Context Manager
   - file I/O
   - Find & Sort Algorithms
+  - Text Pattern
   
 
 Python Command Line Options:
