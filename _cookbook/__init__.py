@@ -7,6 +7,7 @@ Python Cookbook
   - unittest
   - doctest
   - OOP
+  - Context Manager
   - file I/O
   
 
