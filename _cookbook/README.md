@@ -8,7 +8,6 @@ Cookbook
 - [Regular Expression](#regular-expression)
 - [Python Coding Style](#python-coding-style)
 - [Doxygen Guide](#doxygen-guide)
-- [PyUnit](#pyunit)
 
 ## Linux User Guide
 
@@ -366,49 +365,4 @@ MAN_LINKS = YES
 
 ```bash
 doxygen Doxyfile
-```
-
-## PyUnit Guide
-
-```python
-import <module>
-import unittest
-
-class <Module>TestCase(unittest.TestCase):
-
-    def setUp(self):
-        # initialization
-
-    def tearDown(self):
-        # Clean up
-
-    @unittest.skip("<reason>")
-    @unittest.skipIf(<condition>, "<reason>")
-    @unittest.skipUnless(<condition>, "<reason>")
-    @unittest.expectedFailure() 
-    def test_<method_or_func>(self):
-        # Testing
-        #
-        # self.assertTrue(a)               a
-        # self.assertFalse(a)              not a
-        # self.assertIs(a, b)              a is b
-        # self.assertIsNot(a, b)           a is not b
-        # self.assertIsNone(a)             a is None
-        # self.assertIsNotNone(a)          a is not None
-        # self.assertIn(a, b)              a in b
-        # self.assertNotIn(a, b)           a not in b
-        # self.assertIsInstance(a, b)      isinstance(a, b)
-        # self.assertNotIsInstance(a, b)   not isinstance(a, b)
-        # self.assertEqual(a, b)           a == b
-        # self.assertNotEqual(a, b)        a != b
-        # self.assertGreater(a, b)         a > b
-        # self.assertLess(a ,b)            a < b
-        # self.assertGreaterEqual(a, b)    a >= b
-        # self.assertLessEqual(a, b)       a <= b
-        #
-        # with self.assertRaises(Error):   raise Error
-        #     func(a, b)
-        
-if __name__ == '__main__':
-    unittest.main()
 ```
