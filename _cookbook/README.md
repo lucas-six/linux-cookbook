@@ -31,6 +31,12 @@ mkdir [-p]
 
 which|man <cmd>
 
+# gzip & bz2
+tar xzvf <file>.[tar.gz|tgz]
+tar xjvf <file>.tar.bz2
+tar czvf <file>.[tar.gz|tgz] <file>...|<dir>
+tar cjvf <file>.tar.bz2 <dir>...|<dir>
+
 # New User/Group
 #
 # NOTE: `useradd` and `groupadd` are low-level utilities. On Debian, `adduser`
