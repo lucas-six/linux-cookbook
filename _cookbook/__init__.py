@@ -6,6 +6,7 @@ Python Cookbook
 
   - unittest
   - doctest
+  - Loop Techniques
   - OOP
   - Context Manager
   - file I/O
