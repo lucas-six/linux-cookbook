@@ -28,6 +28,9 @@ ln -s <src> <sym-link>
 cp|mv [-r|-u]
 rm [-r|-f]
 mkdir [-p]
+wc [-l]
+head|tail -n <num> <file>
+tail -f <file>
 
 which|man <cmd>
 
@@ -36,6 +39,9 @@ tar xzvf <file>.[tar.gz|tgz]
 tar xjvf <file>.tar.bz2
 tar czvf <file>.[tar.gz|tgz] <file>...|<dir>
 tar cjvf <file>.tar.bz2 <dir>...|<dir>
+
+sudo <cmd>
+sudo visudo
 
 # New User/Group
 #
@@ -54,6 +60,44 @@ sudo gpasswd -a <user> <group>  # for all Linux, as well as Debian
 
 # Change file ownership
 sudo chown <owner>[:<group>] <file> ...
+
+# Search File
+find <dir> <test-expr> <logic-operator...> <act>
+    -name FILENAME-PATTERN
+    -type [f|d|l|b|c]
+    -size N[c|k|M|G]
+    -empty
+    -cmin [-|+]MINUTES
+    -ctime [-|+]DAYS
+    -inum INODE
+
+    -and
+    -or
+    -not
+    ()
+
+    -print
+    -delete
+    -ls
+    -exec CMD '{}' ';'|+
+    
+# Search File Contents
+grep <expr> <file>
+
+# Join Files
+#
+# Say we have downloaded a large file that has been split into multiple parts,
+# and we want to join them back together. If the files were named:
+#    movie.mp4.001, movie.mp4.002 ... movie.mp4.099
+cat movie.mp4.0* > movie.mp4
+
+# Signal
+killall -9 <process-name>
+kill -9 <pid>
+
+# Process Management
+ps aux
+top
 
 # Network Interface Configuration
 #
