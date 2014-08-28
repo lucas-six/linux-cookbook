@@ -2,7 +2,13 @@
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
-Python Cookbook  
+Python Cookbook
+
+  - unittest
+  - doctest
+  - OOP
+  - file I/O
+  
 
 Python Command Line Options:
 
