@@ -8,6 +8,7 @@ Cookbook
 - [Regular Expression](#regular-expression)
 - [Python Coding Style](#python-coding-style)
 - [Doxygen Guide](#doxygen-guide)
+- [Git Workflow](#git-workflow)
 
 ## Linux User Guide
 
@@ -365,4 +366,76 @@ MAN_LINKS = YES
 
 ```bash
 doxygen Doxyfile
+```
+
+## Git Workflow
+
+### Start
+
+```bash
+git clone <git-url>
+git init
+```
+
+### Mainstream
+
+Branch `master` contains codes only for official releases with some version
+tags.
+
+```bash
+git checkout master
+git pull --rebase
+git merge --no-ff dev
+git tag -a <tag> -m '<tag-comment>' # e.g., git tag -a 'v0.1' -m 'v0.1 - Initial version'
+
+git push
+git push --tag
+```
+
+### Bugfix for Mainstream
+
+```bash
+git checkout -b <bugfix-A> master
+# ... (git add/rm)
+git diff [--cached] <path ...>
+# ... (git commit -m)
+git diff <bugfix-A>..master
+
+git checkout master
+git pull --rebase
+git rebase <bugfix-A>
+git branch -d <bugfix-A>
+```
+
+### Features/Topics
+
+```bash
+git checkout <feature-A> dev
+git pull --rebase
+# ... (git add/rm)
+git diff [--cached] <path ...>
+# ... (git commit)
+git diff <feature-A>..dev
+
+git checkout dev
+git pull --rebase
+git merge --no-ff <feature-A>
+```
+
+### Bugfix for Features/Topics
+
+```bash
+git checkout <feature-A>
+git pull --rebase
+
+git checkout -b <feature-A-bugfix>
+# ... (git add/rm)
+git diff [--cached] <path ...>
+# ... (git commit)
+git diff <feature-A>..<feature-A-bugfix>
+
+git checkout <feature-A>
+git pull --rebase
+git rebase <feature-A-bugfix>
+git branch -d <feature-A-bugfix>
 ```
