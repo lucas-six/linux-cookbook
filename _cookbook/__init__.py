@@ -13,6 +13,7 @@ Python Cookbook
   - OOP
   - Context Manager
   - file I/O
+  - Find & Sort Algorithms
   
 
 Python Command Line Options:

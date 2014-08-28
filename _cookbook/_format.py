@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-'''Formatting Output.
+'''@package _cookbook
+Formatting Output Cookbook.
 
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
 All Rights Reserved.
