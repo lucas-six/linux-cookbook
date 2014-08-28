@@ -7,6 +7,8 @@ Python Cookbook
   - unittest
   - doctest
   - Loop Techniques
+  - Unpack Iterable
+  - Output Format
   - Function Arguments
   - OOP
   - Context Manager
