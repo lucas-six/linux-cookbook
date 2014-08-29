@@ -19,7 +19,7 @@ Python Cookbook
   - Network
   
 
-Python Command Line Options:
+## Command Line Options
 
     `-t`  Issue a warning when a source file mixes tabs and spaces for
           indentation in a way that makes it depend on the worth of a tab
@@ -34,6 +34,12 @@ Python Command Line Options:
           the <code>__debug__</code> to <code>False</code>.
        
     `-OO` Discard docstrings in addition to the <em>-O</em> optimizations.
+    
+
+## PEP
+
+- [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
+
 
       
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
