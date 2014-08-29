@@ -92,7 +92,7 @@ class MyTCPServer(object):
         
         
     def serve_forever(self):
-        '''Run TCP server.
+        '''Run server.
         '''
         while True:
             # Wait for client
@@ -149,7 +149,7 @@ class MyUDPServer(object):
         
         
     def serve_forever(self):
-        '''Run TCP server.
+        '''Run server.
         '''
         # Message Communication
         #
