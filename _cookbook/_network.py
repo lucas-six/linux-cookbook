@@ -82,11 +82,9 @@ def _eintr_retry(func, *args):
     '''
     while True:
         try:
-            print('BBB\n')
             return func(*args)
         except (OSError, select.error) as e:
             if e.errno != errno.EINTR:
-                print('AAA\n')
                 raise
 
 
@@ -128,7 +126,7 @@ class MyTCPServer(object):
     def serve_forever(self, multiplex=None, timeout=0.5):
         '''Run server.
         
-        @param multiplex I/O multiplexing method: "None", "poll", "select".
+        @param multiplex I/O multiplexing method: "None", "epoll", "poll", "select".
         @param timeout timeout used by POSIX `select()` or poll()` in seconds
         @exception select.error
         
@@ -140,9 +138,33 @@ class MyTCPServer(object):
         afterwards the whole bitmap has to be linearly scanned again. `select()`
         is O(highest file descriptor), while poll() is O(number of file
         descriptors).
+        
+        @warnning `epoll()` ONLY available on Linux 2.5+.
         '''
-        poller = None
-        if multiplex == 'poll':
+        poller = None # epoll() or poll()
+        if multiplex == 'epoll':
+            # Setup epoller
+            poller = select.epoll()
+            
+            # epoll() event mask
+            #
+            # Constant     | Meaning
+            # -------------------------
+            # EPOLLIN      | Available for read
+            # EPOLLOUT     | Available for write
+            # EPOLLPRI     | Urgent data for read
+            # EPOLLERR     | Error condition happened on the associated fd
+            # EPOLLHUP     | Hang up happened on the associated fd
+            # EPOLLET      | Set Edge Trigger behavior, the default is Level Trigger behavior
+            # EPOLLONESHOT | Set one-shot behavior. After one event is pulled out, the fd is internally disabled
+            # EPOLLRDNORM  | Equivalent to EPOLLIN
+            # EPOLLRDBAND  | Priority data band can be read.
+            # EPOLLWRNORM  | Equivalent to EPOLLOUT
+            # EPOLLWRBAND  | Priority data may be written.
+            # EPOLLMSG     | Ignored.
+            poller.register(self.socket.fileno(), select.EPOLLIN)
+        
+        elif multiplex == 'poll':
             # `timeout` value is represented in milliseconds,
             # instead of seconds.
             timeout *= 1000
@@ -173,17 +195,21 @@ class MyTCPServer(object):
                     .format(self.server_address[1]))
                 
             # Set I/O multiplexing
-            #
+            if multiplex == 'epoll':
+                epoll_list = poller.poll()
+                for fd, events in epoll_list:
+                    if fd == self.socket.fileno():
+                        self._handle_request()
+                
             # Polling (poll or select) reduces our responsiveness to a
             # shutdown request and wastes CPU at all other times.
-            if multiplex == 'poll':
+            elif multiplex == 'poll':
                 events = poller.poll(timeout)
-                for fd, flag in events:
+                for fd, event in events:
                     s = fd_to_sockobj[fd]
-                    if flag & (select.POLLIN | select.POLLPRI):
+                    if event & (select.POLLIN | select.POLLPRI):
                         if s == self.socket:
-                            self._handle_request_nonblock()
-                            
+                            self._handle_request()
                 
             elif multiplex == 'select':
                 r, w, e = _eintr_retry(select.select, [self.socket], [], [],
@@ -191,19 +217,19 @@ class MyTCPServer(object):
             
                 # Handle request without blocking
                 if self.socket in r:
-                    self._handle_request_nonblock()
+                    self._handle_request()
                     
             else:
-                self._handle_request_nonblock()
+                self._handle_request()
         
         # Clean up
-        if multiplex == 'poll':
+        if multiplex in ['poll', 'epoll']:
             poller.unregister(self.socket)
         self.socket.close()
         
         
-    def _handle_request_nonblock(self):
-        '''Handle one request, without blocking.        
+    def _handle_request(self):
+        '''Handle one request.
         '''        
         client, addr = self.socket.accept()
         print('Connected by {0}'.format(addr))
@@ -403,6 +429,11 @@ if __name__ == '__main__':
         elif sys.argv[1] == '7':
             srv = MyTCPServer(('', 10000), timeout=0.0)
             srv.serve_forever(multiplex='poll', timeout=1)
+            
+        # Run non-blocking TCP server using POSIX `epoll()`
+        elif sys.argv[1] == '8':
+            srv = MyTCPServer(('', 10000), timeout=0.0)
+            srv.serve_forever(multiplex='epoll', timeout=1)
     
     # usage
     else:
@@ -413,3 +444,4 @@ if __name__ == '__main__':
         print('5: SocketServer.TCPServer')
         print('6: Non-blocking TCP Server using POSIX `select()`')
         print('7: Non-blocking TCP Server using POSIX `poll()`')
+        print('8: Non-blocking TCP Server using POSIX `epoll()`')
