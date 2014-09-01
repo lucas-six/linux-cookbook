@@ -34,6 +34,10 @@ Networking Programming Cookbook.
   - blocking (default)
   - non-blocking
   - timeout
+  
+## Socket Option
+
+  - SO_REUSEADDR
 
     
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
@@ -58,15 +62,35 @@ import socket
 import errno
 import time
 import sys
+import select
 import SocketServer
 
 
+def _eintr_retry(func, *args):
+    '''restart a system call interrupted by EINTR.
+    
+    @param func system call
+    @param args arguments of system call
+    @return results of system call
+    @exception OSError
+    @exception select.error
+    '''
+    while True:
+        try:
+            print('BBB\n')
+            return func(*args)
+        except (OSError, select.error) as e:
+            if e.errno != errno.EINTR:
+                print('AAA\n')
+                raise
+
+
 class MyTCPServer(object):
-    '''Synchronous TCP Server (Only IPv4).
+    '''TCP Server (Only IPv4).
     '''
     address_family = socket.AF_INET
     socket_type = socket.SOCK_STREAM
-    request_queue_size = 5 # used by listen()
+    request_queue_size = 5 # used by POSIX `listen()`
     
     def __init__(self, address, buf_size=1024, timeout=None):
         '''Create an instance of TCP server.
@@ -78,11 +102,16 @@ class MyTCPServer(object):
         @exception socket.error
         '''
         self.server_address = address
+        self._timeout = timeout
         self._buf_size = buf_size
         
         # Setup
         self.socket = socket.socket(self.address_family, self.socket_type)
-        self.socket.settimeout(timeout)
+        self.socket.settimeout(self._timeout)
+        
+        # Non-blocking mode
+        if self._timeout == 0.0:
+            self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         
         # Bind
         self.socket.bind(self.server_address)
@@ -91,38 +120,56 @@ class MyTCPServer(object):
         self.socket.listen(self.request_queue_size)
         
         
-    def serve_forever(self):
+    def serve_forever(self, select_timeout=0.5):
         '''Run server.
+        
+        @param select_timeout timeout used by POSIX `select()`
+        @exception select.error
         '''
         while True:
-            # Wait for client
+            # Wait for client request
             print('Waiting for client on port {0}...'
                     .format(self.server_address[1]))
-            client, addr = self.socket.accept()
-            
-            # Handle request
-            print('Connected by {0}'.format(addr))
-            
-            # Message Communication
-            #
-            # Note: put the server’s `while` loop inside the `except` clause
-            # of a `try-except` statement and monitor for `EOFError` or
-            # `KeyboardInterrupt` exceptions so that you can close the server’s
-            # socket in the `except` or `finally` clauses.
-            try:
-                while True:
-                    data = client.recv(self._buf_size)
-                    if not data:
-                        break
-                    print('Data from client: {0}'.format(data))
-                    
-                    client.sendall('response')
-            except socket.error as e:
-                print(e)
-            finally:
-                client.close()
                 
+            # Set I/O multiplexing
+            #
+            # Polling reduces our responsiveness to a
+            # shutdown request and wastes CPU at all other times.
+            r, w, e = _eintr_retry(select.select, [self.socket], [], [],
+                    select_timeout)
+            
+            # Handle request without blocking
+            if self.socket in r:
+                self._handle_request_nonblock()
+        
         self.socket.close()
+        
+        
+    def _handle_request_nonblock(self):
+        '''Handle one request, without blocking.        
+        '''        
+        client, addr = self.socket.accept()
+        print('Connected by {0}'.format(addr))
+        
+        # Message Communication
+        #
+        # Note: put the server’s `while` loop inside the `except` clause of a 
+        # `try-except` statement and monitor for `EOFError` or
+        # `KeyboardInterrupt` exceptions so that you can close the server’s
+        # socket in the `except` or `finally` clauses.
+        try:
+            while True:
+                data = client.recv(self._buf_size)
+                if not data:
+                    break
+                print('Data from client: {0}'.format(data))
+                    
+                client.sendall('response')
+        except socket.error as e:
+            print(e)
+        finally:
+            client.close()
+        
         
         
 class MyUDPServer(object):
@@ -266,7 +313,7 @@ def tcp_server(host, port):
         
 if __name__ == '__main__':
     if len(sys.argv) == 2:
-        # Run synchronous TCP server
+        # Run blocking TCP server
         if sys.argv[1] == '1':
             srv = MyTCPServer(('', 10000))
             srv.serve_forever()
@@ -289,11 +336,17 @@ if __name__ == '__main__':
         # Run SocketServer.TCPServer
         elif sys.argv[1] == '5':
             tcp_server('', 10000)
+            
+        # Run non-blocking TCP server
+        elif sys.argv[1] == '6':
+            srv = MyTCPServer(('', 10000), timeout=0.0)
+            srv.serve_forever(select_timeout=0.5)
     
     # usage
     else:
-        print('1: Synchronous TCP Server')
+        print('1: Blocking TCP Server')
         print('2: TCP Client')
-        print('3: Synchronous UDP Server')
+        print('3: Blocking UDP Server')
         print('4: UDP Client')
         print('5: SocketServer.TCPServer')
+        print('6: Non-blocking TCP Server')

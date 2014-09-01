@@ -33,6 +33,7 @@ from __future__ import print_function
 import sys
 import os
 import unittest
+import errno
 from collections import namedtuple
 from collections import OrderedDict
 
@@ -75,6 +76,19 @@ def force_remove(path):
         os.remove(path)
     except OSError:
         pass
+        
+        
+## Restart a system call interrupted by `EINTR`.
+#
+# @param func system call
+# @param args arguments of system call
+def eintr_retry(func, *args):
+    while True:
+        try:
+            return func(*args)
+        except (OSError, socket.error, select.error) as e:
+            if e.errno != errno.EINTR:
+                raise
         
     
 ## Decode version information string.
