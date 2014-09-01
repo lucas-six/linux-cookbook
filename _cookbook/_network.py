@@ -4,8 +4,8 @@
 '''@package _cookbook
 Networking Programming Cookbook.
 
-  - Synchronous TCP Server
-  - Synchronous UDP Server
+  - TCP Server
+  - UDP Server
   - TCP Client
   - UDP Client
   - TCP Handler
@@ -38,6 +38,11 @@ Networking Programming Cookbook.
 ## Socket Option
 
   - SO_REUSEADDR
+  
+## I/O Multiplex
+
+  - select()
+  - poll()
 
     
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
@@ -120,12 +125,48 @@ class MyTCPServer(object):
         self.socket.listen(self.request_queue_size)
         
         
-    def serve_forever(self, select_timeout=0.5):
+    def serve_forever(self, multiplex=None, timeout=0.5):
         '''Run server.
         
-        @param select_timeout timeout used by POSIX `select()`
+        @param multiplex I/O multiplexing method: "None", "poll", "select".
+        @param timeout timeout used by POSIX `select()` or poll()` in seconds
         @exception select.error
+        
+        The `poll()` system call, supported on most Unix systems, provides
+        better scalability for network servers that service many, many clients
+        at the same time. `poll()` scales better because the system call only
+        requires listing the file descriptors of interest, while `select()`
+        builds a bitmap, turns on bits for the fds of interest, and then
+        afterwards the whole bitmap has to be linearly scanned again. `select()`
+        is O(highest file descriptor), while poll() is O(number of file
+        descriptors).
         '''
+        poller = None
+        if multiplex == 'poll':
+            # `timeout` value is represented in milliseconds,
+            # instead of seconds.
+            timeout *= 1000
+            
+            # Set event mask
+            #
+            # Constant |  Meaning
+            # -------------------------
+            # POLLIN   | There is data to read
+            # POLLPRI  | There is urgent data to read
+            # POLLOUT  | Ready for output: writing will not block
+            # POLLERR  | Error condition of some sort
+            # POLLHUP  | Hung up
+            # POLLNVAL | Invalid request: descriptor not open
+            READ_ONLY = (select.POLLIN|select.POLLPRI|select.POLLHUP|select.POLLERR)
+            READ_WRITE = (READ_ONLY|select.POLLOUT)
+            
+            # Setup poller
+            poller = select.poll()
+            poller.register(self.socket, READ_ONLY)
+                
+            # Map file descriptors to socket objects
+            fd_to_sockobj = {self.socket.fileno(): self.socket}
+            
         while True:
             # Wait for client request
             print('Waiting for client on port {0}...'
@@ -133,15 +174,31 @@ class MyTCPServer(object):
                 
             # Set I/O multiplexing
             #
-            # Polling reduces our responsiveness to a
+            # Polling (poll or select) reduces our responsiveness to a
             # shutdown request and wastes CPU at all other times.
-            r, w, e = _eintr_retry(select.select, [self.socket], [], [],
-                    select_timeout)
+            if multiplex == 'poll':
+                events = poller.poll(timeout)
+                for fd, flag in events:
+                    s = fd_to_sockobj[fd]
+                    if flag & (select.POLLIN | select.POLLPRI):
+                        if s == self.socket:
+                            self._handle_request_nonblock()
+                            
+                
+            elif multiplex == 'select':
+                r, w, e = _eintr_retry(select.select, [self.socket], [], [],
+                        timeout)
             
-            # Handle request without blocking
-            if self.socket in r:
+                # Handle request without blocking
+                if self.socket in r:
+                    self._handle_request_nonblock()
+                    
+            else:
                 self._handle_request_nonblock()
         
+        # Clean up
+        if multiplex == 'poll':
+            poller.unregister(self.socket)
         self.socket.close()
         
         
@@ -337,10 +394,15 @@ if __name__ == '__main__':
         elif sys.argv[1] == '5':
             tcp_server('', 10000)
             
-        # Run non-blocking TCP server
+        # Run non-blocking TCP server using POSIX `select()`
         elif sys.argv[1] == '6':
             srv = MyTCPServer(('', 10000), timeout=0.0)
-            srv.serve_forever(select_timeout=0.5)
+            srv.serve_forever(multiplex='select', timeout=0.5)
+            
+        # Run non-blocking TCP server using POSIX `poll()`
+        elif sys.argv[1] == '7':
+            srv = MyTCPServer(('', 10000), timeout=0.0)
+            srv.serve_forever(multiplex='poll', timeout=1)
     
     # usage
     else:
@@ -349,4 +411,5 @@ if __name__ == '__main__':
         print('3: Blocking UDP Server')
         print('4: UDP Client')
         print('5: SocketServer.TCPServer')
-        print('6: Non-blocking TCP Server')
+        print('6: Non-blocking TCP Server using POSIX `select()`')
+        print('7: Non-blocking TCP Server using POSIX `poll()`')
