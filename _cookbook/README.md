@@ -143,16 +143,24 @@ kill -9 <pid>
 ps aux
 top
 
-# Network Interface Configuration
+# Network Interface
 #
 # NOTE: `ifconfig` uses **obsolete** kernel interface `ioctl()` to get full
 # address information, which limits hardware addresses to 8 bytes!
 ip addr show [dev <if-dev>]                       # ifconfig
+netstat -ie                                       # ifconfig
 sudo ip addr add <ipv4>[/<prefix>] dev <if-dev>   # sudo ifconfig <if-dev> add <ipv4>
 sudo ip addr del <ipv4>/<prefix=32> dev <if-dev>  # sudo ifconfig <if-dev> del <ipv4>
 sudo ip link set <if-dev> up|down                 # sudo ifconfig <if-dev> up|down
-netstat -ie                                       # ifconfig
 sudo ip addr add 192.168.0.77/24 dev eth0         # sudo ifconfig eth0 192.168.0.77 netmask 255.255.255.0
+
+# Network Routing
+#
+# NOTE: `route` is **obsolete**. use `ip route` instead.
+ip route show [dev <if-dev>]                        # route
+netstat -re                                         # route
+sudo ip route add default via <ipv4> dev <if-dev>   # sudo route add default dev <if-dev>
+sudo ip route add|del 192.168.0.77/24 dev eth0      # sudo route add|del -net 192.168.0.77/24 dev eth0
 ```
 
 ### Network Configuration
