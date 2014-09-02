@@ -3,14 +3,14 @@ cookbook
 
 Cookbook
 
-- [Linux User Guide](#linux-user-guide)
+- [Linux User](#linux-user)
 - [Bash Guide](#bash-guide)
 - [Regular Expression](#regular-expression)
 - [Python Coding Style](#python-coding-style)
 - [Doxygen Guide](#doxygen-guide)
 - [Git Workflow](#git-workflow)
 
-## Linux User Guide
+## Linux User
 
 ```bash
 sudo shutdown -h|-r now
