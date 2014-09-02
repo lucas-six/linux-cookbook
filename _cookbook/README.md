@@ -161,6 +161,13 @@ ip route show [dev <if-dev>]                        # route
 netstat -re                                         # route
 sudo ip route add default via <ipv4> dev <if-dev>   # sudo route add default dev <if-dev>
 sudo ip route add|del 192.168.0.77/24 dev eth0      # sudo route add|del -net 192.168.0.77/24 dev eth0
+
+# Network Troubleshooting
+ping <ip>                                                       # check connection status
+sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1                  # Disable ping (temporary)
+sudo echo 'net.ipv4.icmp_echo_ignore_all=1' >> /etc/sysctl.conf # Disable ping (permanent)
+dig
+traceroute <ip>                                                 # trace routing
 ```
 
 ### Network Configuration
