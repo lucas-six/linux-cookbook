@@ -17,6 +17,7 @@ Python Cookbook
   - Find & Sort Algorithms
   - Text Pattern
   - Network
+  - Thread
   
 
 ## Command Line Options

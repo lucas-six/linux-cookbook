@@ -14,6 +14,7 @@ Networking Programming Cookbook.
 ## Module
 
   - socket: Low-level network interface
+  - select: I/O multiplex interface
   - SocketServer: network server framework
 
 ## Address Family
@@ -39,10 +40,11 @@ Networking Programming Cookbook.
 
   - SO_REUSEADDR
   
-## I/O Multiplex
+## I/O Multiplex API
 
-  - select()
-  - poll()
+  - select() (all systems)
+  - poll()   (most systems)
+  - epoll()  (Linux 2.5+)
 
     
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
@@ -68,6 +70,7 @@ import errno
 import time
 import sys
 import select
+import threading
 import SocketServer
 
 
@@ -230,29 +233,42 @@ class MyTCPServer(object):
         
     def _handle_request(self):
         '''Handle one request.
-        '''        
-        client, addr = self.socket.accept()
+        '''
+        request, addr = self.socket.accept()
         print('Connected by {0}'.format(addr))
         
-        # Message Communication
-        #
+        # Blocking mode
+        if self._timeout is None:
+            self._handle_request_thread(request)
+            
+        # Non-blocking mode
+        else:
+            requst_thread = threading.Thread(target = self._handle_request_thread,
+                                args = (request,))
+            requst_thread.start()
+        
+            
+    def _handle_request_thread(self, request):
+        '''Handle each request in a thread.
+        
+        @param request request from client
+        '''
         # Note: put the server’s `while` loop inside the `except` clause of a 
         # `try-except` statement and monitor for `EOFError` or
         # `KeyboardInterrupt` exceptions so that you can close the server’s
         # socket in the `except` or `finally` clauses.
         try:
             while True:
-                data = client.recv(self._buf_size)
+                data = request.recv(self._buf_size)
                 if not data:
                     break
-                print('Data from client: {0}'.format(data))
+                print('Request from client: {0}'.format(data))
                     
-                client.sendall('response')
+                request.sendall('response')
         except socket.error as e:
             print(e)
         finally:
-            client.close()
-        
+            request.close()
         
         
 class MyUDPServer(object):
