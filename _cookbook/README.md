@@ -91,11 +91,32 @@ grep <expr> <file>
 #    movie.mp4.001, movie.mp4.002 ... movie.mp4.099
 cat movie.mp4.0* > movie.mp4
 
-# Signal
-killall -9 <process-name>
-kill -9 <pid>
+# Mount ISO
+mount -t iso9660 -o loop <img>.iso <mount-point>
+
+# Mount CD-ROM
+sudo mkdir /mnt/cdrom
+sudo mount -t iso9660 -o loop /dev/cdrom /mnt/cdrom
+
+# Umount before eject CD-ROM
+sudo umount /dev/cdrom
+sudo rmdir /mnt/cdrom
+
+# Make ISO from CD-ROM
+dd if=/dev/cdrom of=<dst-img>.iso
+
+# Make ISO from local files
+genisoimage -o <dst-img>.iso -R -J <dir>
+    -R # Rock Ridge extensions, support long file names and POSIX-style file permissions
+    -J # Joliet extensions, support long file names in Windows
+
+# Blank/Write CD-ROM    
+wodim dev=/dev/cdrom blank=fast
+wodim dev=/dev/cdrom <dst-img>.iso
 
 # Process Management
+killall -9 <process-name>
+kill -9 <pid>
 ps aux
 top
 
