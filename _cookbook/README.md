@@ -113,6 +113,11 @@ genisoimage -o <dst-img>.iso -R -J <dir>
 wodim dev=/dev/cdrom blank=fast
 wodim dev=/dev/cdrom <dst-img>.iso
 
+# Environment Variable
+echo $PWD   # current directory
+echo $USER  # current user name
+echo $HOME  # home directory of current user
+
 # Process Management
 killall -9 <process-name>
 kill -9 <pid>
