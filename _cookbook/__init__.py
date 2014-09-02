@@ -18,6 +18,7 @@ Python Cookbook
   - Text Pattern
   - Network
   - Thread
+  - Django (Web framework)
   
 
 ## Command Line Options
@@ -152,9 +153,13 @@ Python Cookbook
 
 ## PEP
 
-- [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
-- [PEP 257 - Docstring Conventions](http://legacy.python.org/dev/peps/pep-0257/)
+  - [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
+  - [PEP 257 - Docstring Conventions](http://legacy.python.org/dev/peps/pep-0257/)
 
+## Reference
+
+  - [Django](https://www.djangoproject.com/)
+  
       
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
 All Rights Reserved.

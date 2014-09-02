@@ -5,6 +5,7 @@
 
     - Setup Linux (Server)
     - Build Python projects
+  
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
 
@@ -68,9 +69,13 @@ def setup(test=False):
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
                     'bash', 'python', 'coreutils', \
-                    'vim', 'git', 'doxygen']
+                    'vim', 'git', 'doxygen', \
+                    'nginx', 'python-pip', 'build-essential', 'python-dev']
+            py_pkgs = ['Django', 'uwsgi']
             subprocess.check_call('sudo apt-get install '+' '.join(pkgs), \
                     shell=True)
+            for p in py_pkgs:
+                subprocess.check_call('sudo pip install --upgrade '+p, shell=True)
         except subprocess.CalledProcessError as e:
             sys.exit('Failed to install core packages: {0}'.format(e))
         info('System updated [OK]')
@@ -108,6 +113,7 @@ def setup(test=False):
                 admin.error('Failed to reload bashrc: {0}'.format(e))
                         
         # Configure Git
+        #
         # For more details on Git, please refer to the Pro Git online
         # version:
         #
