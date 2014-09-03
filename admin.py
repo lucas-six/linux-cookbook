@@ -185,8 +185,10 @@ def build(dir='build'):
     @exception subprocess.CalledProcessError - from `uwsgi()`
     '''   
     proj = admin.project.Project(lang=['python'], build_dir=dir)
-    proj.uwsgi(run=True)
+    proj.uwsgi()
     info('\nuWSGI [OK]')
+    proj.django()
+    info('\nDjango [OK]')
     proj.doxygen()
     
                 

@@ -91,20 +91,33 @@ class Project(object):
     # Setup (or Run) uWSGI server.
     #
     # @param wsgi_file uWSGI App
+    # @param django Django site name
     # @param run True to run uWSGI server
     # @exception ConfigParser.NoSectionError - from `uwsgi_app.ini`
     # @exception subprocess.CalledProcessError - from `uwsgi`
-    def uwsgi(self, wsgi_file='_setup/uwsgi_app.py', run=False):
+    def uwsgi(self, wsgi_file='_setup/uwsgi_app.py', django=None, run=False):
         # Create uWSGI configuration from template
         ini_tpl = os.path.join(self.path, '_setup/uwsgi_app.ini')
-        ini = os.path.join(self.path, self._build_dir+'/uwsgi_app.ini')
+        ini = os.path.join(self.path, self._build_dir, 'uwsgi_app.ini')
             
         # Update uWSGI configuration
         config = ConfigParser.SafeConfigParser(allow_no_value=True)
+        if django is not None:
+            wsgi_file = os.path.join(self._build_dir, django)
         app_path = os.path.join(self.path, wsgi_file)
         with open(ini_tpl) as tpl_f:
             config.readfp(tpl_f)
-            config.set('uwsgi', 'wsgi-file', app_path)
+            
+            # Django
+            if django is not None:
+                config.remove_option('uwsgi', 'wsgi-file')
+                config.set('uwsgi', 'module', django+'.wsgi')
+                
+            # uWSGI
+            else:
+                config.remove_option('uwsgi', 'module')
+                config.set('uwsgi', 'wsgi-file', app_path)
+                
             with open(ini, 'w') as f:
                 config.write(f)
               
@@ -115,12 +128,26 @@ class Project(object):
     
     # Setup Django project.
     #
-    # @param site Django site name
-    # @param test True for testing
+    # @param site Django site directory name
+    # @param run True to run server with Django
     # @exception subprocess.CalledProcessError - from `django`
-    def django(self, site='mysite', test=False):
+    def django(self, site='mysite', run=False):
         # Create Django project
-        subprocess.check_call('django-admin.py startproject {0}'.format(site))
+        os.chdir(self._build_dir)
+        if not os.path.lexists(site):
+            subprocess.check_call('django-admin.py startproject '+site, \
+                    shell=True)
+        
+        # Run uWSGI with Django
+        # NOTE: Before it, make sure that Django project actually works:
+        #
+        #     python manage.py runserver 0.0.0.0:8000
+        #
+        os.chdir(site)
+        self.uwsgi(django=site, run=run)
+        
+        # Back to top directory of project 
+        os.chdir(self.path)
             
             
     ## Generate documentation for codes under Git by Doxygen.
