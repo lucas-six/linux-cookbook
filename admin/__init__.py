@@ -8,7 +8,7 @@ This file contains some common functions and classes:
 
   - error(), debug()
   - update_seq_type()
-  - force_remove()
+  - force_remove(), copy_file()
   - Version, decode_version(), match_version()
   - ConfigFile
   
@@ -34,6 +34,7 @@ import sys
 import os
 import unittest
 import errno
+import subproccess
 from collections import namedtuple
 from collections import OrderedDict
 
@@ -62,15 +63,15 @@ def debug(msg, prefix='[DBG]'):
 ## Update type of all elements in specific sequence.
 #
 # @param seq (mutable) sequence to be update
-# @param typename Target type name
+# @param typename target type name
 def update_seq_type(seq, typename):
     for index, value in enumerate(seq[:]):
         seq[index] = typename(value)
         
 
-## Like command `rm -f`.
+## Command `rm -f`.
 #
-# @param path Path name of entry to be removed
+# @param path path name of entry to be removed
 def force_remove(path):
     try:
         os.remove(path)
@@ -78,10 +79,24 @@ def force_remove(path):
         pass
         
         
+## Command`cp`.
+#
+# @param src source path
+# @param dst destination path
+def copy_file(src, dst):
+    try:
+        subproccess.check_call('cp {0} {1}'.format(src, dst))
+    except subproccess.CalledProcessError:
+        pass
+        
+        
 ## Restart a system call interrupted by `EINTR`.
 #
 # @param func system call
 # @param args arguments of system call
+# @exception socket.error
+# @exception select.error
+# @exception OSError
 def eintr_retry(func, *args):
     while True:
         try:
