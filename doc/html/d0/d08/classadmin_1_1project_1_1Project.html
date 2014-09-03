@@ -115,6 +115,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aeb44db1aabe1eae8b7d970702270dc61"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#aeb44db1aabe1eae8b7d970702270dc61">__init__</a></td></tr>
 <tr class="memdesc:aeb44db1aabe1eae8b7d970702270dc61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create an instance of <a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html" title="Project. ">Project</a>.  <a href="#aeb44db1aabe1eae8b7d970702270dc61">More...</a><br/></td></tr>
 <tr class="separator:aeb44db1aabe1eae8b7d970702270dc61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a83f54c8b5d69acab088d1cc1e6e52901"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#a83f54c8b5d69acab088d1cc1e6e52901">uwsgi</a></td></tr>
+<tr class="separator:a83f54c8b5d69acab088d1cc1e6e52901"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a288339834e2636bf372f02030808d2ac"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#a288339834e2636bf372f02030808d2ac">django</a></td></tr>
+<tr class="separator:a288339834e2636bf372f02030808d2ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af8f058021d27f5d4f5c226afb10b4ada"><td class="memItemLeft" align="right" valign="top">def&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#af8f058021d27f5d4f5c226afb10b4ada">doxygen</a></td></tr>
 <tr class="memdesc:af8f058021d27f5d4f5c226afb10b4ada"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate documentation for codes under Git by Doxygen.  <a href="#af8f058021d27f5d4f5c226afb10b4ada">More...</a><br/></td></tr>
 <tr class="separator:af8f058021d27f5d4f5c226afb10b4ada"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,13 +143,14 @@ Public Attributes</h2></td></tr>
       import admin
       import <a class="el" href="../../d4/d64/namespaceadmin_1_1project.html">admin.project</a></code></pre><pre><code>      proj = <a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html" title="Project. ">admin.project.Project</a>(lang=['python'])
       try:
+          # Generate documentation
           proj.doxygen()
       except subprocess.CalledProcessError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
       except IOError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
   </code></pre> 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00048">48</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00049">49</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeb44db1aabe1eae8b7d970702270dc61"></a>
 <div class="memitem">
@@ -186,11 +191,45 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00053">53</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00054">54</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a288339834e2636bf372f02030808d2ac"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def admin.project.Project.django </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>site</em> = <code>'mysite'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>test</em> = <code>False</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00090">90</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="af8f058021d27f5d4f5c226afb10b4ada"></a>
 <div class="memitem">
 <div class="memproto">
@@ -224,13 +263,41 @@ Public Attributes</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
-    <tr><td class="paramname">subprocess.CalledProcessError</td><td>- generated by executing doxygen </td></tr>
+    <tr><td class="paramname">subprocess.CalledProcessError</td><td>- from <code>doxygen</code> </td></tr>
     <tr><td class="paramname">IOError</td><td>- configuration file written error </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00082">82</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00100">100</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a83f54c8b5d69acab088d1cc1e6e52901"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">def admin.project.Project.uwsgi </td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>self</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>test</em> = <code>False</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00081">81</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -245,7 +312,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00060">60</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00061">61</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -259,7 +326,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00054">54</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00055">55</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -273,7 +340,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00056">56</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00057">57</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -287,7 +354,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00055">55</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00056">56</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -301,7 +368,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00069">69</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00070">70</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -311,7 +378,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Aug 27 2014 14:14:55 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 3 2014 13:06:08 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

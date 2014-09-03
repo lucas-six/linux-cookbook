@@ -8,7 +8,7 @@ This file contains some common functions and classes:
 
   - error(), debug()
   - update_seq_type()
-  - force_remove(), copy_file()
+  - force_remove()
   - Version, decode_version(), match_version()
   - ConfigFile
   
@@ -34,7 +34,7 @@ import sys
 import os
 import unittest
 import errno
-import subproccess
+import subprocess
 from collections import namedtuple
 from collections import OrderedDict
 
@@ -76,17 +76,6 @@ def force_remove(path):
     try:
         os.remove(path)
     except OSError:
-        pass
-        
-        
-## Command`cp`.
-#
-# @param src source path
-# @param dst destination path
-def copy_file(src, dst):
-    try:
-        subproccess.check_call('cp {0} {1}'.format(src, dst))
-    except subproccess.CalledProcessError:
         pass
         
         
