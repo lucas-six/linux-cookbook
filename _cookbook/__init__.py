@@ -151,6 +151,19 @@ Python Cookbook
 > shorter name.
 
 
+## Virtual Running Environment
+
+```bash
+# Create
+sudo apt-get install python-virtualenv
+virtualenv env-dir
+cd env-dir
+
+# Active
+source bin/activate
+```
+
+
 ## PEP
 
   - [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
