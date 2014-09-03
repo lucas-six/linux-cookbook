@@ -91,6 +91,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="../../d0/d29/classadmin_1_1project_1_1Project-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">admin.project.Project Class Reference</div>  </div>
@@ -135,6 +136,11 @@ Public Attributes</h2></td></tr>
 <tr class="separator:ac3e2b73e80631fe2171b8d4b236f2e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aead4e47be18c6ddbfd19d3b5aab88bda"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#aead4e47be18c6ddbfd19d3b5aab88bda">version_info</a></td></tr>
 <tr class="separator:aead4e47be18c6ddbfd19d3b5aab88bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a9357a34aaccfd3fc391b4081f6794ee8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html#a9357a34aaccfd3fc391b4081f6794ee8">_build_dir</a></td></tr>
+<tr class="separator:a9357a34aaccfd3fc391b4081f6794ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html" title="Project. ">Project</a>. </p>
@@ -143,14 +149,15 @@ Public Attributes</h2></td></tr>
       import admin
       import <a class="el" href="../../d4/d64/namespaceadmin_1_1project.html">admin.project</a></code></pre><pre><code>      proj = <a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html" title="Project. ">admin.project.Project</a>(lang=['python'])
       try:
-          # Generate documentation
+          # Setup uWSGI server
+          proj.uwsgi()</code></pre><pre><code>          # Generate documentation
           proj.doxygen()
       except subprocess.CalledProcessError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
       except IOError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
   </code></pre> 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00049">49</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00053">53</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeb44db1aabe1eae8b7d970702270dc61"></a>
 <div class="memitem">
@@ -172,6 +179,12 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>build_dir</em> = <code>'build'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>default_version</em> = <code>'0.0.0'</code>&#160;</td>
         </tr>
         <tr>
@@ -186,12 +199,13 @@ Public Attributes</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">lang</td><td>programming language (python, c, java, cpp) </td></tr>
+    <tr><td class="paramname">build_dir</td><td>building directory </td></tr>
     <tr><td class="paramname">default_version</td><td>default version string </td></tr>
   </table>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00054">54</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00059">59</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -226,7 +240,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00090">90</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00121">121</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -269,7 +283,7 @@ Public Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00100">100</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00131">131</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -287,7 +301,13 @@ Public Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>test</em> = <code>False</code>&#160;</td>
+          <td class="paramname"><em>wsgi_file</em> = <code>'_setup/uwsgi_app.py'</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>run</em> = <code>False</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -297,11 +317,33 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00081">81</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00097">97</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a9357a34aaccfd3fc391b4081f6794ee8"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">admin.project.Project._build_dir</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00063">63</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="ac3e2b73e80631fe2171b8d4b236f2e53"></a>
 <div class="memitem">
 <div class="memproto">
@@ -312,7 +354,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00061">61</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00067">67</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -326,7 +368,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00055">55</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00060">60</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -340,7 +382,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00057">57</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00062">62</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -354,7 +396,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00056">56</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00061">61</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -368,7 +410,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00070">70</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00076">76</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -378,7 +420,7 @@ Public Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 3 2014 13:06:08 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 3 2014 14:11:57 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

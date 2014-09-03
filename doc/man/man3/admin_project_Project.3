@@ -48,6 +48,13 @@ Inherits object\&.
 .RI "\fBversion_info\fP"
 .br
 .in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB_build_dir\fP"
+.br
+.in -1c
 .SH "Detailed Description"
 .PP 
 \fBProject\fP\&. 
@@ -67,7 +74,14 @@ Inherits object\&.
 .nf
 \fC      proj = \fBadmin\&.project\&.Project\fP(lang=['python'])
       try:
-          # Generate documentation
+          # Setup uWSGI server
+          proj\&.uwsgi()\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+\fC          # Generate documentation
           proj\&.doxygen()
       except subprocess\&.CalledProcessError as e:
           \fBadmin\&.error\fP('error')
@@ -78,10 +92,10 @@ Inherits object\&.
 .PP
  
 .PP
-Definition at line 49 of file project\&.py\&.
+Definition at line 53 of file project\&.py\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "def admin\&.project\&.Project\&.__init__ (self, lang, default_version = \fC'0\&.0\&.0'\fP)"
+.SS "def admin\&.project\&.Project\&.__init__ (self, lang, build_dir = \fC'build'\fP, default_version = \fC'0\&.0\&.0'\fP)"
 
 .PP
 Create an instance of \fBProject\fP\&. 
@@ -90,18 +104,20 @@ Create an instance of \fBProject\fP\&.
 .RS 4
 \fIlang\fP programming language (python, c, java, cpp) 
 .br
+\fIbuild_dir\fP building directory 
+.br
 \fIdefault_version\fP default version string 
 .RE
 .PP
 
 .PP
-Definition at line 54 of file project\&.py\&.
+Definition at line 59 of file project\&.py\&.
 .SH "Member Function Documentation"
 .PP 
 .SS "def admin\&.project\&.Project\&.django (self, site = \fC'mysite'\fP, test = \fCFalse\fP)"
 
 .PP
-Definition at line 90 of file project\&.py\&.
+Definition at line 121 of file project\&.py\&.
 .SS "def admin\&.project\&.Project\&.doxygen (self, doxyfile = \fC'Doxyfile'\fP)"
 
 .PP
@@ -121,33 +137,37 @@ Generate documentation for codes under Git by Doxygen\&.
 .PP
 
 .PP
-Definition at line 100 of file project\&.py\&.
-.SS "def admin\&.project\&.Project\&.uwsgi (self, test = \fCFalse\fP)"
+Definition at line 131 of file project\&.py\&.
+.SS "def admin\&.project\&.Project\&.uwsgi (self, wsgi_file = \fC'_setup/uwsgi_app\&.py'\fP, run = \fCFalse\fP)"
 
 .PP
-Definition at line 81 of file project\&.py\&.
+Definition at line 97 of file project\&.py\&.
 .SH "Member Data Documentation"
 .PP 
+.SS "admin\&.project\&.Project\&._build_dir\fC [private]\fP"
+
+.PP
+Definition at line 63 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.brief"
 
 .PP
-Definition at line 61 of file project\&.py\&.
+Definition at line 67 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.lang"
 
 .PP
-Definition at line 55 of file project\&.py\&.
+Definition at line 60 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.name"
 
 .PP
-Definition at line 57 of file project\&.py\&.
+Definition at line 62 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.path"
 
 .PP
-Definition at line 56 of file project\&.py\&.
+Definition at line 61 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.version_info"
 
 .PP
-Definition at line 70 of file project\&.py\&.
+Definition at line 76 of file project\&.py\&.
 
 .SH "Author"
 .PP 

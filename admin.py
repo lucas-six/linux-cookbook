@@ -70,12 +70,17 @@ def setup(test=False):
             pkgs = ['sudo', 'apt', 'apt-utils', \
                     'bash', 'python', 'coreutils', \
                     'vim', 'git', 'doxygen', \
-                    'nginx', 'python-pip', 'build-essential', 'python-dev']
-            py_pkgs = ['Django', 'uwsgi']
+                    'nginx', 'build-essential', 
+                    'python-pip', 'python-dev', 'python-virtualenv']
+            pip_pkgs = ['Django', 'uwsgi']
             subprocess.check_call('sudo apt-get install '+' '.join(pkgs), \
                     shell=True)
-            for p in py_pkgs:
-                subprocess.check_call('sudo pip install --upgrade '+p, shell=True)
+            
+            # Skip updating pip packages to reduce testing time.
+            if not test:
+                for p in pip_pkgs:
+                    subprocess.check_call('sudo pip install --upgrade '+p, \
+                            shell=True)
         except subprocess.CalledProcessError as e:
             sys.exit('Failed to install core packages: {0}'.format(e))
         info('System updated [OK]')
@@ -172,10 +177,16 @@ def admin_unittest():
         sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
         
         
-def build():
+def build(dir='build'):
     '''Build projects.
-    '''
-    proj = admin.project.Project(lang=['python'])
+    
+    @param dir building directory
+    @exception ConfigParser.NoSectionError - from `uwsgi()`
+    @exception subprocess.CalledProcessError - from `uwsgi()`
+    '''   
+    proj = admin.project.Project(lang=['python'], build_dir=dir)
+    proj.uwsgi(run=True)
+    info('\nuWSGI [OK]')
     proj.doxygen()
     
                 
@@ -191,7 +202,7 @@ if __name__ == '__main__':
     elif option == 'test':
         admin_unittest()
         setup(test=True)
-        build()
+        build(dir='test')
     else:
         sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
         
