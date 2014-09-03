@@ -150,14 +150,15 @@ Private Attributes</h2></td></tr>
       import <a class="el" href="../../d4/d64/namespaceadmin_1_1project.html">admin.project</a></code></pre><pre><code>      proj = <a class="el" href="../../d0/d08/classadmin_1_1project_1_1Project.html" title="Project. ">admin.project.Project</a>(lang=['python'])
       try:
           # Setup uWSGI server
-          proj.uwsgi()</code></pre><pre><code>          # Generate documentation
+          proj.uwsgi()</code></pre><pre><code>          # Setup Django
+          proj.django()</code></pre><pre><code>          # Generate documentation
           proj.doxygen()
       except subprocess.CalledProcessError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
       except IOError as e:
           <a class="el" href="../../d5/d4c/namespaceadmin.html#ae1e80d1a965f6551fa95ff379ba2b0cd" title="Print error messages. ">admin.error</a>('error')
   </code></pre> 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00053">53</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00056">56</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="aeb44db1aabe1eae8b7d970702270dc61"></a>
 <div class="memitem">
@@ -205,7 +206,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00059">59</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00062">62</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -230,6 +231,12 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>nginx</em> = <code>None</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>run</em> = <code>False</code>&#160;</td>
         </tr>
         <tr>
@@ -240,7 +247,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00134">134</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00150">150</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -283,7 +290,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00158">158</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00174">174</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -313,6 +320,12 @@ Private Attributes</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>nginx</em> = <code>None</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
           <td class="paramname"><em>run</em> = <code>False</code>&#160;</td>
         </tr>
         <tr>
@@ -323,7 +336,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00098">98</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00104">104</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -346,7 +359,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00063">63</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00066">66</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -360,7 +373,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00067">67</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00070">70</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -374,7 +387,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00060">60</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00063">63</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -388,7 +401,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00062">62</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00065">65</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -402,7 +415,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00061">61</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00064">64</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -416,7 +429,7 @@ Private Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00076">76</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d7/daa/project_8py_source.html#l00079">79</a> of file <a class="el" href="../../d7/daa/project_8py_source.html">project.py</a>.</p>
 
 </div>
 </div>
@@ -426,7 +439,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 3 2014 14:46:28 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 3 2014 17:19:23 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

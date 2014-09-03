@@ -62,6 +62,11 @@ def \hyperlink{classadmin_1_1project_1_1Project_af8f058021d27f5d4f5c226afb10b4ad
 
 
 
+\begin{DoxyPre}{\ttfamily           \# Setup Django
+          proj.django()}\end{DoxyPre}
+
+
+
 \begin{DoxyPre}{\ttfamily           \# Generate documentation
           proj.doxygen()
       except subprocess.CalledProcessError as e:
@@ -71,7 +76,7 @@ def \hyperlink{classadmin_1_1project_1_1Project_af8f058021d27f5d4f5c226afb10b4ad
   }\end{DoxyPre}
  
 
-Definition at line 53 of file project.\-py.
+Definition at line 56 of file project.\-py.
 
 
 
@@ -101,7 +106,7 @@ Create an instance of \hyperlink{classadmin_1_1project_1_1Project}{Project}.
 \end{DoxyParams}
 
 
-Definition at line 59 of file project.\-py.
+Definition at line 62 of file project.\-py.
 
 
 
@@ -112,12 +117,13 @@ Definition at line 59 of file project.\-py.
 \begin{DoxyParamCaption}
 \item[{}]{self, }
 \item[{}]{site = {\ttfamily 'mysite'}, }
+\item[{}]{nginx = {\ttfamily None}, }
 \item[{}]{run = {\ttfamily False}}
 \end{DoxyParamCaption}
 )}}\label{classadmin_1_1project_1_1Project_a288339834e2636bf372f02030808d2ac}
 
 
-Definition at line 134 of file project.\-py.
+Definition at line 150 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_af8f058021d27f5d4f5c226afb10b4ada}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!doxygen@{doxygen}}
 \index{doxygen@{doxygen}!admin::project::Project@{admin\-::project\-::\-Project}}
@@ -145,7 +151,7 @@ Generate documentation for codes under Git by Doxygen.
 \end{DoxyExceptions}
 
 
-Definition at line 158 of file project.\-py.
+Definition at line 174 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_a83f54c8b5d69acab088d1cc1e6e52901}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!uwsgi@{uwsgi}}
 \index{uwsgi@{uwsgi}!admin::project::Project@{admin\-::project\-::\-Project}}
@@ -154,12 +160,13 @@ Definition at line 158 of file project.\-py.
 \item[{}]{self, }
 \item[{}]{wsgi\-\_\-file = {\ttfamily '\-\_\-setup/uwsgi\-\_\-app.py'}, }
 \item[{}]{django = {\ttfamily None}, }
+\item[{}]{nginx = {\ttfamily None}, }
 \item[{}]{run = {\ttfamily False}}
 \end{DoxyParamCaption}
 )}}\label{classadmin_1_1project_1_1Project_a83f54c8b5d69acab088d1cc1e6e52901}
 
 
-Definition at line 98 of file project.\-py.
+Definition at line 104 of file project.\-py.
 
 
 
@@ -169,42 +176,42 @@ Definition at line 98 of file project.\-py.
 \subsubsection[{\-\_\-build\-\_\-dir}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-\_\-build\-\_\-dir\hspace{0.3cm}{\ttfamily [private]}}}\label{classadmin_1_1project_1_1Project_a9357a34aaccfd3fc391b4081f6794ee8}
 
 
-Definition at line 63 of file project.\-py.
+Definition at line 66 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_ac3e2b73e80631fe2171b8d4b236f2e53}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!brief@{brief}}
 \index{brief@{brief}!admin::project::Project@{admin\-::project\-::\-Project}}
 \subsubsection[{brief}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-brief}}\label{classadmin_1_1project_1_1Project_ac3e2b73e80631fe2171b8d4b236f2e53}
 
 
-Definition at line 67 of file project.\-py.
+Definition at line 70 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_add0eb047a815df47b9b888aa8a028b77}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!lang@{lang}}
 \index{lang@{lang}!admin::project::Project@{admin\-::project\-::\-Project}}
 \subsubsection[{lang}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-lang}}\label{classadmin_1_1project_1_1Project_add0eb047a815df47b9b888aa8a028b77}
 
 
-Definition at line 60 of file project.\-py.
+Definition at line 63 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_a9b8c34b91f1ecdbbdcfea42e771dd6d6}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!name@{name}}
 \index{name@{name}!admin::project::Project@{admin\-::project\-::\-Project}}
 \subsubsection[{name}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-name}}\label{classadmin_1_1project_1_1Project_a9b8c34b91f1ecdbbdcfea42e771dd6d6}
 
 
-Definition at line 62 of file project.\-py.
+Definition at line 65 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_a4a925408cb4575a4f8e880918decdf7d}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!path@{path}}
 \index{path@{path}!admin::project::Project@{admin\-::project\-::\-Project}}
 \subsubsection[{path}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-path}}\label{classadmin_1_1project_1_1Project_a4a925408cb4575a4f8e880918decdf7d}
 
 
-Definition at line 61 of file project.\-py.
+Definition at line 64 of file project.\-py.
 
 \hypertarget{classadmin_1_1project_1_1Project_aead4e47be18c6ddbfd19d3b5aab88bda}{\index{admin\-::project\-::\-Project@{admin\-::project\-::\-Project}!version\-\_\-info@{version\-\_\-info}}
 \index{version\-\_\-info@{version\-\_\-info}!admin::project::Project@{admin\-::project\-::\-Project}}
 \subsubsection[{version\-\_\-info}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-project.\-Project.\-version\-\_\-info}}\label{classadmin_1_1project_1_1Project_aead4e47be18c6ddbfd19d3b5aab88bda}
 
 
-Definition at line 76 of file project.\-py.
+Definition at line 79 of file project.\-py.
 
 
 

@@ -81,6 +81,13 @@ Inherits object\&.
 .PP
 .PP
 .nf
+\fC          # Setup Django
+          proj\&.django()\fP
+.fi
+.PP
+.PP
+.PP
+.nf
 \fC          # Generate documentation
           proj\&.doxygen()
       except subprocess\&.CalledProcessError as e:
@@ -92,7 +99,7 @@ Inherits object\&.
 .PP
  
 .PP
-Definition at line 53 of file project\&.py\&.
+Definition at line 56 of file project\&.py\&.
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "def admin\&.project\&.Project\&.__init__ (self, lang, build_dir = \fC'build'\fP, default_version = \fC'0\&.0\&.0'\fP)"
@@ -111,13 +118,13 @@ Create an instance of \fBProject\fP\&.
 .PP
 
 .PP
-Definition at line 59 of file project\&.py\&.
+Definition at line 62 of file project\&.py\&.
 .SH "Member Function Documentation"
 .PP 
-.SS "def admin\&.project\&.Project\&.django (self, site = \fC'mysite'\fP, run = \fCFalse\fP)"
+.SS "def admin\&.project\&.Project\&.django (self, site = \fC'mysite'\fP, nginx = \fCNone\fP, run = \fCFalse\fP)"
 
 .PP
-Definition at line 134 of file project\&.py\&.
+Definition at line 150 of file project\&.py\&.
 .SS "def admin\&.project\&.Project\&.doxygen (self, doxyfile = \fC'Doxyfile'\fP)"
 
 .PP
@@ -137,37 +144,37 @@ Generate documentation for codes under Git by Doxygen\&.
 .PP
 
 .PP
-Definition at line 158 of file project\&.py\&.
-.SS "def admin\&.project\&.Project\&.uwsgi (self, wsgi_file = \fC'_setup/uwsgi_app\&.py'\fP, django = \fCNone\fP, run = \fCFalse\fP)"
+Definition at line 174 of file project\&.py\&.
+.SS "def admin\&.project\&.Project\&.uwsgi (self, wsgi_file = \fC'_setup/uwsgi_app\&.py'\fP, django = \fCNone\fP, nginx = \fCNone\fP, run = \fCFalse\fP)"
 
 .PP
-Definition at line 98 of file project\&.py\&.
+Definition at line 104 of file project\&.py\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "admin\&.project\&.Project\&._build_dir\fC [private]\fP"
 
 .PP
-Definition at line 63 of file project\&.py\&.
+Definition at line 66 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.brief"
 
 .PP
-Definition at line 67 of file project\&.py\&.
+Definition at line 70 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.lang"
 
 .PP
-Definition at line 60 of file project\&.py\&.
+Definition at line 63 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.name"
 
 .PP
-Definition at line 62 of file project\&.py\&.
+Definition at line 65 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.path"
 
 .PP
-Definition at line 61 of file project\&.py\&.
+Definition at line 64 of file project\&.py\&.
 .SS "admin\&.project\&.Project\&.version_info"
 
 .PP
-Definition at line 76 of file project\&.py\&.
+Definition at line 79 of file project\&.py\&.
 
 .SH "Author"
 .PP 

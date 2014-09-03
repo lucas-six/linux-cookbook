@@ -4,7 +4,7 @@
 '''Admin Linux (Ubuntu)
 
     - Setup Linux (Server)
-    - Build Python projects
+    - Build Python (Django) projects
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -185,10 +185,14 @@ def build(dir='build'):
     @exception subprocess.CalledProcessError - from `uwsgi()`
     '''   
     proj = admin.project.Project(lang=['python'], build_dir=dir)
+    
     proj.uwsgi()
     info('\nuWSGI [OK]')
+    
     proj.django()
+    proj.django(nginx=':8001')
     info('\nDjango [OK]')
+    
     proj.doxygen()
     
                 

@@ -43,6 +43,9 @@ import admin
 #          # Setup uWSGI server
 #          proj.uwsgi()
 #
+#          # Setup Django
+#          proj.django()
+#
 #          # Generate documentation
 #          proj.doxygen()
 #      except subprocess.CalledProcessError as e:
@@ -90,12 +93,15 @@ class Project(object):
             
     # Setup (or Run) uWSGI server.
     #
+    # Support 2.0.6
+    #
     # @param wsgi_file uWSGI App
     # @param django Django site name
+    # @param nginx address of bridge between nginx and uWSGI
     # @param run True to run uWSGI server
     # @exception ConfigParser.NoSectionError - from `uwsgi_app.ini`
     # @exception subprocess.CalledProcessError - from `uwsgi`
-    def uwsgi(self, wsgi_file='_setup/uwsgi_app.py', django=None, run=False):
+    def uwsgi(self, wsgi_file='_setup/uwsgi_app.py', django=None, nginx=None, run=False):
         # Create uWSGI configuration from template
         ini_tpl = os.path.join(self.path, '_setup/uwsgi_app.ini')
         ini = os.path.join(self.path, self._build_dir, 'uwsgi_app.ini')
@@ -107,6 +113,13 @@ class Project(object):
         app_path = os.path.join(self.path, wsgi_file)
         with open(ini_tpl) as tpl_f:
             config.readfp(tpl_f)
+            
+            # nginx
+            if nginx is not None:
+                config.remove_option('uwsgi', 'http')
+                config.set('uwsgi', 'socket', nginx)
+            else:
+                config.remove_option('uwsgi', 'socket')
             
             # Django
             if django is not None:
@@ -123,15 +136,18 @@ class Project(object):
               
         # Run uWSGI server
         if run:
-            subprocess.check_call('uwsgi '+ini, shell=True)
+            subprocess.check_call('uwsgi --ini '+ini, shell=True)
         
     
     # Setup Django project.
     #
+    # Support 1.7
+    #
     # @param site Django site directory name
+    # @param nginx address of bridge between nginx and uWSGI
     # @param run True to run server with Django
     # @exception subprocess.CalledProcessError - from `django`
-    def django(self, site='mysite', run=False):
+    def django(self, site='mysite', nginx=None, run=False):
         # Create Django project
         os.chdir(self._build_dir)
         if not os.path.lexists(site):
@@ -144,7 +160,7 @@ class Project(object):
         #     python manage.py runserver 0.0.0.0:8000
         #
         os.chdir(site)
-        self.uwsgi(django=site, run=run)
+        self.uwsgi(django=site, nginx=nginx, run=run)
         
         # Back to top directory of project 
         os.chdir(self.path)
