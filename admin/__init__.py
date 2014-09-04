@@ -11,6 +11,7 @@ This file contains some common functions and classes:
   - force_remove()
   - Version, decode_version(), match_version()
   - ConfigFile
+  - cpu_cores() (Only /proc supported system)
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -223,6 +224,15 @@ class ConfigFile(object):
         self._config_file.writelines(lines)
         
         
+# Get number of CPU cores from /proc file system.
+#
+# @return number of CPU cores
+# @exception subprocess.CalledProcessError - from `grep` or `/proc/cpuinfo`
+def cpu_cores():
+    i = subprocess.check_output('grep "cpu cores" /proc/cpuinfo', shell=True)
+    return int(i.split(':')[1].strip())
+        
+        
 class AdminTestCase(unittest.TestCase):
     '''Test Case of Admin.
     '''
@@ -300,5 +310,6 @@ class AdminTestCase(unittest.TestCase):
 if __name__ == '__main__':
     error('Test error()')
     debug('Test debug()')
+    debug('CPU Cores: ' + str(cpu_cores()))
     unittest.main()
                 
