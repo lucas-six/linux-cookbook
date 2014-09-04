@@ -3,7 +3,7 @@
 # upstream host
 upstream uwsgi_host {
     server 127.0.0.1:8001; # deployment on different hosts
-    #server unix:///path/to/site.sock; # deployment on the same host
+    #server unix:///tmp/uwsgi.sock; # deployment on the same host
 }
 
 server {
