@@ -367,6 +367,8 @@ doxygen Doxyfile
 
 ## Git Workflow
 
+See [GitHub Flow](http://scottchacon.com/2011/08/31/github-flow.html)
+
 ### Start
 
 ```bash
