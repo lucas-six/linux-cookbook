@@ -21,7 +21,7 @@ server {
         # Download the `uwsgi_params` file at:
         #     https://raw.githubusercontent.com/nginx/nginx/master/conf/uwsgi_params
         uwsgi_pass uwsgi_host;
-        include /var/nginx/uwsgi_params;
+        include /etc/nginx/uwsgi_params;
 
 		# First attempt to serve request as file, then
 		# as directory, then fall back to displaying a 404.
@@ -29,6 +29,14 @@ server {
 		# Uncomment to enable naxsi on this location
 		# include /etc/nginx/naxsi.rules
 	}
+
+    # static files requests
+    # Images, CSS, JavaScript, Video, etc.
+    location ~ ^/(images|css|js|media|static)/ {
+        root /var/spool/www/mysite;
+        access_log off;
+        expires 30d;
+    }
 
 	# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests
 	#location /RequestDenied {
