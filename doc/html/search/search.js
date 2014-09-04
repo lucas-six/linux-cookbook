@@ -11,7 +11,7 @@ var indexSectionsWithContent =
   1: "acp",
   2: "a",
   3: "_p",
-  4: "_defgmrstu",
+  4: "_cdefgmrstu",
   5: "_blnpv"
 };
 

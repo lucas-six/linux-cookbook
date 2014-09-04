@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['get',['get',['../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab',1,'admin::ConfigFile']]]
+  ['force_5fremove',['force_remove',['../d5/d4c/namespaceadmin.html#a8b0cb2905f04979a2db7cf3bb181ad00',1,'admin']]]
 ];

@@ -114,6 +114,13 @@ class Project(object):
         with open(ini_tpl) as tpl_f:
             config.readfp(tpl_f)
             
+            # Number of processes
+            config.set('uwsgi', 'processes', str(admin.cpu_cores()))
+            
+            # Log file
+            config.set('uwsgi', 'daemonize', \
+                    '/var/log/uwsgi/{0}.log'.format(django))
+            
             # nginx
             if nginx is not None:
                 config.remove_option('uwsgi', 'http')

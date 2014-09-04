@@ -1,4 +1,4 @@
-.TH "admin" 3 "Wed Sep 3 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.TH "admin" 3 "Thu Sep 4 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -59,6 +59,9 @@ admin \-
 .RI "def \fBread_lines\fP"
 .br
 .RI "\fIRead specific line(s) with line number(s)\&. \fP"
+.ti -1c
+.RI "def \fBcpu_cores\fP"
+.br
 .in -1c
 .SS "Variables"
 
@@ -69,6 +72,10 @@ admin \-
 .in -1c
 .SH "Function Documentation"
 .PP 
+.SS "def admin\&.cpu_cores ()"
+
+.PP
+Definition at line 231 of file __init__\&.py\&.
 .SS "def admin\&.debug (msg, prefix = \fC'[DBG]'\fP)"
 
 .PP
@@ -81,7 +88,7 @@ Print debugging message\&.
 .PP
 \fBNOTE\fP: This function could be turned off by \fC-O\fP or \fC-OO\fP option\&. 
 .PP
-Definition at line 57 of file __init__\&.py\&.
+Definition at line 58 of file __init__\&.py\&.
 .SS "def admin\&.decode_version (version_info, prefix = \fC''\fP)"
 
 .PP
@@ -101,7 +108,7 @@ Version named-tuple
 .PP
 
 .PP
-Definition at line 103 of file __init__\&.py\&.
+Definition at line 104 of file __init__\&.py\&.
 .SS "def admin\&.eintr_retry (func, args)"
 
 .PP
@@ -125,7 +132,7 @@ Restart a system call interrupted by \fCEINTR\fP\&.
 .PP
 
 .PP
-Definition at line 89 of file __init__\&.py\&.
+Definition at line 90 of file __init__\&.py\&.
 .SS "def admin\&.error (msg)"
 
 .PP
@@ -138,7 +145,7 @@ Print error messages\&.
 .PP
 
 .PP
-Definition at line 48 of file __init__\&.py\&.
+Definition at line 49 of file __init__\&.py\&.
 .SS "def admin\&.force_remove (path)"
 
 .PP
@@ -151,7 +158,7 @@ Command \fCrm -f\fP\&.
 .PP
 
 .PP
-Definition at line 75 of file __init__\&.py\&.
+Definition at line 76 of file __init__\&.py\&.
 .SS "def admin\&.match_version (version, match)"
 
 .PP
@@ -171,7 +178,7 @@ True if match
 .PP
 
 .PP
-Definition at line 122 of file __init__\&.py\&.
+Definition at line 123 of file __init__\&.py\&.
 .SS "def admin\&.read_lines (filename, lineno)"
 
 .PP
@@ -196,7 +203,7 @@ generator object of line with no terminating line break
 .PP
 
 .PP
-Definition at line 140 of file __init__\&.py\&.
+Definition at line 141 of file __init__\&.py\&.
 .SS "def admin\&.update_seq_type (seq, typename)"
 
 .PP
@@ -211,13 +218,13 @@ Update type of all elements in specific sequence\&.
 .PP
 
 .PP
-Definition at line 67 of file __init__\&.py\&.
+Definition at line 68 of file __init__\&.py\&.
 .SH "Variable Documentation"
 .PP 
 .SS "tuple admin\&.Version = namedtuple('Version', 'major, minor, patch')"
 
 .PP
-Definition at line 42 of file __init__\&.py\&.
+Definition at line 43 of file __init__\&.py\&.
 .SH "Author"
 .PP 
 Generated automatically by Doxygen for admin-linux from the source code\&.

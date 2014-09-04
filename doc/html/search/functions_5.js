@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['match_5fversion',['match_version',['../d5/d4c/namespaceadmin.html#a89c4e2a6cc63b64d27825da9eb414b98',1,'admin']]]
+  ['get',['get',['../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab',1,'admin::ConfigFile']]]
 ];
