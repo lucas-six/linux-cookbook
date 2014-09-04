@@ -44,6 +44,9 @@ server {
 	#}
 
 	#error_page 404 /404.html;
+    #location /404.html {
+    #    root /var/spool/www/mysite/static;
+    #}
 
 	# redirect server error pages to the static page /50x.html
 	#
@@ -69,9 +72,9 @@ server {
 	# deny access to .htaccess files, if Apache's document root
 	# concurs with nginx's one
 	#
-	#location ~ /\.ht {
-	#	deny all;
-	#}
+	location ~ /\.ht {
+		deny all;
+	}
 }
 
 
