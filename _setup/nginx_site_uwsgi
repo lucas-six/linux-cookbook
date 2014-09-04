@@ -16,6 +16,9 @@ server {
 	# Make site accessible from http://localhost/
 	server_name localhost;
 
+    charset utf-8;
+    client_max_body_size 75M; # max upload size
+
 	location / {
         # Pass non-static requests to uWSGI server
         # Download the `uwsgi_params` file at:
