@@ -12,6 +12,8 @@ Cookbook
 
 ## Linux User
 
+- [Ubuntu Documentation](https://help.ubuntu.com/)
+
 ```bash
 sudo shutdown -h|-r now
 
