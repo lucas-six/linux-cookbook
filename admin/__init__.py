@@ -12,6 +12,7 @@ This file contains some common functions and classes:
   - Version, decode_version(), match_version()
   - ConfigFile
   - cpu_cores() (Only /proc supported system)
+  - run_uwsgi()
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -41,6 +42,10 @@ from collections import OrderedDict
 
 
 Version = namedtuple('Version', 'major, minor, patch')
+
+
+www_root = '/var/spool/www'
+uwsgi_log_root = '/var/log/uwsgi'
 
 
 ## Print error messages.
@@ -239,6 +244,26 @@ class ConfigFile(object):
 def cpu_cores():
     i = subprocess.check_output('grep "cpu cores" /proc/cpuinfo', shell=True)
     return int(i.split(':')[1].strip())
+
+
+## Run (or Reload) uWSGI server
+#
+# @exception subprocess.CalledProcessError
+#
+# NOTE: Before run uWSGI with Django, make sure that Django project actually
+# works:
+#
+#     python manage.py runserver 0.0.0.0:8000
+#
+# @see https://www.djangoproject.com/
+# @since uWSGI 2.0.6
+# @since Django 1.7
+def run_uwsgi(name):
+    pid_file = '/tmp/uwsgi-{0}.pid'.format(name)
+    if os.path.exists(pid_file):
+        shell('uwsgi --reload ' + pid_file)
+    else:
+        shell('uwsgi --ini ' + os.path.join(www_root, name, 'uwsgi_app.ini'))
         
         
 class AdminTestCase(unittest.TestCase):

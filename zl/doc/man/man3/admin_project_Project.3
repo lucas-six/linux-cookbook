@@ -1,0 +1,192 @@
+.TH "admin.project.Project" 3 "Tue Sep 9 2014" "Version 0.0.0" "zl" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.project.Project \- 
+.PP
+\fBProject\fP\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP"
+.br
+.RI "\fICreate an instance of \fBProject\fP\&. \fP"
+.ti -1c
+.RI "def \fBuwsgi\fP"
+.br
+.ti -1c
+.RI "def \fBdoxygen\fP"
+.br
+.RI "\fIGenerate documentation for codes under Git by Doxygen\&. \fP"
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtypes\fP"
+.br
+.ti -1c
+.RI "\fBpath\fP"
+.br
+.ti -1c
+.RI "\fBname\fP"
+.br
+.ti -1c
+.RI "\fBbrief\fP"
+.br
+.ti -1c
+.RI "\fBversion_info\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB_uwsgi_ini\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "tuple \fB_setup_dir\fP = os\&.path\&.realpath('_setup')"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+\fBProject\fP\&. 
+
+
+.SS "Usage"
+.PP
+.PP
+.nf
+\fC
+      import admin
+      import \fBadmin\&.project\fP\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+\fC      try:
+          proj = \fBadmin\&.project\&.Project\fP(types=['python'], name='test')
+      except os\&.error as e:
+          admin\&.error(e)\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+\fC      # Setup uWSGI server
+      try:
+          proj\&.uwsgi()
+      except (ConfigParser\&.NoSectionError, subprocess\&.CalledProcessErro) as e:
+          admin\&.error(e)\fP
+.fi
+.PP
+.PP
+.PP
+.nf
+\fC      # Generate documentation
+      try:
+          proj\&.doxygen()
+      except subprocess\&.CalledProcessError as e:
+          admin\&.error(e)
+      except IOError as e:
+          admin\&.error(e)
+  \fP
+.fi
+.PP
+ 
+.PP
+Definition at line 61 of file project\&.py\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def admin\&.project\&.Project\&.__init__ (self, types, name = \fC'test'\fP)"
+
+.PP
+Create an instance of \fBProject\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fItypes\fP project types (python, django, c, java, cpp) 
+.br
+\fIname\fP project name 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIos\&.error\fP 
+.RE
+.PP
+
+.PP
+Definition at line 69 of file project\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def admin\&.project\&.Project\&.doxygen (self, doxyfile = \fC'Doxyfile'\fP)"
+
+.PP
+Generate documentation for codes under Git by Doxygen\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIdoxyfile\fP name of Doxygen configuration file 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIsubprocess\&.CalledProcessError\fP 
+.br
+\fIIOError\fP 
+.RE
+.PP
+
+.PP
+Definition at line 174 of file project\&.py\&.
+.SS "def admin\&.project\&.Project\&.uwsgi (self, app = \fC''\fP, nginx = \fCNone\fP)"
+
+.PP
+Definition at line 120 of file project\&.py\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "tuple admin\&.project\&.Project\&._setup_dir = os\&.path\&.realpath('_setup')\fC [static]\fP, \fC [private]\fP"
+
+.PP
+Definition at line 62 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&._uwsgi_ini\fC [private]\fP"
+
+.PP
+Definition at line 74 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&.brief"
+
+.PP
+Definition at line 80 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&.name"
+
+.PP
+Definition at line 72 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&.path"
+
+.PP
+Definition at line 71 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&.types"
+
+.PP
+Definition at line 70 of file project\&.py\&.
+.SS "admin\&.project\&.Project\&.version_info"
+
+.PP
+Definition at line 89 of file project\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for zl from the source code\&.

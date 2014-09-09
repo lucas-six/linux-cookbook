@@ -24,6 +24,7 @@ limitations under the License.
 '''
 
 import os
+import errno
 import subprocess
 import ConfigParser
 
@@ -38,41 +39,50 @@ import admin
 #      import admin
 #      import admin.project
 #
-#      proj = admin.project.Project(lang=['python'])
 #      try:
-#          # Setup uWSGI server
+#          proj = admin.project.Project(types=['python'], name='test')
+#      except os.error as e:
+#          admin.error(e)
+#        
+#      # Setup uWSGI server
+#      try:
 #          proj.uwsgi()
+#      except (ConfigParser.NoSectionError, subprocess.CalledProcessErro) as e:
+#          admin.error(e)
 #
-#          # Setup Django
-#          proj.django()
-#
-#          # Generate documentation
+#      # Generate documentation
+#      try:
 #          proj.doxygen()
 #      except subprocess.CalledProcessError as e:
-#          admin.error('error')
+#          admin.error(e)
 #      except IOError as e:
-#          admin.error('error')
+#          admin.error(e)
 #  </code></pre>
 class Project(object):
+    _setup_dir = os.path.realpath('_setup')
+
     ## Create an instance of Project.
     #
-    # @param lang programming language (python, c, java, cpp)
-    # @param build_dir building directory
-    # @param default_version default version string
-    def __init__(self, lang, build_dir='build', default_version='0.0.0'):
-        self.lang = lang
-        self.path = os.getcwd()
+    # @param types project types (python, django, c, java, cpp)
+    # @param name project name
+    # @exception os.error
+    def __init__(self, types, name='test'):
+        self.types = types
+        self.path = os.path.realpath(name)
         self.name = os.path.basename(self.path)
-        self._build_dir = build_dir
+
+        self._uwsgi_ini = None
+
+        # Project brief
         README_file = os.path.join(self.path, 'README.md')
         try:
             for line in admin.read_lines(README_file, 4):
                 self.brief = line
         except IOError as e:
-            admin.error('Get brief description [FAILED]: {0}'.format(e))
             self.brief = ''
                 
         # Project version
+        default_version = '0.0.0'
         try:
             versions = subprocess.check_output('git tag', shell=True)
             if len(versions) == 0:
@@ -80,45 +90,43 @@ class Project(object):
             else:
                 self.version_info = versions[-1]
         except subprocess.CalledProcessError as e:
-            admin.error('Get project version [FAILED]: {0}'.format(e))
             self.version_info = default_version
             
-        # Create a building directory
-        try:
-            os.mkdir(self._build_dir)
-        except OSError:
-            # already exists, ignore
-            pass
+        # Create a project directory
+        if 'django' in self.types:
+            if not os.path.lexists(self.path):
+                admin.shell('django-admin.py startproject ' + self.name)
+                os.chdir(self.name)
+                admin.shell('python manage.py migrate')
+                os.chdir('..')
+        else:
+            try:
+                os.makedirs(self.path)
+            except os.error as e:
+                # already exists, ignore
+                if e.errno != errno.EEXIST:
+                    raise
             
             
-    # Setup (or Run) uWSGI server.
+    # Setup uWSGI server.
     #
     # @param app uWSGI App
     # @param nginx address of bridge between nginx and uWSGI
-    # @param run True to run uWSGI server
-    # @exception ConfigParser.NoSectionError - from `uwsgi_app.ini`
-    # @exception subprocess.CalledProcessError - from `uwsgi` or `mkdir`
+    # @exception ConfigParser.NoSectionError
+    # @exception subprocess.CalledProcessError
     #
     # @see https://uwsgi.readthedocs.org/en/latest/index.html
     # @since uWSGI 2.0.6
-    def uwsgi(self, app='_setup/uwsgi_app.py', nginx=None, run=False):
+    def uwsgi(self, app='', nginx=None):
         single_app_file = True
         if os.path.splitext(app)[1] != '.py':
             single_app_file = False
-        app_name = os.path.basename(app)
-        if single_app_file:
-            app_name = os.path.splitext(app_name)[0]
-        app_path = os.path.join(self.path, app)
 
         # Create uWSGI configuration from template
-        admin.shell('sudo mkdir -p /var/spool/www/'+app_name)
-        ini_tpl = os.path.join(self.path, '_setup/uwsgi_app.ini')
-        ini = os.path.join('/var/spool/www', app_name, 'uwsgi_app.ini')
-            
-        # Update uWSGI configuration
+        admin.shell('sudo mkdir -p ' + os.path.join(admin.www_root, self.name))
+        ini_tpl = os.path.join(self._setup_dir, 'uwsgi_app.ini')
+        ini = os.path.join(admin.www_root, self.name, 'uwsgi_app.ini')
         config = ConfigParser.SafeConfigParser(allow_no_value=True)
-        if not single_app_file:
-            wsgi_file = os.path.join(self._build_dir, app_name)
         with open(ini_tpl) as tpl_f:
             config.readfp(tpl_f)
             
@@ -126,12 +134,12 @@ class Project(object):
             config.set('uwsgi', 'processes', str(admin.cpu_cores()))
 
             # PID file
-            config.set('uwsgi', 'pidfile', '/tmp/uwsgi-'+app_name+'.pid')
+            config.set('uwsgi', 'pidfile', '/tmp/uwsgi-' + self.name + '.pid')
             
             # Log file
-            admin.shell('sudo mkdir -p /var/log/uwsgi')
+            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
             config.set('uwsgi', 'daemonize', \
-                '/var/log/uwsgi/{0}.log'.format(app_name))
+                    '{0}/{1}.log'.format(admin.uwsgi_log_root, self.name))
             
             # nginx
             if nginx is not None:
@@ -143,61 +151,37 @@ class Project(object):
             # wsgi-file/module 
             if not single_app_file:
                 config.remove_option('uwsgi', 'wsgi-file')
-                config.set('uwsgi', 'module', app_name+'.wsgi')
+                config.set('uwsgi', 'chdir', self.path) 
+                config.set('uwsgi', 'module', self.name + '.wsgi')
             else:
+                app_path = os.path.join(self.path, app)
+                config.remove_option('uwsgi', 'chdir')
                 config.remove_option('uwsgi', 'module')
                 config.set('uwsgi', 'wsgi-file', app_path)
                 
-            with open(ini, 'w') as f:
+            with open('/tmp/uwsgi_app.ini', 'w') as f:
                 config.write(f)
               
-        # Run uWSGI server
-        if run:
-            admin.shell('uwsgi --ini '+ini)
-        
+        admin.shell('sudo cp /tmp/uwsgi_app.ini ' + ini)
+        admin.force_remove('/tmp/uwsgi_app.ini')
+
     
-    # Setup Django project.
-    #
-    # Support 1.7
-    #
-    # @param site Django site directory name
-    # @param nginx address of bridge between nginx and uWSGI
-    # @param run True to run server with Django
-    # @exception subprocess.CalledProcessError - from `django`
-    def django(self, site='mysite', nginx=None, run=False):
-        # Create Django project
-        os.chdir(self._build_dir)
-        if not os.path.lexists(site):
-            subprocess.check_call('django-admin.py startproject '+site, \
-                    shell=True)
-        
-        # Run uWSGI with Django
-        # NOTE: Before it, make sure that Django project actually works:
-        #
-        #     python manage.py runserver 0.0.0.0:8000
-        #
-        os.chdir(site)
-        self.uwsgi(django=site, nginx=nginx, run=run)
-        
-        # Back to top directory of project 
-        os.chdir(self.path)
-            
-            
     ## Generate documentation for codes under Git by Doxygen.
     #
     # @param doxyfile name of Doxygen configuration file
-    # @exception subprocess.CalledProcessError - from `doxygen`
-    # @exception IOError - configuration file written error
+    # @exception subprocess.CalledProcessError
+    # @exception IOError
     def doxygen(self, doxyfile='Doxyfile'):
         # Generate Doxygen configuration file
-        subprocess.check_call('doxygen -g {0}'.format(doxyfile), shell=True)
+        os.chdir(self.path)
+        admin.shell('doxygen -g {0}'.format(doxyfile))
             
         # Update Doxygen configuration file
         optimize_for_c = 'NO'
         optimize_for_java_or_python = 'NO'
-        if 'c' in self.lang:
+        if 'c' in self.types:
             optimize_for_c = 'YES'        
-        if 'java' in self.lang or 'python' in self.lang:
+        if 'java' in self.types or 'python' in self.types or 'django' in self.types:
             optimize_for_java_or_python = 'YES'
         configs = {'PROJECT_NAME': '\"{0}\"'.format(self.name),
                 'PROJECT_NUMBER': self.version_info,
@@ -212,7 +196,7 @@ class Project(object):
                 'EXTRACT_ALL': 'YES',
                 'EXTRACT_PRIVATE': 'YES',
                 'EXTRACT_STATIC': 'YES',
-                'INPUT': 'admin',
+                'INPUT': '../admin',
                 'FILE_PATTERNS': '*.py *.c *.h *.cpp *.hh',
                 'RECURSIVE': 'YES',
                 'SOURCE_BROWSER': 'YES',
@@ -227,5 +211,8 @@ class Project(object):
             config_file.set(configs)
         
         # Generate documentation by Doxygen
-        subprocess.check_call('doxygen {0}'.format(doxyfile), shell=True)
+        admin.shell('doxygen {0}'.format(doxyfile))
+
+        # Back to top directory, NOT project directory
+        os.chdir('..')
         

@@ -5,6 +5,7 @@
 
     - Setup Linux (Server)
     - Build Python (Django) projects
+    - Run uWSGI server
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -65,7 +66,7 @@ def setup(test=False):
             # Skip updating index files of package system to reduce
             # testing time.
             if not test:
-                subprocess.check_call('sudo apt-get update', shell=True)
+                admin.shell('sudo apt-get update')
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
                     'bash', 'python', 'coreutils', \
@@ -73,14 +74,12 @@ def setup(test=False):
                     'nginx', 'build-essential', 
                     'python-pip', 'python-dev', 'python-virtualenv']
             pip_pkgs = ['Django', 'uwsgi']
-            subprocess.check_call('sudo apt-get install '+' '.join(pkgs), \
-                    shell=True)
+            admin.shell('sudo apt-get install ' + ' '.join(pkgs))
             
             # Skip updating pip packages to reduce testing time.
             if not test:
                 for p in pip_pkgs:
-                    subprocess.check_call('sudo pip install --upgrade '+p, \
-                            shell=True)
+                    admin.shell('sudo pip install --upgrade ' + p)
         except subprocess.CalledProcessError as e:
             sys.exit('Failed to install core packages: {0}'.format(e))
         info('System updated [OK]')
@@ -111,7 +110,7 @@ def setup(test=False):
                         # Set default editor to Vim
                         f.write('\nexport EDITOR=vim')
                         info('Set default editor to Vim [OK]')
-                subprocess.check_call('. ~/.bashrc', shell=True)
+                admin.shell('. ~/.bashrc')
             except IOError as e:
                 admin.error('Failed to set default editor to Vim: {0}'.format(e))
             except subprocess.CalledProcessError as e:
@@ -129,7 +128,7 @@ def setup(test=False):
         #     http://gitref.org/
         info('\n*** Git ***')
         def _git_config(conf):
-            subprocess.check_call('git config ' + conf, shell=True)
+            admin.shell('git config ' + conf)
         def _git_config_global(conf):
             _git_config('--global '+conf)
         try:
@@ -164,6 +163,11 @@ def setup(test=False):
             git_conf.strip()
             info(git_conf)
             info('Git [OK]')
+
+            admin.shell('sudo mkdir -p ' + admin.www_root)
+
+            # Configure uWSGI server
+            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
         except subprocess.CalledProcessError as e:
             admin.error('Git [FAILED]: {0}'.format(e))
             
@@ -172,43 +176,60 @@ def admin_unittest():
     '''Admin Unit Testing.
     '''
     try:
-        subprocess.check_call('python admin/__init__.py', shell=True)
+        admin.shell('python admin/__init__.py')
     except subprocess.CalledProcessError as e:
         sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
         
         
-def build(dir='build'):
+def build(name='zl'):
     '''Build projects.
     
-    @param dir building directory
-    @exception ConfigParser.NoSectionError - from `uwsgi()`
-    @exception subprocess.CalledProcessError - from `uwsgi()`
-    '''   
-    proj = admin.project.Project(lang=['python'], build_dir=dir)
-    
-    proj.uwsgi()
+    @param name project name
+    @exception ConfigParser.NoSectionError
+    @exception subprocess.CalledProcessError
+    '''
+    #proj = admin.project.Project(types=['python'], name=name)
+    #proj.uwsgi(app='../_setup/uwsgi_app.py')
+
+    proj = admin.project.Project(types=['django'], name=name)
+    #proj.uwsgi()
+    proj.uwsgi(nginx=':8001')
     info('\nuWSGI [OK]')
     
-#proj.django()
-#proj.django(nginx=':8001')
-#    info('\nDjango [OK]')
-    
     proj.doxygen()
+
+
+def run(name='zl'):
+    '''Run uWSGI server.
+
+    @param name project name
+    @subprocess.CalledProcessError
+    '''
+    admin.run_uwsgi(name=name)
+
+
+def usage():
+    sys.exit('Usage: python {0} setup|build|run'.format(sys.argv[0]))
     
                 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
-        
+    if len(sys.argv) < 2:
+       usage() 
     option = sys.argv[1]
     if option == 'setup':
         setup()
     elif option == 'build':
-        build()
+        if len(sys.argv) != 3:
+            sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
+        build(name=sys.argv[2])
+    elif option == 'run':
+        if len(sys.argv) != 3:
+            sys.exit('Usage: {0} run [uwsgi]'.format(sys.argv[0]))
+        run(name=sys.argv[2])
     elif option == 'test':
         admin_unittest()
         setup(test=True)
-        build(dir='test')
+        build()
+        run()
     else:
-        sys.exit('Usage: {0} setup|build'.format(sys.argv[0]))
-        
+        usage() 

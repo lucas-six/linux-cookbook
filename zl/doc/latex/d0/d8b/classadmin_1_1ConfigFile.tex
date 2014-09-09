@@ -1,0 +1,180 @@
+\hypertarget{classadmin_1_1ConfigFile}{\section{admin.\-Config\-File Class Reference}
+\label{classadmin_1_1ConfigFile}\index{admin.\-Config\-File@{admin.\-Config\-File}}
+}
+
+
+Configuration file.  
+
+
+Inheritance diagram for admin.\-Config\-File\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d0/d8b/classadmin_1_1ConfigFile}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1ConfigFile_a01f801b702c4cb7e322a8dee7943f5ff}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\begin{DoxyCompactList}\small\item\em Parse configuration file. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1ConfigFile_a3a60d1611c929d782773d73d339454ab}{get}
+\begin{DoxyCompactList}\small\item\em Get value of specific option. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1ConfigFile_a05413f3b3760fe95cf8038c400cb2b4f}{set}
+\begin{DoxyCompactList}\small\item\em Set value of specific option. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classadmin_1_1ConfigFile_ada03146a25635d360b9994efcd3eb6ce}{\-\_\-config\-\_\-file}
+\item 
+\hyperlink{classadmin_1_1ConfigFile_a3f7db562c59049e6a3b28b1fdfafa63e}{\-\_\-sep}
+\item 
+\hyperlink{classadmin_1_1ConfigFile_ac15829b16933412a7db88d3dacdcf345}{\-\_\-comments}
+\item 
+\hyperlink{classadmin_1_1ConfigFile_a5a5c415d13ee87e1a03c9f64231a4fc9}{\-\_\-config}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Configuration file. 
+
+\subsubsection*{Usage}
+
+
+\begin{DoxyPre}{\ttfamily 
+     import os
+     import admin}\end{DoxyPre}
+
+
+
+\begin{DoxyPre}{\ttfamily      configs = \{'PROJECT\_NAME': '"AAA"',
+           'PROJECT\_NUMBER': '1.2.3'\}
+     try:
+         with open(os.path.join(os.getcwd(), 'Doxyfile'), 'r+') as f:
+             config\_file = \hyperlink{classadmin_1_1ConfigFile}{admin.ConfigFile(f)}
+             config\_file.set(configs)
+         except IOError as e:
+             \hyperlink{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{admin.error}('error') 
+}\end{DoxyPre}
+
+
+Definition at line 183 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classadmin_1_1ConfigFile_a01f801b702c4cb7e322a8dee7943f5ff}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-Config\-File.\-\_\-\-\_\-init\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{config\-\_\-file, }
+\item[{}]{sep = {\ttfamily '='}, }
+\item[{}]{comments = {\ttfamily '\#'}}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1ConfigFile_a01f801b702c4cb7e322a8dee7943f5ff}
+
+
+Parse configuration file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em config\-\_\-file} & configuration file object \\
+\hline
+{\em sep} & separator for option/value pair \\
+\hline
+{\em comments} & comments leading character \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 189 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_1_1ConfigFile_a3a60d1611c929d782773d73d339454ab}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!get@{get}}
+\index{get@{get}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-Config\-File.\-get (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{option}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1ConfigFile_a3a60d1611c929d782773d73d339454ab}
+
+
+Get value of specific option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em option} & option name \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+option value 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Key\-Error} & -\/ no optinon exists \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 209 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{classadmin_1_1ConfigFile_a05413f3b3760fe95cf8038c400cb2b4f}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!set@{set}}
+\index{set@{set}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-Config\-File.\-set (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{pairs}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1ConfigFile_a05413f3b3760fe95cf8038c400cb2b4f}
+
+
+Set value of specific option. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pairs} & Pairs of option name-\/value. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 216 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classadmin_1_1ConfigFile_ac15829b16933412a7db88d3dacdcf345}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!\-\_\-comments@{\-\_\-comments}}
+\index{\-\_\-comments@{\-\_\-comments}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{\-\_\-comments}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-Config\-File.\-\_\-comments\hspace{0.3cm}{\ttfamily [private]}}}\label{classadmin_1_1ConfigFile_ac15829b16933412a7db88d3dacdcf345}
+
+
+Definition at line 192 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{classadmin_1_1ConfigFile_a5a5c415d13ee87e1a03c9f64231a4fc9}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!\-\_\-config@{\-\_\-config}}
+\index{\-\_\-config@{\-\_\-config}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{\-\_\-config}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-Config\-File.\-\_\-config\hspace{0.3cm}{\ttfamily [private]}}}\label{classadmin_1_1ConfigFile_a5a5c415d13ee87e1a03c9f64231a4fc9}
+
+
+Definition at line 193 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{classadmin_1_1ConfigFile_ada03146a25635d360b9994efcd3eb6ce}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!\-\_\-config\-\_\-file@{\-\_\-config\-\_\-file}}
+\index{\-\_\-config\-\_\-file@{\-\_\-config\-\_\-file}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{\-\_\-config\-\_\-file}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-Config\-File.\-\_\-config\-\_\-file\hspace{0.3cm}{\ttfamily [private]}}}\label{classadmin_1_1ConfigFile_ada03146a25635d360b9994efcd3eb6ce}
+
+
+Definition at line 190 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{classadmin_1_1ConfigFile_a3f7db562c59049e6a3b28b1fdfafa63e}{\index{admin\-::\-Config\-File@{admin\-::\-Config\-File}!\-\_\-sep@{\-\_\-sep}}
+\index{\-\_\-sep@{\-\_\-sep}!admin::ConfigFile@{admin\-::\-Config\-File}}
+\subsubsection[{\-\_\-sep}]{\setlength{\rightskip}{0pt plus 5cm}admin.\-Config\-File.\-\_\-sep\hspace{0.3cm}{\ttfamily [private]}}}\label{classadmin_1_1ConfigFile_a3f7db562c59049e6a3b28b1fdfafa63e}
+
+
+Definition at line 191 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+/home/ly/admin-\/linux/admin/\hyperlink{____init_____8py}{\-\_\-\-\_\-init\-\_\-\-\_\-.\-py}\end{DoxyCompactItemize}

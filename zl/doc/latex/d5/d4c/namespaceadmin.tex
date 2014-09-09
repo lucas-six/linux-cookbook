@@ -1,0 +1,341 @@
+\hypertarget{namespaceadmin}{\section{admin Namespace Reference}
+\label{namespaceadmin}\index{admin@{admin}}
+}
+\subsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{namespaceadmin_1_1project}{project}
+\end{DoxyCompactItemize}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classadmin_1_1ConfigFile}{Config\-File}
+\begin{DoxyCompactList}\small\item\em Configuration file. \end{DoxyCompactList}\item 
+class \hyperlink{classadmin_1_1AdminTestCase}{Admin\-Test\-Case}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{error}
+\begin{DoxyCompactList}\small\item\em Print error messages. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{debug}
+\begin{DoxyCompactList}\small\item\em Print debugging message. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{update\-\_\-seq\-\_\-type}
+\begin{DoxyCompactList}\small\item\em Update type of all elements in specific sequence. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a31f458a81de75174d8424d5859164f48}{shell}
+\begin{DoxyCompactList}\small\item\em Run shell commandi without output. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}{force\-\_\-remove}
+\begin{DoxyCompactList}\small\item\em Command {\ttfamily rm -\/f}. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a186685a5e2120c71362c46b35f0705c3}{eintr\-\_\-retry}
+\begin{DoxyCompactList}\small\item\em Restart a system call interrupted by {\ttfamily E\-I\-N\-T\-R}. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}{decode\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Decode version information string. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}{match\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Match the specific version. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_ae034627a9fca691b23ee55d255113a81}{read\-\_\-lines}
+\begin{DoxyCompactList}\small\item\em Read specific line(s) with line number(s). \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_aae9709a9fb12e8d13ced0982b5faf0a3}{cpu\-\_\-cores}
+\item 
+def \hyperlink{namespaceadmin_a5b9abbcd8e776e622a7f86175f49607c}{run\-\_\-uwsgi}
+\begin{DoxyCompactList}\small\item\em Run (or Reload) u\-W\-S\-G\-I server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}{Version} = namedtuple('Version', 'major, minor, patch')
+\item 
+string \hyperlink{namespaceadmin_a872d2f895c6e9da9390fc162ea3a251a}{www\-\_\-root} = '/var/spool/www'
+\item 
+string \hyperlink{namespaceadmin_a2724e95b198b0f24232cd4c3d70e66a9}{uwsgi\-\_\-log\-\_\-root} = '/var/log/uwsgi'
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespaceadmin_aae9709a9fb12e8d13ced0982b5faf0a3}{\index{admin@{admin}!cpu\-\_\-cores@{cpu\-\_\-cores}}
+\index{cpu\-\_\-cores@{cpu\-\_\-cores}!admin@{admin}}
+\subsubsection[{cpu\-\_\-cores}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-cpu\-\_\-cores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_aae9709a9fb12e8d13ced0982b5faf0a3}
+
+
+Definition at line 244 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{\index{admin@{admin}!debug@{debug}}
+\index{debug@{debug}!admin@{admin}}
+\subsubsection[{debug}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-debug (
+\begin{DoxyParamCaption}
+\item[{}]{msg, }
+\item[{}]{prefix = {\ttfamily '\mbox{[}DBG\mbox{]}'}}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}
+
+
+Print debugging message. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & Debugging message\\
+\hline
+\end{DoxyParams}
+{\bfseries N\-O\-T\-E}\-: This function could be turned off by {\ttfamily -\/\-O} or {\ttfamily -\/\-O\-O} option. 
+
+Definition at line 63 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}{\index{admin@{admin}!decode\-\_\-version@{decode\-\_\-version}}
+\index{decode\-\_\-version@{decode\-\_\-version}!admin@{admin}}
+\subsubsection[{decode\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-decode\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{version\-\_\-info, }
+\item[{}]{prefix = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a2605170b60fdae0f26432f209ed71f49}
+
+
+Decode version information string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em version\-\_\-info} & version information string (e.\-g. Python 2.\-7.\-8) \\
+\hline
+{\em prefix} & prefix string of version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Version named-\/tuple 
+\end{DoxyReturn}
+
+
+Definition at line 117 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a186685a5e2120c71362c46b35f0705c3}{\index{admin@{admin}!eintr\-\_\-retry@{eintr\-\_\-retry}}
+\index{eintr\-\_\-retry@{eintr\-\_\-retry}!admin@{admin}}
+\subsubsection[{eintr\-\_\-retry}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-eintr\-\_\-retry (
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a186685a5e2120c71362c46b35f0705c3}
+
+
+Restart a system call interrupted by {\ttfamily E\-I\-N\-T\-R}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & system call \\
+\hline
+{\em args} & arguments of system call \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em socket.\-error} & \\
+\hline
+{\em select.\-error} & \\
+\hline
+{\em O\-S\-Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 103 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{\index{admin@{admin}!error@{error}}
+\index{error@{error}!admin@{admin}}
+\subsubsection[{error}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-error (
+\begin{DoxyParamCaption}
+\item[{}]{msg}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}
+
+
+Print error messages. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em msg} & error message \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 54 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}{\index{admin@{admin}!force\-\_\-remove@{force\-\_\-remove}}
+\index{force\-\_\-remove@{force\-\_\-remove}!admin@{admin}}
+\subsubsection[{force\-\_\-remove}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-force\-\_\-remove (
+\begin{DoxyParamCaption}
+\item[{}]{path}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}
+
+
+Command {\ttfamily rm -\/f}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & path name of entry to be removed \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 89 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}{\index{admin@{admin}!match\-\_\-version@{match\-\_\-version}}
+\index{match\-\_\-version@{match\-\_\-version}!admin@{admin}}
+\subsubsection[{match\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-match\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{version, }
+\item[{}]{match}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}
+
+
+Match the specific version. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em version} & Version named-\/tuple \\
+\hline
+{\em match} & version string (e.\-g. 1.\-2.\-3) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if match 
+\end{DoxyReturn}
+
+
+Definition at line 136 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae034627a9fca691b23ee55d255113a81}{\index{admin@{admin}!read\-\_\-lines@{read\-\_\-lines}}
+\index{read\-\_\-lines@{read\-\_\-lines}!admin@{admin}}
+\subsubsection[{read\-\_\-lines}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-read\-\_\-lines (
+\begin{DoxyParamCaption}
+\item[{}]{filename, }
+\item[{}]{lineno}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae034627a9fca691b23ee55d255113a81}
+
+
+Read specific line(s) with line number(s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & file name \\
+\hline
+{\em lineno} & line number(s) to read (starting with 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+generator object of line with no terminating line break 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Type\-Error,I\-O\-Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 154 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a5b9abbcd8e776e622a7f86175f49607c}{\index{admin@{admin}!run\-\_\-uwsgi@{run\-\_\-uwsgi}}
+\index{run\-\_\-uwsgi@{run\-\_\-uwsgi}!admin@{admin}}
+\subsubsection[{run\-\_\-uwsgi}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-run\-\_\-uwsgi (
+\begin{DoxyParamCaption}
+\item[{}]{name}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a5b9abbcd8e776e622a7f86175f49607c}
+
+
+Run (or Reload) u\-W\-S\-G\-I server. 
+
+
+\begin{DoxyExceptions}{Exceptions}
+{\em subprocess.\-Called\-Process\-Error} & N\-O\-T\-E\-: Before run u\-W\-S\-G\-I with Django, make sure that Django project actually works\-: \begin{DoxyVerb}python manage.py runserver 0.0.0.0:8000
+\end{DoxyVerb}
+\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See Also}
+\href{https://www.djangoproject.com/}{\tt https\-://www.\-djangoproject.\-com/} 
+\end{DoxySeeAlso}
+\begin{DoxySince}{Since}
+u\-W\-S\-G\-I 2.\-0.\-6 
+
+Django 1.\-7 
+\end{DoxySince}
+
+
+Definition at line 261 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a31f458a81de75174d8424d5859164f48}{\index{admin@{admin}!shell@{shell}}
+\index{shell@{shell}!admin@{admin}}
+\subsubsection[{shell}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell (
+\begin{DoxyParamCaption}
+\item[{}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a31f458a81de75174d8424d5859164f48}
+
+
+Run shell commandi without output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & shell command \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em subprocess.\-Called\-Process\-Error} & -\/ from {\ttfamily cmd} \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 82 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{\index{admin@{admin}!update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}}
+\index{update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}!admin@{admin}}
+\subsubsection[{update\-\_\-seq\-\_\-type}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-update\-\_\-seq\-\_\-type (
+\begin{DoxyParamCaption}
+\item[{}]{seq, }
+\item[{}]{typename}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}
+
+
+Update type of all elements in specific sequence. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em seq} & (mutable) sequence to be update \\
+\hline
+{\em typename} & target type name \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 73 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespaceadmin_a2724e95b198b0f24232cd4c3d70e66a9}{\index{admin@{admin}!uwsgi\-\_\-log\-\_\-root@{uwsgi\-\_\-log\-\_\-root}}
+\index{uwsgi\-\_\-log\-\_\-root@{uwsgi\-\_\-log\-\_\-root}!admin@{admin}}
+\subsubsection[{uwsgi\-\_\-log\-\_\-root}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-uwsgi\-\_\-log\-\_\-root = '/var/log/uwsgi'}}\label{namespaceadmin_a2724e95b198b0f24232cd4c3d70e66a9}
+
+
+Definition at line 48 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}{\index{admin@{admin}!Version@{Version}}
+\index{Version@{Version}!admin@{admin}}
+\subsubsection[{Version}]{\setlength{\rightskip}{0pt plus 5cm}tuple admin.\-Version = namedtuple('Version', 'major, minor, patch')}}\label{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}
+
+
+Definition at line 44 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a872d2f895c6e9da9390fc162ea3a251a}{\index{admin@{admin}!www\-\_\-root@{www\-\_\-root}}
+\index{www\-\_\-root@{www\-\_\-root}!admin@{admin}}
+\subsubsection[{www\-\_\-root}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-www\-\_\-root = '/var/spool/www'}}\label{namespaceadmin_a872d2f895c6e9da9390fc162ea3a251a}
+
+
+Definition at line 47 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+

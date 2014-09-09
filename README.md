@@ -65,4 +65,7 @@ python admin.py setup
 
 ```bash
 sudo python admin.py build
+
+uwsgi --ini /var/spool/www/xxx/uwsgi_app.ini
+tail -f /var/log/uwsgi/xxx.log
 ```
