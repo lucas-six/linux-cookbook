@@ -8,7 +8,7 @@ This file contains some common functions and classes:
 
   - error(), debug()
   - update_seq_type()
-  - force_remove()
+  - shell(), force_remove()
   - Version, decode_version(), match_version()
   - ConfigFile
   - cpu_cores() (Only /proc supported system)
@@ -68,6 +68,14 @@ def debug(msg, prefix='[DBG]'):
 def update_seq_type(seq, typename):
     for index, value in enumerate(seq[:]):
         seq[index] = typename(value)
+
+
+## Run shell commandi without output.
+#
+# @param cmd shell command
+# @exception subprocess.CalledProcessError - from `cmd`
+def shell(cmd):
+    subprocess.check_call(cmd, shell=True)
         
 
 ## Command `rm -f`.
