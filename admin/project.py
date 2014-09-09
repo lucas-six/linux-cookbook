@@ -93,33 +93,45 @@ class Project(object):
             
     # Setup (or Run) uWSGI server.
     #
-    # Support 2.0.6
-    #
-    # @param wsgi_file uWSGI App
-    # @param django Django site name
+    # @param app uWSGI App
     # @param nginx address of bridge between nginx and uWSGI
     # @param run True to run uWSGI server
     # @exception ConfigParser.NoSectionError - from `uwsgi_app.ini`
-    # @exception subprocess.CalledProcessError - from `uwsgi`
-    def uwsgi(self, wsgi_file='_setup/uwsgi_app.py', django=None, nginx=None, run=False):
+    # @exception subprocess.CalledProcessError - from `uwsgi` or `mkdir`
+    #
+    # @see https://uwsgi.readthedocs.org/en/latest/index.html
+    # @since uWSGI 2.0.6
+    def uwsgi(self, app='_setup/uwsgi_app.py', nginx=None, run=False):
+        single_app_file = True
+        if os.path.splitext(app)[1] != '.py':
+            single_app_file = False
+        app_name = os.path.basename(app)
+        if single_app_file:
+            app_name = os.path.splitext(app_name)[0]
+        app_path = os.path.join(self.path, app)
+
         # Create uWSGI configuration from template
+        admin.shell('sudo mkdir -p /var/spool/www/'+app_name)
         ini_tpl = os.path.join(self.path, '_setup/uwsgi_app.ini')
-        ini = os.path.join(self.path, self._build_dir, 'uwsgi_app.ini')
+        ini = os.path.join('/var/spool/www', app_name, 'uwsgi_app.ini')
             
         # Update uWSGI configuration
         config = ConfigParser.SafeConfigParser(allow_no_value=True)
-        if django is not None:
-            wsgi_file = os.path.join(self._build_dir, django)
-        app_path = os.path.join(self.path, wsgi_file)
+        if not single_app_file:
+            wsgi_file = os.path.join(self._build_dir, app_name)
         with open(ini_tpl) as tpl_f:
             config.readfp(tpl_f)
             
             # Number of processes
             config.set('uwsgi', 'processes', str(admin.cpu_cores()))
+
+            # PID file
+            config.set('uwsgi', 'pidfile', '/tmp/uwsgi-'+app_name+'.pid')
             
             # Log file
+            admin.shell('sudo mkdir -p /var/log/uwsgi')
             config.set('uwsgi', 'daemonize', \
-                    '/var/log/uwsgi/{0}.log'.format(django))
+                '/var/log/uwsgi/{0}.log'.format(app_name))
             
             # nginx
             if nginx is not None:
@@ -128,12 +140,10 @@ class Project(object):
             else:
                 config.remove_option('uwsgi', 'socket')
             
-            # Django
-            if django is not None:
+            # wsgi-file/module 
+            if not single_app_file:
                 config.remove_option('uwsgi', 'wsgi-file')
-                config.set('uwsgi', 'module', django+'.wsgi')
-                
-            # uWSGI
+                config.set('uwsgi', 'module', app_name+'.wsgi')
             else:
                 config.remove_option('uwsgi', 'module')
                 config.set('uwsgi', 'wsgi-file', app_path)
@@ -143,7 +153,7 @@ class Project(object):
               
         # Run uWSGI server
         if run:
-            subprocess.check_call('uwsgi --ini '+ini, shell=True)
+            admin.shell('uwsgi --ini '+ini)
         
     
     # Setup Django project.

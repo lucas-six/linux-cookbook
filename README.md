@@ -64,5 +64,5 @@ python admin.py setup
 **STEP 3**: Build projects
 
 ```bash
-python admin.py build
+sudo python admin.py build
 ```

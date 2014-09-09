@@ -22,6 +22,8 @@ def \hyperlink{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{debug}
 \begin{DoxyCompactList}\small\item\em Print debugging message. \end{DoxyCompactList}\item 
 def \hyperlink{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{update\-\_\-seq\-\_\-type}
 \begin{DoxyCompactList}\small\item\em Update type of all elements in specific sequence. \end{DoxyCompactList}\item 
+def \hyperlink{namespaceadmin_a31f458a81de75174d8424d5859164f48}{shell}
+\begin{DoxyCompactList}\small\item\em Run shell commandi without output. \end{DoxyCompactList}\item 
 def \hyperlink{namespaceadmin_a8b0cb2905f04979a2db7cf3bb181ad00}{force\-\_\-remove}
 \begin{DoxyCompactList}\small\item\em Command {\ttfamily rm -\/f}. \end{DoxyCompactList}\item 
 def \hyperlink{namespaceadmin_a186685a5e2120c71362c46b35f0705c3}{eintr\-\_\-retry}
@@ -51,7 +53,7 @@ tuple \hyperlink{namespaceadmin_acbbc1dce90a9452383bd52c69b4a7489}{Version} = na
 )}}\label{namespaceadmin_aae9709a9fb12e8d13ced0982b5faf0a3}
 
 
-Definition at line 231 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 239 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_a575bcc44ebed9e68574ccb636a66a4d2}{\index{admin@{admin}!debug@{debug}}
 \index{debug@{debug}!admin@{admin}}
@@ -98,7 +100,7 @@ Version named-\/tuple
 \end{DoxyReturn}
 
 
-Definition at line 104 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 112 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_a186685a5e2120c71362c46b35f0705c3}{\index{admin@{admin}!eintr\-\_\-retry@{eintr\-\_\-retry}}
 \index{eintr\-\_\-retry@{eintr\-\_\-retry}!admin@{admin}}
@@ -130,7 +132,7 @@ Restart a system call interrupted by {\ttfamily E\-I\-N\-T\-R}.
 \end{DoxyExceptions}
 
 
-Definition at line 90 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 98 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_ae1e80d1a965f6551fa95ff379ba2b0cd}{\index{admin@{admin}!error@{error}}
 \index{error@{error}!admin@{admin}}
@@ -170,7 +172,7 @@ Command {\ttfamily rm -\/f}.
 \end{DoxyParams}
 
 
-Definition at line 76 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 84 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_a89c4e2a6cc63b64d27825da9eb414b98}{\index{admin@{admin}!match\-\_\-version@{match\-\_\-version}}
 \index{match\-\_\-version@{match\-\_\-version}!admin@{admin}}
@@ -196,7 +198,7 @@ True if match
 \end{DoxyReturn}
 
 
-Definition at line 123 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 131 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_ae034627a9fca691b23ee55d255113a81}{\index{admin@{admin}!read\-\_\-lines@{read\-\_\-lines}}
 \index{read\-\_\-lines@{read\-\_\-lines}!admin@{admin}}
@@ -227,7 +229,32 @@ generator object of line with no terminating line break
 \end{DoxyExceptions}
 
 
-Definition at line 141 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 149 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+
+\hypertarget{namespaceadmin_a31f458a81de75174d8424d5859164f48}{\index{admin@{admin}!shell@{shell}}
+\index{shell@{shell}!admin@{admin}}
+\subsubsection[{shell}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell (
+\begin{DoxyParamCaption}
+\item[{}]{cmd}
+\end{DoxyParamCaption}
+)}}\label{namespaceadmin_a31f458a81de75174d8424d5859164f48}
+
+
+Run shell commandi without output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & shell command \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em subprocess.\-Called\-Process\-Error} & -\/ from {\ttfamily cmd} \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 77 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_ae1dbeff3e935d67ed99b95eb814c9a11}{\index{admin@{admin}!update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}}
 \index{update\-\_\-seq\-\_\-type@{update\-\_\-seq\-\_\-type}!admin@{admin}}

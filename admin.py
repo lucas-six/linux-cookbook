@@ -189,9 +189,9 @@ def build(dir='build'):
     proj.uwsgi()
     info('\nuWSGI [OK]')
     
-    proj.django()
-    proj.django(nginx=':8001')
-    info('\nDjango [OK]')
+#proj.django()
+#proj.django(nginx=':8001')
+#    info('\nDjango [OK]')
     
     proj.doxygen()
     

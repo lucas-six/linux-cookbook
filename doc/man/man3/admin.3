@@ -1,4 +1,4 @@
-.TH "admin" 3 "Thu Sep 4 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.TH "admin" 3 "Tue Sep 9 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -40,6 +40,10 @@ admin \-
 .br
 .RI "\fIUpdate type of all elements in specific sequence\&. \fP"
 .ti -1c
+.RI "def \fBshell\fP"
+.br
+.RI "\fIRun shell commandi without output\&. \fP"
+.ti -1c
 .RI "def \fBforce_remove\fP"
 .br
 .RI "\fICommand \fCrm -f\fP\&. \fP"
@@ -75,7 +79,7 @@ admin \-
 .SS "def admin\&.cpu_cores ()"
 
 .PP
-Definition at line 231 of file __init__\&.py\&.
+Definition at line 239 of file __init__\&.py\&.
 .SS "def admin\&.debug (msg, prefix = \fC'[DBG]'\fP)"
 
 .PP
@@ -108,7 +112,7 @@ Version named-tuple
 .PP
 
 .PP
-Definition at line 104 of file __init__\&.py\&.
+Definition at line 112 of file __init__\&.py\&.
 .SS "def admin\&.eintr_retry (func, args)"
 
 .PP
@@ -132,7 +136,7 @@ Restart a system call interrupted by \fCEINTR\fP\&.
 .PP
 
 .PP
-Definition at line 90 of file __init__\&.py\&.
+Definition at line 98 of file __init__\&.py\&.
 .SS "def admin\&.error (msg)"
 
 .PP
@@ -158,7 +162,7 @@ Command \fCrm -f\fP\&.
 .PP
 
 .PP
-Definition at line 76 of file __init__\&.py\&.
+Definition at line 84 of file __init__\&.py\&.
 .SS "def admin\&.match_version (version, match)"
 
 .PP
@@ -178,7 +182,7 @@ True if match
 .PP
 
 .PP
-Definition at line 123 of file __init__\&.py\&.
+Definition at line 131 of file __init__\&.py\&.
 .SS "def admin\&.read_lines (filename, lineno)"
 
 .PP
@@ -203,7 +207,25 @@ generator object of line with no terminating line break
 .PP
 
 .PP
-Definition at line 141 of file __init__\&.py\&.
+Definition at line 149 of file __init__\&.py\&.
+.SS "def admin\&.shell (cmd)"
+
+.PP
+Run shell commandi without output\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcmd\fP shell command 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIsubprocess\&.CalledProcessError\fP - from \fCcmd\fP 
+.RE
+.PP
+
+.PP
+Definition at line 77 of file __init__\&.py\&.
 .SS "def admin\&.update_seq_type (seq, typename)"
 
 .PP
