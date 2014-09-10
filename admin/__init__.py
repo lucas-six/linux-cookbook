@@ -248,6 +248,8 @@ def cpu_cores():
 
 ## Run (or Reload) uWSGI server
 #
+# @param name app name
+# @param init True for adding to init system
 # @exception subprocess.CalledProcessError
 #
 # NOTE: Before run uWSGI with Django, make sure that Django project actually
@@ -258,12 +260,15 @@ def cpu_cores():
 # @see https://www.djangoproject.com/
 # @since uWSGI 2.0.6
 # @since Django 1.7
-def run_uwsgi(name):
-    pid_file = '/tmp/uwsgi-{0}.pid'.format(name)
-    if os.path.exists(pid_file):
-        shell('uwsgi --reload ' + pid_file)
+def run_uwsgi(name, init=False):
+    if init:
+        shell('sudo cp -u {0}/uwsgi.conf /etc/init/uwsgi.conf'.format(name))
     else:
-        shell('uwsgi --ini ' + os.path.join(www_root, name, 'uwsgi_app.ini'))
+        pid_file = '/tmp/uwsgi-{0}.pid'.format(name)
+        if os.path.exists(pid_file):
+            shell('uwsgi --reload ' + pid_file)
+        else:
+            shell('uwsgi --ini ' + os.path.join(www_root, name, 'uwsgi_app.ini'))
         
         
 class AdminTestCase(unittest.TestCase):

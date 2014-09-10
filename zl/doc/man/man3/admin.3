@@ -1,4 +1,4 @@
-.TH "admin" 3 "Tue Sep 9 2014" "Version 0.0.0" "zl" \" -*- nroff -*-
+.TH "admin" 3 "Wed Sep 10 2014" "Version 0.0.0" "zl" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -218,10 +218,17 @@ generator object of line with no terminating line break
 
 .PP
 Definition at line 154 of file __init__\&.py\&.
-.SS "def admin\&.run_uwsgi (name)"
+.SS "def admin\&.run_uwsgi (name, init = \fCFalse\fP)"
 
 .PP
 Run (or Reload) uWSGI server\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIname\fP app name 
+.br
+\fIinit\fP True for adding to init system 
+.RE
 .PP
 \fBExceptions:\fP
 .RS 4
@@ -248,7 +255,7 @@ Django 1\&.7
 .PP
 
 .PP
-Definition at line 261 of file __init__\&.py\&.
+Definition at line 263 of file __init__\&.py\&.
 .SS "def admin\&.shell (cmd)"
 
 .PP

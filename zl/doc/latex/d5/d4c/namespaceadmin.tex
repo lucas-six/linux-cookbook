@@ -241,13 +241,21 @@ Definition at line 154 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 \index{run\-\_\-uwsgi@{run\-\_\-uwsgi}!admin@{admin}}
 \subsubsection[{run\-\_\-uwsgi}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-run\-\_\-uwsgi (
 \begin{DoxyParamCaption}
-\item[{}]{name}
+\item[{}]{name, }
+\item[{}]{init = {\ttfamily False}}
 \end{DoxyParamCaption}
 )}}\label{namespaceadmin_a5b9abbcd8e776e622a7f86175f49607c}
 
 
 Run (or Reload) u\-W\-S\-G\-I server. 
 
+
+\begin{DoxyParams}{Parameters}
+{\em name} & app name \\
+\hline
+{\em init} & True for adding to init system \\
+\hline
+\end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
 {\em subprocess.\-Called\-Process\-Error} & N\-O\-T\-E\-: Before run u\-W\-S\-G\-I with Django, make sure that Django project actually works\-: \begin{DoxyVerb}python manage.py runserver 0.0.0.0:8000
@@ -265,7 +273,7 @@ Django 1.\-7
 \end{DoxySince}
 
 
-Definition at line 261 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
+Definition at line 263 of file \-\_\-\-\_\-init\-\_\-\-\_\-.\-py.
 
 \hypertarget{namespaceadmin_a31f458a81de75174d8424d5859164f48}{\index{admin@{admin}!shell@{shell}}
 \index{shell@{shell}!admin@{admin}}

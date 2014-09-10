@@ -428,13 +428,30 @@ Variables</h2></td></tr>
           <td class="memname">def admin.run_uwsgi </td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname"><em>name</em></td><td>)</td>
+          <td class="paramname"><em>name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>init</em> = <code>False</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Run (or Reload) uWSGI server. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>app name </td></tr>
+    <tr><td class="paramname">init</td><td>True for adding to init system </td></tr>
+  </table>
+  </dd>
+</dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname">subprocess.CalledProcessError</td><td>NOTE: Before run uWSGI with Django, make sure that Django project actually works: <pre class="fragment">python manage.py runserver 0.0.0.0:8000
@@ -447,7 +464,7 @@ Variables</h2></td></tr>
 <dd>
 Django 1.7 </dd></dl>
 
-<p>Definition at line <a class="el" href="../../d3/d9a/____init_____8py_source.html#l00261">261</a> of file <a class="el" href="../../d3/d9a/____init_____8py_source.html">__init__.py</a>.</p>
+<p>Definition at line <a class="el" href="../../d3/d9a/____init_____8py_source.html#l00263">263</a> of file <a class="el" href="../../d3/d9a/____init_____8py_source.html">__init__.py</a>.</p>
 
 </div>
 </div>
@@ -566,7 +583,7 @@ Django 1.7 </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Sep 9 2014 16:51:00 for zl by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 10 2014 18:02:46 for zl by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

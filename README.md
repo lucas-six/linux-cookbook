@@ -66,6 +66,10 @@ python admin.py setup
 ```bash
 sudo python admin.py build
 
+sudo python admin.py run uwsgi
 uwsgi --ini /var/spool/www/xxx/uwsgi_app.ini
+# OR
+sudo python admin.py run uwsgi init
+
 tail -f /var/log/uwsgi/xxx.log
 ```

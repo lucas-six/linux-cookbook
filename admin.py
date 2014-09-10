@@ -199,13 +199,14 @@ def build(name='zl'):
     proj.doxygen()
 
 
-def run(name='zl'):
+def run(name='zl', init=False):
     '''Run uWSGI server.
 
     @param name project name
+    @param init True for adding to init system
     @subprocess.CalledProcessError
     '''
-    admin.run_uwsgi(name=name)
+    admin.run_uwsgi(name=name, init=init)
 
 
 def usage():
@@ -223,9 +224,12 @@ if __name__ == '__main__':
             sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
         build(name=sys.argv[2])
     elif option == 'run':
-        if len(sys.argv) != 3:
-            sys.exit('Usage: {0} run [uwsgi]'.format(sys.argv[0]))
-        run(name=sys.argv[2])
+        if len(sys.argv) < 3:
+            sys.exit('Usage: {0} run [uwsgi] [init]'.format(sys.argv[0]))
+        if len(sys.argv) == 4 and sys.argv[3] == 'init':
+            run(name=sys.argv[2], init=True)
+        else:
+            run(name=sys.argv[2])
     elif option == 'test':
         admin_unittest()
         setup(test=True)
