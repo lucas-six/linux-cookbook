@@ -70,7 +70,7 @@ def setup(test=False):
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
                     'bash', 'python', 'coreutils', \
-                    'vim', 'git', 'doxygen', \
+                    'vim', 'git', 'doxygen', 'wget', \
                     'nginx', 'build-essential', 
                     'python-pip', 'python-dev', 'python-virtualenv']
             pip_pkgs = ['Django', 'uwsgi']
