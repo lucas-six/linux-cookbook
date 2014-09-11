@@ -165,9 +165,6 @@ def setup(test=False):
             info('Git [OK]')
 
             admin.shell('sudo mkdir -p ' + admin.www_root)
-
-            # Configure uWSGI server
-            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
         except subprocess.CalledProcessError as e:
             admin.error('Git [FAILED]: {0}'.format(e))
             
@@ -224,7 +221,8 @@ if __name__ == '__main__':
             sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
         build(name=sys.argv[2])
     elif option == 'run':
-        admin.run_uwsgi()
+        app = sys.argv[2]
+        run(app)
     elif option == 'init-run':
         app = sys.argv[2]
         run(app, init=True)

@@ -263,6 +263,12 @@ def cpu_cores():
 # @since uWSGI 2.0.6
 # @since Django 1.7
 def run_uwsgi(app, port, init=False):
+    app_root = os.path.join(www_root, app)
+    shell('sudo mkdir -p ' + app_root)
+    shell('sudo mkdir -p ' + uwsgi_log_root)
+    uwsgi_app_ini = os.path.join(app_root, 'uwsgi_app.ini')
+    uwsgi_ini_cmd = 'uwsgi --ini ' + uwsgi_app_ini
+
     # Generate uwsgi init script
     if init:
         tmp_file = '/tmp/uwsgi_{0}.conf'.format(app)
@@ -275,9 +281,15 @@ description "uWSGI server for {0}"\n\
 start on socket PROTO=inet PORT={1}\n\
 stop on runlevel [!2345]\n\
 \n\
-exec uwsgi --ini /var/spool/www/{0}/uwsgi_app.ini\n'.format(app, port))
+exec {2}\n'.format(app, port, uwsgi_ini_cmd))
             f.flush()
         shell('sudo mv -u {0} /etc/init/.'.format(tmp_file))
+    else:
+        pid_file = '/tmp/uwsgi-{0}.pid'.format(app)
+        if os.path.lexists(pid_file):
+            shell('uwsgi --reload ' + pid_file)
+        else:
+            shell(uwsgi_ini_cmd)
  
         
 class AdminTestCase(unittest.TestCase):
