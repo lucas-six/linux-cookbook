@@ -291,6 +291,8 @@ exec {2}\n'.format(app, port, uwsgi_ini_cmd))
         else:
             shell(uwsgi_ini_cmd)
  
+    # Configure nginx
+
 
 ## Stop uWSGI server.
 #

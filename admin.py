@@ -42,10 +42,10 @@ def info(msg, end='\n'):
     print(msg, end=end, file=sys.stderr)
     
 
-def setup(test=False):
+def setup(quick=False):
     '''Setup Linux.
     
-    @param test True if testing usage.
+    @param quick True if quick setup.
     @todo Git under Proxy
     '''
     # Determine current system type
@@ -65,7 +65,7 @@ def setup(test=False):
         try:
             # Skip updating index files of package system to reduce
             # testing time.
-            if not test:
+            if not quick:
                 admin.shell('sudo apt-get update')
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
@@ -77,7 +77,7 @@ def setup(test=False):
             admin.shell('sudo apt-get install ' + ' '.join(pkgs))
             
             # Skip updating pip packages to reduce testing time.
-            if not test:
+            if not quick:
                 for p in pip_pkgs:
                     admin.shell('sudo pip install --upgrade ' + p)
         except subprocess.CalledProcessError as e:
@@ -103,18 +103,24 @@ def setup(test=False):
             admin.error('Vimrc [FAILED]: {0}'.format(e))
             
         # Configure bashrc
-        if not test:
+        def _set_EDITOR_to_Vim(vim_ok):
             try:
                 with open(os.path.expanduser('~/.bashrc'), 'a') as f:
                     if vimrc_ok:
                         # Set default editor to Vim
                         f.write('\nexport EDITOR=vim')
                         info('Set default editor to Vim [OK]')
-                admin.shell('. ~/.bashrc')
+                    admin.shell('. ~/.bashrc')
             except IOError as e:
                 admin.error('Failed to set default editor to Vim: {0}'.format(e))
             except subprocess.CalledProcessError as e:
                 admin.error('Failed to reload bashrc: {0}'.format(e))
+
+        try:
+            if os.environ['EDITOR'] != 'vim':
+                _set_EDITOR_to_Vim(vim_ok)
+        except KeyError:
+            _set_EDITOR_to_Vim(vim_ok)
                         
         # Configure Git
         #
@@ -131,6 +137,7 @@ def setup(test=False):
             admin.shell('git config ' + conf)
         def _git_config_global(conf):
             _git_config('--global '+conf)
+
         try:
             _git_config_global('core.eol lf')
             _git_config_global('core.autocrlf input')
@@ -216,7 +223,7 @@ def stop(app):
 
 
 def usage():
-    sys.exit('Usage: python {0} setup|build|init-run|run|stop'.format(sys.argv[0]))
+    sys.exit('Usage: python {0} quick-setup|setup|build|init-run|run|stop'.format(sys.argv[0]))
     
                 
 if __name__ == '__main__':
@@ -225,6 +232,8 @@ if __name__ == '__main__':
     option = sys.argv[1]
     if option == 'setup':
         setup()
+    elif option == 'quick-setup':
+        setup(quick=True)
     elif option == 'build':
         if len(sys.argv) != 3:
             sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
@@ -240,7 +249,6 @@ if __name__ == '__main__':
         stop(app)
     elif option == 'test':
         admin_unittest()
-        setup(test=True)
         build()
     else:
         usage() 
