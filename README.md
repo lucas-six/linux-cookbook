@@ -66,10 +66,11 @@ python admin.py setup
 ```bash
 sudo python admin.py build
 
-sudo python admin.py run uwsgi
-uwsgi --ini /var/spool/www/xxx/uwsgi_app.ini
+python admin.py run zl
 # OR
-sudo python admin.py run uwsgi init
+uwsgi --ini /var/spool/www/zl/uwsgi_app.ini
+uwsgi --stop /tmp/uwsgi-zl.pid
+uwsgi --reload /tmp/uwsgi-zl.pid
 
-tail -f /var/log/uwsgi/xxx.log
+tail -f /var/log/uwsgi/zl.log
 ```

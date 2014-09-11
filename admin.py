@@ -199,14 +199,12 @@ def build(name='zl'):
     proj.doxygen()
 
 
-def run(name='zl', init=False):
-    '''Run uWSGI server.
+def run(app):
+    '''Run nginx + uWSGI server with Django.
 
-    @param name project name
-    @param init True for adding to init system
-    @subprocess.CalledProcessError
+    @exception subprocess.CalledProcessError
     '''
-    admin.run_uwsgi(name=name, init=init)
+    admin.run_uwsgi(app=app, port=8001)
 
 
 def usage():
@@ -223,17 +221,14 @@ if __name__ == '__main__':
         if len(sys.argv) != 3:
             sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
         build(name=sys.argv[2])
+    elif option == 'run-uwsgi':
+        admin.run_uwsgi()
     elif option == 'run':
-        if len(sys.argv) < 3:
-            sys.exit('Usage: {0} run [uwsgi] [init]'.format(sys.argv[0]))
-        if len(sys.argv) == 4 and sys.argv[3] == 'init':
-            run(name=sys.argv[2], init=True)
-        else:
-            run(name=sys.argv[2])
+        app = sys.argv[2]
+        run(app)
     elif option == 'test':
         admin_unittest()
         setup(test=True)
         build()
-        run()
     else:
         usage() 
