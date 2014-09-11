@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 '''@package _setup
-uWSGI Application Template
+uWSGI Application Sample
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
 

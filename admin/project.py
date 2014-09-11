@@ -123,7 +123,6 @@ class Project(object):
             single_app_file = False
 
         # Create uWSGI configuration from template
-        admin.shell('sudo mkdir -p ' + os.path.join(admin.www_root, self.name))
         ini_tpl = os.path.join(self._setup_dir, 'uwsgi_app.ini')
         ini = os.path.join(admin.www_root, self.name, 'uwsgi_app.ini')
         config = ConfigParser.SafeConfigParser(allow_no_value=True)
@@ -137,7 +136,6 @@ class Project(object):
             config.set('uwsgi', 'pidfile', '/tmp/uwsgi-' + self.name + '.pid')
             
             # Log file
-            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
             config.set('uwsgi', 'daemonize', \
                     '{0}/{1}.log'.format(admin.uwsgi_log_root, self.name))
             

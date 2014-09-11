@@ -37,6 +37,7 @@ import os
 import unittest
 import errno
 import subprocess
+import ConfigParser
 from collections import namedtuple
 from collections import OrderedDict
 
@@ -263,11 +264,56 @@ def cpu_cores():
 # @since uWSGI 2.0.6
 # @since Django 1.7
 def run_uwsgi(app, port, init=False):
+    is_module = True
+    app_split = os.path.splitext(app)
+    if app_split[1] == '.py':
+        app = app_split[0]
+        is_module = False
+
     app_root = os.path.join(www_root, app)
+    log_file = os.path.join(uwsgi_log_root, app) + '.log'
+    ini_name = app + '.ini'
+    ini_file = os.path.join(app_root, ini_name)
+    ini_tpl = os.path.join('_setup', 'uwsgi_tpl.ini')
+    pid_file = _uwsgi_pidfile(app)
+    ini_cmd = 'uwsgi --ini ' + ini_file
     shell('sudo mkdir -p ' + app_root)
-    shell('sudo mkdir -p ' + uwsgi_log_root)
-    uwsgi_app_ini = os.path.join(app_root, 'uwsgi_app.ini')
-    uwsgi_ini_cmd = 'uwsgi --ini ' + uwsgi_app_ini
+    shell('sudo chown www-data:adm ' + app_root)
+
+    # Setup uWSGI server
+    config = ConfigParser.SafeConfigParser(allow_no_value=True)
+    tmp_file = os.path.join('/tmp', ini_name)
+    with open(ini_tpl) as tpl_f:
+        config.readfp(tpl_f)
+
+        # Number of processes
+        config.set('uwsgi', 'processes', str(cpu_cores()))
+
+        # PID file
+        config.set('uwsgi', 'pidfile', pid_file)
+
+        # Log file
+        config.set('uwsgi', 'daemonize', log_file)
+
+        # wsgi-file/module
+        if is_module:
+            pass
+        else:
+            app_path = os.path.realpath(app) + '.py'
+            config.remove_option('uwsgi', 'chdir')
+            config.remove_option('uwsgi', 'module')
+            config.set('uwsgi', 'wsgi-file', app_path)
+
+        # HTTP
+        config.remove_option('uwsgi', 'socket')
+        config.set('uwsgi', 'http', port)
+
+        with open(tmp_file, 'w') as f:
+            config.write(f)
+
+    shell('sudo cp {0} {1}'.format(tmp_file, ini_file))
+    force_remove(tmp_file)
+    shell('sudo chown www-data:adm ' + ini_file)
 
     # Generate uwsgi init script
     if init:
@@ -281,15 +327,16 @@ description "uWSGI server for {0}"\n\
 start on socket PROTO=inet PORT={1}\n\
 stop on runlevel [!2345]\n\
 \n\
-exec {2}\n'.format(app, port, uwsgi_ini_cmd))
+exec {2}\n'.format(app, port, ini_cmd))
             f.flush()
         shell('sudo mv -u {0} /etc/init/.'.format(tmp_file))
+    
+    # Run once
     else:
-        pid_file = _uwsgi_pidfile(app)
         if os.path.lexists(pid_file):
             shell('uwsgi --reload ' + pid_file)
         else:
-            shell(uwsgi_ini_cmd)
+            shell(ini_cmd)
  
     # Configure nginx
 

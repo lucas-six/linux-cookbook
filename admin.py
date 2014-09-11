@@ -5,7 +5,7 @@
 
     - Setup Linux (Server)
     - Build Python (Django) projects
-    - Run uWSGI server
+    - Run App/Django on uWSGI server
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -171,7 +171,12 @@ def setup(quick=False):
             info(git_conf)
             info('Git [OK]')
 
+            # Configure WWW
             admin.shell('sudo mkdir -p ' + admin.www_root)
+            admin.shell('sudo chown www-data:adm ' + admin.www_root)
+            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
+            admin.shell('sudo chown www-data:adm ' + admin.uwsgi_log_root)
+            info('WWW [OK]')
         except subprocess.CalledProcessError as e:
             admin.error('Git [FAILED]: {0}'.format(e))
             
@@ -203,14 +208,15 @@ def build(name='zl'):
     proj.doxygen()
 
 
-def run(app, init=False):
+def run(app, addr, init=False):
     '''Run nginx + uWSGI server with Django.
 
     @param app app name
+    @param addr server address
     @param init True for adding to init system
     @exception subprocess.CalledProcessError
     '''
-    admin.run_uwsgi(app=app, port=8001, init=init)
+    admin.run_uwsgi(app, port, init=init)
 
 
 def stop(app):
@@ -240,7 +246,9 @@ if __name__ == '__main__':
         build(name=sys.argv[2])
     elif option == 'run':
         app = sys.argv[2]
-        run(app)
+        addr = sys.argv[3]
+        run(app, addr)
+        info('GGG')
     elif option == 'init-run':
         app = sys.argv[2]
         run(app, init=True)
