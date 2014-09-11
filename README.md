@@ -66,7 +66,7 @@ python admin.py setup
 ```bash
 sudo python admin.py build
 
-python admin.py run zl
+python admin.py init-run zl
 # OR
 uwsgi --ini /var/spool/www/zl/uwsgi_app.ini
 uwsgi --stop /tmp/uwsgi-zl.pid
