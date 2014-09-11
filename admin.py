@@ -206,8 +206,17 @@ def run(app, init=False):
     admin.run_uwsgi(app=app, port=8001, init=init)
 
 
+def stop(app):
+    '''Stop uWSGI server.
+
+    @param app app name
+    @exception subprocess.CalledProcessError
+    '''
+    admin.stop_uwsgi(app)
+
+
 def usage():
-    sys.exit('Usage: python {0} setup|build|init-run|run'.format(sys.argv[0]))
+    sys.exit('Usage: python {0} setup|build|init-run|run|stop'.format(sys.argv[0]))
     
                 
 if __name__ == '__main__':
@@ -226,6 +235,9 @@ if __name__ == '__main__':
     elif option == 'init-run':
         app = sys.argv[2]
         run(app, init=True)
+    elif option == 'stop':
+        app = sys.argv[2]
+        stop(app)
     elif option == 'test':
         admin_unittest()
         setup(test=True)

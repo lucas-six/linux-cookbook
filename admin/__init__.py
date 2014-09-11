@@ -12,7 +12,7 @@ This file contains some common functions and classes:
   - Version, decode_version(), match_version()
   - ConfigFile
   - cpu_cores() (Only /proc supported system)
-  - run_uwsgi()
+  - run_uwsgi(), stop_uwsgi()
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -291,7 +291,17 @@ exec {2}\n'.format(app, port, uwsgi_ini_cmd))
         else:
             shell(uwsgi_ini_cmd)
  
-        
+
+## Stop uWSGI server.
+#
+# @param app app name
+# @exception subprocess.CalledProcessError
+def stop_uwsgi(app):
+    pid_file = '/tmp/uwsgi-{0}.pid'.format(app)
+    if os.path.exists(pid_file):
+        shell('uwsgi --stop ' + pid_file)
+
+
 class AdminTestCase(unittest.TestCase):
     '''Test Case of Admin.
     '''
