@@ -285,7 +285,7 @@ exec {2}\n'.format(app, port, uwsgi_ini_cmd))
             f.flush()
         shell('sudo mv -u {0} /etc/init/.'.format(tmp_file))
     else:
-        pid_file = '/tmp/uwsgi-{0}.pid'.format(app)
+        pid_file = _uwsgi_pidfile(app)
         if os.path.lexists(pid_file):
             shell('uwsgi --reload ' + pid_file)
         else:
@@ -297,9 +297,16 @@ exec {2}\n'.format(app, port, uwsgi_ini_cmd))
 # @param app app name
 # @exception subprocess.CalledProcessError
 def stop_uwsgi(app):
-    pid_file = '/tmp/uwsgi-{0}.pid'.format(app)
+    pid_file = _uwsgi_pidfile(app)
     if os.path.exists(pid_file):
         shell('uwsgi --stop ' + pid_file)
+
+
+## Return uWSGI pid file from app name.
+#
+# @param app app name
+def _uwsgi_pidfile(app):
+    return '/tmp/uwsgi-{0}.pid'.format(app)
 
 
 class AdminTestCase(unittest.TestCase):
