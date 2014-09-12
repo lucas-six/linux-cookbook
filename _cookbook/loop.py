@@ -1,16 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
 Loop techniques Cookbook.
 
 Loop over index-value pair:
-
-    >>> from __future__ import print_function
-
-    >>> import sys
-
-    >>> py_ver = sys.version_info.major
 
     >>> for index, value in enumerate([1,2,3]):
     ...    print(index, value)
@@ -55,32 +49,25 @@ Multiple containers simultaneously:
     
 
     >>> for value1, value2 in zip([1,2,3], [7,8,9,10]):
-    ...    print(value1, value2)
+    ...        print(value1, value2)
     1 7
     2 8
     3 9
     
-    
-    >>> if py_ver == 3:
-    ...    for value1, value2 in itertools.zip_longest([1,2,3], [7,8,9,10]):
-    ...        print(value1, value2)
-    ... elif py_ver == 2:
-    ...     for value1, value2 in itertools.izip_longest([1,2,3], [7,8,9,10]):
-    ...        print(value1, value2)
+   
+    # Python 2: itertools.izip_longest()
+    >>> for value1, value2 in itertools.zip_longest([1,2,3], [7,8,9,10]):
+    ...     print(value1, value2)
     1 7
     2 8
     3 9
     None 10
 
    
-    >>> if py_ver == 3:
-    ...    for value1, value2 in \
-                    itertools.zip_longest([1,2,3], [7,8,9,10], fillvalue=0):
-    ...        print(value1, value2)
-    ... elif py_ver == 2:
-    ...    for value1, value2 in \
-                    itertools.izip_longest([1,2,3], [7,8,9,10], fillvalue=0):
-    ...        print(value1, value2)
+    # Python 2: itertools.izip_longest()
+    >>> for value1, value2 in \
+               itertools.zip_longest([1,2,3], [7,8,9,10], fillvalue=0):
+    ...    print(value1, value2)
     1 7
     2 8
     3 9
@@ -166,12 +153,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-import sys
 import itertools
         
-
-# Python major version: 2 or 3
-py_ver = sys.version_info
 
 # Sorted order
 seq = []
@@ -196,12 +179,8 @@ for word in words[:]:  # Loop over a slice copy of the entire list.
             
 # Dictionary
 mydict = {}
-if py_ver == 2: # Python 2
-    for key, value in mydict.iteritems():
-        pass
-elif py_ver == 3: # Python 3
-    for key, value in mydict.items():
-        pass
+for key, value in mydict.items(): # Python 2: mydict.iteritems()
+    pass
     
       
 class MyIterator(object):
@@ -213,8 +192,6 @@ class MyIterator(object):
     
     To use it,
 
-        >>> from __future__ import print_function
-    
         >>> for i in MyIterator([1, 2, 3]):
         ...    print(i)
         1
@@ -251,8 +228,6 @@ def my_generator(n):
     
     To use it,
    
-        >>> from __future__ import print_function
-
         >>> index = 0
         
         >>> for item in my_generator(0):
@@ -296,12 +271,8 @@ def test_filter():
     assert [i for i in l if i > 0] == [1, 3, 5, 8]
     assert [i if i > 0 else 0 for i in l] == [1, 3, 5, 0, 0, 8]
     d = {'A': 1, 'B': 2, 'C': 3}
-    if py_ver == 2:
-        assert {key: value for key, value in d.iteritems() if value > 1} == \
-                {'B': 2, 'C': 3}
-    elif py_ver == 3:
-        assert {key: value for key, value in d.items() if value > 1} == \
-                {'B': 2, 'C': 3}
+    assert {key: value for key, value in d.items() if value > 1} == \
+            {'B': 2, 'C': 3}  # Python 2: d.iteritems()
             
     # One potential downside of using a list comprehension is that it might
     # produce a large result if the original input is large. If this is a
@@ -315,18 +286,15 @@ def test_filter():
     # filtering process involves exception handling or some other complicated
     # detail.
     #
-    # NOTE: the `filter()` returns a list in python 2.x, and an iterable in
-    # Python 3.x.
+    # NOTE: the `filter()` returns a list in python 2, and an iterable in
+    # Python 3.
     def is_int(val):
         try:
             int(val)
             return True
         except ValueError:
             return False
-    if py_ver == 2:
-        assert filter(is_int, ['1', '-', '2', 'N/A', '-']) == ['1', '2']
-    elif py_ver == 3:
-        assert list(filter(is_int, ['1', '-', '2', 'N/A', '-'])) == ['1', '2']
+    assert list(filter(is_int, ['1', '-', '2', 'N/A', '-'])) == ['1', '2']
 
         
 if __name__ == '__main__':
