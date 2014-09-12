@@ -168,6 +168,7 @@ source bin/activate
 
   - [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
   - [PEP 257 - Docstring Conventions](http://legacy.python.org/dev/peps/pep-0257/)
+  - [PEP 0343 - The with Statement](http://www.python.org/dev/peps/pep-0343/)
 
 ## Reference
 
