@@ -6,15 +6,21 @@ Loop techniques Cookbook.
 
 Loop over index-value pair:
 
+    >>> from __future__ import print_function
+
+    >>> import sys
+
+    >>> py_ver = sys.version_info.major
+
     >>> for index, value in enumerate([1,2,3]):
-    ...    print index, value
+    ...    print(index, value)
     0 1
     1 2
     2 3
     
         
     >>> for index, value in enumerate([1,2,3], start=1):
-    ...    print index, value
+    ...    print(index, value)
     1 1
     2 2
     3 3
@@ -24,7 +30,7 @@ Join multiple containers with avoiding nested loops without losing the
 readability of the code:
 
     >>> for item in itertools.chain([1,2,3], ['a','b']):
-    ...    print item
+    ...    print(item)
     1
     2
     3
@@ -42,30 +48,39 @@ Reference implementation of `chain()`:
 Multiple containers simultaneously:
 
     >>> for value1, value2 in zip([1,2,3], [7,8,9]):
-    ...    print value1, value2
+    ...    print(value1, value2)
     1 7
     2 8
     3 9
     
 
     >>> for value1, value2 in zip([1,2,3], [7,8,9,10]):
-    ...    print value1, value2
+    ...    print(value1, value2)
     1 7
     2 8
     3 9
     
     
-    >>> for value1, value2 in itertools.izip_longest([1,2,3], [7,8,9,10]):
-    ...    print value1, value2
+    >>> if py_ver == 3:
+    ...    for value1, value2 in itertools.zip_longest([1,2,3], [7,8,9,10]):
+    ...        print(value1, value2)
+    ... elif py_ver == 2:
+    ...     for value1, value2 in itertools.izip_longest([1,2,3], [7,8,9,10]):
+    ...        print(value1, value2)
     1 7
     2 8
     3 9
     None 10
-    
-    
-    >>> for value1, value2 in \
-                itertools.izip_longest([1,2,3], [7,8,9,10], fillvalue=0):
-    ...    print value1, value2
+
+   
+    >>> if py_ver == 3:
+    ...    for value1, value2 in \
+                    itertools.zip_longest([1,2,3], [7,8,9,10], fillvalue=0):
+    ...        print(value1, value2)
+    ... elif py_ver == 2:
+    ...    for value1, value2 in \
+                    itertools.izip_longest([1,2,3], [7,8,9,10], fillvalue=0):
+    ...        print(value1, value2)
     1 7
     2 8
     3 9
@@ -90,7 +105,7 @@ Replace infinitive while loop with an iterator:
 Iterate permutations & combinations,
     
     >>> for item in itertools.permutations([1,2,3]):
-    ...    print item
+    ...    print(item)
     (1, 2, 3)
     (1, 3, 2)
     (2, 1, 3)
@@ -100,7 +115,7 @@ Iterate permutations & combinations,
         
         
     >>> for item in itertools.permutations([1,2,3], 2):
-    ...    print item
+    ...    print(item)
     (1, 2)
     (1, 3)
     (2, 1)
@@ -110,19 +125,19 @@ Iterate permutations & combinations,
         
         
     >>> for item in itertools.combinations([1,2,3], 3):
-    ...    print item
+    ...    print(item)
     (1, 2, 3)
      
     
     >>> for item in itertools.combinations([1,2,3], 2):
-    ...    print item
+    ...    print(item)
     (1, 2)
     (1, 3)
     (2, 3)
             
     
     >>> for item in itertools.combinations_with_replacement([1,2,3], 3):
-    ...    print item
+    ...    print(item)
     (1, 1, 1)
     (1, 1, 2)
     (1, 1, 3)
@@ -151,8 +166,12 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
+import sys
 import itertools
         
+
+# Python major version: 2 or 3
+py_ver = sys.version_info
 
 # Sorted order
 seq = []
@@ -177,8 +196,12 @@ for word in words[:]:  # Loop over a slice copy of the entire list.
             
 # Dictionary
 mydict = {}
-for key, value in mydict.iteritems():
-    pass
+if py_ver == 2: # Python 2
+    for key, value in mydict.iteritems():
+        pass
+elif py_ver == 3: # Python 3
+    for key, value in mydict.items():
+        pass
     
       
 class MyIterator(object):
@@ -189,9 +212,11 @@ class MyIterator(object):
     are used to allow user-defined classes to support iteration.
     
     To use it,
+
+        >>> from __future__ import print_function
     
         >>> for i in MyIterator([1, 2, 3]):
-        ...    print i
+        ...    print(i)
         1
         2
         3
@@ -225,13 +250,15 @@ def my_generator(n):
     The `yield` keyword could be implemented by _iterators_.
     
     To use it,
-    
+   
+        >>> from __future__ import print_function
+
         >>> index = 0
         
         >>> for item in my_generator(0):
         ...    index += 1
         ...    if index > 3: break
-        ...    print item
+        ...    print(item)
         0
         1
         2
@@ -239,7 +266,7 @@ def my_generator(n):
     To use it with iterator/generator slicing,
             
         >>> for item in itertools.islice(my_generator(0), 5, 9):
-        ...    print item
+        ...    print(item)
         5
         6
         7
@@ -269,8 +296,12 @@ def test_filter():
     assert [i for i in l if i > 0] == [1, 3, 5, 8]
     assert [i if i > 0 else 0 for i in l] == [1, 3, 5, 0, 0, 8]
     d = {'A': 1, 'B': 2, 'C': 3}
-    assert {key: value for key, value in d.iteritems() if value > 1} == \
-            {'B': 2, 'C': 3}
+    if py_ver == 2:
+        assert {key: value for key, value in d.iteritems() if value > 1} == \
+                {'B': 2, 'C': 3}
+    elif py_ver == 3:
+        assert {key: value for key, value in d.items() if value > 1} == \
+                {'B': 2, 'C': 3}
             
     # One potential downside of using a list comprehension is that it might
     # produce a large result if the original input is large. If this is a
@@ -292,7 +323,10 @@ def test_filter():
             return True
         except ValueError:
             return False
-    assert filter(is_int, ['1', '-', '2', 'N/A', '-']) == ['1', '2']
+    if py_ver == 2:
+        assert filter(is_int, ['1', '-', '2', 'N/A', '-']) == ['1', '2']
+    elif py_ver == 3:
+        assert list(filter(is_int, ['1', '-', '2', 'N/A', '-'])) == ['1', '2']
 
         
 if __name__ == '__main__':
