@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
 Function Parameters Cookbook.
 
-Function Argument Annotations (Python 3.x).
+Function Argument Annotations (Python 3).
     
     The Python interpreter does not attach any semantic meaning to the attached
     annotations. They are not type checks, nor do they make Python behave any
