@@ -22,5 +22,9 @@ POSSIBILITY OF SUCH DAMAGE.
 
 from __future__ import division
 
-assert 1 / 2 == 0.5     # true division, 0 (floor division by default)
-assert 1 // 2 == 0      # floor division
+
+# true division, 0 (floor division by default in Python 2.x)
+assert 1 / 2 == 0.5
+
+# floor division
+assert 1 // 2 == 0
