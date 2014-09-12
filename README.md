@@ -51,10 +51,10 @@ sudo apt-get install git
 **STEP 2**: Setup
 
 ```bash
-git config --global user.name "Li Yun"              # replace with your name
-git config --global user.email leven.cn@gmail.com   # replace with your email address
+git config --global user.name "Li Yun"                # replace with your name
+git config --global user.email leven.cn@gmail.com     # replace with your email address
 
-cd                                                  # choose your own path
+cd ~                                                  # choose your own path
 git clone https://github.com/leven-cn/admin-linux.git
 
 cd admin-linux

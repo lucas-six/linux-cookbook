@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -63,15 +63,13 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import print_function
-
 import socket
 import errno
 import time
 import sys
 import select
 import threading
-import SocketServer
+import socketserver # Python 2: SocketServer
 
 
 def _eintr_retry(func, *args):
@@ -264,7 +262,7 @@ class MyTCPServer(object):
                     break
                 print('Request from client: {0}'.format(data))
                     
-                request.sendall('response')
+                request.sendall(b'response')
         except socket.error as e:
             print(e)
         finally:
@@ -312,7 +310,7 @@ class MyUDPServer(object):
                     break
                 print('Data from client {0}: {1}'.format(addr, data))
             
-                self.socket.sendto('response', addr)
+                self.socket.sendto(b'response', addr)
         except socket.error as e:
             print(e)
         finally:
@@ -354,7 +352,7 @@ def tcp_client(addr, buf_size=1024, reconn=3):
     
     # Message Communication
     try:
-        sock.sendall('request\n')
+        sock.sendall(b'request\n')
         
         data = sock.recv(buf_size)
         if data:
@@ -376,7 +374,7 @@ def udp_client(addr, buf_size=1024):
     
     # Message Communication
     try:
-        sock.sendto('request\n', addr)
+        sock.sendto(b'request\n', addr)
         
         data, addr = sock.recvfrom(buf_size)
         if data:
@@ -387,7 +385,7 @@ def udp_client(addr, buf_size=1024):
         sock.close()
         
         
-class MyTCPHandler(SocketServer.StreamRequestHandler):
+class MyTCPHandler(socketserver.StreamRequestHandler):
     '''TCP handler by framework "SocketServer"
     '''
     def handle(self):
@@ -396,7 +394,7 @@ class MyTCPHandler(SocketServer.StreamRequestHandler):
         # Message Communication
         self.data = self.rfile.readline().strip()
         print('Data from client: {0}'.format(self.data))
-        self.wfile.write('response')
+        self.wfile.write(b'response')
         
         
 def tcp_server(host, port):
@@ -405,7 +403,7 @@ def tcp_server(host, port):
     @param host host name or IP of server
     @param port port number of server
     '''
-    srv = SocketServer.TCPServer((host, port), MyTCPHandler)
+    srv = socketserver.TCPServer((host, port), MyTCPHandler)
     print('Waiting for client on port {0}...'.format(port))
     srv.serve_forever()
         

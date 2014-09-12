@@ -1,8 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
-Number Division (True or floor division).
+Unpack N elements from iterables.
+
+This works with sequences, tuples, strings, files, iterators, and generators.
 
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
 All Rights Reserved.
@@ -20,7 +22,31 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import division
+seq = [1, 2, 3, 4, 5]
+v1, v2, v3, v4, v5 = seq
 
-assert 1 / 2 == 0.5     # true division, 0 (floor division by default)
-assert 1 // 2 == 0      # floor division
+# Skip some elements
+v1, _, v3, _, v5 = seq
+
+# Too many elements
+try:
+    v1, v2, v3 = seq
+except ValueError as err:
+    # print(err): too many values to unpack
+
+    # Python 3 "star expressions" can be used to address this problem.
+    v1, *v2, v3 = seq
+    assert isinstance(v2, list)
+
+    # Python 2.7 star parameters in function can be a replacement.
+    #def unpack3(v1, v2, *v3):
+    #    return v1, v2, v3
+    #v1, v2, v3 = unpack3(*seq)
+    #assert isinstance(v3 ,tuple)
+
+# Too many variables
+try:
+    v1, v2, v3, v4, v5, v6 = seq
+except ValueError as err:
+    # print(err): need more than 5 values to unpack
+    pass

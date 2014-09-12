@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
 '''@package _cookbook
@@ -29,17 +29,17 @@ For **text I/O**, reading line by line is more common.
 For **binary I/O**,
 
     >>> test_bin_io('_file.data')
-    2 ab
-    2 cd
-    2 ef
-    1 Gf
-    ab
-    cdefG
+    2 bytearray(b'ab')
+    2 bytearray(b'cd')
+    2 bytearray(b'ef')
+    1 bytearray(b'Gf')
+    b'ab'
+    b'cdefG'
     
 For **Memory-mapped I/O**,
 
     >>> test_mmap('_file.data')
-    Hello World
+    b'Hello World'
 
 
 Copyright (c) 2014 Li Yun <leven.cn@gmail.com>
@@ -58,8 +58,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import print_function
-
 import functools
 import sys
 
@@ -69,7 +67,7 @@ def test_bin_io(filename):
     # Write a binary file
     try:
         with open(filename, 'wb') as f:
-            f.write('abcdefG')
+            f.write(b'abcdefG')
     except IOError as e:
         error()
         

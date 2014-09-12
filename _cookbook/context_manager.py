@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -11,10 +11,6 @@ runtime context that is entered before the statement body is executed and
 exited when the statement ends.
 
 A example of context manager as follows:
-
-    >>> from __future__ import print_function
-    
-    >>> from __future__ import unicode_literals
 
     >>> class MyContextManager(object):
     ...    def __init__(self):
@@ -74,8 +70,6 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
-
-from __future__ import print_function
 
 from contextlib import contextmanager
 

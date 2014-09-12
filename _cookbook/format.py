@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -44,7 +44,7 @@ def test_int_format():
     assert format(i, '02x') == '02' # hex padding
     assert format(i, '#04x') == '0x02' # hex prefix & padding
     
-    assert oct(i) == '02' and format(i, '#o') == '0o2' # WARNINGS, oct prefix
+    assert oct(i) == '0o2' == format(i, '#o') # Python 2: oct(i) == '02'
     assert format(i, 'o') == '2' # hex digit
     assert format(i, '03o') == '002' # hex padding
     assert format(i, '#05o') == '0o002' # hex prefix & padding

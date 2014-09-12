@@ -1,10 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook._thread
-Multi-threading using Queue.
+Multi-threading using queue.
 
-The `Queue` module implements multi-producer, multi-cusumer queues.
+The `queue` module implements multi-producer, multi-cusumer queues.
 It is especially useful in threaded programming when information must be
 exchanged safely between multiple threads.
 
@@ -29,13 +29,11 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import print_function
-
 import threading
-from Queue import Queue
+import queue
 
 
-q = Queue(maxsize=10)
+q = queue.Queue(maxsize=10)
         
         
 class Producer(threading.Thread):

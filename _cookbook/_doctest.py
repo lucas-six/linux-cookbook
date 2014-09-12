@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python8
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -35,9 +35,6 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
-
-from __future__ import print_function
-
 
 def func_1():
     '''No return.
@@ -88,4 +85,4 @@ if __name__ == '__main__':
     doctest.testmod()
 
     # You can also test examples in a text file:
-    doctest.testfile('_doctest.md')
+    doctest.testfile('doctest.md')

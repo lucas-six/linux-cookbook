@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -23,17 +23,14 @@ Python Cookbook
 
 ## Command Line Options
 
-    `-t`  Issue a warning when a source file mixes tabs and spaces for
-          indentation in a way that makes it depend on the worth of a tab
-          expressed in spaces.
+    `-t`  Issue a warning when a source file mixes tabs and spaces for indentation in a way that
+          makes it depend on the worth of a tab expressed in spaces.
         
-    `-tt` Issue a error when a source file mixes tabs and spaces for
-          indentation in a way that makes it depend on the worth of a tab
-          expressed in spaces.
+    `-tt` Issue a error when a source file mixes tabs and spaces for indentation in a way that
+          makes it depend on the worth of a tab expressed in spaces.
         
-    `-O`  Turn on basic optimizations. This changes the file name extension for
-          compiled (bytecode) files from <em>.pyc</em> to <em>.pyo</em>, and set
-          the <code>__debug__</code> to <code>False</code>.
+    `-O`  Turn on basic optimizations. This changes the file name extension for compiled (bytecode)
+          files from *.pyc* to *.pyo*, and set the `__debug__` to `False`.
        
     `-OO` Discard docstrings in addition to the <em>-O</em> optimizations.
     
@@ -42,7 +39,7 @@ Python Cookbook
 
 - Use 4-space indentation, and avoid tabs. ( `-t` option )
 
-- Limit lines to a maximum of *79* characters, and docstrings/comments to *72*.
+- Limit lines to a maximum of *100* characters, and docstrings/comments to *80*.
 
 - Separate top-level function and class definitions with two blank lines, and
   method definitions inside a class are separated by a single blank line.
@@ -168,9 +165,13 @@ source bin/activate
 
   - [PEP 8 - Style Guide for Python Code](http://legacy.python.org/dev/peps/pep-0008/)
   - [PEP 257 - Docstring Conventions](http://legacy.python.org/dev/peps/pep-0257/)
+  - [PEP 0343 - The with Statement](http://www.python.org/dev/peps/pep-0343/)
 
 ## Reference
 
+  - [Think Python](http://www.greenteapress.com/thinkpython/html/index.html)
+  - [Python 2 Documentation](https://docs.python.org/2/)
+  - [Python 3 Documentation](https://docs.python.org/3/)
   - [Django](https://www.djangoproject.com/)
   
       
@@ -190,7 +191,8 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import print_function
+# Python 2.6+
+#from __future__ import print_function
 
 
 if __name__ == '__main__':

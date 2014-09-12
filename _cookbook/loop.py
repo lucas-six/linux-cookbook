@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook
@@ -7,14 +7,14 @@ Loop techniques Cookbook.
 Loop over index-value pair:
 
     >>> for index, value in enumerate([1,2,3]):
-    ...    print index, value
+    ...    print(index, value)
     0 1
     1 2
     2 3
     
         
     >>> for index, value in enumerate([1,2,3], start=1):
-    ...    print index, value
+    ...    print(index, value)
     1 1
     2 2
     3 3
@@ -24,7 +24,7 @@ Join multiple containers with avoiding nested loops without losing the
 readability of the code:
 
     >>> for item in itertools.chain([1,2,3], ['a','b']):
-    ...    print item
+    ...    print(item)
     1
     2
     3
@@ -42,30 +42,32 @@ Reference implementation of `chain()`:
 Multiple containers simultaneously:
 
     >>> for value1, value2 in zip([1,2,3], [7,8,9]):
-    ...    print value1, value2
+    ...    print(value1, value2)
     1 7
     2 8
     3 9
     
 
     >>> for value1, value2 in zip([1,2,3], [7,8,9,10]):
-    ...    print value1, value2
+    ...        print(value1, value2)
     1 7
     2 8
     3 9
     
-    
-    >>> for value1, value2 in itertools.izip_longest([1,2,3], [7,8,9,10]):
-    ...    print value1, value2
+   
+    # Python 2: itertools.izip_longest()
+    >>> for value1, value2 in itertools.zip_longest([1,2,3], [7,8,9,10]):
+    ...     print(value1, value2)
     1 7
     2 8
     3 9
     None 10
-    
-    
+
+   
+    # Python 2: itertools.izip_longest()
     >>> for value1, value2 in \
-                itertools.izip_longest([1,2,3], [7,8,9,10], fillvalue=0):
-    ...    print value1, value2
+               itertools.zip_longest([1,2,3], [7,8,9,10], fillvalue=0):
+    ...    print(value1, value2)
     1 7
     2 8
     3 9
@@ -90,7 +92,7 @@ Replace infinitive while loop with an iterator:
 Iterate permutations & combinations,
     
     >>> for item in itertools.permutations([1,2,3]):
-    ...    print item
+    ...    print(item)
     (1, 2, 3)
     (1, 3, 2)
     (2, 1, 3)
@@ -100,7 +102,7 @@ Iterate permutations & combinations,
         
         
     >>> for item in itertools.permutations([1,2,3], 2):
-    ...    print item
+    ...    print(item)
     (1, 2)
     (1, 3)
     (2, 1)
@@ -110,19 +112,19 @@ Iterate permutations & combinations,
         
         
     >>> for item in itertools.combinations([1,2,3], 3):
-    ...    print item
+    ...    print(item)
     (1, 2, 3)
      
     
     >>> for item in itertools.combinations([1,2,3], 2):
-    ...    print item
+    ...    print(item)
     (1, 2)
     (1, 3)
     (2, 3)
             
     
     >>> for item in itertools.combinations_with_replacement([1,2,3], 3):
-    ...    print item
+    ...    print(item)
     (1, 1, 1)
     (1, 1, 2)
     (1, 1, 3)
@@ -177,7 +179,7 @@ for word in words[:]:  # Loop over a slice copy of the entire list.
             
 # Dictionary
 mydict = {}
-for key, value in mydict.iteritems():
+for key, value in mydict.items(): # Python 2: mydict.iteritems()
     pass
     
       
@@ -189,9 +191,9 @@ class MyIterator(object):
     are used to allow user-defined classes to support iteration.
     
     To use it,
-    
+
         >>> for i in MyIterator([1, 2, 3]):
-        ...    print i
+        ...    print(i)
         1
         2
         3
@@ -225,13 +227,13 @@ def my_generator(n):
     The `yield` keyword could be implemented by _iterators_.
     
     To use it,
-    
+   
         >>> index = 0
         
         >>> for item in my_generator(0):
         ...    index += 1
         ...    if index > 3: break
-        ...    print item
+        ...    print(item)
         0
         1
         2
@@ -239,7 +241,7 @@ def my_generator(n):
     To use it with iterator/generator slicing,
             
         >>> for item in itertools.islice(my_generator(0), 5, 9):
-        ...    print item
+        ...    print(item)
         5
         6
         7
@@ -269,8 +271,8 @@ def test_filter():
     assert [i for i in l if i > 0] == [1, 3, 5, 8]
     assert [i if i > 0 else 0 for i in l] == [1, 3, 5, 0, 0, 8]
     d = {'A': 1, 'B': 2, 'C': 3}
-    assert {key: value for key, value in d.iteritems() if value > 1} == \
-            {'B': 2, 'C': 3}
+    assert {key: value for key, value in d.items() if value > 1} == \
+            {'B': 2, 'C': 3}  # Python 2: d.iteritems()
             
     # One potential downside of using a list comprehension is that it might
     # produce a large result if the original input is large. If this is a
@@ -284,15 +286,15 @@ def test_filter():
     # filtering process involves exception handling or some other complicated
     # detail.
     #
-    # NOTE: the `filter()` returns a list in python 2.x, and an iterable in
-    # Python 3.x.
+    # NOTE: the `filter()` returns a list in python 2, and an iterable in
+    # Python 3.
     def is_int(val):
         try:
             int(val)
             return True
         except ValueError:
             return False
-    assert filter(is_int, ['1', '-', '2', 'N/A', '-']) == ['1', '2']
+    assert list(filter(is_int, ['1', '-', '2', 'N/A', '-'])) == ['1', '2']
 
         
 if __name__ == '__main__':
