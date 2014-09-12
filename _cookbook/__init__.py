@@ -23,17 +23,14 @@ Python Cookbook
 
 ## Command Line Options
 
-    `-t`  Issue a warning when a source file mixes tabs and spaces for
-          indentation in a way that makes it depend on the worth of a tab
-          expressed in spaces.
+    `-t`  Issue a warning when a source file mixes tabs and spaces for indentation in a way that
+          makes it depend on the worth of a tab expressed in spaces.
         
-    `-tt` Issue a error when a source file mixes tabs and spaces for
-          indentation in a way that makes it depend on the worth of a tab
-          expressed in spaces.
+    `-tt` Issue a error when a source file mixes tabs and spaces for indentation in a way that
+          makes it depend on the worth of a tab expressed in spaces.
         
-    `-O`  Turn on basic optimizations. This changes the file name extension for
-          compiled (bytecode) files from <em>.pyc</em> to <em>.pyo</em>, and set
-          the <code>__debug__</code> to <code>False</code>.
+    `-O`  Turn on basic optimizations. This changes the file name extension for compiled (bytecode)
+          files from *.pyc* to *.pyo*, and set the `__debug__` to `False`.
        
     `-OO` Discard docstrings in addition to the <em>-O</em> optimizations.
     
@@ -42,7 +39,7 @@ Python Cookbook
 
 - Use 4-space indentation, and avoid tabs. ( `-t` option )
 
-- Limit lines to a maximum of *79* characters, and docstrings/comments to *72*.
+- Limit lines to a maximum of *100* characters, and docstrings/comments to *80*.
 
 - Separate top-level function and class definitions with two blank lines, and
   method definitions inside a class are separated by a single blank line.
