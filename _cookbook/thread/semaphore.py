@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package _cookbook._thread
@@ -31,8 +31,6 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-from __future__ import print_function
-
 import threading
 
 
@@ -50,8 +48,9 @@ class Producer(threading.Thread):
     def run(self):
         print('Run {0}'.format(self.name))
         with semaphore:
+            # Python 2: semaphore._Semaphore__value
             print('Thread {0}: Semaphore value is {1}'.\
-                    format(self.name, semaphore._Semaphore__value))
+                    format(self.name, semaphore._value))
             share.append(self.arg)
             print(share)
 
@@ -65,8 +64,10 @@ class Cusumer(threading.Thread):
     def run(self):
         print('Run {0}'.format(self.name))
         with semaphore:
+            # Python 2: semaphore._Semaphore__value
             print('Thread {0}: Semaphore value is {1}'.\
-                    format(self.name, semaphore._Semaphore__value))
+                    format(self.name, semaphore._value))
+
             if len(share) > 0:
                 self.arg = share.pop()
             print(share)
