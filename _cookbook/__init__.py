@@ -171,6 +171,8 @@ source bin/activate
 
 ## Reference
 
+  - [Python 2 Documentation](https://docs.python.org/2/)
+  - [Python 3 Documentation](https://docs.python.org/3/)
   - [Django](https://www.djangoproject.com/)
   
       
