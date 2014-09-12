@@ -64,8 +64,12 @@ python admin.py setup
 **STEP 3**: Build projects
 
 ```bash
+python admin.py run <app> <address>
+python admin.py stop <app>
+tail -f /var/log/uwsgi/<app>.log
+
 sudo python admin.py build
 
-python admin.py init-run|run|stop zl
+python admin.py init-run|stop zl
 tail -f /var/log/uwsgi/zl.log
 ```

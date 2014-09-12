@@ -249,8 +249,8 @@ def cpu_cores():
 
 ## Run (or Reload) uWSGI server
 #
-# @param app app name
-# @param port uWSGI server port
+# @param app app path
+# @param addr uWSGI server address
 # @param init True for adding to init system
 # @exception subprocess.CalledProcessError
 #
@@ -263,22 +263,24 @@ def cpu_cores():
 # @see https://www.djangoproject.com/
 # @since uWSGI 2.0.6
 # @since Django 1.7
-def run_uwsgi(app, port, init=False):
+def run_uwsgi(app, addr, init=False):
     is_module = True
     app_split = os.path.splitext(app)
     if app_split[1] == '.py':
         app = app_split[0]
         is_module = False
+    app_name = os.path.basename(app)
 
-    app_root = os.path.join(www_root, app)
-    log_file = os.path.join(uwsgi_log_root, app) + '.log'
-    ini_name = app + '.ini'
+    app_root = os.path.join(www_root, app_name)
+    log_file = os.path.join(uwsgi_log_root, app_name) + '.log'
+    ini_name = app_name + '.ini'
     ini_file = os.path.join(app_root, ini_name)
     ini_tpl = os.path.join('_setup', 'uwsgi_tpl.ini')
-    pid_file = _uwsgi_pidfile(app)
+    pid_file = _uwsgi_pidfile(app_name)
     ini_cmd = 'uwsgi --ini ' + ini_file
     shell('sudo mkdir -p ' + app_root)
     shell('sudo chown www-data:adm ' + app_root)
+    shell('sudo chmod g+x ' + app_root)
 
     # Setup uWSGI server
     config = ConfigParser.SafeConfigParser(allow_no_value=True)
@@ -306,7 +308,7 @@ def run_uwsgi(app, port, init=False):
 
         # HTTP
         config.remove_option('uwsgi', 'socket')
-        config.set('uwsgi', 'http', port)
+        config.set('uwsgi', 'http', addr)
 
         with open(tmp_file, 'w') as f:
             config.write(f)
@@ -343,10 +345,11 @@ exec {2}\n'.format(app, port, ini_cmd))
 
 ## Stop uWSGI server.
 #
-# @param app app name
+# @param app app path
 # @exception subprocess.CalledProcessError
 def stop_uwsgi(app):
-    pid_file = _uwsgi_pidfile(app)
+    app_name = os.path.splitext(os.path.basename(app))[0]
+    pid_file = _uwsgi_pidfile(app_name)
     if os.path.exists(pid_file):
         shell('uwsgi --stop ' + pid_file)
 

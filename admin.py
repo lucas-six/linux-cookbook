@@ -176,6 +176,7 @@ def setup(quick=False):
             admin.shell('sudo chown www-data:adm ' + admin.www_root)
             admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
             admin.shell('sudo chown www-data:adm ' + admin.uwsgi_log_root)
+            admin.shell('sudo chmod g+w ' + admin.uwsgi_log_root)
             info('WWW [OK]')
         except subprocess.CalledProcessError as e:
             admin.error('Git [FAILED]: {0}'.format(e))
@@ -208,26 +209,6 @@ def build(name='zl'):
     proj.doxygen()
 
 
-def run(app, addr, init=False):
-    '''Run nginx + uWSGI server with Django.
-
-    @param app app name
-    @param addr server address
-    @param init True for adding to init system
-    @exception subprocess.CalledProcessError
-    '''
-    admin.run_uwsgi(app, port, init=init)
-
-
-def stop(app):
-    '''Stop uWSGI server.
-
-    @param app app name
-    @exception subprocess.CalledProcessError
-    '''
-    admin.stop_uwsgi(app)
-
-
 def usage():
     sys.exit('Usage: python {0} quick-setup|setup|build|init-run|run|stop'.format(sys.argv[0]))
     
@@ -247,14 +228,13 @@ if __name__ == '__main__':
     elif option == 'run':
         app = sys.argv[2]
         addr = sys.argv[3]
-        run(app, addr)
-        info('GGG')
+        admin.run_uwsgi(app, addr)
     elif option == 'init-run':
         app = sys.argv[2]
         run(app, init=True)
     elif option == 'stop':
         app = sys.argv[2]
-        stop(app)
+        admin.stop_uwsgi(app)
     elif option == 'test':
         admin_unittest()
         build()
