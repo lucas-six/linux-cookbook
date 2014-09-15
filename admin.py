@@ -1,9 +1,14 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''Admin Linux (Ubuntu)
 
-    - Setup Linux (Server)
+    - update_seq_type()
+    - shell tools
+    - version tools
+    - www tools
+    - ConfigFile
+    - Setup Linux (server)
     - Build Python (Django) projects
     - Run App/Django on uWSGI server
   
@@ -23,26 +28,390 @@ See the License for the specific language governing permissions and
 limitations under the License.
 '''
 
-from __future__ import print_function
-
 import sys
 import os
 import platform
 import subprocess
+import shutil
+import stat
+import errno
+import configparser
+import time
+from collections import namedtuple
+from collections import OrderedDict
+import unittest
 
-import admin
-import admin.project
+
+## admin error
+class AdminError(Exception):
+    def __init__(self, e):
+        self.error = e
+
+    
+    def __str__(self):
+        return str(self.error)
+            
+
+## Update type of all elements in specific sequence.
+#
+# @param seq (mutable) sequence to be update
+# @param typename target type name
+def update_seq_type(seq, typename):
+    for index, value in enumerate(seq[:]):
+        seq[index] = typename(value)
+
+## Linux shell tools
+#
+# This module contains functions and classes for Linux shell, including:
+#
+#   - shell(), chown(), remove(), mkdir()
+#   - eintr_retry()
+#   - cpu_cores() (Only /proc supported system)
+class shell(object):
+
+    ## Run shell command without output.
+    #
+    # @param cmd shell command
+    # @exception AdminError(subprocess.CalledProcessError) - shell command error
+    @staticmethod
+    def shell(cmd):
+        try:
+            subprocess.check_call(cmd, shell=True)
+        except subprocess.CalledProcessError as e:
+            raise AdminError(e)
+            
+            
+    ## Change owner user and group of the given path.
+    #
+    # @param path path whose ownership to be changed
+    # @param user owner user name or uid
+    # @param group owner group name or gid
+    # @exception AdminError(ValueError) - both user or group not given
+    # @exception AdminError(LookupError) - user or group given not in system
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo chown` error
+    @staticmethod
+    def chown(path, user, group=None):
+        group_permission_on = True
+
+        # group name is same as user name by default
+        if group is None:
+            group = user
+            group_permission_on = False
+
+        try:
+            # shutil.chown() is high-level interface based onos.chown()
+            shutil.chown(path, user, group)
+        except (ValueError, LookupError) as e:
+            raise AdminError(e)
+        except PermissionError:
+            shell.shell('sudo chown {0}:{1} {2}'.format(user, group, path))
+        
+        if os.path.isdir(path):
+            if group_permission_on:
+                # mode: drwxrwxr-x
+                mode = stat.S_IRWXU | stat.S_IRWXG | stat.S_IROTH | stat.S_IXOTH
+                try:
+                    os.chmod(path, mode)
+                except PermissionError:
+                    shell.shell('sudo chmod u=rwx,g=rwx,o=rx ' + path)
+                    
+                    
+    ## Remove path entry.
+    #
+    # @param path path name of entry to be removed
+    @staticmethod
+    def remove(path):
+        try:
+            os.remove(path)
+        except FileNotFoundError:
+            pass
+        except OSError:
+            # `path` is a directory
+            try:
+                os.rmdir(path)
+            except OSError:
+                # not empty directory
+                try:
+                    shutil.rmtree(path, ignore_errors=True)
+                except shutil.Error as e:
+                    raise AdminError(e)
+                    
+                    
+    ## Create a directory or directories recursively.
+    #
+    # @param path directory path
+    # @param exist_ok True for raising OSError if the target directory already exists
+    # @param user owner user name or uid
+    # @param group owner group name or gid
+    # @exception ShellError(OSError) - target directory already exists
+    # @exception ShellError(subprocess.CalledProcessError) - shell `sudo mkdir` error
+    # @exception ShellError(ValueError) - both user or group not given
+    # @exception ShellError(LookupError) - user or group given not in system
+    # @exception ShellError(subprocess.CalledProcessError) - change ownership error
+    # @since Python 3.2
+    def mkdir(path, exist_ok=False, user=None, group=None):
+        try:
+            os.makedirs(path, exist_ok=exist_ok)
+        except PermissionError:
+            if exist_ok:
+                shell.shell('sudo mkdir -p ' + path)
+            else:
+                shell.shell('sudo mkdir ' + path)
+        except OSError as e:
+            raise AdminError(e)
+
+        # change ownership
+        if user is not None:
+            shell.chown(path, user, group=group)
+            
+            
+    ## Read specific line(s) with line number(s).
+    #
+    # @param filename file name
+    # @param lineno line number(s) to read (starting with 1)
+    # @return generator object of line with no terminating line break
+    # @exception TypeError, IOError
+    def read_lines(filename, lineno):
+        if isinstance(lineno, int):
+            lineno = [lineno]
+                
+        with open(filename) as f:
+            for n, line in enumerate(f):
+                if len(lineno) == 0:
+                    break
+                if n+1 in lineno:
+                    yield line.rstrip('\n') # Remove terminating line break (\n)
+                    lineno.remove(n+1) # Reduce size for better performance
+            
+            
+    ## Restart a system call interrupted by `EINTR`.
+    #
+    # @param func system call
+    # @param args arguments of system call
+    # @exception socket.error - socket error
+    # @exception select.error - select module error
+    # @exception OSError - other OS errors
+    def eintr_retry(func, *args):
+        while True:
+            try:
+                return func(*args)
+            except (OSError, socket.error, select.error) as e:
+                if e.errno != errno.EINTR:
+                    raise
+                    
+                    
+    # Get number of CPU cores from /proc file system.
+    #
+    # @return number of CPU cores
+    # @exception ShellError( subprocess.CalledProcessError) - from `grep` or `/proc/cpuinfo`
+    def cpu_cores():
+        try:
+            i = subprocess.check_output('grep "cpu cores" /proc/cpuinfo', shell=True)
+        except subprocess.CalledProcessError as e:
+            raise AdminError(e)
+        return int(i.split(b':')[1].strip())
         
         
-def info(msg, end='\n'):
-    '''Print informational message.
-    
-    @param msg Informational message
-    '''
-    print(msg, end=end, file=sys.stderr)
-    
+## Version tools
+#
+# This module contains functions and classes for versions, including:
+#
+#   - Version
+#   - decode()
+#   - match()
+class version(object):
 
-def setup(quick=False):
+    Version = namedtuple('Version', 'major, minor, patch')
+    
+    ## Decode version information string.
+    #
+    # @param version_info version information string (e.g. Python 3.4.1)
+    # @param prefix prefix string of version 
+    # @return Version named-tuple
+    @staticmethod
+    def decode(version_info, prefix=''):
+        # Skip if it already decoded
+        if isinstance(version_info, version.Version):
+            return version_info
+    
+        version_info.strip()
+        version_info = version_info[len(prefix):].strip().split('.')
+    
+        # Change version number from string to integer.
+        update_seq_type(version_info, int)
+        
+        return version.Version._make(version_info)
+        
+        
+    ## Match the specific version.
+    #
+    # @param v Version named-tuple
+    # @param match version string (e.g. 1.2.3)
+    # @return True if match
+    @staticmethod
+    def match(v, match):
+        v = version.decode(v)
+        match = version.decode(match)
+        
+        if v.major < match.major:
+            return False
+        
+        return (v.major > match.major) \
+                or (v.major == match.major and v.minor > match.minor) \
+                or (v.minor == match.minor and v.patch >= match.patch)
+                
+             
+## WWW (Internet) tools
+#
+# This module contains functions and classes for Internet, including:
+#
+#   - root, uwsgi_root_log
+#   - user, group
+#   - uwsgi
+class www(object):
+    
+    root = '/var/spool/www'
+    uwsgi_log_root = '/var/log/uwsgi'
+    user = 'www-data'
+    group = 'adm'
+            
+    
+    ## Setup WWW.
+    #
+    # @param root root path of WWW
+    # @param uwsgi_log_root root path of uWSGI log
+    # @param user user of WWW
+    # @param group group of WWW
+    # @param 
+    @staticmethod
+    def setup(root=None, uwsgi_log_root=None, user=None, group=None):
+        if root is None:
+            root = www.root
+        if uwsgi_log_root is None:
+            uwsgi_log_root = www.uwsgi_log_root
+        if user is None:
+            user = www.user
+        if group is None:
+            group = www.group
+        shell.mkdir(root, exist_ok=True, user=user, group=group)
+        shell.mkdir(uwsgi_log_root, exist_ok=True, user=user, group=group)
+        
+        
+    ## uWSGI server.
+    #
+    # @since uWSGI 2.0.6
+    class uwsgi(object):
+    
+        ## Run (or Reload) uWSGI server
+        #
+        # @param app app path
+        # @param addr uWSGI server address
+        # @param init True for adding to init system
+        # @exception AdminError(subprocess.CalledProcessError) - shell error
+        #
+        # NOTE: Before run uWSGI with Django, make sure that Django project
+        # actually works:
+        #
+        #     python manage.py runserver 0.0.0.0:8000
+        #
+        #
+        # @see https://www.djangoproject.com/
+        # @since Django 1.7
+        @staticmethod
+        def run(app, addr, init=False):
+            is_module = True
+            app_split = os.path.splitext(app)
+            if app_split[1] == '.py':
+                app = app_split[0]
+                is_module = False
+            app_name = os.path.basename(app)
+
+            app_root = os.path.join(www.root, app_name)
+            log_file = os.path.join(www.uwsgi_log_root, app_name) + '.log'
+            ini_name = app_name + '.ini'
+            ini_file = os.path.join(app_root, ini_name)
+            ini_tpl = os.path.join('_setup', 'uwsgi_tpl.ini')
+            pid_file = www.uwsgi._uwsgi_pidfile(app_name)
+            ini_cmd = 'uwsgi --ini ' + ini_file
+            shell.mkdir(app_root, exist_ok=True)
+
+            # Setup uWSGI server
+            config = configparser.SafeConfigParser(allow_no_value=True)
+            with open(ini_tpl) as tpl_f:
+                config.readfp(tpl_f)
+
+                # Number of processes
+                config.set('uwsgi', 'processes', str(shell.cpu_cores()))
+
+                # PID file
+                config.set('uwsgi', 'pidfile', pid_file)
+
+                # Log file
+                config.set('uwsgi', 'daemonize', log_file)
+
+                # wsgi-file/module
+                if is_module:
+                    pass
+                else:
+                    app_path = os.path.realpath(app) + '.py'
+                    config.remove_option('uwsgi', 'chdir')
+                    config.remove_option('uwsgi', 'module')
+                    config.set('uwsgi', 'wsgi-file', app_path)
+
+                # HTTP
+                config.remove_option('uwsgi', 'socket')
+                config.set('uwsgi', 'http', addr)
+
+                with open(ini_file, 'w') as f:
+                    config.write(f)
+
+            # Generate uwsgi init script
+            if init:
+                tmp_file = '/tmp/uwsgi_{0}.conf'.format(app)
+                with open(tmp_file, 'w') as f:
+                    f.write('# uwsgi server for {0}\n\
+# Generated by admin.py - DONOT edit!!!\n\
+\n\
+description "uWSGI server for {0}"\n\
+\n\
+start on socket PROTO=inet PORT={1}\n\
+stop on runlevel [!2345]\n\
+\n\
+exec {2}\n'.format(app, port, ini_cmd))
+                    f.flush()
+                shell.shell('sudo mv -u {0} /etc/init/.'.format(tmp_file))
+    
+            # Run once
+            else:
+                if os.path.lexists(pid_file):
+                    shell.shell('uwsgi --reload ' + pid_file)
+                else:
+                    shell.shell(ini_cmd)
+ 
+            # Configure nginx
+            
+            
+        ## Stop uWSGI server.
+        #
+        # @param app app path
+        # @exception AdminError(subprocess.CalledProcessError) - shell error
+        @staticmethod
+        def stop(app):
+            app_name = os.path.splitext(os.path.basename(app))[0]
+            pid_file = www.uwsgi._uwsgi_pidfile(app_name)
+            if os.path.exists(pid_file):
+                shell.shell('uwsgi --stop ' + pid_file)
+                
+                
+        ## Return uWSGI pid file from app name.
+        #
+        # @param app app name
+        @staticmethod
+        def _uwsgi_pidfile(app):
+            return '/tmp/uwsgi-{0}.pid'.format(app)
+        
+
+def _setup(quick=False):
     '''Setup Linux.
     
     @param quick True if quick setup.
@@ -66,7 +435,7 @@ def setup(quick=False):
             # Skip updating index files of package system to reduce
             # testing time.
             if not quick:
-                admin.shell('sudo apt-get update')
+                shell.shell('sudo apt-get update')
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
                     'bash', 'python', 'coreutils', \
@@ -74,33 +443,33 @@ def setup(quick=False):
                     'nginx', 'build-essential', 
                     'python-pip', 'python-dev', 'python-virtualenv']
             pip_pkgs = ['Django', 'uwsgi']
-            admin.shell('sudo apt-get install ' + ' '.join(pkgs))
+            shell.shell('sudo apt-get install ' + ' '.join(pkgs))
             
             # Skip updating pip packages to reduce testing time.
             if not quick:
                 for p in pip_pkgs:
-                    admin.shell('sudo pip install --upgrade ' + p)
-        except subprocess.CalledProcessError as e:
+                    shell.shell('sudo pip install --upgrade ' + p)
+        except AdminError as e:
             sys.exit('Failed to install core packages: {0}'.format(e))
-        info('System updated [OK]')
+        print('System updated [OK]')
             
         vimrc_ok = False
         git_ok = False
             
         # Symbolic link vimrc, backup it if already existing.
-        info('\n*** vimrc ***')
+        print('\n*** vimrc ***')
         vimrc = os.path.expanduser('~/.vimrc')
         try:
             if os.path.lexists(vimrc):
                 old_vimrc = vimrc + '.old'
-                admin.force_remove(old_vimrc)
+                shell.remove(old_vimrc)
                 os.rename(vimrc, old_vimrc)
             myvimrc = os.path.join(os.getcwd(), '_setup', 'vimrc')
             os.symlink(myvimrc, vimrc)
             vimrc_ok = True
-            info('Vimrc [OK]')
+            print('Vimrc [OK]')
         except OSError as e:
-            admin.error('Vimrc [FAILED]: {0}'.format(e))
+            print('Vimrc [FAILED]: {0}'.format(e), file=sys.stderr)
             
         # Configure bashrc
         def _set_EDITOR_to_Vim(vim_ok):
@@ -109,12 +478,12 @@ def setup(quick=False):
                     if vimrc_ok:
                         # Set default editor to Vim
                         f.write('\nexport EDITOR=vim')
-                        info('Set default editor to Vim [OK]')
-                    admin.shell('. ~/.bashrc')
+                        print('Set default editor to Vim [OK]')
+                    shell.shell('. ~/.bashrc')
             except IOError as e:
-                admin.error('Failed to set default editor to Vim: {0}'.format(e))
+                print('Failed to set default editor to Vim: {0}'.format(e), file=sys.stderr)
             except subprocess.CalledProcessError as e:
-                admin.error('Failed to reload bashrc: {0}'.format(e))
+                print('Failed to reload bashrc: {0}'.format(e), file=sys.stderr)
 
         try:
             if os.environ['EDITOR'] != 'vim':
@@ -132,9 +501,9 @@ def setup(quick=False):
         # Or an online referernce:
         #
         #     http://gitref.org/
-        info('\n*** Git ***')
+        print('\n*** Git ***')
         def _git_config(conf):
-            admin.shell('git config ' + conf)
+            shell.shell('git config ' + conf)
         def _git_config_global(conf):
             _git_config('--global '+conf)
 
@@ -149,15 +518,16 @@ def setup(quick=False):
                 _git_config_global('merge.tool vimdiff')
                 
             git_version = subprocess.check_output('git version', shell=True)
-            git_version = admin.decode_version(git_version, prefix='git version')
-            admin.debug(git_version)
+            git_version = git_version.decode()  # byte => str
+            git_version = version.decode(git_version, prefix='git version')
+            print(git_version, file=sys.stderr)
             
             # Password cache (Git v1.7.10+)
-            if admin.match_version(git_version, '1.7.10'):
+            if version.match(git_version, '1.7.10'):
                 _git_config_global('credential.helper "cache --timeout=3600"')
             
             # Push default
-            if admin.match_version(git_version, '1.7.11'):
+            if version.match(git_version, '1.7.11'):
                 _git_config_global('push.default simple')
             else:
                 _git_config_global('push.default upstream')
@@ -168,27 +538,96 @@ def setup(quick=False):
             git_ok = True
             git_conf = subprocess.check_output('git config --list', shell=True)
             git_conf.strip()
-            info(git_conf)
-            info('Git [OK]')
-
-            # Configure WWW
-            admin.shell('sudo mkdir -p ' + admin.www_root)
-            admin.shell('sudo chown www-data:adm ' + admin.www_root)
-            admin.shell('sudo mkdir -p ' + admin.uwsgi_log_root)
-            admin.shell('sudo chown www-data:adm ' + admin.uwsgi_log_root)
-            admin.shell('sudo chmod g+w ' + admin.uwsgi_log_root)
-            info('WWW [OK]')
+            git_conf = git_conf.decode()
+            print(git_conf)
+            print('Git [OK]')
         except subprocess.CalledProcessError as e:
-            admin.error('Git [FAILED]: {0}'.format(e))
+            print('Git [FAILED]: {0}'.format(e), file=sys.stderr)
+            
+        # Configure WWW
+        try:
+            www.setup()
+            print('WWW [OK]')
+        except AdminError as e:
+            print('WWW [FAILED]: {0}'.format(e), file=sys.stderr)
             
             
-def admin_unittest():
-    '''Admin Unit Testing.
-    '''
-    try:
-        admin.shell('python admin/__init__.py')
-    except subprocess.CalledProcessError as e:
-        sys.exit('Admin Unit Testing [FAILED]: {0}'.format(e))
+## Configuration file.
+#
+# ## Usage
+#
+# <pre><code>
+#     import os
+#     import sys
+#     import admin
+#
+#     configs = {'PROJECT_NAME': '\"AAA\"',
+#           'PROJECT_NUMBER': '1.2.3'}
+#     try:
+#         with open(os.path.join(os.getcwd(), 'Doxyfile'), 'r+') as f:
+#             config_file = admin.ConfigFile(f)
+#             config_file.set(configs)
+#         except IOError as e:
+#             print('error', file=sys.stderr)
+class ConfigFile(object):
+    ## Parse configuration file.
+    #
+    # @param config_file configuration file object
+    # @param sep separator for option/value pair
+    # @param comments comments leading character
+    def __init__(self, config_file, sep='=', comments='#'):
+        self._config_file = config_file
+        self._sep = sep
+        self._comments = comments
+        self._config = OrderedDict()
+        for line in config_file:
+            # Skip blank line or comments
+            if line.strip() == '' or line.startswith(comments):
+                continue
+                
+            # Get "OPTION = value"
+            pair = line.split(sep)
+            self._config[pair[0].strip()] = pair[1].strip()
+                
+    
+    ## Get value of specific option.
+    #
+    # @param option option name
+    # @return option value
+    # @exception KeyError - no optinon exists
+    def get(self, option):
+        return self._config[option]
+        
+        
+    ## Set value of specific option.
+    #
+    # @param pairs Pairs of option name-value.
+    def set(self, pairs):
+        self._config_file.seek(0)
+        lines = []
+        for line in self._config_file:
+            # Skip blank line or comments
+            if line.strip() == '' or line.startswith(self._comments):
+                lines.append(line)
+                continue
+                
+            # Set option
+            pair = line.split(self._sep)
+            option = pair[0].strip()
+            if option in pairs:
+                pair[1] = ' ' + pairs[option] + '\n'
+                line = self._sep.join(pair)
+                del pairs[option] # Reduce size of pairs for better performance
+            
+            lines.append(line)
+        
+        # Update configuration file
+        self._config_file.seek(0)
+        self._config_file.writelines(lines)
+            
+      
+def _usage():
+    sys.exit('Usage: python {0} quick-setup|setup|build|init-run|run|stop'.format(sys.argv[0]))
         
         
 def build(name='zl'):
@@ -207,36 +646,49 @@ def build(name='zl'):
     info('\nuWSGI [OK]')
     
     proj.doxygen()
-
-
-def usage():
-    sys.exit('Usage: python {0} quick-setup|setup|build|init-run|run|stop'.format(sys.argv[0]))
     
                 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-       usage() 
+       _usage()
+       
     option = sys.argv[1]
+
     if option == 'setup':
-        setup()
+        _setup()
+
     elif option == 'quick-setup':
-        setup(quick=True)
+        _setup(quick=True)
+
     elif option == 'build':
         if len(sys.argv) != 3:
             sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
         build(name=sys.argv[2])
+        
     elif option == 'run':
         app = sys.argv[2]
         addr = sys.argv[3]
-        admin.run_uwsgi(app, addr)
+        www.uwsgi.run(app, addr)
+        
     elif option == 'init-run':
         app = sys.argv[2]
-        run(app, init=True)
+        addr = sys.argv[3]
+        www.uwsgi.run(app, addr, init=True)
+        
     elif option == 'stop':
         app = sys.argv[2]
-        admin.stop_uwsgi(app)
+        www.uwsgi.stop(app)
+        
     elif option == 'test':
-        admin_unittest()
-        build()
+        _setup(quick=True)
+        
+        time.sleep(3)
+        test_app = '_setup/hello_uwsgi_app.py'
+        test_addr = ':8000'
+        www.uwsgi.run(test_app, test_addr)
+        
+        time.sleep(3)
+        www.uwsgi.stop(test_app)
+        
     else:
-        usage() 
+        _usage() 

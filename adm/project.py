@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 '''@package admin
@@ -26,7 +26,7 @@ limitations under the License.
 import os
 import errno
 import subprocess
-import ConfigParser
+import configparser
 
 import admin
 
@@ -47,7 +47,7 @@ import admin
 #      # Setup uWSGI server
 #      try:
 #          proj.uwsgi()
-#      except (ConfigParser.NoSectionError, subprocess.CalledProcessErro) as e:
+#      except (configparser.NoSectionError, subprocess.CalledProcessErro) as e:
 #          admin.error(e)
 #
 #      # Generate documentation
