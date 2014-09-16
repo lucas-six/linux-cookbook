@@ -64,10 +64,10 @@ python admin.py setup|quick-setup
 **STEP 3**: Build projects
 
 ```bash
-python admin.py run <app> <address>
-python admin.py stop <app>
+python admin.py run-uwsgi <app> <address>
+python admin.py stop-uwsgi <app>
 # OR
-python admin.py init-run <app> <address>
+python admin.py init-run-uwsgi <app> <address>
 
 tail -f /var/log/uwsgi/<app>.log
 

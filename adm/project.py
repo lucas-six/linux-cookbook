@@ -43,12 +43,6 @@ import admin
 #          proj = admin.project.Project(types=['python'], name='test')
 #      except os.error as e:
 #          admin.error(e)
-#        
-#      # Setup uWSGI server
-#      try:
-#          proj.uwsgi()
-#      except (configparser.NoSectionError, subprocess.CalledProcessErro) as e:
-#          admin.error(e)
 #
 #      # Generate documentation
 #      try:
@@ -106,62 +100,6 @@ class Project(object):
                 # already exists, ignore
                 if e.errno != errno.EEXIST:
                     raise
-            
-            
-    # Setup uWSGI server.
-    #
-    # @param app uWSGI App
-    # @param nginx address of bridge between nginx and uWSGI
-    # @exception ConfigParser.NoSectionError
-    # @exception subprocess.CalledProcessError
-    #
-    # @see https://uwsgi.readthedocs.org/en/latest/index.html
-    # @since uWSGI 2.0.6
-    def uwsgi(self, app='', nginx=None):
-        single_app_file = True
-        if os.path.splitext(app)[1] != '.py':
-            single_app_file = False
-
-        # Create uWSGI configuration from template
-        ini_tpl = os.path.join(self._setup_dir, 'uwsgi_app.ini')
-        ini = os.path.join(admin.www_root, self.name, 'uwsgi_app.ini')
-        config = ConfigParser.SafeConfigParser(allow_no_value=True)
-        with open(ini_tpl) as tpl_f:
-            config.readfp(tpl_f)
-            
-            # Number of processes
-            config.set('uwsgi', 'processes', str(admin.cpu_cores()))
-
-            # PID file
-            config.set('uwsgi', 'pidfile', '/tmp/uwsgi-' + self.name + '.pid')
-            
-            # Log file
-            config.set('uwsgi', 'daemonize', \
-                    '{0}/{1}.log'.format(admin.uwsgi_log_root, self.name))
-            
-            # nginx
-            if nginx is not None:
-                config.remove_option('uwsgi', 'http')
-                config.set('uwsgi', 'socket', nginx)
-            else:
-                config.remove_option('uwsgi', 'socket')
-            
-            # wsgi-file/module 
-            if not single_app_file:
-                config.remove_option('uwsgi', 'wsgi-file')
-                config.set('uwsgi', 'chdir', self.path) 
-                config.set('uwsgi', 'module', self.name + '.wsgi')
-            else:
-                app_path = os.path.join(self.path, app)
-                config.remove_option('uwsgi', 'chdir')
-                config.remove_option('uwsgi', 'module')
-                config.set('uwsgi', 'wsgi-file', app_path)
-                
-            with open('/tmp/uwsgi_app.ini', 'w') as f:
-                config.write(f)
-              
-        admin.shell('sudo cp /tmp/uwsgi_app.ini ' + ini)
-        admin.force_remove('/tmp/uwsgi_app.ini')
 
     
     ## Generate documentation for codes under Git by Doxygen.
