@@ -90,8 +90,8 @@ class shell(object):
     # @exception AdminError(ValueError) - both user or group not given
     # @exception AdminError(LookupError) - user or group given not in system
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo chown` error
-    @staticmethod
-    def chown(path, user, group=None):
+    @classmethod
+    def chown(cls, path, user, group=None):
         group_permission_on = True
 
         # group name is same as user name by default
@@ -105,7 +105,7 @@ class shell(object):
         except (ValueError, LookupError) as e:
             raise AdminError(e)
         except PermissionError:
-            shell.shell('sudo chown {0}:{1} {2}'.format(user, group, path))
+            cls.shell('sudo chown {0}:{1} {2}'.format(user, group, path))
         
         if os.path.isdir(path):
             if group_permission_on:
@@ -114,19 +114,22 @@ class shell(object):
                 try:
                     os.chmod(path, mode)
                 except PermissionError:
-                    shell.shell('sudo chmod u=rwx,g=rwx,o=rx ' + path)
+                    cls.shell('sudo chmod u=rwx,g=rwx,o=rx ' + path)
                     
                     
     ## Remove path entry.
     #
     # @param path path name of entry to be removed
-    @staticmethod
-    def remove(path):
+    # @exception AdminError(subprocess.CalledProcessError) - shell 'sudo rm -f' error
+    @classmethod
+    def remove(cls, path):
         try:
             os.remove(path)
         except FileNotFoundError:
             pass
-        except OSError:
+        except PermissionError:
+            cls.shell('sudo rm -f ' + path)
+        except OSError as e:
             # `path` is a directory
             try:
                 os.rmdir(path)
@@ -150,20 +153,21 @@ class shell(object):
     # @exception AdminError(LookupError) - user or group given not in system
     # @exception AdminError(subprocess.CalledProcessError) - change ownership error
     # @since Python 3.2
-    def mkdir(path, exist_ok=False, user=None, group=None):
+    @classmethod
+    def mkdir(cls, path, exist_ok=False, user=None, group=None):
         try:
             os.makedirs(path, exist_ok=exist_ok)
         except PermissionError:
             if exist_ok:
-                shell.shell('sudo mkdir -p ' + path)
+                cls.shell('sudo mkdir -p ' + path)
             else:
-                shell.shell('sudo mkdir ' + path)
+                cls.shell('sudo mkdir ' + path)
         except OSError as e:
             raise AdminError(e)
 
         # change ownership
         if user is not None:
-            shell.chown(path, user, group=group)
+            cls.chown(path, user, group=group)
             
             
     ## Create a symbolic link pointing to source named `link_name`.
@@ -171,35 +175,42 @@ class shell(object):
     # @param src source file
     # @param link_name symbolic link name
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` error
-    def symlink(src, link_name):
+    @classmethod
+    def symlink(cls, src, link_name):
         try:
             os.symlink(src, link_name)
+        except FileExistsError:
+            cls.remove(link_name)
+            cls.symlink(src, link_name) # re-try
         except PermissionError:
-            shell.shell('sudo ln -sf {0} {1}'.format(src, link_name))
+            cls.shell('sudo ln -sf {0} {1}'.format(src, link_name))
             
             
     ## Start init service.
     #
     # @param service service name
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
-    def start_init_service(service):
-        shell.shell('sudo /etc/init.d/{0} start'.format(service))
+    @classmethod
+    def start_init_service(cls, service):
+        cls.shell('sudo /etc/init.d/{0} start'.format(service))
         
         
     ## Stop init service.
     #
     # @param service service name
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
-    def stop_init_service(service):
-        shell.shell('sudo /etc/init.d/{0} stop'.format(service))
+    @classmethod
+    def stop_init_service(cls, service):
+        cls.shell('sudo /etc/init.d/{0} stop'.format(service))
         
         
     ## Restart init service.
     #
     # @param service service name
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
-    def restart_init_service(service):
-        shell.shell('sudo /etc/init.d/{0} restart'.format(service))
+    @classmethod
+    def restart_init_service(cls, service):
+        cls.shell('sudo /etc/init.d/{0} restart'.format(service))
             
             
     ## Read specific line(s) with line number(s).
@@ -208,6 +219,7 @@ class shell(object):
     # @param lineno line number(s) to read (starting with 1)
     # @return generator object of line with no terminating line break
     # @exception TypeError, IOError
+    @staticmethod
     def read_lines(filename, lineno):
         if isinstance(lineno, int):
             lineno = [lineno]
@@ -228,6 +240,7 @@ class shell(object):
     # @exception socket.error - socket error
     # @exception select.error - select module error
     # @exception OSError - other OS errors
+    @staticmethod
     def eintr_retry(func, *args):
         while True:
             try:
@@ -241,6 +254,7 @@ class shell(object):
     #
     # @return number of CPU cores
     # @exception AdminError(subprocess.CalledProcessError) - from `grep` or `/proc/cpuinfo`
+    @staticmethod
     def cpu_cores():
         try:
             i = subprocess.check_output('grep "cpu cores" /proc/cpuinfo', shell=True)
@@ -265,10 +279,10 @@ class version(object):
     # @param version_info version information string (e.g. Python 3.4.1)
     # @param prefix prefix string of version 
     # @return Version named-tuple
-    @staticmethod
-    def decode(version_info, prefix=''):
+    @classmethod
+    def decode(cls, version_info, prefix=''):
         # Skip if it already decoded
-        if isinstance(version_info, version.Version):
+        if isinstance(version_info, cls.Version):
             return version_info
     
         version_info.strip()
@@ -277,7 +291,7 @@ class version(object):
         # Change version number from string to integer.
         update_seq_type(version_info, int)
         
-        return version.Version._make(version_info)
+        return cls.Version._make(version_info)
         
         
     ## Match the specific version.
@@ -285,10 +299,10 @@ class version(object):
     # @param v Version named-tuple
     # @param match version string (e.g. 1.2.3)
     # @return True if match
-    @staticmethod
-    def match(v, match):
-        v = version.decode(v)
-        match = version.decode(match)
+    @classmethod
+    def match(cls, v, match):
+        v = cls.decode(v)
+        match = cls.decode(match)
         
         if v.major < match.major:
             return False
@@ -346,6 +360,7 @@ class www(object):
         # @param app app path
         # @param addr uWSGI server address
         # @param init True for adding to init system
+        # @param gateway True for internal gateway
         # @exception AdminError(subprocess.CalledProcessError) - shell error
         # @exception IOError - configuration file error
         #
@@ -358,8 +373,8 @@ class www(object):
         # @see https://www.djangoproject.com/
         # @since Django 1.7
         # @since Python 3.2
-        @staticmethod
-        def run(app, addr, init=False):
+        @classmethod
+        def run(cls, app, addr, init=False, gateway=False):
             is_module = True
             app_split = os.path.splitext(app)
             if app_split[1] == '.py':
@@ -371,19 +386,19 @@ class www(object):
             log_file = os.path.join(www.uwsgi_log_root, app_name) + '.log'
             ini_name = app_name + '.ini'
             ini_file = os.path.join(app_root, ini_name)
-            pid_file = www.uwsgi._pidfile(app_name)
+            pid_file = cls._pidfile(app_name)
             ini_cmd = 'uwsgi --ini ' + ini_file
             shell.mkdir(app_root, exist_ok=True)
 
             # Configure uWSGI server
             config = configparser.ConfigParser(allow_no_value=True)
             config['uwsgi'] = {}            
-            if True:
+            if not gateway:
                 # HTTP
                 config['uwsgi']['http'] = addr
             else:
                 # internal communication
-                config['uwsgi']['socket'] = None                
+                config['uwsgi']['socket'] = addr                
             if is_module:
                 # module path
                 config['uwsgi']['chdir'] = None
@@ -433,10 +448,10 @@ exec {2}\n'.format(app, port, ini_cmd))
         #
         # @param app app path
         # @exception AdminError(subprocess.CalledProcessError) - shell error
-        @staticmethod
-        def stop(app):
+        @classmethod
+        def stop(cls, app):
             app_name = os.path.splitext(os.path.basename(app))[0]
-            pid_file = www.uwsgi._pidfile(app_name)
+            pid_file = cls._pidfile(app_name)
             if os.path.exists(pid_file):
                 shell.shell('uwsgi --stop ' + pid_file)
                 
@@ -459,33 +474,77 @@ exec {2}\n'.format(app, port, ini_cmd))
     
         site_avail_root = '/etc/nginx/sites-available'
         site_enable_root = '/etc/nginx/sites-enabled'
+        uwsgi_params_url = 'https://raw.githubusercontent.com/nginx/nginx/master/conf/uwsgi_params'
+        uwsgi_params_path = '/etc/nginx/uwsgi_params'
     
         ## Setup nginx
         #
-        # @param site site name
+        # @param site site path
         # @param port site port number
         # @param name site server name
+        # @param upstream upstream host address (uWSGI gateway)
         # @exception IOError - site configuration file error
         # @exception AdminError(subprocess.CalledProcessError) - shell `sudo mv` error
-        @staticmethod
-        def setup(site, port=80, name='localhost'):
-            with open('/tmp/nginx-{0}'.format(site), 'w') as f:
+        # @exception AdminError(subprocess.CalledProcessError) - download uwsgi_params file error
+        @classmethod
+        def enable(cls, site, port=80, name='localhost', upstream=None, proxy=':8080'):
+            site_name = site
+            site_split = os.path.splitext(site)
+            if site_split[1] == '.py':
+                site_name = site_split[0]
+                is_module = False
+            site_name = os.path.basename(site_name)
+        
+            # Download the `uwsgi_params` file at GitHub.com
+            if not os.path.exists(cls.uwsgi_params_path):
+                shell.shell('sudo wget -c {0} -O {1}'.format(cls.uwsgi_params_url, cls.uwsgi_params_path))
+            
+            with open('/tmp/nginx-{0}'.format(site_name), 'w') as f:
+                # title
                 f.write('# nginx site configuration for {0}\n\
 # Generated by admin.py - DONOT edit!!!\n\
-\n\
-# virtual host\n\
+\n'.format(site_name))
+
+                # upstream host (uWSGI)
+                if upstream is not None:
+                    f.write('# upstream host\n\
+upstream uwsgi_host {{\n\
+\tserver {0}; # deployment on different hosts\n\
+\t#server unix:///path/to/site.sock; # deployment on the same host\n\
+}}\n\
+\n'.format(upstream))
+
+                # basic settings
+                f.write('# virtual host\n\
 server {{\n\
-\tlisten {1} default_server;\n\
-\tlisten [::]:{1} default_server ipv6only=on;\n\
+\tlisten {0} default_server;\n\
+\tlisten [::]:{0} default_server ipv6only=on;\n\
 \n\
 \troot /usr/share/nginx/html;\n\
 \tindex index.html index.htm;\n\
 \n\
-\t# Make site accessible from http://{2}/\n\
-\tserver_name {2};\n\
+\t# Make site accessible from http://{1}/\n\
+\tserver_name {1};\n\
 \n\
-\tlocation / {{\n\
-\t\t# First attempt to serve request as file, then\n\
+\tcharset utf-8;\n\
+\tclient_max_body_size 75M; # max upload size\n\
+\n\
+\t# static files requests\n\
+\t# Images, CSS, JavaScript, Video, etc.\n\
+\tlocation ~ ^/(images|css|js|media|static)/ {{\n\
+\t\troot {2};\n\
+\t\taccess_log off;\n\
+\t\texpires 30d;\n\
+\t}}\n\
+\n\
+\tlocation / {{\n'.format(port, name, os.path.join(www.root, site_name)))
+                if upstream is not None:
+                    f.write('\t\t# Pass non-static requests to uWSGI gateway\n\
+\t\tuwsgi_pass uwsgi_host;\n\
+\t\tinclude {0};\n\
+\n'.format(cls.uwsgi_params_path))
+
+                f.write('\t\t# First attempt to serve request as file, then\n\
 \t\t# as directory, then fall back to displaying a 404.\n\
 \t\ttry_files $uri $uri/ =404;\n\
 \t\t# Uncomment to enable naxsi on this location\n\
@@ -494,7 +553,7 @@ server {{\n\
 \n\
 \t# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests\n\
 \t#location /RequestDenied {{\n\
-\t\t#proxy_pass http://127.0.0.1:8080;\n\
+\t\t#proxy_pass http://127.0.0.1:{0};\n\
 \t#}}\n\
 \n\
 \t#error_page 404 /404.html;\n\
@@ -512,35 +571,54 @@ server {{\n\
 \tlocation ~ /\.ht {{\n\
 \t\tdeny all;\n\
 \t}}\n\
-}}\n'.format(site, port, name))
-            shell.shell('sudo mv -u /tmp/nginx-{0} {1}'.format(site, www.nginx._site_avail_path(site)))
+}}\n'.format(proxy))
+            shell.shell('sudo mv -u /tmp/nginx-{0} {1}'.format(site_name, cls._site_avail_path(site_name)))
+            
+            # Setup and run uWSGI gateway
+            if upstream is not None:
+                www.uwsgi.run(site, upstream, gateway=True)
+            
+            shell.symlink(cls._site_avail_path(site_name), cls._site_enable_path())
+            
+            # Restart nginx server
+            shell.restart_init_service('nginx')
             
             
-    ## Run nginx server
-    #
-    # @param site site name
-    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` error
-    @staticmethod
-    def run(site):
-        shell.symlink(_site_avail_path(site), _site_enable_path(site))
+        ## Disable nginx server
+        #
+        # @param site site path
+        # @param upstream upstream host address (uWSGI gateway)
+        # @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` or `sudo /etc/init.d` error
+        @classmethod
+        def disable(cls, site=None, upstream=None):
+            shell.remove(cls._site_enable_path())
+            
+            # Stop uWSGI gateway
+            if upstream is not None:
+                www.uwsgi.stop(site)
+                
+            # Restart nginx server
+            shell.restart_init_service('nginx')
         
         
-    ## Return path of available site by name
-    #
-    # @param site site name
-    # @return path of given site
-    @staticmethod
-    def _site_avail_path(site):
-        return os.path.join(www.nginx.site_avail_root, site)
+        ## Return path of available site by name
+        #
+        # @param site_name site name
+        # @return path of given site
+        @classmethod
+        def _site_avail_path(cls, site_name):
+            return os.path.join(cls.site_avail_root, site_name)
         
        
-    ## Return path of enabled site by name
-    #
-    # @param site site name
-    # @return path of given site
-    @staticmethod
-    def _site_enable_path(site):
-        return os.path.join(www.nginx.site_enable_root, site)
+        ## Return path of enabled site by name
+        #
+        # @param site_name site name
+        # @return path of given site
+        @classmethod
+        def _site_enable_path(cls, site_name=None):
+            if site_name is None:
+                site_name = 'default'
+            return os.path.join(cls.site_enable_root, site_name)
             
 
 def _setup(quick=False):
@@ -759,7 +837,7 @@ class ConfigFile(object):
             
       
 def _usage():
-    sys.exit('Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|build'.format(sys.argv[0]))
+    sys.exit('Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|build'.format(sys.argv[0]))
         
         
 def build(name='zl'):
@@ -769,12 +847,7 @@ def build(name='zl'):
     @exception ConfigParser.NoSectionError
     @exception subprocess.CalledProcessError
     '''
-    #proj = admin.project.Project(types=['python'], name=name)
-    #proj.uwsgi(app='../_setup/uwsgi_app.py')
-
     proj = admin.project.Project(types=['django'], name=name)
-    #proj.uwsgi()
-    proj.uwsgi(nginx=':8001')
     info('\nuWSGI [OK]')
     
     proj.doxygen()
@@ -809,7 +882,23 @@ if __name__ == '__main__':
     elif option == 'init-run-uwsgi':
         app = sys.argv[2]
         addr = sys.argv[3]
-        www.uwsgi.run(app, addr, init=True)    
+        www.uwsgi.run(app, addr, init=True)
+        
+    elif option == 'enable-nginx':
+        app = sys.argv[2]
+        if len(sys.argv) == 4:
+            upstream = sys.argv[3]
+            www.nginx.enable(app, upstream=upstream)
+        else:
+            www.nginx.enable(app)
+        
+    elif option == 'disable-nginx':
+        if len(sys.argv) == 4:
+            app = sys.argv[2]
+            upstream = sys.argv[3]
+            www.nginx.disable(site=app, upstream=upstream)
+        else:
+            www.nginx.disable()
         
     elif option == 'test':
         _setup(quick=True)
@@ -821,8 +910,6 @@ if __name__ == '__main__':
         
         time.sleep(2)
         www.uwsgi.stop(test_app)
-        
-        www.nginx.setup('hello_nginx_app')
         
     else:
         _usage() 

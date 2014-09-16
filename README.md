@@ -58,16 +58,20 @@ cd ~                                                  # choose your own path
 git clone https://github.com/leven-cn/admin-linux.git
 
 cd admin-linux
-python admin.py setup|quick-setup
+python3 admin.py setup|quick-setup
 ```
 
 **STEP 3**: Build projects
 
 ```bash
-python admin.py run-uwsgi <app> <address>
-python admin.py stop-uwsgi <app>
-# OR
-python admin.py init-run-uwsgi <app> <address>
+# uWSGI
+python3 admin.py run-uwsgi <app> <address>
+python3 admin.py stop-uwsgi <app>
+python3 admin.py init-run-uwsgi <app> <address>
+
+# nginx
+python3 admin.py enable-nginx <app> [<upstream-address>]
+python3 admin.py disable-nginx [<app> <upstream-address>]
 
 tail -f /var/log/uwsgi/<app>.log
 
