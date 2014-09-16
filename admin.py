@@ -9,8 +9,8 @@
     - www tools
     - ConfigFile
     - Setup Linux (server)
+    - Run/Reload/Stop uWSGI server
     - Build Python (Django) projects
-    - Run App/Django on uWSGI server
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -143,11 +143,11 @@ class shell(object):
     # @param exist_ok True for raising OSError if the target directory already exists
     # @param user owner user name or uid
     # @param group owner group name or gid
-    # @exception ShellError(OSError) - target directory already exists
-    # @exception ShellError(subprocess.CalledProcessError) - shell `sudo mkdir` error
-    # @exception ShellError(ValueError) - both user or group not given
-    # @exception ShellError(LookupError) - user or group given not in system
-    # @exception ShellError(subprocess.CalledProcessError) - change ownership error
+    # @exception AdminError(OSError) - target directory already exists
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo mkdir` error
+    # @exception AdminError(ValueError) - both user or group not given
+    # @exception AdminError(LookupError) - user or group given not in system
+    # @exception AdminError(subprocess.CalledProcessError) - change ownership error
     # @since Python 3.2
     def mkdir(path, exist_ok=False, user=None, group=None):
         try:
@@ -203,7 +203,7 @@ class shell(object):
     # Get number of CPU cores from /proc file system.
     #
     # @return number of CPU cores
-    # @exception ShellError( subprocess.CalledProcessError) - from `grep` or `/proc/cpuinfo`
+    # @exception AdminError(subprocess.CalledProcessError) - from `grep` or `/proc/cpuinfo`
     def cpu_cores():
         try:
             i = subprocess.check_output('grep "cpu cores" /proc/cpuinfo', shell=True)
@@ -282,7 +282,7 @@ class www(object):
     # @param uwsgi_log_root root path of uWSGI log
     # @param user user of WWW
     # @param group group of WWW
-    # @param 
+    # @exception AdminError - shell error
     @staticmethod
     def setup(root=None, uwsgi_log_root=None, user=None, group=None):
         if root is None:
@@ -299,6 +299,7 @@ class www(object):
         
     ## uWSGI server.
     #
+    # @see https://uwsgi.readthedocs.org/en/latest/index.html
     # @since uWSGI 2.0.6
     class uwsgi(object):
     
@@ -317,6 +318,7 @@ class www(object):
         #
         # @see https://www.djangoproject.com/
         # @since Django 1.7
+        # @since Python 3.2
         @staticmethod
         def run(app, addr, init=False):
             is_module = True
@@ -330,40 +332,40 @@ class www(object):
             log_file = os.path.join(www.uwsgi_log_root, app_name) + '.log'
             ini_name = app_name + '.ini'
             ini_file = os.path.join(app_root, ini_name)
-            ini_tpl = os.path.join('_setup', 'uwsgi_tpl.ini')
-            pid_file = www.uwsgi._uwsgi_pidfile(app_name)
+            pid_file = www.uwsgi._pidfile(app_name)
             ini_cmd = 'uwsgi --ini ' + ini_file
             shell.mkdir(app_root, exist_ok=True)
 
-            # Setup uWSGI server
-            config = configparser.SafeConfigParser(allow_no_value=True)
-            with open(ini_tpl) as tpl_f:
-                config.readfp(tpl_f)
-
-                # Number of processes
-                config.set('uwsgi', 'processes', str(shell.cpu_cores()))
-
-                # PID file
-                config.set('uwsgi', 'pidfile', pid_file)
-
-                # Log file
-                config.set('uwsgi', 'daemonize', log_file)
-
-                # wsgi-file/module
-                if is_module:
-                    pass
-                else:
-                    app_path = os.path.realpath(app) + '.py'
-                    config.remove_option('uwsgi', 'chdir')
-                    config.remove_option('uwsgi', 'module')
-                    config.set('uwsgi', 'wsgi-file', app_path)
-
+            # Configure uWSGI server
+            config = configparser.ConfigParser(allow_no_value=True)
+            config['uwsgi'] = {}            
+            if True:
                 # HTTP
-                config.remove_option('uwsgi', 'socket')
-                config.set('uwsgi', 'http', addr)
-
-                with open(ini_file, 'w') as f:
-                    config.write(f)
+                config['uwsgi']['http'] = addr
+            else:
+                # internal communication
+                config['uwsgi']['socket'] = None                
+            if is_module:
+                # module path
+                config['uwsgi']['chdir'] = None
+                config['uwsgi']['module'] = None
+            else:
+                # app path
+                app_path = os.path.realpath(app) + '.py'
+                config['uwsgi']['wsgi-file'] = app_path
+            config['uwsgi']['uid'] = www.user
+            config['uwsgi']['master'] = 'true'
+            config['uwsgi']['pidfile'] = pid_file # PID file
+            config['uwsgi']['daemonize'] = log_file # log file
+            config['uwsgi']['processes'] = str(shell.cpu_cores()) # CPU cores
+            config['uwsgi']['max-requests'] = '5000'
+            config['uwsgi']['enable-threads'] = 'true'
+            config['uwsgi']['limit-as'] = '128' # max memory size
+            config['uwsgi']['vacuum'] = 'true' # clear environment on exit
+            
+            # Write uWSGI configuration
+            with open(ini_file, 'w') as f:
+                config.write(f)
 
             # Generate uwsgi init script
             if init:
@@ -398,7 +400,7 @@ exec {2}\n'.format(app, port, ini_cmd))
         @staticmethod
         def stop(app):
             app_name = os.path.splitext(os.path.basename(app))[0]
-            pid_file = www.uwsgi._uwsgi_pidfile(app_name)
+            pid_file = www.uwsgi._pidfile(app_name)
             if os.path.exists(pid_file):
                 shell.shell('uwsgi --stop ' + pid_file)
                 
@@ -407,7 +409,7 @@ exec {2}\n'.format(app, port, ini_cmd))
         #
         # @param app app name
         @staticmethod
-        def _uwsgi_pidfile(app):
+        def _pidfile(app):
             return '/tmp/uwsgi-{0}.pid'.format(app)
         
 

@@ -191,7 +191,7 @@ ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 '''
 
-# Python 2.6+
+# Python 2.6-2.7
 #from __future__ import print_function
 
 

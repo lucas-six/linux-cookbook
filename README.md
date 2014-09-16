@@ -58,7 +58,7 @@ cd ~                                                  # choose your own path
 git clone https://github.com/leven-cn/admin-linux.git
 
 cd admin-linux
-python admin.py setup
+python admin.py setup|quick-setup
 ```
 
 **STEP 3**: Build projects
@@ -66,10 +66,10 @@ python admin.py setup
 ```bash
 python admin.py run <app> <address>
 python admin.py stop <app>
+# OR
+python admin.py init-run <app> <address>
+
 tail -f /var/log/uwsgi/<app>.log
 
 sudo python admin.py build
-
-python admin.py init-run|stop zl
-tail -f /var/log/uwsgi/zl.log
 ```
