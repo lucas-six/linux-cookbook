@@ -64,6 +64,7 @@ def update_seq_type(seq, typename):
 # This module contains functions and classes for Linux shell, including:
 #
 #   - shell(), chown(), remove(), mkdir(), symlink()
+#   - start_init_service(), stop_init_service(), restart_init_service()
 #   - read_lines()
 #   - eintr_retry()
 #   - cpu_cores() (Only /proc supported system)
@@ -175,6 +176,30 @@ class shell(object):
             os.symlink(src, link_name)
         except PermissionError:
             shell.shell('sudo ln -sf {0} {1}'.format(src, link_name))
+            
+            
+    ## Start init service.
+    #
+    # @param service service name
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
+    def start_init_service(service):
+        shell.shell('sudo /etc/init.d/{0} start'.format(service))
+        
+        
+    ## Stop init service.
+    #
+    # @param service service name
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
+    def stop_init_service(service):
+        shell.shell('sudo /etc/init.d/{0} stop'.format(service))
+        
+        
+    ## Restart init service.
+    #
+    # @param service service name
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo /etc/init.d` error
+    def restart_init_service(service):
+        shell.shell('sudo /etc/init.d/{0} restart'.format(service))
             
             
     ## Read specific line(s) with line number(s).
@@ -432,6 +457,9 @@ exec {2}\n'.format(app, port, ini_cmd))
     # @since nginx 1.4.6
     class nginx(object):
     
+        site_avail_root = '/etc/nginx/sites-available'
+        site_enable_root = '/etc/nginx/sites-enabled'
+    
         ## Setup nginx
         #
         # @param site site name
@@ -485,7 +513,34 @@ server {{\n\
 \t\tdeny all;\n\
 \t}}\n\
 }}\n'.format(site, port, name))
-            shell.shell('sudo mv -u /tmp/nginx-{0} /etc/nginx/sites-available/{0}'.format(site))
+            shell.shell('sudo mv -u /tmp/nginx-{0} {1}'.format(site, www.nginx._site_avail_path(site)))
+            
+            
+    ## Run nginx server
+    #
+    # @param site site name
+    # @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` error
+    @staticmethod
+    def run(site):
+        shell.symlink(_site_avail_path(site), _site_enable_path(site))
+        
+        
+    ## Return path of available site by name
+    #
+    # @param site site name
+    # @return path of given site
+    @staticmethod
+    def _site_avail_path(site):
+        return os.path.join(www.nginx.site_avail_root, site)
+        
+       
+    ## Return path of enabled site by name
+    #
+    # @param site site name
+    # @return path of given site
+    @staticmethod
+    def _site_enable_path(site):
+        return os.path.join(www.nginx.site_enable_root, site)
             
 
 def _setup(quick=False):
@@ -542,7 +597,7 @@ def _setup(quick=False):
                 shell.remove(old_vimrc)
                 os.rename(vimrc, old_vimrc)
             myvimrc = os.path.join(os.getcwd(), '_setup', 'vimrc')
-            os.symlink(myvimrc, vimrc)
+            shell.symlink(myvimrc, vimrc)
             vimrc_ok = True
             print('Vimrc [OK]')
         except OSError as e:
