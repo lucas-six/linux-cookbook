@@ -750,7 +750,7 @@ def _setup(quick=False):
                 shell.shell('sudo apt-get update')
 
             pkgs = ['sudo', 'apt', 'apt-utils', \
-                    'bash', 'python', 'coreutils', \
+                    'bash', 'python3', 'coreutils', \
                     'vim', 'git', 'doxygen', 'wget', \
                     'nginx', 'build-essential', 
                     'python-pip', 'python-dev', 'python-virtualenv']
