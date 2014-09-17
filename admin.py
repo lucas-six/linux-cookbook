@@ -9,7 +9,6 @@
     - www tools
     - ConfigFile
     - Setup Linux (server)
-    - Build Python (Django) projects
   
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -325,8 +324,11 @@ class build(object):
         # Project programming language(s)
         exts = set()
         for files in os.walk(path):
+            if files[0] == os.path.join(path, 'doc'):
+                continue
             for f in files[2]:
-                exts.add(os.path.splitext(f)[1])
+                if f != '':
+                    exts.add(os.path.splitext(f)[1])
             
         # Project version
         version = '0.0.0'
@@ -370,7 +372,7 @@ class build(object):
                 'FILE_PATTERNS': '*.py *.c *.h *.cpp *.hh',
                 'RECURSIVE': 'YES',
                 'SOURCE_BROWSER': 'YES',
-                'EXCLUDE_PATTERNS': 'test*',
+                'EXCLUDE_PATTERNS': 'test* */doc/*',
                 'USE_MDFILE_AS_MAINPAGE': 'YES',
                 'HTML_TIMESTAMP': 'YES',
                 'HTML_DYNAMIC_SECTIONS': 'YES',
@@ -986,7 +988,7 @@ if __name__ == '__main__':
         
         # (Django) site on uWSGI
         time.sleep(2)
-        test_app = '/tmp/zl'
+        test_app = os.path.expanduser('~/zl')
         www.uwsgi.run(test_app, test_addr)
         time.sleep(2)
         www.uwsgi.stop(test_app)
