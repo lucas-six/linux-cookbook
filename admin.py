@@ -5,7 +5,7 @@
 
     - update_seq_type()
     - shell tools
-    - version tools
+    - build tools
     - www tools
     - ConfigFile
     - Setup Linux (server)
@@ -150,6 +150,7 @@ class shell(object):
     # @exception AdminError(ValueError) - both user or group not given
     # @exception AdminError(LookupError) - user or group given not in system
     # @exception AdminError(subprocess.CalledProcessError) - change ownership error
+    #
     # @since Python 3.2
     @classmethod
     def mkdir(cls, path, user=None, group=None):
@@ -256,14 +257,13 @@ class shell(object):
         return int(i.split(b':')[1].strip())
         
         
-## Version tools
+## Build tools
 #
 # This module contains functions and classes for versions, including:
 #
 #   - Version
-#   - decode()
-#   - match()
-class version(object):
+#   - decode_version(), match_version()
+class build(object):
 
     Version = namedtuple('Version', 'major, minor, patch')
     
@@ -273,7 +273,7 @@ class version(object):
     # @param prefix prefix string of version 
     # @return Version named-tuple
     @classmethod
-    def decode(cls, version_info, prefix=''):
+    def decode_version(cls, version_info, prefix=''):
         # Skip if it already decoded
         if isinstance(version_info, cls.Version):
             return version_info
@@ -293,9 +293,9 @@ class version(object):
     # @param match version string (e.g. 1.2.3)
     # @return True if match
     @classmethod
-    def match(cls, v, match):
-        v = cls.decode(v)
-        match = cls.decode(match)
+    def match_version(cls, v, match):
+        v = cls.decode_version(v)
+        match = cls.decode_version(match)
         
         if v.major < match.major:
             return False
@@ -303,6 +303,91 @@ class version(object):
         return (v.major > match.major) \
                 or (v.major == match.major and v.minor > match.minor) \
                 or (v.minor == match.minor and v.patch >= match.patch)
+                
+                
+    ## Generate documentation for codes under Git by Doxygen.
+    #
+    # @param path project path
+    # @param doxyfile name of Doxygen configuration file
+    # @exception subprocess.CalledProcessError
+    # @exception IOError
+    #
+    # @see http://www.stack.nl/~dimitri/doxygen/manual/
+    # @since Doxygen 1.8.6
+    @staticmethod
+    def doxygen(path, doxyfile='Doxyfile.in'):
+        # Project path and name
+        path = os.path.realpath(path)
+        name = os.path.basename(path)
+        cur_path = os.getcwd()
+        os.chdir(path)
+        
+        # Project programming language(s)
+        exts = set()
+        for files in os.walk(path):
+            for f in files[2]:
+                exts.add(os.path.splitext(f)[1])
+            
+        # Project version
+        version = '0.0.0'
+        try:
+            versions = subprocess.check_output('git tag', shell=True)
+            if len(versions) != 0:
+                version = versions.decode()[-1] # latest version
+        except subprocess.CalledProcessError as e:
+            pass # default version
+            
+        # Project brief
+        brief = ''
+        README_file = os.path.join(path, 'README.md')
+        try:
+            for line in shell.read_lines(README_file, 4):
+                brief = line
+        except IOError as e:
+            pass
+        
+        # Update Doxygen configuration file
+        optimize_for_c = 'NO'
+        optimize_for_java_or_python = 'NO'
+        if '.c' in exts:
+            optimize_for_c = 'YES'
+        if {'.java', '.py'} & exts:
+            optimize_for_java_or_python = 'YES'
+        configs = {'PROJECT_NAME': '\"{0}\"'.format(name),
+                'PROJECT_NUMBER': version,
+                'PROJECT_BRIEF': '\"{0}\"'.format(brief),
+                'OUTPUT_DIRECTORY': 'doc',
+                'CREATE_SUBDIRS': 'YES',
+                'OPTIMIZE_OUTPUT_FOR_C': optimize_for_c,
+                'OPTIMIZE_OUTPUT_JAVA': optimize_for_java_or_python,
+                'BUILTIN_STL_SUPPORT': 'YES',
+                'TYPEDEF_HIDES_STRUCT': 'YES',
+                'SKIP_FUNCTION_MACROS': 'NO',
+                'EXTRACT_ALL': 'YES',
+                'EXTRACT_PRIVATE': 'YES',
+                'EXTRACT_STATIC': 'YES',
+                'INPUT': '.',
+                'FILE_PATTERNS': '*.py *.c *.h *.cpp *.hh',
+                'RECURSIVE': 'YES',
+                'SOURCE_BROWSER': 'YES',
+                'EXCLUDE_PATTERNS': 'test*',
+                'USE_MDFILE_AS_MAINPAGE': 'YES',
+                'HTML_TIMESTAMP': 'YES',
+                'HTML_DYNAMIC_SECTIONS': 'YES',
+                'GENERATE_MAN': 'YES',
+                'MAN_LINKS': 'YES'}
+        shell.shell('doxygen -g {0}'.format(doxyfile))
+        with open(os.path.join(path, doxyfile), 'r+') as f:
+            config_file = ConfigFile(f)
+            config_file.set(configs)
+            
+        shell.mkdir(os.path.join(path, 'doc'))
+        
+        # Generate documentation by Doxygen
+        shell.shell('doxygen {0}'.format(doxyfile))
+        
+        # Back to top directory, NOT project directory
+        os.chdir(cur_path)
                 
              
 ## WWW (Internet) tools
@@ -708,14 +793,9 @@ def _setup(quick=False):
                         
         # Configure Git
         #
-        # For more details on Git, please refer to the Pro Git online
-        # version:
-        #
-        #     http://www.git-scm.com/book/
-        #
-        # Or an online referernce:
-        #
-        #     http://gitref.org/
+        # @see http://www.git-scm.com/book/
+        # @see http://gitref.org/
+        # @since Git 1.7
         print('\n*** Git ***')
         def _git_config(conf):
             shell.shell('git config ' + conf)
@@ -734,15 +814,15 @@ def _setup(quick=False):
                 
             git_version = subprocess.check_output('git version', shell=True)
             git_version = git_version.decode()  # byte => str
-            git_version = version.decode(git_version, prefix='git version')
+            git_version = build.decode_version(git_version, prefix='git version')
             print(git_version, file=sys.stderr)
             
             # Password cache (Git v1.7.10+)
-            if version.match(git_version, '1.7.10'):
+            if build.match_version(git_version, '1.7.10'):
                 _git_config_global('credential.helper "cache --timeout=3600"')
             
             # Push default
-            if version.match(git_version, '1.7.11'):
+            if build.match_version(git_version, '1.7.11'):
                 _git_config_global('push.default simple')
             else:
                 _git_config_global('push.default upstream')
@@ -784,7 +864,9 @@ def _setup(quick=False):
 #             config_file.set(configs)
 #         except IOError as e:
 #             print('error', file=sys.stderr)
+# </code></pre>
 class ConfigFile(object):
+
     ## Parse configuration file.
     #
     # @param config_file configuration file object
@@ -842,21 +924,8 @@ class ConfigFile(object):
             
       
 def _usage():
-    sys.exit('Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|build'.format(sys.argv[0]))
+    sys.exit('Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|doc'.format(sys.argv[0]))
         
-        
-def build(name='zl'):
-    '''Build projects.
-    
-    @param name project name
-    @exception ConfigParser.NoSectionError
-    @exception subprocess.CalledProcessError
-    '''
-    proj = admin.project.Project(types=['django'], name=name)
-    info('\nuWSGI [OK]')
-    
-    proj.doxygen()
-    
                 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
@@ -869,11 +938,6 @@ if __name__ == '__main__':
 
     elif option == 'quick-setup':
         _setup(quick=True)
-
-    elif option == 'build':
-        if len(sys.argv) != 3:
-            sys.exit('Usage: {0} build <project-name>'.format(sys.argv[0]))
-        build(name=sys.argv[2])
         
     elif option == 'run-uwsgi':
         app = sys.argv[2]
@@ -904,6 +968,10 @@ if __name__ == '__main__':
             www.nginx.disable(site=app, upstream=upstream)
         else:
             www.nginx.disable()
+            
+    elif option == 'doc':
+        project_path = sys.argv[2]
+        build.doxygen(project_path)
         
     elif option == 'test':
         _setup(quick=True)
@@ -922,6 +990,8 @@ if __name__ == '__main__':
         www.uwsgi.run(test_app, test_addr)
         time.sleep(2)
         www.uwsgi.stop(test_app)
+        
+        build.doxygen('.')
         
     else:
         _usage() 

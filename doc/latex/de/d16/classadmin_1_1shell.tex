@@ -1,0 +1,380 @@
+\hypertarget{classadmin_1_1shell}{\section{admin.\-shell Class Reference}
+\label{classadmin_1_1shell}\index{admin.\-shell@{admin.\-shell}}
+}
+
+
+Linux shell tools.  
+
+
+Inheritance diagram for admin.\-shell\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{de/d16/classadmin_1_1shell}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1shell_a539012368a068a40cd347acbe49989d5}{chown}
+\begin{DoxyCompactList}\small\item\em Change owner user and group of the given path. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_ad4f8d9280283a993eec0bc5dcade6d99}{remove}
+\begin{DoxyCompactList}\small\item\em Remove path entry. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_adcdf00aa6acc1cf519ece418ce14a7f1}{mkdir}
+\begin{DoxyCompactList}\small\item\em Create a directory or directories recursively. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a9cc97c2976b95fbcfa88b314803aa2bf}{symlink}
+\begin{DoxyCompactList}\small\item\em Create a symbolic link pointing to source named {\ttfamily link\-\_\-name}. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a432e79bf26b0adb3e7fcf2f13f96229e}{start\-\_\-init\-\_\-service}
+\begin{DoxyCompactList}\small\item\em Start init service. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a20ba085e92f2f4a9332d8d9c95ce7aa1}{stop\-\_\-init\-\_\-service}
+\begin{DoxyCompactList}\small\item\em Stop init service. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_ab6f38a2fae6ea2cc870c1de2d6cb6017}{restart\-\_\-init\-\_\-service}
+\begin{DoxyCompactList}\small\item\em Restart init service. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1shell_a2ffff5c7d8eb2d2cc174df10ac1523b2}{shell}
+\begin{DoxyCompactList}\small\item\em Run shell command without output. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a088a4609cf54f76ee4c838eea157fbc9}{read\-\_\-lines}
+\begin{DoxyCompactList}\small\item\em Read specific line(s) with line number(s). \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a5200a0188543eaaa2eb33fc295da0733}{eintr\-\_\-retry}
+\begin{DoxyCompactList}\small\item\em Restart a system call interrupted by {\ttfamily E\-I\-N\-T\-R}. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1shell_a79f2a3efc85b54c29621697087299778}{cpu\-\_\-cores}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Linux shell tools. 
+
+This module contains functions and classes for Linux shell, including\-:
+
+
+\begin{DoxyItemize}
+\item \hyperlink{classadmin_1_1shell_a2ffff5c7d8eb2d2cc174df10ac1523b2}{shell()}, \hyperlink{classadmin_1_1shell_a539012368a068a40cd347acbe49989d5}{chown()}, \hyperlink{classadmin_1_1shell_ad4f8d9280283a993eec0bc5dcade6d99}{remove()}, \hyperlink{classadmin_1_1shell_adcdf00aa6acc1cf519ece418ce14a7f1}{mkdir()}, \hyperlink{classadmin_1_1shell_a9cc97c2976b95fbcfa88b314803aa2bf}{symlink()}
+\item \hyperlink{classadmin_1_1shell_a432e79bf26b0adb3e7fcf2f13f96229e}{start\-\_\-init\-\_\-service()}, \hyperlink{classadmin_1_1shell_a20ba085e92f2f4a9332d8d9c95ce7aa1}{stop\-\_\-init\-\_\-service()}, \hyperlink{classadmin_1_1shell_ab6f38a2fae6ea2cc870c1de2d6cb6017}{restart\-\_\-init\-\_\-service()}
+\item \hyperlink{classadmin_1_1shell_a088a4609cf54f76ee4c838eea157fbc9}{read\-\_\-lines()}
+\item \hyperlink{classadmin_1_1shell_a5200a0188543eaaa2eb33fc295da0733}{eintr\-\_\-retry()}
+\item \hyperlink{classadmin_1_1shell_a79f2a3efc85b54c29621697087299778}{cpu\-\_\-cores()} (Only /proc supported system) 
+\end{DoxyItemize}
+
+Definition at line 71 of file admin.\-py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classadmin_1_1shell_a2ffff5c7d8eb2d2cc174df10ac1523b2}{\index{admin\-::shell@{admin\-::shell}!shell@{shell}}
+\index{shell@{shell}!admin::shell@{admin\-::shell}}
+\subsubsection[{shell}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-shell (
+\begin{DoxyParamCaption}
+\item[{}]{cmd}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1shell_a2ffff5c7d8eb2d2cc174df10ac1523b2}
+
+
+Run shell command without output. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cmd} & shell command \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell command error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 78 of file admin.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_1_1shell_a539012368a068a40cd347acbe49989d5}{\index{admin\-::shell@{admin\-::shell}!chown@{chown}}
+\index{chown@{chown}!admin::shell@{admin\-::shell}}
+\subsubsection[{chown}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-chown (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{path, }
+\item[{}]{user, }
+\item[{}]{group = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_a539012368a068a40cd347acbe49989d5}
+
+
+Change owner user and group of the given path. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & path whose ownership to be changed \\
+\hline
+{\em user} & owner user name or uid \\
+\hline
+{\em group} & owner group name or gid \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(\-Value\-Error)} & -\/ both user or group not given \\
+\hline
+{\em Admin\-Error(\-Lookup\-Error)} & -\/ user or group given not in system \\
+\hline
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo chown} error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 94 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a79f2a3efc85b54c29621697087299778}{\index{admin\-::shell@{admin\-::shell}!cpu\-\_\-cores@{cpu\-\_\-cores}}
+\index{cpu\-\_\-cores@{cpu\-\_\-cores}!admin::shell@{admin\-::shell}}
+\subsubsection[{cpu\-\_\-cores}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-cpu\-\_\-cores (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1shell_a79f2a3efc85b54c29621697087299778}
+
+
+Definition at line 252 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a5200a0188543eaaa2eb33fc295da0733}{\index{admin\-::shell@{admin\-::shell}!eintr\-\_\-retry@{eintr\-\_\-retry}}
+\index{eintr\-\_\-retry@{eintr\-\_\-retry}!admin::shell@{admin\-::shell}}
+\subsubsection[{eintr\-\_\-retry}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-eintr\-\_\-retry (
+\begin{DoxyParamCaption}
+\item[{}]{func, }
+\item[{}]{args}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1shell_a5200a0188543eaaa2eb33fc295da0733}
+
+
+Restart a system call interrupted by {\ttfamily E\-I\-N\-T\-R}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em func} & system call \\
+\hline
+{\em args} & arguments of system call \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em socket.\-error} & -\/ socket error \\
+\hline
+{\em select.\-error} & -\/ select module error \\
+\hline
+{\em O\-S\-Error} & -\/ other O\-S errors \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 238 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_adcdf00aa6acc1cf519ece418ce14a7f1}{\index{admin\-::shell@{admin\-::shell}!mkdir@{mkdir}}
+\index{mkdir@{mkdir}!admin::shell@{admin\-::shell}}
+\subsubsection[{mkdir}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-mkdir (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{path, }
+\item[{}]{user = {\ttfamily None}, }
+\item[{}]{group = {\ttfamily None}}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_adcdf00aa6acc1cf519ece418ce14a7f1}
+
+
+Create a directory or directories recursively. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & directory path \\
+\hline
+{\em user} & owner user name or uid \\
+\hline
+{\em group} & owner group name or gid \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo mkdir} error \\
+\hline
+{\em Admin\-Error(\-Value\-Error)} & -\/ both user or group not given \\
+\hline
+{\em Admin\-Error(\-Lookup\-Error)} & -\/ user or group given not in system \\
+\hline
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ change ownership error\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySince}{Since}
+Python 3.\-2 
+\end{DoxySince}
+
+
+Definition at line 156 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a088a4609cf54f76ee4c838eea157fbc9}{\index{admin\-::shell@{admin\-::shell}!read\-\_\-lines@{read\-\_\-lines}}
+\index{read\-\_\-lines@{read\-\_\-lines}!admin::shell@{admin\-::shell}}
+\subsubsection[{read\-\_\-lines}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-read\-\_\-lines (
+\begin{DoxyParamCaption}
+\item[{}]{filename, }
+\item[{}]{lineno}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1shell_a088a4609cf54f76ee4c838eea157fbc9}
+
+
+Read specific line(s) with line number(s). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & file name \\
+\hline
+{\em lineno} & line number(s) to read (starting with 1) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+generator object of line with no terminating line break 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Type\-Error,I\-O\-Error} & \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 217 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_ad4f8d9280283a993eec0bc5dcade6d99}{\index{admin\-::shell@{admin\-::shell}!remove@{remove}}
+\index{remove@{remove}!admin::shell@{admin\-::shell}}
+\subsubsection[{remove}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-remove (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{path}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_ad4f8d9280283a993eec0bc5dcade6d99}
+
+
+Remove path entry. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & path name of entry to be removed \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell 'sudo rm -\/f' error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 125 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_ab6f38a2fae6ea2cc870c1de2d6cb6017}{\index{admin\-::shell@{admin\-::shell}!restart\-\_\-init\-\_\-service@{restart\-\_\-init\-\_\-service}}
+\index{restart\-\_\-init\-\_\-service@{restart\-\_\-init\-\_\-service}!admin::shell@{admin\-::shell}}
+\subsubsection[{restart\-\_\-init\-\_\-service}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-restart\-\_\-init\-\_\-service (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{service}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_ab6f38a2fae6ea2cc870c1de2d6cb6017}
+
+
+Restart init service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service} & service name \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo /etc/init.d} error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 206 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a432e79bf26b0adb3e7fcf2f13f96229e}{\index{admin\-::shell@{admin\-::shell}!start\-\_\-init\-\_\-service@{start\-\_\-init\-\_\-service}}
+\index{start\-\_\-init\-\_\-service@{start\-\_\-init\-\_\-service}!admin::shell@{admin\-::shell}}
+\subsubsection[{start\-\_\-init\-\_\-service}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-start\-\_\-init\-\_\-service (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{service}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_a432e79bf26b0adb3e7fcf2f13f96229e}
+
+
+Start init service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service} & service name \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo /etc/init.d} error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 188 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a20ba085e92f2f4a9332d8d9c95ce7aa1}{\index{admin\-::shell@{admin\-::shell}!stop\-\_\-init\-\_\-service@{stop\-\_\-init\-\_\-service}}
+\index{stop\-\_\-init\-\_\-service@{stop\-\_\-init\-\_\-service}!admin::shell@{admin\-::shell}}
+\subsubsection[{stop\-\_\-init\-\_\-service}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-stop\-\_\-init\-\_\-service (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{service}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_a20ba085e92f2f4a9332d8d9c95ce7aa1}
+
+
+Stop init service. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em service} & service name \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo /etc/init.d} error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 197 of file admin.\-py.
+
+\hypertarget{classadmin_1_1shell_a9cc97c2976b95fbcfa88b314803aa2bf}{\index{admin\-::shell@{admin\-::shell}!symlink@{symlink}}
+\index{symlink@{symlink}!admin::shell@{admin\-::shell}}
+\subsubsection[{symlink}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-shell.\-symlink (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{src, }
+\item[{}]{link\-\_\-name}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1shell_a9cc97c2976b95fbcfa88b314803aa2bf}
+
+
+Create a symbolic link pointing to source named {\ttfamily link\-\_\-name}. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em src} & source file \\
+\hline
+{\em link\-\_\-name} & symbolic link name \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo ln -\/sf} error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 173 of file admin.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{admin_8py}{admin.\-py}\end{DoxyCompactItemize}

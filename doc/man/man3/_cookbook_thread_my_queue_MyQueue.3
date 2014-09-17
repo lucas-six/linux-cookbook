@@ -1,0 +1,244 @@
+.TH "_cookbook.thread.my_queue.MyQueue" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_cookbook.thread.my_queue.MyQueue \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP"
+.br
+.ti -1c
+.RI "def \fBqsize\fP"
+.br
+.ti -1c
+.RI "def \fBempty\fP"
+.br
+.ti -1c
+.RI "def \fBfull\fP"
+.br
+.ti -1c
+.RI "def \fBtask_done\fP"
+.br
+.ti -1c
+.RI "def \fBjoin\fP"
+.br
+.ti -1c
+.RI "def \fBget\fP"
+.br
+.ti -1c
+.RI "def \fBput\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB_init_queue\fP"
+.br
+.ti -1c
+.RI "def \fB_queue_size\fP"
+.br
+.ti -1c
+.RI "def \fB_put\fP"
+.br
+.ti -1c
+.RI "def \fB_get\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fB_maxsize\fP"
+.br
+.ti -1c
+.RI "\fB_lock\fP"
+.br
+.ti -1c
+.RI "\fB_cond_not_empty\fP"
+.br
+.ti -1c
+.RI "\fB_cond_not_full\fP"
+.br
+.ti -1c
+.RI "\fB_cond_all_tasks_done\fP"
+.br
+.ti -1c
+.RI "\fB_unfinished_tasks\fP"
+.br
+.ti -1c
+.RI "\fB_queue\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+A class whose instances are multi-producer, multi-cusumer queues.
+.fi
+.PP
+ 
+.PP
+Definition at line 76 of file my_queue\&.py\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.__init__ (self, maxsize = \fC0\fP)"
+
+.PP
+Definition at line 79 of file my_queue\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&._get (self)\fC [private]\fP"
+
+.PP
+.nf
+Get an item from a queue.
+.fi
+.PP
+ 
+.PP
+Definition at line 183 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&._init_queue (self, maxsize)\fC [private]\fP"
+
+.PP
+.nf
+Initialize the queue representation.
+.fi
+.PP
+ 
+.PP
+Definition at line 166 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&._put (self, item)\fC [private]\fP"
+
+.PP
+.nf
+Put an item in the queue.
+.fi
+.PP
+ 
+.PP
+Definition at line 178 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&._queue_size (self)\fC [private]\fP"
+
+.PP
+Definition at line 174 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.empty (self)"
+
+.PP
+.nf
+Check if the queue is empty. (NOT reliable)
+.fi
+.PP
+ 
+.PP
+Definition at line 105 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.full (self)"
+
+.PP
+.nf
+Check if the queue is full. (NOT reliable)
+.fi
+.PP
+ 
+.PP
+Definition at line 111 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.get (self)"
+
+.PP
+.nf
+Get an item from the queue.
+.fi
+.PP
+ 
+.PP
+Definition at line 144 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.join (self)"
+
+.PP
+.nf
+Block until all items in the queue have been processed.
+.fi
+.PP
+ 
+.PP
+Definition at line 137 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.put (self, item)"
+
+.PP
+.nf
+Put an item into the queue.
+.fi
+.PP
+ 
+.PP
+Definition at line 154 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.qsize (self)"
+
+.PP
+.nf
+Return the queue actual size. (NOT reliable)
+.fi
+.PP
+ 
+.PP
+Definition at line 99 of file my_queue\&.py\&.
+.SS "def _cookbook\&.thread\&.my_queue\&.MyQueue\&.task_done (self)"
+
+.PP
+.nf
+Indicate that a formerly enqueued task is finished.
+
+Used by Queue cusumer threads,. For each `get()` used to fetch a task,
+a subsequent call to `task_done()` tells that the processing on the
+task is finished.
+
+If a `join()` is currently blocking, it will resume when all items
+have been processed.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 118 of file my_queue\&.py\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._cond_all_tasks_done\fC [private]\fP"
+
+.PP
+Definition at line 95 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._cond_not_empty\fC [private]\fP"
+
+.PP
+Definition at line 86 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._cond_not_full\fC [private]\fP"
+
+.PP
+Definition at line 90 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._lock\fC [private]\fP"
+
+.PP
+Definition at line 82 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._maxsize\fC [private]\fP"
+
+.PP
+Definition at line 80 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._queue\fC [private]\fP"
+
+.PP
+Definition at line 169 of file my_queue\&.py\&.
+.SS "_cookbook\&.thread\&.my_queue\&.MyQueue\&._unfinished_tasks\fC [private]\fP"
+
+.PP
+Definition at line 96 of file my_queue\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

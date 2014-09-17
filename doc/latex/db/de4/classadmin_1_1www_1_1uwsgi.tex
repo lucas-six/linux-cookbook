@@ -1,0 +1,144 @@
+\hypertarget{classadmin_1_1www_1_1uwsgi}{\section{admin.\-www.\-uwsgi Class Reference}
+\label{classadmin_1_1www_1_1uwsgi}\index{admin.\-www.\-uwsgi@{admin.\-www.\-uwsgi}}
+}
+
+
+u\-W\-S\-G\-I server.  
+
+
+Inheritance diagram for admin.\-www.\-uwsgi\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{db/de4/classadmin_1_1www_1_1uwsgi}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1www_1_1uwsgi_ab5860b95c90e736ad96fb7273efa10a5}{run}
+\begin{DoxyCompactList}\small\item\em Run (or Reload) u\-W\-S\-G\-I server. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1www_1_1uwsgi_a01b2b5c841e2da98a5e88286de95bd05}{stop}
+\begin{DoxyCompactList}\small\item\em Stop u\-W\-S\-G\-I server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1www_1_1uwsgi_aefa1ab9824e26e8da07141806cd69ed7}{\-\_\-pidfile}
+\begin{DoxyCompactList}\small\item\em Return u\-W\-S\-G\-I pid file from app name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+u\-W\-S\-G\-I server. 
+
+\begin{DoxySeeAlso}{See Also}
+\href{https://uwsgi.readthedocs.org/en/latest/index.html}{\tt https\-://uwsgi.\-readthedocs.\-org/en/latest/index.\-html} 
+\end{DoxySeeAlso}
+\begin{DoxySince}{Since}
+u\-W\-S\-G\-I 2.\-0.\-6 
+\end{DoxySince}
+
+
+Definition at line 434 of file admin.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_1_1www_1_1uwsgi_aefa1ab9824e26e8da07141806cd69ed7}{\index{admin\-::www\-::uwsgi@{admin\-::www\-::uwsgi}!\-\_\-pidfile@{\-\_\-pidfile}}
+\index{\-\_\-pidfile@{\-\_\-pidfile}!admin::www::uwsgi@{admin\-::www\-::uwsgi}}
+\subsubsection[{\-\_\-pidfile}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-www.\-uwsgi.\-\_\-pidfile (
+\begin{DoxyParamCaption}
+\item[{}]{app}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}}\label{classadmin_1_1www_1_1uwsgi_aefa1ab9824e26e8da07141806cd69ed7}
+
+
+Return u\-W\-S\-G\-I pid file from app name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em app} & app name \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 553 of file admin.\-py.
+
+\hypertarget{classadmin_1_1www_1_1uwsgi_ab5860b95c90e736ad96fb7273efa10a5}{\index{admin\-::www\-::uwsgi@{admin\-::www\-::uwsgi}!run@{run}}
+\index{run@{run}!admin::www::uwsgi@{admin\-::www\-::uwsgi}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-www.\-uwsgi.\-run (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{app, }
+\item[{}]{addr, }
+\item[{}]{init = {\ttfamily False}, }
+\item[{}]{gateway = {\ttfamily False}}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1www_1_1uwsgi_ab5860b95c90e736ad96fb7273efa10a5}
+
+
+Run (or Reload) u\-W\-S\-G\-I server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em app} & app path \\
+\hline
+{\em addr} & u\-W\-S\-G\-I server address \\
+\hline
+{\em init} & True for adding to init system \\
+\hline
+{\em gateway} & True for internal gateway \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell error \\
+\hline
+{\em I\-O\-Error} & -\/ configuration file error\\
+\hline
+\end{DoxyExceptions}
+N\-O\-T\-E\-: Before run u\-W\-S\-G\-I with Django, make sure that Django project actually works\-: \begin{DoxyVerb}python manage.py runserver 0.0.0.0:8000
+\end{DoxyVerb}
+
+
+\begin{DoxySeeAlso}{See Also}
+\href{https://www.djangoproject.com/}{\tt https\-://www.\-djangoproject.\-com/} 
+\end{DoxySeeAlso}
+\begin{DoxySince}{Since}
+Django 1.\-7 
+
+Python 3.\-2 
+\end{DoxySince}
+
+
+Definition at line 454 of file admin.\-py.
+
+\hypertarget{classadmin_1_1www_1_1uwsgi_a01b2b5c841e2da98a5e88286de95bd05}{\index{admin\-::www\-::uwsgi@{admin\-::www\-::uwsgi}!stop@{stop}}
+\index{stop@{stop}!admin::www::uwsgi@{admin\-::www\-::uwsgi}}
+\subsubsection[{stop}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-www.\-uwsgi.\-stop (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{app}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1www_1_1uwsgi_a01b2b5c841e2da98a5e88286de95bd05}
+
+
+Stop u\-W\-S\-G\-I server. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em app} & app path \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 542 of file admin.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{admin_8py}{admin.\-py}\end{DoxyCompactItemize}

@@ -1,0 +1,154 @@
+\hypertarget{classadmin_1_1build}{\section{admin.\-build Class Reference}
+\label{classadmin_1_1build}\index{admin.\-build@{admin.\-build}}
+}
+
+
+Build tools.  
+
+
+Inheritance diagram for admin.\-build\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d8/dff/classadmin_1_1build}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1build_a265731c57c5b23175db096bf8a76e236}{decode\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Decode version information string. \end{DoxyCompactList}\item 
+def \hyperlink{classadmin_1_1build_a119269530e1f9f01afc87834d21d722b}{match\-\_\-version}
+\begin{DoxyCompactList}\small\item\em Match the specific version. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1build_add65d88734d0ae6b83e8c31cff366b68}{doxygen}
+\begin{DoxyCompactList}\small\item\em Generate documentation for codes under Git by Doxygen. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+tuple \hyperlink{classadmin_1_1build_acf6af7ed40a09ac4e0029edd50a82ae0}{Version} = namedtuple('Version', 'major, minor, patch')
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Build tools. 
+
+This module contains functions and classes for versions, including\-:
+
+
+\begin{DoxyItemize}
+\item Version
+\item \hyperlink{classadmin_1_1build_a265731c57c5b23175db096bf8a76e236}{decode\-\_\-version()}, \hyperlink{classadmin_1_1build_a119269530e1f9f01afc87834d21d722b}{match\-\_\-version()} 
+\end{DoxyItemize}
+
+Definition at line 266 of file admin.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_1_1build_a265731c57c5b23175db096bf8a76e236}{\index{admin\-::build@{admin\-::build}!decode\-\_\-version@{decode\-\_\-version}}
+\index{decode\-\_\-version@{decode\-\_\-version}!admin::build@{admin\-::build}}
+\subsubsection[{decode\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-build.\-decode\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{version\-\_\-info, }
+\item[{}]{prefix = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1build_a265731c57c5b23175db096bf8a76e236}
+
+
+Decode version information string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em version\-\_\-info} & version information string (e.\-g. Python 3.\-4.\-1) \\
+\hline
+{\em prefix} & prefix string of version \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Version named-\/tuple 
+\end{DoxyReturn}
+
+
+Definition at line 276 of file admin.\-py.
+
+\hypertarget{classadmin_1_1build_add65d88734d0ae6b83e8c31cff366b68}{\index{admin\-::build@{admin\-::build}!doxygen@{doxygen}}
+\index{doxygen@{doxygen}!admin::build@{admin\-::build}}
+\subsubsection[{doxygen}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-build.\-doxygen (
+\begin{DoxyParamCaption}
+\item[{}]{path, }
+\item[{}]{doxyfile = {\ttfamily 'Doxyfile.in'}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1build_add65d88734d0ae6b83e8c31cff366b68}
+
+
+Generate documentation for codes under Git by Doxygen. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & project path \\
+\hline
+{\em doxyfile} & name of Doxygen configuration file \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em subprocess.\-Called\-Process\-Error} & \\
+\hline
+{\em I\-O\-Error} & \\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See Also}
+\href{http://www.stack.nl/~dimitri/doxygen/manual/}{\tt http\-://www.\-stack.\-nl/$\sim$dimitri/doxygen/manual/} 
+\end{DoxySeeAlso}
+\begin{DoxySince}{Since}
+Doxygen 1.\-8.\-6 
+\end{DoxySince}
+
+
+Definition at line 318 of file admin.\-py.
+
+\hypertarget{classadmin_1_1build_a119269530e1f9f01afc87834d21d722b}{\index{admin\-::build@{admin\-::build}!match\-\_\-version@{match\-\_\-version}}
+\index{match\-\_\-version@{match\-\_\-version}!admin::build@{admin\-::build}}
+\subsubsection[{match\-\_\-version}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-build.\-match\-\_\-version (
+\begin{DoxyParamCaption}
+\item[{}]{cls, }
+\item[{}]{v, }
+\item[{}]{match}
+\end{DoxyParamCaption}
+)}}\label{classadmin_1_1build_a119269530e1f9f01afc87834d21d722b}
+
+
+Match the specific version. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em v} & Version named-\/tuple \\
+\hline
+{\em match} & version string (e.\-g. 1.\-2.\-3) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if match 
+\end{DoxyReturn}
+
+
+Definition at line 296 of file admin.\-py.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classadmin_1_1build_acf6af7ed40a09ac4e0029edd50a82ae0}{\index{admin\-::build@{admin\-::build}!Version@{Version}}
+\index{Version@{Version}!admin::build@{admin\-::build}}
+\subsubsection[{Version}]{\setlength{\rightskip}{0pt plus 5cm}tuple admin.\-build.\-Version = namedtuple('Version', 'major, minor, patch')\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1build_acf6af7ed40a09ac4e0029edd50a82ae0}
+
+
+Definition at line 268 of file admin.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{admin_8py}{admin.\-py}\end{DoxyCompactItemize}

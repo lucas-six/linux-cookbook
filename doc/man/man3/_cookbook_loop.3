@@ -1,0 +1,106 @@
+.TH "_cookbook.loop" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_cookbook.loop \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBMyIterator\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBmy_generator\fP"
+.br
+.ti -1c
+.RI "def \fBtest_filter\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "list \fBseq\fP = []"
+.br
+.ti -1c
+.RI "list \fBwords\fP = []"
+.br
+.ti -1c
+.RI "dictionary \fBmydict\fP = {}"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "def _cookbook\&.loop\&.my_generator (n)"
+
+.PP
+.nf
+Generator
+
+Python’s _generators_ provide a convenient way to implement the _iterator_
+protocol. If a container object’s `__iter__()` method is implemented as a
+_generator_, it will automatically return an _iterator_ object
+(technically, a _generator_ object) supplying the `__iter__()` and
+`next()` methods.
+
+The `yield` keyword could be implemented by _iterators_.
+
+To use it,
+   
+    >>> index = 0
+    
+    >>> for item in my_generator(0):
+    ...    index += 1
+    ...    if index > 3: break
+    ...    print(item)
+    0
+    1
+    2
+    
+To use it with iterator/generator slicing,
+        
+    >>> for item in itertools.islice(my_generator(0), 5, 9):
+    ...    print(item)
+    5
+    6
+    7
+    8
+    
+**NOTE**: It’s important to emphasize that `islice()` will consume data on
+the supplied iterator. Since iterators can’t be rewound, that is something
+to consider. If it’s important to go back, you should probably just turn
+the data into a list first.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 218 of file loop\&.py\&.
+.SS "def _cookbook\&.loop\&.test_filter ()"
+
+.PP
+Definition at line 267 of file loop\&.py\&.
+.SH "Variable Documentation"
+.PP 
+.SS "dictionary _cookbook\&.loop\&.mydict = {}"
+
+.PP
+Definition at line 181 of file loop\&.py\&.
+.SS "list _cookbook\&.loop\&.seq = []"
+
+.PP
+Definition at line 160 of file loop\&.py\&.
+.SS "list _cookbook\&.loop\&.words = []"
+
+.PP
+Definition at line 174 of file loop\&.py\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

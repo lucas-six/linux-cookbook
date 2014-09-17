@@ -1,0 +1,135 @@
+.TH "admin.www.uwsgi" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.www.uwsgi \- 
+.PP
+uWSGI server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBrun\fP"
+.br
+.RI "\fIRun (or Reload) uWSGI server\&. \fP"
+.ti -1c
+.RI "def \fBstop\fP"
+.br
+.RI "\fIStop uWSGI server\&. \fP"
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB_pidfile\fP"
+.br
+.RI "\fIReturn uWSGI pid file from app name\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+uWSGI server\&. 
+
+
+.PP
+\fBSee Also:\fP
+.RS 4
+https://uwsgi.readthedocs.org/en/latest/index.html 
+.RE
+.PP
+\fBSince:\fP
+.RS 4
+uWSGI 2\&.0\&.6 
+.RE
+.PP
+
+.PP
+Definition at line 434 of file admin\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def admin\&.www\&.uwsgi\&._pidfile (app)\fC [static]\fP, \fC [private]\fP"
+
+.PP
+Return uWSGI pid file from app name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIapp\fP app name 
+.RE
+.PP
+
+.PP
+Definition at line 553 of file admin\&.py\&.
+.SS "def admin\&.www\&.uwsgi\&.run (cls, app, addr, init = \fCFalse\fP, gateway = \fCFalse\fP)"
+
+.PP
+Run (or Reload) uWSGI server\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIapp\fP app path 
+.br
+\fIaddr\fP uWSGI server address 
+.br
+\fIinit\fP True for adding to init system 
+.br
+\fIgateway\fP True for internal gateway 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell error 
+.br
+\fIIOError\fP - configuration file error
+.RE
+.PP
+NOTE: Before run uWSGI with Django, make sure that Django project actually works: 
+.PP
+.nf
+python manage.py runserver 0.0.0.0:8000
+
+.fi
+.PP
+.PP
+\fBSee Also:\fP
+.RS 4
+https://www.djangoproject.com/ 
+.RE
+.PP
+\fBSince:\fP
+.RS 4
+Django 1\&.7 
+.PP
+Python 3\&.2 
+.RE
+.PP
+
+.PP
+Definition at line 454 of file admin\&.py\&.
+.SS "def admin\&.www\&.uwsgi\&.stop (cls, app)"
+
+.PP
+Stop uWSGI server\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIapp\fP app path 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell error 
+.RE
+.PP
+
+.PP
+Definition at line 542 of file admin\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

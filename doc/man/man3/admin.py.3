@@ -1,0 +1,89 @@
+.TH "admin.py" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.py \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBadmin\&.AdminError\fP"
+.br
+.RI "\fIadmin error \fP"
+.ti -1c
+.RI "class \fBadmin\&.shell\fP"
+.br
+.RI "\fILinux shell tools\&. \fP"
+.ti -1c
+.RI "class \fBadmin\&.build\fP"
+.br
+.RI "\fIBuild tools\&. \fP"
+.ti -1c
+.RI "class \fBadmin\&.www\fP"
+.br
+.RI "\fIWWW (Internet) tools\&. \fP"
+.ti -1c
+.RI "class \fBadmin\&.www\&.uwsgi\fP"
+.br
+.RI "\fIuWSGI server\&. \fP"
+.ti -1c
+.RI "class \fBadmin\&.www\&.nginx\fP"
+.br
+.RI "\fInginx server\&. \fP"
+.ti -1c
+.RI "class \fBadmin\&.ConfigFile\fP"
+.br
+.RI "\fIConfiguration file\&. \fP"
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "\fBadmin\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBadmin\&.update_seq_type\fP"
+.br
+.RI "\fIUpdate type of all elements in specific sequence\&. \fP"
+.ti -1c
+.RI "def \fBadmin\&._setup\fP"
+.br
+.ti -1c
+.RI "def \fBadmin\&._usage\fP"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "list \fBadmin\&.option\fP = sys\&.argv[1]"
+.br
+.ti -1c
+.RI "list \fBadmin\&.app\fP = sys\&.argv[2]"
+.br
+.ti -1c
+.RI "list \fBadmin\&.addr\fP = sys\&.argv[3]"
+.br
+.ti -1c
+.RI "list \fBadmin\&.upstream\fP = sys\&.argv[3]"
+.br
+.ti -1c
+.RI "list \fBadmin\&.project_path\fP = sys\&.argv[2]"
+.br
+.ti -1c
+.RI "string \fBadmin\&.test_app\fP = '_setup/hello_uwsgi_app\&.py'"
+.br
+.ti -1c
+.RI "string \fBadmin\&.test_addr\fP = ':8000'"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

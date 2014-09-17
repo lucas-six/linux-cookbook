@@ -1,0 +1,109 @@
+\hypertarget{namespace__cookbook_1_1loop}{\section{\-\_\-cookbook.\-loop Namespace Reference}
+\label{namespace__cookbook_1_1loop}\index{\-\_\-cookbook.\-loop@{\-\_\-cookbook.\-loop}}
+}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{class__cookbook_1_1loop_1_1MyIterator}{My\-Iterator}
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{namespace__cookbook_1_1loop_a9a2442115a97e67514ca641a1123a54b}{my\-\_\-generator}
+\item 
+def \hyperlink{namespace__cookbook_1_1loop_a0378ad6d1d792ff3aee7ea1bc6bd7e3b}{test\-\_\-filter}
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+list \hyperlink{namespace__cookbook_1_1loop_a5de56a796b0d1e61c000d4258c4174c4}{seq} = \mbox{[}$\,$\mbox{]}
+\item 
+list \hyperlink{namespace__cookbook_1_1loop_a65ecd74c88616db43b44e064e12bb30a}{words} = \mbox{[}$\,$\mbox{]}
+\item 
+dictionary \hyperlink{namespace__cookbook_1_1loop_a6e274a42a5573ac12fed6a6f9c318fe0}{mydict} = \{\}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\hypertarget{namespace__cookbook_1_1loop_a9a2442115a97e67514ca641a1123a54b}{\index{\-\_\-cookbook\-::loop@{\-\_\-cookbook\-::loop}!my\-\_\-generator@{my\-\_\-generator}}
+\index{my\-\_\-generator@{my\-\_\-generator}!_cookbook::loop@{\-\_\-cookbook\-::loop}}
+\subsubsection[{my\-\_\-generator}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-loop.\-my\-\_\-generator (
+\begin{DoxyParamCaption}
+\item[{}]{n}
+\end{DoxyParamCaption}
+)}}\label{namespace__cookbook_1_1loop_a9a2442115a97e67514ca641a1123a54b}
+\begin{DoxyVerb}Generator
+
+Python’s _generators_ provide a convenient way to implement the _iterator_
+protocol. If a container object’s `__iter__()` method is implemented as a
+_generator_, it will automatically return an _iterator_ object
+(technically, a _generator_ object) supplying the `__iter__()` and
+`next()` methods.
+
+The `yield` keyword could be implemented by _iterators_.
+
+To use it,
+   
+    >>> index = 0
+    
+    >>> for item in my_generator(0):
+    ...    index += 1
+    ...    if index > 3: break
+    ...    print(item)
+    0
+    1
+    2
+    
+To use it with iterator/generator slicing,
+        
+    >>> for item in itertools.islice(my_generator(0), 5, 9):
+    ...    print(item)
+    5
+    6
+    7
+    8
+    
+**NOTE**: It’s important to emphasize that `islice()` will consume data on
+the supplied iterator. Since iterators can’t be rewound, that is something
+to consider. If it’s important to go back, you should probably just turn
+the data into a list first.
+\end{DoxyVerb}
+ 
+
+Definition at line 218 of file loop.\-py.
+
+\hypertarget{namespace__cookbook_1_1loop_a0378ad6d1d792ff3aee7ea1bc6bd7e3b}{\index{\-\_\-cookbook\-::loop@{\-\_\-cookbook\-::loop}!test\-\_\-filter@{test\-\_\-filter}}
+\index{test\-\_\-filter@{test\-\_\-filter}!_cookbook::loop@{\-\_\-cookbook\-::loop}}
+\subsubsection[{test\-\_\-filter}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-loop.\-test\-\_\-filter (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{namespace__cookbook_1_1loop_a0378ad6d1d792ff3aee7ea1bc6bd7e3b}
+
+
+Definition at line 267 of file loop.\-py.
+
+
+
+\subsection{Variable Documentation}
+\hypertarget{namespace__cookbook_1_1loop_a6e274a42a5573ac12fed6a6f9c318fe0}{\index{\-\_\-cookbook\-::loop@{\-\_\-cookbook\-::loop}!mydict@{mydict}}
+\index{mydict@{mydict}!_cookbook::loop@{\-\_\-cookbook\-::loop}}
+\subsubsection[{mydict}]{\setlength{\rightskip}{0pt plus 5cm}dictionary \-\_\-cookbook.\-loop.\-mydict = \{\}}}\label{namespace__cookbook_1_1loop_a6e274a42a5573ac12fed6a6f9c318fe0}
+
+
+Definition at line 181 of file loop.\-py.
+
+\hypertarget{namespace__cookbook_1_1loop_a5de56a796b0d1e61c000d4258c4174c4}{\index{\-\_\-cookbook\-::loop@{\-\_\-cookbook\-::loop}!seq@{seq}}
+\index{seq@{seq}!_cookbook::loop@{\-\_\-cookbook\-::loop}}
+\subsubsection[{seq}]{\setlength{\rightskip}{0pt plus 5cm}list \-\_\-cookbook.\-loop.\-seq = \mbox{[}$\,$\mbox{]}}}\label{namespace__cookbook_1_1loop_a5de56a796b0d1e61c000d4258c4174c4}
+
+
+Definition at line 160 of file loop.\-py.
+
+\hypertarget{namespace__cookbook_1_1loop_a65ecd74c88616db43b44e064e12bb30a}{\index{\-\_\-cookbook\-::loop@{\-\_\-cookbook\-::loop}!words@{words}}
+\index{words@{words}!_cookbook::loop@{\-\_\-cookbook\-::loop}}
+\subsubsection[{words}]{\setlength{\rightskip}{0pt plus 5cm}list \-\_\-cookbook.\-loop.\-words = \mbox{[}$\,$\mbox{]}}}\label{namespace__cookbook_1_1loop_a65ecd74c88616db43b44e064e12bb30a}
+
+
+Definition at line 174 of file loop.\-py.
+

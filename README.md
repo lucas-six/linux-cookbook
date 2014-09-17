@@ -76,5 +76,6 @@ python3 admin.py disable-nginx [<app> <upstream-address>]
 tail -f /var/log/nginx/access.log
 tail -f /var/log/nginx/error.log
 
-sudo python admin.py build
+# doc
+python admin.py doc <project-path>
 ```

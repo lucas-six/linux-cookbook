@@ -1,0 +1,81 @@
+.TH "_cookbook.func_param" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_cookbook.func_param \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBfunc_default_value\fP"
+.br
+.ti -1c
+.RI "def \fBfunc_unpack_args\fP"
+.br
+.ti -1c
+.RI "def \fBfunc_vargs\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "def _cookbook\&.func_param\&.func_default_value (arg, L = \fCNone\fP)"
+
+.PP
+.nf
+Default Values of Function Arguments.
+
+The default values are evaluated at the point of function definition in
+the defining scope only once.
+
+**NOTE**: When the default is a mutable object such as a list, dictionary,
+or instances of most classes, and if you don't want the default to be
+shared between subsequent calls, you can write the function like this
+instead.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 44 of file func_param\&.py\&.
+.SS "def _cookbook\&.func_param\&.func_unpack_args (arg1, arg2)"
+
+.PP
+.nf
+Unpack arguments from dictionary or tuple, list.
+
+To use it,
+
+    >>> mydict = {'arg1': 1, 'arg2': 2}
+
+    >>> func_unpack_args(**mydict)
+
+    >>> mytuple = ("a", "b")
+
+    >>> func_unpack_args(*mytuple)
+.fi
+.PP
+ 
+.PP
+Definition at line 61 of file func_param\&.py\&.
+.SS "def _cookbook\&.func_param\&.func_vargs (arg, other = \fC'o'\fP, vargs, args)"
+
+.PP
+.nf
+Variable Length Arguments List of Function.
+
+1. `*vargs` must be before `**args`.
+
+2. Any formal parameters which occur after the `*vargs` parameter are
+   keyword-only arguments, meaning that they can only be used as keywords
+   rather than positional arguments.
+.fi
+.PP
+ 
+.PP
+Definition at line 78 of file func_param\&.py\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

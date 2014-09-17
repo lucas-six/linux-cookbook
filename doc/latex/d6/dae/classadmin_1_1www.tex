@@ -1,0 +1,127 @@
+\hypertarget{classadmin_1_1www}{\section{admin.\-www Class Reference}
+\label{classadmin_1_1www}\index{admin.\-www@{admin.\-www}}
+}
+
+
+W\-W\-W (Internet) tools.  
+
+
+Inheritance diagram for admin.\-www\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{d6/dae/classadmin_1_1www}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \hyperlink{classadmin_1_1www_1_1nginx}{nginx}
+\begin{DoxyCompactList}\small\item\em nginx server. \end{DoxyCompactList}\item 
+class \hyperlink{classadmin_1_1www_1_1uwsgi}{uwsgi}
+\begin{DoxyCompactList}\small\item\em u\-W\-S\-G\-I server. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{classadmin_1_1www_a7a25fbce0b213fb06adc0e8602a980d7}{setup}
+\begin{DoxyCompactList}\small\item\em Setup W\-W\-W. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+string \hyperlink{classadmin_1_1www_a970be68a3aafd5e7847083f756041f51}{root} = '/var/spool/\hyperlink{classadmin_1_1www}{www}'
+\item 
+string \hyperlink{classadmin_1_1www_a5ea11af52a64e25886b747ac675827a5}{uwsgi\-\_\-log\-\_\-root} = '/var/log/\hyperlink{classadmin_1_1www_1_1uwsgi}{uwsgi}'
+\item 
+string \hyperlink{classadmin_1_1www_a83f646dac924f1827dd990dcb541ebb6}{user} = '\hyperlink{classadmin_1_1www}{www}-\/data'
+\item 
+string \hyperlink{classadmin_1_1www_a05d4d076f879b3a22ae28f82d2bb6895}{group} = 'adm'
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+W\-W\-W (Internet) tools. 
+
+This module contains functions and classes for Internet, including\-:
+
+
+\begin{DoxyItemize}
+\item root, uwsgi\-\_\-root\-\_\-log
+\item user, group
+\item uwsgi
+\item nginx 
+\end{DoxyItemize}
+
+Definition at line 401 of file admin.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classadmin_1_1www_a7a25fbce0b213fb06adc0e8602a980d7}{\index{admin\-::www@{admin\-::www}!setup@{setup}}
+\index{setup@{setup}!admin::www@{admin\-::www}}
+\subsubsection[{setup}]{\setlength{\rightskip}{0pt plus 5cm}def admin.\-www.\-setup (
+\begin{DoxyParamCaption}
+\item[{}]{root = {\ttfamily None}, }
+\item[{}]{uwsgi\-\_\-log\-\_\-root = {\ttfamily None}, }
+\item[{}]{user = {\ttfamily None}, }
+\item[{}]{group = {\ttfamily None}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1www_a7a25fbce0b213fb06adc0e8602a980d7}
+
+
+Setup W\-W\-W. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & root path of W\-W\-W \\
+\hline
+{\em uwsgi\-\_\-log\-\_\-root} & root path of u\-W\-S\-G\-I log \\
+\hline
+{\em user} & user of W\-W\-W \\
+\hline
+{\em group} & group of W\-W\-W \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classadmin_1_1AdminError}{Admin\-Error}} & -\/ shell error \\
+\hline
+\end{DoxyExceptions}
+
+
+Definition at line 417 of file admin.\-py.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classadmin_1_1www_a05d4d076f879b3a22ae28f82d2bb6895}{\index{admin\-::www@{admin\-::www}!group@{group}}
+\index{group@{group}!admin::www@{admin\-::www}}
+\subsubsection[{group}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-www.\-group = 'adm'\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1www_a05d4d076f879b3a22ae28f82d2bb6895}
+
+
+Definition at line 406 of file admin.\-py.
+
+\hypertarget{classadmin_1_1www_a970be68a3aafd5e7847083f756041f51}{\index{admin\-::www@{admin\-::www}!root@{root}}
+\index{root@{root}!admin::www@{admin\-::www}}
+\subsubsection[{root}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-www.\-root = '/var/spool/{\bf www}'\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1www_a970be68a3aafd5e7847083f756041f51}
+
+
+Definition at line 403 of file admin.\-py.
+
+\hypertarget{classadmin_1_1www_a83f646dac924f1827dd990dcb541ebb6}{\index{admin\-::www@{admin\-::www}!user@{user}}
+\index{user@{user}!admin::www@{admin\-::www}}
+\subsubsection[{user}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-www.\-user = '{\bf www}-\/data'\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1www_a83f646dac924f1827dd990dcb541ebb6}
+
+
+Definition at line 405 of file admin.\-py.
+
+\hypertarget{classadmin_1_1www_a5ea11af52a64e25886b747ac675827a5}{\index{admin\-::www@{admin\-::www}!uwsgi\-\_\-log\-\_\-root@{uwsgi\-\_\-log\-\_\-root}}
+\index{uwsgi\-\_\-log\-\_\-root@{uwsgi\-\_\-log\-\_\-root}!admin::www@{admin\-::www}}
+\subsubsection[{uwsgi\-\_\-log\-\_\-root}]{\setlength{\rightskip}{0pt plus 5cm}string admin.\-www.\-uwsgi\-\_\-log\-\_\-root = '/var/log/{\bf uwsgi}'\hspace{0.3cm}{\ttfamily [static]}}}\label{classadmin_1_1www_a5ea11af52a64e25886b747ac675827a5}
+
+
+Definition at line 404 of file admin.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\hyperlink{admin_8py}{admin.\-py}\end{DoxyCompactItemize}

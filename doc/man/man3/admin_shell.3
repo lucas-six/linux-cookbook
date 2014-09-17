@@ -1,0 +1,314 @@
+.TH "admin.shell" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.shell \- 
+.PP
+Linux shell tools\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBchown\fP"
+.br
+.RI "\fIChange owner user and group of the given path\&. \fP"
+.ti -1c
+.RI "def \fBremove\fP"
+.br
+.RI "\fIRemove path entry\&. \fP"
+.ti -1c
+.RI "def \fBmkdir\fP"
+.br
+.RI "\fICreate a directory or directories recursively\&. \fP"
+.ti -1c
+.RI "def \fBsymlink\fP"
+.br
+.RI "\fICreate a symbolic link pointing to source named \fClink_name\fP\&. \fP"
+.ti -1c
+.RI "def \fBstart_init_service\fP"
+.br
+.RI "\fIStart init service\&. \fP"
+.ti -1c
+.RI "def \fBstop_init_service\fP"
+.br
+.RI "\fIStop init service\&. \fP"
+.ti -1c
+.RI "def \fBrestart_init_service\fP"
+.br
+.RI "\fIRestart init service\&. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBshell\fP"
+.br
+.RI "\fIRun shell command without output\&. \fP"
+.ti -1c
+.RI "def \fBread_lines\fP"
+.br
+.RI "\fIRead specific line(s) with line number(s)\&. \fP"
+.ti -1c
+.RI "def \fBeintr_retry\fP"
+.br
+.RI "\fIRestart a system call interrupted by \fCEINTR\fP\&. \fP"
+.ti -1c
+.RI "def \fBcpu_cores\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+Linux shell tools\&. 
+
+This module contains functions and classes for Linux shell, including:
+.PP
+.IP "\(bu" 2
+\fBshell()\fP, \fBchown()\fP, \fBremove()\fP, \fBmkdir()\fP, \fBsymlink()\fP
+.IP "\(bu" 2
+\fBstart_init_service()\fP, \fBstop_init_service()\fP, \fBrestart_init_service()\fP
+.IP "\(bu" 2
+\fBread_lines()\fP
+.IP "\(bu" 2
+\fBeintr_retry()\fP
+.IP "\(bu" 2
+\fBcpu_cores()\fP (Only /proc supported system) 
+.PP
+
+.PP
+Definition at line 71 of file admin\&.py\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def admin\&.shell\&.shell (cmd)\fC [static]\fP"
+
+.PP
+Run shell command without output\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIcmd\fP shell command 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell command error 
+.RE
+.PP
+
+.PP
+Definition at line 78 of file admin\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def admin\&.shell\&.chown (cls, path, user, group = \fCNone\fP)"
+
+.PP
+Change owner user and group of the given path\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpath\fP path whose ownership to be changed 
+.br
+\fIuser\fP owner user name or uid 
+.br
+\fIgroup\fP owner group name or gid 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(ValueError)\fP - both user or group not given 
+.br
+\fIAdminError(LookupError)\fP - user or group given not in system 
+.br
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo chown\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 94 of file admin\&.py\&.
+.SS "def admin\&.shell\&.cpu_cores ()\fC [static]\fP"
+
+.PP
+Definition at line 252 of file admin\&.py\&.
+.SS "def admin\&.shell\&.eintr_retry (func, args)\fC [static]\fP"
+
+.PP
+Restart a system call interrupted by \fCEINTR\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfunc\fP system call 
+.br
+\fIargs\fP arguments of system call 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIsocket\&.error\fP - socket error 
+.br
+\fIselect\&.error\fP - select module error 
+.br
+\fIOSError\fP - other OS errors 
+.RE
+.PP
+
+.PP
+Definition at line 238 of file admin\&.py\&.
+.SS "def admin\&.shell\&.mkdir (cls, path, user = \fCNone\fP, group = \fCNone\fP)"
+
+.PP
+Create a directory or directories recursively\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpath\fP directory path 
+.br
+\fIuser\fP owner user name or uid 
+.br
+\fIgroup\fP owner group name or gid 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo mkdir\fP error 
+.br
+\fIAdminError(ValueError)\fP - both user or group not given 
+.br
+\fIAdminError(LookupError)\fP - user or group given not in system 
+.br
+\fIAdminError(subprocess\&.CalledProcessError)\fP - change ownership error
+.RE
+.PP
+\fBSince:\fP
+.RS 4
+Python 3\&.2 
+.RE
+.PP
+
+.PP
+Definition at line 156 of file admin\&.py\&.
+.SS "def admin\&.shell\&.read_lines (filename, lineno)\fC [static]\fP"
+
+.PP
+Read specific line(s) with line number(s)\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIfilename\fP file name 
+.br
+\fIlineno\fP line number(s) to read (starting with 1) 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+generator object of line with no terminating line break 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fITypeError,IOError\fP 
+.RE
+.PP
+
+.PP
+Definition at line 217 of file admin\&.py\&.
+.SS "def admin\&.shell\&.remove (cls, path)"
+
+.PP
+Remove path entry\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIpath\fP path name of entry to be removed 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell 'sudo rm -f' error 
+.RE
+.PP
+
+.PP
+Definition at line 125 of file admin\&.py\&.
+.SS "def admin\&.shell\&.restart_init_service (cls, service)"
+
+.PP
+Restart init service\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIservice\fP service name 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo /etc/init\&.d\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 206 of file admin\&.py\&.
+.SS "def admin\&.shell\&.start_init_service (cls, service)"
+
+.PP
+Start init service\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIservice\fP service name 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo /etc/init\&.d\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 188 of file admin\&.py\&.
+.SS "def admin\&.shell\&.stop_init_service (cls, service)"
+
+.PP
+Stop init service\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIservice\fP service name 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo /etc/init\&.d\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 197 of file admin\&.py\&.
+.SS "def admin\&.shell\&.symlink (cls, src, link_name)"
+
+.PP
+Create a symbolic link pointing to source named \fClink_name\fP\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsrc\fP source file 
+.br
+\fIlink_name\fP symbolic link name 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo ln -sf\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 173 of file admin\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

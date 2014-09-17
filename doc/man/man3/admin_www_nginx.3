@@ -1,0 +1,184 @@
+.TH "admin.www.nginx" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.www.nginx \- 
+.PP
+nginx server\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBenable\fP"
+.br
+.RI "\fISetup nginx\&. \fP"
+.ti -1c
+.RI "def \fBdisable\fP"
+.br
+.RI "\fIDisable nginx server\&. \fP"
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBsite_avail_root\fP = '/etc/\fBnginx\fP/sites-available'"
+.br
+.ti -1c
+.RI "string \fBsite_enable_root\fP = '/etc/\fBnginx\fP/sites-enabled'"
+.br
+.ti -1c
+.RI "string \fBuwsgi_params_url\fP = 'https://raw\&.githubusercontent\&.com/\fBnginx\fP/\fBnginx\fP/master/conf/uwsgi_params'"
+.br
+.ti -1c
+.RI "string \fBuwsgi_params_path\fP = '/etc/\fBnginx\fP/uwsgi_params'"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB_site_avail_path\fP"
+.br
+.RI "\fIReturn path of available site by name\&. \fP"
+.ti -1c
+.RI "def \fB_site_enable_path\fP"
+.br
+.RI "\fIReturn path of enabled site by name\&. \fP"
+.in -1c
+.SH "Detailed Description"
+.PP 
+nginx server\&. 
+
+
+.PP
+\fBSee Also:\fP
+.RS 4
+http://wiki.nginx.org/Pitfalls 
+.PP
+http://wiki.nginx.org/QuickStart 
+.PP
+http://wiki.nginx.org/Configuration 
+.RE
+.PP
+\fBSince:\fP
+.RS 4
+nginx 1\&.4\&.6 
+.RE
+.PP
+
+.PP
+Definition at line 563 of file admin\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def admin\&.www\&.nginx\&._site_avail_path (cls, site_name)\fC [private]\fP"
+
+.PP
+Return path of available site by name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsite_name\fP site name 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+path of given site 
+.RE
+.PP
+
+.PP
+Definition at line 699 of file admin\&.py\&.
+.SS "def admin\&.www\&.nginx\&._site_enable_path (cls, site_name = \fCNone\fP)\fC [private]\fP"
+
+.PP
+Return path of enabled site by name\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsite_name\fP site name 
+.RE
+.PP
+\fBReturns:\fP
+.RS 4
+path of given site 
+.RE
+.PP
+
+.PP
+Definition at line 708 of file admin\&.py\&.
+.SS "def admin\&.www\&.nginx\&.disable (cls, site = \fCNone\fP, upstream = \fCNone\fP)"
+
+.PP
+Disable nginx server\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsite\fP site path 
+.br
+\fIupstream\fP upstream host address (uWSGI gateway) 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo ln -sf\fP or \fCsudo /etc/init\&.d\fP error 
+.RE
+.PP
+
+.PP
+Definition at line 683 of file admin\&.py\&.
+.SS "def admin\&.www\&.nginx\&.enable (cls, site, port = \fC80\fP, name = \fC'localhost'\fP, upstream = \fCNone\fP, proxy = \fC':8080'\fP)"
+
+.PP
+Setup nginx\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIsite\fP site path 
+.br
+\fIport\fP site port number 
+.br
+\fIname\fP site server name 
+.br
+\fIupstream\fP upstream host address (uWSGI gateway) 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fIIOError\fP - site configuration file error 
+.br
+\fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo mv\fP error 
+.br
+\fIAdminError(subprocess\&.CalledProcessError)\fP - download uwsgi_params file error 
+.RE
+.PP
+
+.PP
+Definition at line 580 of file admin\&.py\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "string admin\&.www\&.nginx\&.site_avail_root = '/etc/\fBnginx\fP/sites-available'\fC [static]\fP"
+
+.PP
+Definition at line 565 of file admin\&.py\&.
+.SS "string admin\&.www\&.nginx\&.site_enable_root = '/etc/\fBnginx\fP/sites-enabled'\fC [static]\fP"
+
+.PP
+Definition at line 566 of file admin\&.py\&.
+.SS "string admin\&.www\&.nginx\&.uwsgi_params_path = '/etc/\fBnginx\fP/uwsgi_params'\fC [static]\fP"
+
+.PP
+Definition at line 568 of file admin\&.py\&.
+.SS "string admin\&.www\&.nginx\&.uwsgi_params_url = 'https://raw\&.githubusercontent\&.com/\fBnginx\fP/\fBnginx\fP/master/conf/uwsgi_params'\fC [static]\fP"
+
+.PP
+Definition at line 567 of file admin\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

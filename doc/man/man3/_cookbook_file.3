@@ -1,0 +1,60 @@
+.TH "_cookbook.file" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_cookbook.file \- 
+.SH SYNOPSIS
+.br
+.PP
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBtest_bin_io\fP"
+.br
+.ti -1c
+.RI "def \fBtest_mmap\fP"
+.br
+.in -1c
+.SH "Function Documentation"
+.PP 
+.SS "def _cookbook\&.file\&.test_bin_io (filename)"
+
+.PP
+.nf
+Binary I/O
+.fi
+.PP
+ 
+.PP
+Definition at line 65 of file file\&.py\&.
+.SS "def _cookbook\&.file\&.test_mmap (filename)"
+
+.PP
+.nf
+Memory-mapped I/O.
+
+It should be emphasized that memory mapping a file does not cause the
+entire file to be read into memory. That is, it’s not copied into some kind
+of memory buffer or array. Instead, the operating system merely reserves a
+section of virtual memory for the file contents. As you access different
+regions, those portions of the file will be read and mapped into the memory
+region as needed. However, parts of the file that are never accessed simply
+stay on disk. This all happens transparently, behind the scenes.
+
+If more than one Python interpreter memory maps the same file, the
+resulting mmap object can be used to exchange data between interpreters.
+That is, all interpreters can read/write data simultaneously, and changes
+made to the data in one interpreter will automatically appear in the
+others. Obviously, some extra care is required to synchronize things, but
+this kind of approach is sometimes used as an alternative to transmitting
+data in messages over pipes or sockets.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 97 of file file\&.py\&.
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

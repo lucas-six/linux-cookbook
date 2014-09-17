@@ -1,0 +1,115 @@
+.TH "admin.www" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+admin.www \- 
+.PP
+WWW (Internet) tools\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBnginx\fP"
+.br
+.RI "\fInginx server\&. \fP"
+.ti -1c
+.RI "class \fBuwsgi\fP"
+.br
+.RI "\fIuWSGI server\&. \fP"
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fBsetup\fP"
+.br
+.RI "\fISetup WWW\&. \fP"
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "string \fBroot\fP = '/var/spool/\fBwww\fP'"
+.br
+.ti -1c
+.RI "string \fBuwsgi_log_root\fP = '/var/log/\fBuwsgi\fP'"
+.br
+.ti -1c
+.RI "string \fBuser\fP = '\fBwww\fP-data'"
+.br
+.ti -1c
+.RI "string \fBgroup\fP = 'adm'"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+WWW (Internet) tools\&. 
+
+This module contains functions and classes for Internet, including:
+.PP
+.IP "\(bu" 2
+root, uwsgi_root_log
+.IP "\(bu" 2
+user, group
+.IP "\(bu" 2
+uwsgi
+.IP "\(bu" 2
+nginx 
+.PP
+
+.PP
+Definition at line 401 of file admin\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def admin\&.www\&.setup (root = \fCNone\fP, uwsgi_log_root = \fCNone\fP, user = \fCNone\fP, group = \fCNone\fP)\fC [static]\fP"
+
+.PP
+Setup WWW\&. 
+.PP
+\fBParameters:\fP
+.RS 4
+\fIroot\fP root path of WWW 
+.br
+\fIuwsgi_log_root\fP root path of uWSGI log 
+.br
+\fIuser\fP user of WWW 
+.br
+\fIgroup\fP group of WWW 
+.RE
+.PP
+\fBExceptions:\fP
+.RS 4
+\fI\fBAdminError\fP\fP - shell error 
+.RE
+.PP
+
+.PP
+Definition at line 417 of file admin\&.py\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "string admin\&.www\&.group = 'adm'\fC [static]\fP"
+
+.PP
+Definition at line 406 of file admin\&.py\&.
+.SS "string admin\&.www\&.root = '/var/spool/\fBwww\fP'\fC [static]\fP"
+
+.PP
+Definition at line 403 of file admin\&.py\&.
+.SS "string admin\&.www\&.user = '\fBwww\fP-data'\fC [static]\fP"
+
+.PP
+Definition at line 405 of file admin\&.py\&.
+.SS "string admin\&.www\&.uwsgi_log_root = '/var/log/\fBuwsgi\fP'\fC [static]\fP"
+
+.PP
+Definition at line 404 of file admin\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.

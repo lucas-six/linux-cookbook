@@ -1,0 +1,123 @@
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite}{\section{\-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite Class Reference}
+\label{class__cookbook_1_1my__pyunit_1_1TestSuite}\index{\-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite@{\-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite}}
+}
+Inheritance diagram for \-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{df/def/class__cookbook_1_1my__pyunit_1_1TestSuite}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+def \hyperlink{class__cookbook_1_1my__pyunit_1_1TestSuite_a9ac8bc8c1f00434b0a16985762c3bc30}{\-\_\-\-\_\-init\-\_\-\-\_\-}
+\item 
+def \hyperlink{class__cookbook_1_1my__pyunit_1_1TestSuite_af7fc14f84559e4ac099b3a991f4fe077}{add\-Test\-Case}
+\item 
+def \hyperlink{class__cookbook_1_1my__pyunit_1_1TestSuite_a246a14a895b60b1765e1a4da7c16191a}{add\-Test\-Case\-From\-Class}
+\item 
+def \hyperlink{class__cookbook_1_1my__pyunit_1_1TestSuite_a0dc0859f477dc0c3d564f2148cdbba1c}{run}
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class__cookbook_1_1my__pyunit_1_1TestSuite_aa72351c9916112e29864390633a480a0}{suite}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyVerb}A test suite is a composite test consisting of a number of TestCases.
+
+For use, create an instance of TestSuite, then add test case instances.
+When all tests have been added, the suite can be passed to a test
+runner, such as run(). It will run the individual test cases
+in the order in which they were added, aggregating the results. When
+subclassing, do not forget to call the base class constructor.
+\end{DoxyVerb}
+ 
+
+Definition at line 181 of file my\-\_\-pyunit.\-py.
+
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite_a9ac8bc8c1f00434b0a16985762c3bc30}{\index{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}!\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}}
+\index{\-\_\-\-\_\-init\-\_\-\-\_\-@{\-\_\-\-\_\-init\-\_\-\-\_\-}!_cookbook::my_pyunit::TestSuite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}}
+\subsubsection[{\-\_\-\-\_\-init\-\_\-\-\_\-}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite.\-\_\-\-\_\-init\-\_\-\-\_\- (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{class__cookbook_1_1my__pyunit_1_1TestSuite_a9ac8bc8c1f00434b0a16985762c3bc30}
+
+
+Definition at line 190 of file my\-\_\-pyunit.\-py.
+
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite_af7fc14f84559e4ac099b3a991f4fe077}{\index{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}!add\-Test\-Case@{add\-Test\-Case}}
+\index{add\-Test\-Case@{add\-Test\-Case}!_cookbook::my_pyunit::TestSuite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}}
+\subsubsection[{add\-Test\-Case}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite.\-add\-Test\-Case (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{test\-\_\-case}
+\end{DoxyParamCaption}
+)}}\label{class__cookbook_1_1my__pyunit_1_1TestSuite_af7fc14f84559e4ac099b3a991f4fe077}
+\begin{DoxyVerb}Add test case instance.
+
+If the given object is not the instance of TestCase, nothing to be
+done.
+
+@param test_case test case instance that is added.
+\end{DoxyVerb}
+ 
+
+Definition at line 194 of file my\-\_\-pyunit.\-py.
+
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite_a246a14a895b60b1765e1a4da7c16191a}{\index{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}!add\-Test\-Case\-From\-Class@{add\-Test\-Case\-From\-Class}}
+\index{add\-Test\-Case\-From\-Class@{add\-Test\-Case\-From\-Class}!_cookbook::my_pyunit::TestSuite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}}
+\subsubsection[{add\-Test\-Case\-From\-Class}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite.\-add\-Test\-Case\-From\-Class (
+\begin{DoxyParamCaption}
+\item[{}]{self, }
+\item[{}]{test\-\_\-case}
+\end{DoxyParamCaption}
+)}}\label{class__cookbook_1_1my__pyunit_1_1TestSuite_a246a14a895b60b1765e1a4da7c16191a}
+\begin{DoxyVerb}Add test case.
+
+If the given class is not the subclass of the TestCase, nothing to be
+done.
+
+@param test_case class of test case that is added.
+\end{DoxyVerb}
+ 
+
+Definition at line 206 of file my\-\_\-pyunit.\-py.
+
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite_a0dc0859f477dc0c3d564f2148cdbba1c}{\index{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}!run@{run}}
+\index{run@{run}!_cookbook::my_pyunit::TestSuite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}}
+\subsubsection[{run}]{\setlength{\rightskip}{0pt plus 5cm}def \-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite.\-run (
+\begin{DoxyParamCaption}
+\item[{}]{self}
+\end{DoxyParamCaption}
+)}}\label{class__cookbook_1_1my__pyunit_1_1TestSuite_a0dc0859f477dc0c3d564f2148cdbba1c}
+\begin{DoxyVerb}Run all the test cases in this test suite, and print a testing
+report summary for each test case.\end{DoxyVerb}
+ 
+
+Definition at line 218 of file my\-\_\-pyunit.\-py.
+
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class__cookbook_1_1my__pyunit_1_1TestSuite_aa72351c9916112e29864390633a480a0}{\index{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}!suite@{suite}}
+\index{suite@{suite}!_cookbook::my_pyunit::TestSuite@{\-\_\-cookbook\-::my\-\_\-pyunit\-::\-Test\-Suite}}
+\subsubsection[{suite}]{\setlength{\rightskip}{0pt plus 5cm}\-\_\-cookbook.\-my\-\_\-pyunit.\-Test\-Suite.\-suite}}\label{class__cookbook_1_1my__pyunit_1_1TestSuite_aa72351c9916112e29864390633a480a0}
+
+
+Definition at line 191 of file my\-\_\-pyunit.\-py.
+
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+\-\_\-cookbook/\hyperlink{my__pyunit_8py}{my\-\_\-pyunit.\-py}\end{DoxyCompactItemize}

@@ -1,0 +1,240 @@
+.TH "_cookbook.my_pyunit.TestCase" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+_cookbook.my_pyunit.TestCase \- 
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits object\&.
+.PP
+Inherited by \fB_cookbook\&.my_pyunit\&.MyPyUnitTest\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "def \fB__init__\fP"
+.br
+.ti -1c
+.RI "def \fBsetUp\fP"
+.br
+.ti -1c
+.RI "def \fBtearDown\fP"
+.br
+.ti -1c
+.RI "def \fBrun\fP"
+.br
+.ti -1c
+.RI "def \fBsummary\fP"
+.br
+.ti -1c
+.RI "def \fBassertTrue\fP"
+.br
+.ti -1c
+.RI "def \fBassertEqual\fP"
+.br
+.ti -1c
+.RI "def \fBassertGreater\fP"
+.br
+.ti -1c
+.RI "def \fBassertLess\fP"
+.br
+.ti -1c
+.RI "def \fBassertGreaterEqual\fP"
+.br
+.ti -1c
+.RI "def \fBassertLessEqual\fP"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtests\fP"
+.br
+.ti -1c
+.RI "\fBerrors\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.PP
+.nf
+A class whose instances are single test cases.
+
+If the fixture may be used for many test cases, create as
+many test methods as are needed. When instantiating such a TestCase
+subclass, specify in the constructor arguments the name of the test method
+that the instance is to execute.
+
+Test authors should subclass TestCase for their own tests. Construction
+and clean up of the test's environment ('fixture') can be implemented
+by overriding the 'setUp' and 'tearDown' methods respectively.
+
+If it is necessary to override the __init__ method, the base class
+__init__ method must always be called. It is important that subclasses
+should not change the signature of their __init__ method, since instances
+of the classes are instantiated automatically by parts of the framework
+in order to be run.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 60 of file my_pyunit\&.py\&.
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.__init__ (self)"
+
+.PP
+Definition at line 78 of file my_pyunit\&.py\&.
+.SH "Member Function Documentation"
+.PP 
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertEqual (self, obj1, obj2)"
+
+.PP
+.nf
+Check that the two given objects are equal.
+
+@param obj1 The first checked object.
+@param obj2 The second checked object.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 134 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertGreater (self, obj1, obj2)"
+
+.PP
+.nf
+Check that the first given object is greater than the second one.
+
+@param obj1 The first checked object.
+@param obj2 The second checked object.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 143 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertGreaterEqual (self, obj1, obj2)"
+
+.PP
+.nf
+Check that the first given object is greater than or equals to the
+second one.
+
+@param obj1 The first checked object.
+@param obj2 The second checked object.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 161 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertLess (self, obj1, obj2)"
+
+.PP
+.nf
+Check that the first given object is less than the second one.
+
+@param obj1 The first checked object.
+@param obj2 The second checked object.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 152 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertLessEqual (self, obj1, obj2)"
+
+.PP
+.nf
+Check that the first given object is less than or equals to the
+second one.
+
+@param obj1 The first checked object.
+@param obj2 The second checked object.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 171 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.assertTrue (self, exp)"
+
+.PP
+.nf
+Check that the expression is true.
+
+@param exp Expression to be checked.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 125 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.run (self)"
+
+.PP
+Definition at line 101 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.setUp (self)"
+
+.PP
+.nf
+Hook method for setting up the test fixture before exercising it.
+
+Test authors should override this method in the subclass of TestCase
+to construct the test's environment ('fixture') respectively.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 83 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.summary (self)"
+
+.PP
+.nf
+Returns a summary of the testing report, that includes information
+of the number of test cases being run and how many failed cases
+occur.
+
+@return String of testing report summary.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 114 of file my_pyunit\&.py\&.
+.SS "def _cookbook\&.my_pyunit\&.TestCase\&.tearDown (self)"
+
+.PP
+.nf
+Hook method for cleaning up the test fixture after testing it.
+
+Test authors should override this method in the subclass of TestCase
+to clean up the test's environment ('fixture') respectively.
+
+.fi
+.PP
+ 
+.PP
+Definition at line 92 of file my_pyunit\&.py\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "_cookbook\&.my_pyunit\&.TestCase\&.errors"
+
+.PP
+Definition at line 80 of file my_pyunit\&.py\&.
+.SS "_cookbook\&.my_pyunit\&.TestCase\&.tests"
+
+.PP
+Definition at line 79 of file my_pyunit\&.py\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for admin-linux from the source code\&.
