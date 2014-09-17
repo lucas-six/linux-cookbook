@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['list_5fof_5fdict',['list_of_dict',['../df/d5a/namespace__cookbook_1_1find.html#a687bf0a1e78a409f1fe7c38291568113',1,'_cookbook::find']]],
-  ['lock',['lock',['../d5/dbb/namespace__cookbook_1_1thread_1_1lock.html#a3289d10edb64e7979ae4e31600fa6be4',1,'_cookbook::thread::lock']]]
+  ['site_5favail_5froot',['site_avail_root',['../dc/db8/classadmin_1_1www_1_1nginx.html#a0345aad76d9ddd6469c13bef207a9766',1,'admin::www::nginx']]],
+  ['site_5fenable_5froot',['site_enable_root',['../dc/db8/classadmin_1_1www_1_1nginx.html#a3e1b0fbd45f31aaeacb6baaec80806ce',1,'admin::www::nginx']]]
 ];

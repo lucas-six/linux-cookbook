@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['option',['option',['../d5/d4c/namespaceadmin.html#a5ed72260a120fc91cfd491f424eeb883',1,'admin']]]
+  ['version',['Version',['../d8/dff/classadmin_1_1build.html#acf6af7ed40a09ac4e0029edd50a82ae0',1,'admin::build']]]
 ];

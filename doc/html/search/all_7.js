@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['get',['get',['../d6/dcc/class__cookbook_1_1thread_1_1my__queue_1_1MyQueue.html#abb8937cad32dd7fb7d5c6a7f77041e9b',1,'_cookbook.thread.my_queue.MyQueue.get()'],['../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab',1,'admin.ConfigFile.get()']]],
-  ['group',['group',['../d6/dae/classadmin_1_1www.html#a05d4d076f879b3a22ae28f82d2bb6895',1,'admin::www']]]
+  ['hello_5fuwsgi_5fapp',['hello_uwsgi_app',['../d4/d9e/namespacehello__uwsgi__app.html',1,'']]],
+  ['hello_5fuwsgi_5fapp_2epy',['hello_uwsgi_app.py',['../dc/de1/hello__uwsgi__app_8py.html',1,'']]]
 ];

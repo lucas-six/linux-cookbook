@@ -65,14 +65,14 @@ python3 admin.py setup|quick-setup
 
 ```bash
 # uWSGI
-python3 admin.py run-uwsgi <app> <address>
-python3 admin.py stop-uwsgi <app>
-python3 admin.py init-run-uwsgi <app> <address>
-tail -f /var/log/uwsgi/<app>.log
+python3 admin.py run-uwsgi <app-path> <address>
+python3 admin.py stop-uwsgi <app-path>
+python3 admin.py init-run-uwsgi <app-path> <address>
+tail -f /var/log/uwsgi/<app-name>.log
 
 # nginx
-python3 admin.py enable-nginx <app> [<upstream-address>]
-python3 admin.py disable-nginx [<app> <upstream-address>]
+python3 admin.py enable-nginx <app-path> [<upstream-address>]
+python3 admin.py disable-nginx [<app-path> <upstream-address>]
 tail -f /var/log/nginx/access.log
 tail -f /var/log/nginx/error.log
 

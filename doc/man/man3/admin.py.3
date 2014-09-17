@@ -78,7 +78,7 @@ admin.py \-
 .RI "list \fBadmin\&.project_path\fP = sys\&.argv[2]"
 .br
 .ti -1c
-.RI "string \fBadmin\&.test_app\fP = '_setup/hello_uwsgi_app\&.py'"
+.RI "tuple \fBadmin\&.test_app\fP = os\&.path\&.realpath('_setup/hello_uwsgi_app\&.py')"
 .br
 .ti -1c
 .RI "string \fBadmin\&.test_addr\fP = ':8000'"

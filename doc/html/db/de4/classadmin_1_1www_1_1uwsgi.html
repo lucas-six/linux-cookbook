@@ -162,7 +162,7 @@ Static Private Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00555">555</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00557">557</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
 
 </div>
 </div>
@@ -211,7 +211,7 @@ Static Private Member Functions</h2></td></tr>
 <p>Run (or Reload) uWSGI server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>app path </td></tr>
+    <tr><td class="paramname">app</td><td>app (absolute) path </td></tr>
     <tr><td class="paramname">addr</td><td>uWSGI server address </td></tr>
     <tr><td class="paramname">init</td><td>True for adding to init system </td></tr>
     <tr><td class="paramname">gateway</td><td>True for internal gateway </td></tr>
@@ -220,6 +220,7 @@ Static Private Member Functions</h2></td></tr>
 </dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
+    <tr><td class="paramname">ValueError</td><td>- app path not absolute path </td></tr>
     <tr><td class="paramname">AdminError(subprocess.CalledProcessError)</td><td>- shell error </td></tr>
     <tr><td class="paramname">IOError</td><td>- configuration file error</td></tr>
   </table>
@@ -232,7 +233,7 @@ Static Private Member Functions</h2></td></tr>
 <dd>
 Python 3.2 </dd></dl>
 
-<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00456">456</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00457">457</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
 
 </div>
 </div>
@@ -263,7 +264,7 @@ Python 3.2 </dd></dl>
 <p>Stop uWSGI server. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">app</td><td>app path </td></tr>
+    <tr><td class="paramname">app</td><td>app (absolute) path </td></tr>
   </table>
   </dd>
 </dl>
@@ -274,7 +275,7 @@ Python 3.2 </dd></dl>
   </dd>
 </dl>
 
-<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00544">544</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
+<p>Definition at line <a class="el" href="../../da/d7c/admin_8py_source.html#l00546">546</a> of file <a class="el" href="../../da/d7c/admin_8py_source.html">admin.py</a>.</p>
 
 </div>
 </div>
@@ -284,7 +285,7 @@ Python 3.2 </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 17 2014 14:49:34 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Wed Sep 17 2014 16:22:57 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

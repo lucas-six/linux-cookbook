@@ -1,23 +1,4 @@
 var searchData=
 [
-  ['_5fcookbook',['_cookbook',['../de/db4/namespace__cookbook.html',1,'']]],
-  ['_5fdoctest',['_doctest',['../d6/d49/namespace__cookbook_1_1__doctest.html',1,'_cookbook']]],
-  ['_5fqueue',['_queue',['../d8/d82/namespace__cookbook_1_1thread_1_1__queue.html',1,'_cookbook::thread']]],
-  ['_5funittest',['_unittest',['../d8/d10/namespace__cookbook_1_1__unittest.html',1,'_cookbook']]],
-  ['context_5fmanager',['context_manager',['../db/d6d/namespace__cookbook_1_1context__manager.html',1,'_cookbook']]],
-  ['file',['file',['../d4/da3/namespace__cookbook_1_1file.html',1,'_cookbook']]],
-  ['find',['find',['../df/d5a/namespace__cookbook_1_1find.html',1,'_cookbook']]],
-  ['format',['format',['../dc/dad/namespace__cookbook_1_1format.html',1,'_cookbook']]],
-  ['func_5fparam',['func_param',['../d0/dbf/namespace__cookbook_1_1func__param.html',1,'_cookbook']]],
-  ['lock',['lock',['../d5/dbb/namespace__cookbook_1_1thread_1_1lock.html',1,'_cookbook::thread']]],
-  ['loop',['loop',['../d1/d16/namespace__cookbook_1_1loop.html',1,'_cookbook']]],
-  ['my_5fpyunit',['my_pyunit',['../d4/dbf/namespace__cookbook_1_1my__pyunit.html',1,'_cookbook']]],
-  ['my_5fqueue',['my_queue',['../df/d63/namespace__cookbook_1_1thread_1_1my__queue.html',1,'_cookbook::thread']]],
-  ['network',['network',['../d4/d5c/namespace__cookbook_1_1network.html',1,'_cookbook']]],
-  ['oop',['OOP',['../da/d36/namespace__cookbook_1_1OOP.html',1,'_cookbook']]],
-  ['semaphore',['semaphore',['../d4/dbe/namespace__cookbook_1_1thread_1_1semaphore.html',1,'_cookbook::thread']]],
-  ['sort',['sort',['../d1/d44/namespace__cookbook_1_1sort.html',1,'_cookbook']]],
-  ['text_5fpattern',['text_pattern',['../da/d14/namespace__cookbook_1_1text__pattern.html',1,'_cookbook']]],
-  ['thread',['thread',['../d3/d1f/namespace__cookbook_1_1thread.html',1,'_cookbook']]],
-  ['unpack_5fiterable',['unpack_iterable',['../d1/dc7/namespace__cookbook_1_1unpack__iterable.html',1,'_cookbook']]]
+  ['admin',['admin',['../d5/d4c/namespaceadmin.html',1,'']]]
 ];

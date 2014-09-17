@@ -64,7 +64,7 @@ Return uWSGI pid file from app name\&.
 .PP
 
 .PP
-Definition at line 555 of file admin\&.py\&.
+Definition at line 557 of file admin\&.py\&.
 .SS "def admin\&.www\&.uwsgi\&.run (cls, app, addr, init = \fCFalse\fP, gateway = \fCFalse\fP)"
 
 .PP
@@ -72,7 +72,7 @@ Run (or Reload) uWSGI server\&.
 .PP
 \fBParameters:\fP
 .RS 4
-\fIapp\fP app path 
+\fIapp\fP app (absolute) path 
 .br
 \fIaddr\fP uWSGI server address 
 .br
@@ -83,6 +83,8 @@ Run (or Reload) uWSGI server\&.
 .PP
 \fBExceptions:\fP
 .RS 4
+\fIValueError\fP - app path not absolute path 
+.br
 \fIAdminError(subprocess\&.CalledProcessError)\fP - shell error 
 .br
 \fIIOError\fP - configuration file error
@@ -110,7 +112,7 @@ Python 3\&.2
 .PP
 
 .PP
-Definition at line 456 of file admin\&.py\&.
+Definition at line 457 of file admin\&.py\&.
 .SS "def admin\&.www\&.uwsgi\&.stop (cls, app)"
 
 .PP
@@ -118,7 +120,7 @@ Stop uWSGI server\&.
 .PP
 \fBParameters:\fP
 .RS 4
-\fIapp\fP app path 
+\fIapp\fP app (absolute) path 
 .RE
 .PP
 \fBExceptions:\fP
@@ -128,7 +130,7 @@ Stop uWSGI server\&.
 .PP
 
 .PP
-Definition at line 544 of file admin\&.py\&.
+Definition at line 546 of file admin\&.py\&.
 
 .SH "Author"
 .PP 

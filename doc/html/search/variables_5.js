@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['group',['group',['../d6/dae/classadmin_1_1www.html#a05d4d076f879b3a22ae28f82d2bb6895',1,'admin::www']]]
+  ['project_5fpath',['project_path',['../d5/d4c/namespaceadmin.html#a311ce11d8285f485768151b9d757e478',1,'admin']]]
 ];

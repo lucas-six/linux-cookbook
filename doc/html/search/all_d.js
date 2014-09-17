@@ -1,7 +1,13 @@
 var searchData=
 [
-  ['network_2epy',['network.py',['../d4/d34/network_8py.html',1,'']]],
-  ['new_5fmethod',['new_method',['../d1/d62/class__cookbook_1_1OOP_1_1B.html#aa55b30a2f61c6106811984627635d98c',1,'_cookbook::OOP::B']]],
-  ['nginx',['nginx',['../dc/db8/classadmin_1_1www_1_1nginx.html',1,'admin::www']]],
-  ['num_5fof_5finstances',['num_of_instances',['../d3/d8c/class__cookbook_1_1OOP_1_1A.html#a594d2919ad2a27c4ae18fa97efb6de64',1,'_cookbook::OOP::A']]]
+  ['set',['set',['../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f',1,'admin::ConfigFile']]],
+  ['setup',['setup',['../d6/dae/classadmin_1_1www.html#a7a25fbce0b213fb06adc0e8602a980d7',1,'admin::www']]],
+  ['shell',['shell',['../de/d16/classadmin_1_1shell.html',1,'admin']]],
+  ['shell',['shell',['../de/d16/classadmin_1_1shell.html#a2ffff5c7d8eb2d2cc174df10ac1523b2',1,'admin::shell']]],
+  ['site_5favail_5froot',['site_avail_root',['../dc/db8/classadmin_1_1www_1_1nginx.html#a0345aad76d9ddd6469c13bef207a9766',1,'admin::www::nginx']]],
+  ['site_5fenable_5froot',['site_enable_root',['../dc/db8/classadmin_1_1www_1_1nginx.html#a3e1b0fbd45f31aaeacb6baaec80806ce',1,'admin::www::nginx']]],
+  ['start_5finit_5fservice',['start_init_service',['../de/d16/classadmin_1_1shell.html#a432e79bf26b0adb3e7fcf2f13f96229e',1,'admin::shell']]],
+  ['stop',['stop',['../db/de4/classadmin_1_1www_1_1uwsgi.html#a01b2b5c841e2da98a5e88286de95bd05',1,'admin::www::uwsgi']]],
+  ['stop_5finit_5fservice',['stop_init_service',['../de/d16/classadmin_1_1shell.html#a20ba085e92f2f4a9332d8d9c95ce7aa1',1,'admin::shell']]],
+  ['symlink',['symlink',['../de/d16/classadmin_1_1shell.html#a9cc97c2976b95fbcfa88b314803aa2bf',1,'admin::shell']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nginx',['nginx',['../dc/db8/classadmin_1_1www_1_1nginx.html',1,'admin::www']]]
+  ['uwsgi',['uwsgi',['../db/de4/classadmin_1_1www_1_1uwsgi.html',1,'admin::www']]]
 ];

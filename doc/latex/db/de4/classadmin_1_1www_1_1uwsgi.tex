@@ -60,7 +60,7 @@ Return u\-W\-S\-G\-I pid file from app name.
 \end{DoxyParams}
 
 
-Definition at line 555 of file admin.\-py.
+Definition at line 557 of file admin.\-py.
 
 \hypertarget{classadmin_1_1www_1_1uwsgi_ab5860b95c90e736ad96fb7273efa10a5}{\index{admin\-::www\-::uwsgi@{admin\-::www\-::uwsgi}!run@{run}}
 \index{run@{run}!admin::www::uwsgi@{admin\-::www\-::uwsgi}}
@@ -79,7 +79,7 @@ Run (or Reload) u\-W\-S\-G\-I server.
 
 
 \begin{DoxyParams}{Parameters}
-{\em app} & app path \\
+{\em app} & app (absolute) path \\
 \hline
 {\em addr} & u\-W\-S\-G\-I server address \\
 \hline
@@ -90,6 +90,8 @@ Run (or Reload) u\-W\-S\-G\-I server.
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
+{\em Value\-Error} & -\/ app path not absolute path \\
+\hline
 {\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell error \\
 \hline
 {\em I\-O\-Error} & -\/ configuration file error\\
@@ -109,7 +111,7 @@ Python 3.\-2
 \end{DoxySince}
 
 
-Definition at line 456 of file admin.\-py.
+Definition at line 457 of file admin.\-py.
 
 \hypertarget{classadmin_1_1www_1_1uwsgi_a01b2b5c841e2da98a5e88286de95bd05}{\index{admin\-::www\-::uwsgi@{admin\-::www\-::uwsgi}!stop@{stop}}
 \index{stop@{stop}!admin::www::uwsgi@{admin\-::www\-::uwsgi}}
@@ -125,7 +127,7 @@ Stop u\-W\-S\-G\-I server.
 
 
 \begin{DoxyParams}{Parameters}
-{\em app} & app path \\
+{\em app} & app (absolute) path \\
 \hline
 \end{DoxyParams}
 
@@ -135,7 +137,7 @@ Stop u\-W\-S\-G\-I server.
 \end{DoxyExceptions}
 
 
-Definition at line 544 of file admin.\-py.
+Definition at line 546 of file admin.\-py.
 
 
 

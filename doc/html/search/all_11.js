@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['read_5flines',['read_lines',['../de/d16/classadmin_1_1shell.html#a088a4609cf54f76ee4c838eea157fbc9',1,'admin::shell']]],
-  ['remove',['remove',['../de/d16/classadmin_1_1shell.html#ad4f8d9280283a993eec0bc5dcade6d99',1,'admin::shell']]],
-  ['request_5fqueue_5fsize',['request_queue_size',['../d1/dca/class__cookbook_1_1network_1_1MyTCPServer.html#af80f389b881aac1996ab9258d8507db0',1,'_cookbook::network::MyTCPServer']]],
-  ['restart_5finit_5fservice',['restart_init_service',['../de/d16/classadmin_1_1shell.html#ab6f38a2fae6ea2cc870c1de2d6cb6017',1,'admin::shell']]],
-  ['root',['root',['../d6/dae/classadmin_1_1www.html#a970be68a3aafd5e7847083f756041f51',1,'admin::www']]],
-  ['run',['run',['../d5/d0e/class__cookbook_1_1my__pyunit_1_1TestCase.html#af0e73c2611cd4bdcff403ef50befc044',1,'_cookbook.my_pyunit.TestCase.run()'],['../df/def/class__cookbook_1_1my__pyunit_1_1TestSuite.html#a0dc0859f477dc0c3d564f2148cdbba1c',1,'_cookbook.my_pyunit.TestSuite.run()'],['../d0/d3c/class__cookbook_1_1thread_1_1__queue_1_1Producer.html#a3ce42dbdcf7eae61b8ad89855369f7ce',1,'_cookbook.thread._queue.Producer.run()'],['../df/dbf/class__cookbook_1_1thread_1_1__queue_1_1Cusumer.html#ab96624a5b06833266094bf94920f9294',1,'_cookbook.thread._queue.Cusumer.run()'],['../df/d25/class__cookbook_1_1thread_1_1lock_1_1MyThread.html#add32daaabfa40fefc9f0a21bdd7af098',1,'_cookbook.thread.lock.MyThread.run()'],['../dc/ddd/class__cookbook_1_1thread_1_1semaphore_1_1Producer.html#a28b97d68456cbad8eb0938dd36cae1db',1,'_cookbook.thread.semaphore.Producer.run()'],['../de/dfa/class__cookbook_1_1thread_1_1semaphore_1_1Cusumer.html#a6142eb28de70f5413dae68f02aef61e2',1,'_cookbook.thread.semaphore.Cusumer.run()'],['../db/de4/classadmin_1_1www_1_1uwsgi.html#ab5860b95c90e736ad96fb7273efa10a5',1,'admin.www.uwsgi.run()']]]
+  ['www',['www',['../d6/dae/classadmin_1_1www.html',1,'admin']]]
 ];
