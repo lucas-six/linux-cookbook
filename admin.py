@@ -144,26 +144,19 @@ class shell(object):
     ## Create a directory or directories recursively.
     #
     # @param path directory path
-    # @param exist_ok True for raising OSError if the target directory already exists
     # @param user owner user name or uid
     # @param group owner group name or gid
-    # @exception AdminError(OSError) - target directory already exists
     # @exception AdminError(subprocess.CalledProcessError) - shell `sudo mkdir` error
     # @exception AdminError(ValueError) - both user or group not given
     # @exception AdminError(LookupError) - user or group given not in system
     # @exception AdminError(subprocess.CalledProcessError) - change ownership error
     # @since Python 3.2
     @classmethod
-    def mkdir(cls, path, exist_ok=False, user=None, group=None):
+    def mkdir(cls, path, user=None, group=None):
         try:
-            os.makedirs(path, exist_ok=exist_ok)
+            os.makedirs(path, exist_ok=True)
         except PermissionError:
-            if exist_ok:
-                cls.shell('sudo mkdir -p ' + path)
-            else:
-                cls.shell('sudo mkdir ' + path)
-        except OSError as e:
-            raise AdminError(e)
+            cls.shell('sudo mkdir -p ' + path)
 
         # change ownership
         if user is not None:
@@ -345,8 +338,8 @@ class www(object):
             user = www.user
         if group is None:
             group = www.group
-        shell.mkdir(root, exist_ok=True, user=user, group=group)
-        shell.mkdir(uwsgi_log_root, exist_ok=True, user=user, group=group)
+        shell.mkdir(root, user=user, group=group)
+        shell.mkdir(uwsgi_log_root, user=user, group=group)
         
         
     ## uWSGI server.
@@ -369,7 +362,6 @@ class www(object):
         #
         #     python manage.py runserver 0.0.0.0:8000
         #
-        #
         # @see https://www.djangoproject.com/
         # @since Django 1.7
         # @since Python 3.2
@@ -388,7 +380,7 @@ class www(object):
             ini_file = os.path.join(app_root, ini_name)
             pid_file = cls._pidfile(app_name)
             ini_cmd = 'uwsgi --ini ' + ini_file
-            shell.mkdir(app_root, exist_ok=True)
+            shell.mkdir(app_root)
 
             # Configure uWSGI server
             config = configparser.ConfigParser(allow_no_value=True)
@@ -401,8 +393,8 @@ class www(object):
                 config['uwsgi']['socket'] = addr                
             if is_module:
                 # module path
-                config['uwsgi']['chdir'] = None
-                config['uwsgi']['module'] = None
+                config['uwsgi']['chdir'] = app
+                config['uwsgi']['module'] = '{0}.wsgi'.format(app_name)
             else:
                 # app path
                 app_path = os.path.realpath(app) + '.py'
@@ -420,6 +412,19 @@ class www(object):
             # Write uWSGI configuration
             with open(ini_file, 'w') as f:
                 config.write(f)
+                
+            # Create (Django) site
+            if is_module and not os.path.exists(app):
+                # create parent directories
+                top_dir = os.path.split(app)[0]
+                shell.mkdir(top_dir)
+                
+                # Init Django project
+                os.chdir(top_dir)
+                shell.shell('django-admin.py startproject ' + app_name)
+                os.chdir(app_name)
+                shell.shell('python manage.py migrate')
+                os.chdir('..')
 
             # Generate uwsgi init script
             if init:
@@ -903,11 +908,18 @@ if __name__ == '__main__':
     elif option == 'test':
         _setup(quick=True)
         
+        # single app on uWSGI
         time.sleep(2)
         test_app = '_setup/hello_uwsgi_app.py'
         test_addr = ':8000'
         www.uwsgi.run(test_app, test_addr)
+        time.sleep(2)
+        www.uwsgi.stop(test_app)
         
+        # (Django) site on uWSGI
+        time.sleep(2)
+        test_app = '/tmp/zl'
+        www.uwsgi.run(test_app, test_addr)
         time.sleep(2)
         www.uwsgi.stop(test_app)
         

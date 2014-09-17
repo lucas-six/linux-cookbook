@@ -87,19 +87,12 @@ class Project(object):
             self.version_info = default_version
             
         # Create a project directory
-        if 'django' in self.types:
-            if not os.path.lexists(self.path):
-                admin.shell('django-admin.py startproject ' + self.name)
-                os.chdir(self.name)
-                admin.shell('python manage.py migrate')
-                os.chdir('..')
-        else:
-            try:
-                os.makedirs(self.path)
-            except os.error as e:
-                # already exists, ignore
-                if e.errno != errno.EEXIST:
-                    raise
+        try:
+            os.makedirs(self.path)
+        except os.error as e:
+            # already exists, ignore
+            if e.errno != errno.EEXIST:
+                raise
 
     
     ## Generate documentation for codes under Git by Doxygen.

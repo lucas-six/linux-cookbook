@@ -68,12 +68,13 @@ python3 admin.py setup|quick-setup
 python3 admin.py run-uwsgi <app> <address>
 python3 admin.py stop-uwsgi <app>
 python3 admin.py init-run-uwsgi <app> <address>
+tail -f /var/log/uwsgi/<app>.log
 
 # nginx
 python3 admin.py enable-nginx <app> [<upstream-address>]
 python3 admin.py disable-nginx [<app> <upstream-address>]
-
-tail -f /var/log/uwsgi/<app>.log
+tail -f /var/log/nginx/access.log
+tail -f /var/log/nginx/error.log
 
 sudo python admin.py build
 ```
