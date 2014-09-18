@@ -644,7 +644,7 @@ server {{\n\
 
                 f.write('\t\t# First attempt to serve request as file, then\n\
 \t\t# as directory, then fall back to displaying a 404.\n\
-\t\ttry_files $uri $uri/ =404;\n\
+\t\t#try_files $uri $uri/ =404;\n\
 \t\t# Uncomment to enable naxsi on this location\n\
 \t\t# include /etc/nginx/naxsi.rules\n\
 \t}}\n\
