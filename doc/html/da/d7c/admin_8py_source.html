@@ -528,7 +528,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;        <span class="comment"># @param addr uWSGI server address</span></div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;        <span class="comment"># @param init True for adding to init system</span></div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160;        <span class="comment"># @param gateway True for internal gateway</span></div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        <span class="comment"># @exception ValueError - app path not absolute path</span></div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;        <span class="comment"># @exception ValueError - app path NOT absolute path</span></div>
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - shell error</span></div>
 <div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160;        <span class="comment"># @exception IOError - configuration file error</span></div>
 <div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;        <span class="comment">#</span></div>
@@ -543,7 +543,7 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;        @classmethod</div>
 <div class="line"><a name="l00457"></a><span class="lineno"><a class="line" href="../../db/de4/classadmin_1_1www_1_1uwsgi.html#ab5860b95c90e736ad96fb7273efa10a5">  457</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../db/de4/classadmin_1_1www_1_1uwsgi.html#ab5860b95c90e736ad96fb7273efa10a5">run</a>(cls, app, addr, init=False, gateway=False):</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> app.startswith(<span class="stringliteral">&#39;/&#39;</span>):</div>
-<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&#39;absolute path should be given&#39;</span>)</div>
+<div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160;                <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&#39;uWSGI APP should be absolute path&#39;</span>)</div>
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;                </div>
 <div class="line"><a name="l00461"></a><span class="lineno">  461</span>&#160;            is_module = <span class="keyword">True</span></div>
 <div class="line"><a name="l00462"></a><span class="lineno">  462</span>&#160;            app_name = os.path.basename(app)</div>
@@ -660,479 +660,489 @@ var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
 <div class="line"><a name="l00573"></a><span class="lineno">  573</span>&#160;    </div>
 <div class="line"><a name="l00574"></a><span class="lineno">  574</span>&#160;        <span class="comment">## Setup nginx</span></div>
 <div class="line"><a name="l00575"></a><span class="lineno">  575</span>&#160;        <span class="comment">#</span></div>
-<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;        <span class="comment"># @param site site path</span></div>
+<div class="line"><a name="l00576"></a><span class="lineno">  576</span>&#160;        <span class="comment"># @param site site (absolute) path</span></div>
 <div class="line"><a name="l00577"></a><span class="lineno">  577</span>&#160;        <span class="comment"># @param port site port number</span></div>
 <div class="line"><a name="l00578"></a><span class="lineno">  578</span>&#160;        <span class="comment"># @param name site server name</span></div>
 <div class="line"><a name="l00579"></a><span class="lineno">  579</span>&#160;        <span class="comment"># @param upstream upstream host address (uWSGI gateway)</span></div>
-<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;        <span class="comment"># @exception IOError - site configuration file error</span></div>
-<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - shell `sudo mv` error</span></div>
-<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - download uwsgi_params file error</span></div>
-<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        @classmethod</div>
-<div class="line"><a name="l00584"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">  584</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">enable</a>(cls, site, port=80, name=&#39;localhost&#39;, upstream=None, proxy=&#39;:8080<span class="stringliteral">&#39;):</span></div>
-<div class="line"><a name="l00585"></a><span class="lineno">  585</span>&#160;<span class="stringliteral">            site = os.path.realpath(site)</span></div>
-<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="stringliteral">            site_name = site</span></div>
-<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;<span class="stringliteral">            site_split = os.path.splitext(site)</span></div>
-<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;<span class="stringliteral">            </span><span class="keywordflow">if</span> site_split[1] == <span class="stringliteral">&#39;.py&#39;</span>:</div>
-<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;                site_name = site_split[0]</div>
-<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;                is_module = <span class="keyword">False</span></div>
-<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            site_name = os.path.basename(site_name)</div>
-<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;        </div>
-<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;            <span class="comment"># Download the `uwsgi_params` file at GitHub.com</span></div>
-<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(cls.uwsgi_params_path):</div>
-<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;                shell.shell(<span class="stringliteral">&#39;sudo wget -c {0} -O {1}&#39;</span>.format(cls.uwsgi_params_url, cls.uwsgi_params_path))</div>
-<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;            </div>
-<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;            with open(<span class="stringliteral">&#39;/tmp/nginx-{0}&#39;</span>.format(site_name), <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                <span class="comment"># title</span></div>
-<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;                f.write(<span class="stringliteral">&#39;# nginx site configuration for {0}\n\</span></div>
-<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;<span class="stringliteral"># Generated by admin.py - DONOT edit!!!\n\</span></div>
-<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;<span class="stringliteral">\n&#39;</span>.format(site_name))</div>
-<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;</div>
-<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;                <span class="comment"># upstream host (uWSGI)</span></div>
-<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;                <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;                    f.write(<span class="stringliteral">&#39;# upstream host\n\</span></div>
-<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;<span class="stringliteral">upstream uwsgi_host {{\n\</span></div>
-<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;<span class="stringliteral">\tserver {0}; # deployment on different hosts\n\</span></div>
-<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;<span class="stringliteral">\t#server unix:///path/to/site.sock; # deployment on the same host\n\</span></div>
-<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<span class="stringliteral">}}\n\</span></div>
-<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;<span class="stringliteral">\n&#39;</span>.format(upstream))</div>
-<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;</div>
-<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;                <span class="comment"># basic settings</span></div>
-<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;                f.write(<span class="stringliteral">&#39;# virtual host\n\</span></div>
-<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;<span class="stringliteral">server {{\n\</span></div>
-<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;<span class="stringliteral">\tlisten {0} default_server;\n\</span></div>
-<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;<span class="stringliteral">\tlisten [::]:{0} default_server ipv6only=on;\n\</span></div>
-<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;<span class="stringliteral">\troot /usr/share/nginx/html;\n\</span></div>
-<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="stringliteral">\tindex index.html index.htm;\n\</span></div>
+<div class="line"><a name="l00580"></a><span class="lineno">  580</span>&#160;        <span class="comment"># @exception ValueError - site name NOT absolute path</span></div>
+<div class="line"><a name="l00581"></a><span class="lineno">  581</span>&#160;        <span class="comment"># @exception IOError - site configuration file error</span></div>
+<div class="line"><a name="l00582"></a><span class="lineno">  582</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - shell `sudo mv` error</span></div>
+<div class="line"><a name="l00583"></a><span class="lineno">  583</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - download uwsgi_params file error</span></div>
+<div class="line"><a name="l00584"></a><span class="lineno">  584</span>&#160;        @classmethod</div>
+<div class="line"><a name="l00585"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">  585</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">enable</a>(cls, site, port=80, name=&#39;localhost&#39;, upstream=None, proxy=&#39;:8080<span class="stringliteral">&#39;):</span></div>
+<div class="line"><a name="l00586"></a><span class="lineno">  586</span>&#160;<span class="stringliteral">            </span><span class="keywordflow">if</span> <span class="keywordflow">not</span> site.startswith(<span class="stringliteral">&#39;/&#39;</span>):</div>
+<div class="line"><a name="l00587"></a><span class="lineno">  587</span>&#160;                <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&#39;site name should be absolute path&#39;</span>)</div>
+<div class="line"><a name="l00588"></a><span class="lineno">  588</span>&#160;                </div>
+<div class="line"><a name="l00589"></a><span class="lineno">  589</span>&#160;            site_name = os.path.basename(site)</div>
+<div class="line"><a name="l00590"></a><span class="lineno">  590</span>&#160;            site_split = os.path.splitext(site_name)</div>
+<div class="line"><a name="l00591"></a><span class="lineno">  591</span>&#160;            <span class="keywordflow">if</span> site_split[1] == <span class="stringliteral">&#39;.py&#39;</span>:</div>
+<div class="line"><a name="l00592"></a><span class="lineno">  592</span>&#160;                site_name = site_split[0]</div>
+<div class="line"><a name="l00593"></a><span class="lineno">  593</span>&#160;                is_module = <span class="keyword">False</span></div>
+<div class="line"><a name="l00594"></a><span class="lineno">  594</span>&#160;            </div>
+<div class="line"><a name="l00595"></a><span class="lineno">  595</span>&#160;        </div>
+<div class="line"><a name="l00596"></a><span class="lineno">  596</span>&#160;            <span class="comment"># Download the `uwsgi_params` file at GitHub.com</span></div>
+<div class="line"><a name="l00597"></a><span class="lineno">  597</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> os.path.exists(cls.uwsgi_params_path):</div>
+<div class="line"><a name="l00598"></a><span class="lineno">  598</span>&#160;                shell.shell(<span class="stringliteral">&#39;sudo wget -c {0} -O {1}&#39;</span>.format(cls.uwsgi_params_url, cls.uwsgi_params_path))</div>
+<div class="line"><a name="l00599"></a><span class="lineno">  599</span>&#160;            </div>
+<div class="line"><a name="l00600"></a><span class="lineno">  600</span>&#160;            with open(<span class="stringliteral">&#39;/tmp/nginx-{0}&#39;</span>.format(site_name), <span class="stringliteral">&#39;w&#39;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00601"></a><span class="lineno">  601</span>&#160;                <span class="comment"># title</span></div>
+<div class="line"><a name="l00602"></a><span class="lineno">  602</span>&#160;                f.write(<span class="stringliteral">&#39;# nginx site configuration for {0}\n\</span></div>
+<div class="line"><a name="l00603"></a><span class="lineno">  603</span>&#160;<span class="stringliteral"># Generated by admin.py - DONOT edit!!!\n\</span></div>
+<div class="line"><a name="l00604"></a><span class="lineno">  604</span>&#160;<span class="stringliteral">\n&#39;</span>.format(site_name))</div>
+<div class="line"><a name="l00605"></a><span class="lineno">  605</span>&#160;</div>
+<div class="line"><a name="l00606"></a><span class="lineno">  606</span>&#160;                <span class="comment"># upstream host (uWSGI)</span></div>
+<div class="line"><a name="l00607"></a><span class="lineno">  607</span>&#160;                <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00608"></a><span class="lineno">  608</span>&#160;                    f.write(<span class="stringliteral">&#39;# upstream host\n\</span></div>
+<div class="line"><a name="l00609"></a><span class="lineno">  609</span>&#160;<span class="stringliteral">upstream uwsgi_host {{\n\</span></div>
+<div class="line"><a name="l00610"></a><span class="lineno">  610</span>&#160;<span class="stringliteral">\tserver {0}; # deployment on different hosts\n\</span></div>
+<div class="line"><a name="l00611"></a><span class="lineno">  611</span>&#160;<span class="stringliteral">\t#server unix:///path/to/site.sock; # deployment on the same host\n\</span></div>
+<div class="line"><a name="l00612"></a><span class="lineno">  612</span>&#160;<span class="stringliteral">}}\n\</span></div>
+<div class="line"><a name="l00613"></a><span class="lineno">  613</span>&#160;<span class="stringliteral">\n&#39;</span>.format(upstream))</div>
+<div class="line"><a name="l00614"></a><span class="lineno">  614</span>&#160;</div>
+<div class="line"><a name="l00615"></a><span class="lineno">  615</span>&#160;                <span class="comment"># basic settings</span></div>
+<div class="line"><a name="l00616"></a><span class="lineno">  616</span>&#160;                f.write(<span class="stringliteral">&#39;# virtual host\n\</span></div>
+<div class="line"><a name="l00617"></a><span class="lineno">  617</span>&#160;<span class="stringliteral">server {{\n\</span></div>
+<div class="line"><a name="l00618"></a><span class="lineno">  618</span>&#160;<span class="stringliteral">\tlisten {0} default_server;\n\</span></div>
+<div class="line"><a name="l00619"></a><span class="lineno">  619</span>&#160;<span class="stringliteral">\tlisten [::]:{0} default_server ipv6only=on;\n\</span></div>
 <div class="line"><a name="l00620"></a><span class="lineno">  620</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;<span class="stringliteral">\t# Make site accessible from http://{1}/\n\</span></div>
-<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;<span class="stringliteral">\tserver_name {1};\n\</span></div>
+<div class="line"><a name="l00621"></a><span class="lineno">  621</span>&#160;<span class="stringliteral">\troot /usr/share/nginx/html;\n\</span></div>
+<div class="line"><a name="l00622"></a><span class="lineno">  622</span>&#160;<span class="stringliteral">\tindex index.html index.htm;\n\</span></div>
 <div class="line"><a name="l00623"></a><span class="lineno">  623</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="stringliteral">\tcharset utf-8;\n\</span></div>
-<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<span class="stringliteral">\tclient_max_body_size 75M; # max upload size\n\</span></div>
+<div class="line"><a name="l00624"></a><span class="lineno">  624</span>&#160;<span class="stringliteral">\t# Make site accessible from http://{1}/\n\</span></div>
+<div class="line"><a name="l00625"></a><span class="lineno">  625</span>&#160;<span class="stringliteral">\tserver_name {1};\n\</span></div>
 <div class="line"><a name="l00626"></a><span class="lineno">  626</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;<span class="stringliteral">\t# static files requests\n\</span></div>
-<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="stringliteral">\t# Images, CSS, JavaScript, Video, etc.\n\</span></div>
-<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="stringliteral">\tlocation ~ ^/(images|css|js|media|static)/ {{\n\</span></div>
-<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;<span class="stringliteral">\t\troot {2};\n\</span></div>
-<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="stringliteral">\t\taccess_log off;\n\</span></div>
-<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="stringliteral">\t\texpires 30d;\n\</span></div>
-<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
-<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;<span class="stringliteral">\tlocation / {{\n&#39;</span>.format(port, name, os.path.join(www.root, site_name)))</div>
-<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;                <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;                    f.write(<span class="stringliteral">&#39;\t\t# Pass non-static requests to uWSGI gateway\n\</span></div>
-<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;<span class="stringliteral">\t\tuwsgi_pass uwsgi_host;\n\</span></div>
-<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;<span class="stringliteral">\t\tinclude {0};\n\</span></div>
-<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;<span class="stringliteral">\n&#39;</span>.format(cls.uwsgi_params_path))</div>
-<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;</div>
-<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;                f.write(<span class="stringliteral">&#39;\t\t# First attempt to serve request as file, then\n\</span></div>
-<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;<span class="stringliteral">\t\t# as directory, then fall back to displaying a 404.\n\</span></div>
-<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;<span class="stringliteral">\t\ttry_files $uri $uri/ =404;\n\</span></div>
-<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;<span class="stringliteral">\t\t# Uncomment to enable naxsi on this location\n\</span></div>
-<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;<span class="stringliteral">\t\t# include /etc/nginx/naxsi.rules\n\</span></div>
-<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
-<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;<span class="stringliteral">\t# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests\n\</span></div>
-<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="stringliteral">\t#location /RequestDenied {{\n\</span></div>
-<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="stringliteral">\t\t#proxy_pass http://127.0.0.1:{0};\n\</span></div>
-<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;<span class="stringliteral">\t#}}\n\</span></div>
-<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="stringliteral">\t#error_page 404 /404.html;\n\</span></div>
-<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="stringliteral">\t# redirect server error pages to the static page /50x.html\n\</span></div>
-<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="stringliteral">\t#\n\</span></div>
-<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="stringliteral">\t#error_page 500 502 503 504 /50x.html;\n\</span></div>
-<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;<span class="stringliteral">\t#location = /50x.html {{\n\</span></div>
-<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="stringliteral">\t\t#root /usr/share/nginx/html;\n\</span></div>
-<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;<span class="stringliteral">\t#}}\n\</span></div>
-<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;<span class="stringliteral">\n\</span></div>
-<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="stringliteral">\t# deny access to .htaccess files, if Apache\&#39;s document root\n\</span></div>
-<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;<span class="stringliteral">\t# concurs with nginx\&#39;s one\n\</span></div>
-<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;<span class="stringliteral">\t#\n\</span></div>
-<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="stringliteral">\tlocation ~ /\.ht {{\n\</span></div>
-<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="stringliteral">\t\tdeny all;\n\</span></div>
-<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
-<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;<span class="stringliteral">}}\n&#39;</span>.format(proxy))</div>
-<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;            shell.shell(<span class="stringliteral">&#39;sudo mv -u /tmp/nginx-{0} {1}&#39;</span>.format(site_name, cls._site_avail_path(site_name)))</div>
-<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;            </div>
-<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;            <span class="comment"># Setup and run uWSGI gateway</span></div>
-<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;            <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;                www.uwsgi.run(site, upstream, gateway=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;            </div>
-<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            shell.symlink(cls._site_avail_path(site_name), cls._site_enable_path())</div>
-<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;            </div>
-<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;            <span class="comment"># Restart nginx server</span></div>
-<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            shell.restart_init_service(<span class="stringliteral">&#39;nginx&#39;</span>)</div>
+<div class="line"><a name="l00627"></a><span class="lineno">  627</span>&#160;<span class="stringliteral">\tcharset utf-8;\n\</span></div>
+<div class="line"><a name="l00628"></a><span class="lineno">  628</span>&#160;<span class="stringliteral">\tclient_max_body_size 75M; # max upload size\n\</span></div>
+<div class="line"><a name="l00629"></a><span class="lineno">  629</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00630"></a><span class="lineno">  630</span>&#160;<span class="stringliteral">\t# static files requests\n\</span></div>
+<div class="line"><a name="l00631"></a><span class="lineno">  631</span>&#160;<span class="stringliteral">\t# Images, CSS, JavaScript, Video, etc.\n\</span></div>
+<div class="line"><a name="l00632"></a><span class="lineno">  632</span>&#160;<span class="stringliteral">\tlocation ~ ^/(images|css|js|media|static)/ {{\n\</span></div>
+<div class="line"><a name="l00633"></a><span class="lineno">  633</span>&#160;<span class="stringliteral">\t\troot {2};\n\</span></div>
+<div class="line"><a name="l00634"></a><span class="lineno">  634</span>&#160;<span class="stringliteral">\t\taccess_log off;\n\</span></div>
+<div class="line"><a name="l00635"></a><span class="lineno">  635</span>&#160;<span class="stringliteral">\t\texpires 30d;\n\</span></div>
+<div class="line"><a name="l00636"></a><span class="lineno">  636</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
+<div class="line"><a name="l00637"></a><span class="lineno">  637</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00638"></a><span class="lineno">  638</span>&#160;<span class="stringliteral">\tlocation / {{\n&#39;</span>.format(port, name, os.path.join(www.root, site_name)))</div>
+<div class="line"><a name="l00639"></a><span class="lineno">  639</span>&#160;                <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00640"></a><span class="lineno">  640</span>&#160;                    f.write(<span class="stringliteral">&#39;\t\t# Pass non-static requests to uWSGI gateway\n\</span></div>
+<div class="line"><a name="l00641"></a><span class="lineno">  641</span>&#160;<span class="stringliteral">\t\tuwsgi_pass uwsgi_host;\n\</span></div>
+<div class="line"><a name="l00642"></a><span class="lineno">  642</span>&#160;<span class="stringliteral">\t\tinclude {0};\n\</span></div>
+<div class="line"><a name="l00643"></a><span class="lineno">  643</span>&#160;<span class="stringliteral">\n&#39;</span>.format(cls.uwsgi_params_path))</div>
+<div class="line"><a name="l00644"></a><span class="lineno">  644</span>&#160;</div>
+<div class="line"><a name="l00645"></a><span class="lineno">  645</span>&#160;                f.write(<span class="stringliteral">&#39;\t\t# First attempt to serve request as file, then\n\</span></div>
+<div class="line"><a name="l00646"></a><span class="lineno">  646</span>&#160;<span class="stringliteral">\t\t# as directory, then fall back to displaying a 404.\n\</span></div>
+<div class="line"><a name="l00647"></a><span class="lineno">  647</span>&#160;<span class="stringliteral">\t\ttry_files $uri $uri/ =404;\n\</span></div>
+<div class="line"><a name="l00648"></a><span class="lineno">  648</span>&#160;<span class="stringliteral">\t\t# Uncomment to enable naxsi on this location\n\</span></div>
+<div class="line"><a name="l00649"></a><span class="lineno">  649</span>&#160;<span class="stringliteral">\t\t# include /etc/nginx/naxsi.rules\n\</span></div>
+<div class="line"><a name="l00650"></a><span class="lineno">  650</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
+<div class="line"><a name="l00651"></a><span class="lineno">  651</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00652"></a><span class="lineno">  652</span>&#160;<span class="stringliteral">\t# Only for nginx-naxsi used with nginx-naxsi-ui : process denied requests\n\</span></div>
+<div class="line"><a name="l00653"></a><span class="lineno">  653</span>&#160;<span class="stringliteral">\t#location /RequestDenied {{\n\</span></div>
+<div class="line"><a name="l00654"></a><span class="lineno">  654</span>&#160;<span class="stringliteral">\t\t#proxy_pass http://127.0.0.1:{0};\n\</span></div>
+<div class="line"><a name="l00655"></a><span class="lineno">  655</span>&#160;<span class="stringliteral">\t#}}\n\</span></div>
+<div class="line"><a name="l00656"></a><span class="lineno">  656</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00657"></a><span class="lineno">  657</span>&#160;<span class="stringliteral">\t#error_page 404 /404.html;\n\</span></div>
+<div class="line"><a name="l00658"></a><span class="lineno">  658</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00659"></a><span class="lineno">  659</span>&#160;<span class="stringliteral">\t# redirect server error pages to the static page /50x.html\n\</span></div>
+<div class="line"><a name="l00660"></a><span class="lineno">  660</span>&#160;<span class="stringliteral">\t#\n\</span></div>
+<div class="line"><a name="l00661"></a><span class="lineno">  661</span>&#160;<span class="stringliteral">\t#error_page 500 502 503 504 /50x.html;\n\</span></div>
+<div class="line"><a name="l00662"></a><span class="lineno">  662</span>&#160;<span class="stringliteral">\t#location = /50x.html {{\n\</span></div>
+<div class="line"><a name="l00663"></a><span class="lineno">  663</span>&#160;<span class="stringliteral">\t\t#root /usr/share/nginx/html;\n\</span></div>
+<div class="line"><a name="l00664"></a><span class="lineno">  664</span>&#160;<span class="stringliteral">\t#}}\n\</span></div>
+<div class="line"><a name="l00665"></a><span class="lineno">  665</span>&#160;<span class="stringliteral">\n\</span></div>
+<div class="line"><a name="l00666"></a><span class="lineno">  666</span>&#160;<span class="stringliteral">\t# deny access to .htaccess files, if Apache\&#39;s document root\n\</span></div>
+<div class="line"><a name="l00667"></a><span class="lineno">  667</span>&#160;<span class="stringliteral">\t# concurs with nginx\&#39;s one\n\</span></div>
+<div class="line"><a name="l00668"></a><span class="lineno">  668</span>&#160;<span class="stringliteral">\t#\n\</span></div>
+<div class="line"><a name="l00669"></a><span class="lineno">  669</span>&#160;<span class="stringliteral">\tlocation ~ /\.ht {{\n\</span></div>
+<div class="line"><a name="l00670"></a><span class="lineno">  670</span>&#160;<span class="stringliteral">\t\tdeny all;\n\</span></div>
+<div class="line"><a name="l00671"></a><span class="lineno">  671</span>&#160;<span class="stringliteral">\t}}\n\</span></div>
+<div class="line"><a name="l00672"></a><span class="lineno">  672</span>&#160;<span class="stringliteral">}}\n&#39;</span>.format(proxy))</div>
+<div class="line"><a name="l00673"></a><span class="lineno">  673</span>&#160;            shell.shell(<span class="stringliteral">&#39;sudo mv -u /tmp/nginx-{0} {1}&#39;</span>.format(site_name, cls._site_avail_path(site_name)))</div>
+<div class="line"><a name="l00674"></a><span class="lineno">  674</span>&#160;            </div>
+<div class="line"><a name="l00675"></a><span class="lineno">  675</span>&#160;            <span class="comment"># Setup and run uWSGI gateway</span></div>
+<div class="line"><a name="l00676"></a><span class="lineno">  676</span>&#160;            <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00677"></a><span class="lineno">  677</span>&#160;                www.uwsgi.run(site, upstream, gateway=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00678"></a><span class="lineno">  678</span>&#160;            </div>
+<div class="line"><a name="l00679"></a><span class="lineno">  679</span>&#160;            shell.symlink(cls._site_avail_path(site_name), cls._site_enable_path())</div>
 <div class="line"><a name="l00680"></a><span class="lineno">  680</span>&#160;            </div>
-<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            </div>
-<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;        <span class="comment">## Disable nginx server</span></div>
-<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;        <span class="comment">#</span></div>
-<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;        <span class="comment"># @param site site path</span></div>
-<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        <span class="comment"># @param upstream upstream host address (uWSGI gateway)</span></div>
-<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` or `sudo /etc/init.d` error</span></div>
-<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        @classmethod</div>
-<div class="line"><a name="l00688"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">  688</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">disable</a>(cls, site=None, upstream=None):</div>
-<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;            shell.remove(cls._site_enable_path())</div>
-<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;            </div>
-<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;            <span class="comment"># Stop uWSGI gateway</span></div>
-<div class="line"><a name="l00692"></a><span class="lineno">  692</span>&#160;            <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;                www.uwsgi.stop(site)</div>
-<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                </div>
-<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;            <span class="comment"># Restart nginx server</span></div>
-<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;            shell.restart_init_service(<span class="stringliteral">&#39;nginx&#39;</span>)</div>
-<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;        </div>
-<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;        </div>
-<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;        <span class="comment">## Return path of available site by name</span></div>
-<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;        <span class="comment">#</span></div>
-<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;        <span class="comment"># @param site_name site name</span></div>
-<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;        <span class="comment"># @return path of given site</span></div>
-<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;        @classmethod</div>
-<div class="line"><a name="l00704"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">  704</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">_site_avail_path</a>(cls, site_name):</div>
-<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;            <span class="keywordflow">return</span> os.path.join(cls.site_avail_root, site_name)</div>
-<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        </div>
-<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;       </div>
-<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        <span class="comment">## Return path of enabled site by name</span></div>
-<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        <span class="comment">#</span></div>
-<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        <span class="comment"># @param site_name site name</span></div>
-<div class="line"><a name="l00711"></a><span class="lineno">  711</span>&#160;        <span class="comment"># @return path of given site</span></div>
-<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;        @classmethod</div>
-<div class="line"><a name="l00713"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">  713</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">_site_enable_path</a>(cls, site_name=None):</div>
-<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;            <span class="keywordflow">if</span> site_name <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
-<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;                site_name = <span class="stringliteral">&#39;default&#39;</span></div>
-<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;            <span class="keywordflow">return</span> os.path.join(cls.site_enable_root, site_name)</div>
-<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;            </div>
-<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;</div>
-<div class="line"><a name="l00719"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">  719</a></span>&#160;<span class="keyword">def </span><a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=False):</div>
-<div class="line"><a name="l00720"></a><span class="lineno">  720</span>&#160;    <span class="stringliteral">&#39;&#39;&#39;Setup Linux.</span></div>
-<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;<span class="stringliteral">    </span></div>
-<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;<span class="stringliteral">    @param quick True if quick setup.</span></div>
-<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;<span class="stringliteral">    @todo Git under Proxy</span></div>
-<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;<span class="stringliteral">    &#39;&#39;&#39;</span></div>
-<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;    <span class="comment"># Determine current system type</span></div>
-<div class="line"><a name="l00726"></a><span class="lineno">  726</span>&#160;    sys_type = platform.system()</div>
-<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    <span class="keywordflow">if</span> sys_type == <span class="stringliteral">&#39;Linux&#39;</span>:</div>
-<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;        linux_distribution = platform.linux_distribution()</div>
-<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;        sys_type += (<span class="stringliteral">&#39;/&#39;</span> + linux_distribution[0])</div>
-<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;        <span class="keywordflow">if</span> sys_type.endswith(<span class="stringliteral">&#39;Ubuntu&#39;</span>):  <span class="comment"># Linux/Ubuntu</span></div>
-<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;            <span class="keywordflow">if</span> float(linux_distribution[1]) &gt;= 14.04:</div>
-<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;                <span class="comment"># Ubuntu 14.04 specific features here</span></div>
-<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;                <span class="keywordflow">pass</span></div>
-<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        sys.exit(<span class="stringliteral">&#39;Unsupported system {0}&#39;</span>.format(sys_type))</div>
-<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        </div>
-<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;    <span class="keywordflow">if</span> sys_type.endswith(<span class="stringliteral">&#39;Ubuntu&#39;</span>):</div>
-<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;        <span class="comment"># Install/Update core packages</span></div>
-<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;            <span class="comment"># Skip updating index files of package system to reduce</span></div>
-<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;            <span class="comment"># testing time.</span></div>
-<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> quick:</div>
-<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;                shell.shell(<span class="stringliteral">&#39;sudo apt-get update&#39;</span>)</div>
-<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;</div>
-<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;            pkgs = [<span class="stringliteral">&#39;sudo&#39;</span>, <span class="stringliteral">&#39;apt&#39;</span>, <span class="stringliteral">&#39;apt-utils&#39;</span>, \</div>
-<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;                    <span class="stringliteral">&#39;bash&#39;</span>, <span class="stringliteral">&#39;python&#39;</span>, <span class="stringliteral">&#39;coreutils&#39;</span>, \</div>
-<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;                    <span class="stringliteral">&#39;vim&#39;</span>, <span class="stringliteral">&#39;git&#39;</span>, <span class="stringliteral">&#39;doxygen&#39;</span>, <span class="stringliteral">&#39;wget&#39;</span>, \</div>
-<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;                    <span class="stringliteral">&#39;nginx&#39;</span>, <span class="stringliteral">&#39;build-essential&#39;</span>, </div>
-<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;                    <span class="stringliteral">&#39;python-pip&#39;</span>, <span class="stringliteral">&#39;python-dev&#39;</span>, <span class="stringliteral">&#39;python-virtualenv&#39;</span>]</div>
-<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;            pip_pkgs = [<span class="stringliteral">&#39;Django&#39;</span>, <span class="stringliteral">&#39;uwsgi&#39;</span>]</div>
-<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;            shell.shell(<span class="stringliteral">&#39;sudo apt-get install &#39;</span> + <span class="stringliteral">&#39; &#39;</span>.join(pkgs))</div>
-<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;            </div>
-<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;            <span class="comment"># Skip updating pip packages to reduce testing time.</span></div>
-<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> quick:</div>
-<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                <span class="keywordflow">for</span> p <span class="keywordflow">in</span> pip_pkgs:</div>
-<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                    shell.shell(<span class="stringliteral">&#39;sudo pip install --upgrade &#39;</span> + p)</div>
-<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;        <span class="keywordflow">except</span> AdminError <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;            sys.exit(<span class="stringliteral">&#39;Failed to install core packages: {0}&#39;</span>.format(e))</div>
-<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;        print(<span class="stringliteral">&#39;System updated [OK]&#39;</span>)</div>
-<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            </div>
-<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;        vimrc_ok = <span class="keyword">False</span></div>
-<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;        git_ok = <span class="keyword">False</span></div>
-<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;            </div>
-<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        <span class="comment"># Symbolic link vimrc, backup it if already existing.</span></div>
-<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;        print(<span class="stringliteral">&#39;\n*** vimrc ***&#39;</span>)</div>
-<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        vimrc = os.path.expanduser(<span class="stringliteral">&#39;~/.vimrc&#39;</span>)</div>
-<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;            <span class="keywordflow">if</span> os.path.lexists(vimrc):</div>
-<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;                old_vimrc = vimrc + <span class="stringliteral">&#39;.old&#39;</span></div>
-<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;                shell.remove(old_vimrc)</div>
-<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;                os.rename(vimrc, old_vimrc)</div>
-<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;            myvimrc = os.path.join(os.getcwd(), <span class="stringliteral">&#39;_setup&#39;</span>, <span class="stringliteral">&#39;vimrc&#39;</span>)</div>
-<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;            shell.symlink(myvimrc, vimrc)</div>
-<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;            vimrc_ok = <span class="keyword">True</span></div>
-<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            print(<span class="stringliteral">&#39;Vimrc [OK]&#39;</span>)</div>
-<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;        <span class="keywordflow">except</span> OSError <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;            print(<span class="stringliteral">&#39;Vimrc [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
-<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;            </div>
-<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;        <span class="comment"># Configure bashrc</span></div>
-<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;        <span class="keyword">def </span>_set_EDITOR_to_Vim(vim_ok):</div>
-<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;            <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;                with open(os.path.expanduser(<span class="stringliteral">&#39;~/.bashrc&#39;</span>), <span class="stringliteral">&#39;a&#39;</span>) <span class="keyword">as</span> f:</div>
-<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;                    <span class="keywordflow">if</span> vimrc_ok:</div>
-<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;                        <span class="comment"># Set default editor to Vim</span></div>
-<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;                        f.write(<span class="stringliteral">&#39;\nexport EDITOR=vim&#39;</span>)</div>
-<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;                        print(<span class="stringliteral">&#39;Set default editor to Vim [OK]&#39;</span>)</div>
-<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;                    shell.shell(<span class="stringliteral">&#39;. ~/.bashrc&#39;</span>)</div>
-<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;            <span class="keywordflow">except</span> IOError <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;                print(<span class="stringliteral">&#39;Failed to set default editor to Vim: {0}&#39;</span>.format(e), file=sys.stderr)</div>
-<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;            <span class="keywordflow">except</span> subprocess.CalledProcessError <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;                print(<span class="stringliteral">&#39;Failed to reload bashrc: {0}&#39;</span>.format(e), file=sys.stderr)</div>
-<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;</div>
-<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;            <span class="keywordflow">if</span> os.environ[<span class="stringliteral">&#39;EDITOR&#39;</span>] != <span class="stringliteral">&#39;vim&#39;</span>:</div>
-<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;                _set_EDITOR_to_Vim(vim_ok)</div>
-<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;        <span class="keywordflow">except</span> KeyError:</div>
-<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;            _set_EDITOR_to_Vim(vim_ok)</div>
-<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                        </div>
-<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;        <span class="comment"># Configure Git</span></div>
-<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        <span class="comment">#</span></div>
-<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;        <span class="comment"># @see http://www.git-scm.com/book/</span></div>
-<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;        <span class="comment"># @see http://gitref.org/</span></div>
-<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;        <span class="comment"># @since Git 1.7</span></div>
-<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;        print(<span class="stringliteral">&#39;\n*** Git ***&#39;</span>)</div>
-<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;        <span class="keyword">def </span>_git_config(conf):</div>
-<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;            shell.shell(<span class="stringliteral">&#39;git config &#39;</span> + conf)</div>
-<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        <span class="keyword">def </span>_git_config_global(conf):</div>
-<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;            _git_config(<span class="stringliteral">&#39;--global &#39;</span>+conf)</div>
-<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;</div>
-<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.eol lf&#39;</span>)</div>
-<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.autocrlf input&#39;</span>)</div>
-<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.fileMode false&#39;</span>)</div>
-<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.ui auto&#39;</span>)</div>
-<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;            <span class="keywordflow">if</span> vimrc_ok:</div>
-<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;                _git_config_global(<span class="stringliteral">&#39;core.editor vim&#39;</span>)</div>
-<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;                _git_config_global(<span class="stringliteral">&#39;diff.tool vimdiff&#39;</span>)</div>
-<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;                _git_config_global(<span class="stringliteral">&#39;merge.tool vimdiff&#39;</span>)</div>
-<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;                </div>
-<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;            git_version = subprocess.check_output(<span class="stringliteral">&#39;git version&#39;</span>, shell=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;            git_version = git_version.decode()  <span class="comment"># byte =&gt; str</span></div>
-<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;            git_version = build.decode_version(git_version, prefix=<span class="stringliteral">&#39;git version&#39;</span>)</div>
-<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;            print(git_version, file=sys.stderr)</div>
-<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;            </div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;            <span class="comment"># Password cache (Git v1.7.10+)</span></div>
-<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;            <span class="keywordflow">if</span> build.match_version(git_version, <span class="stringliteral">&#39;1.7.10&#39;</span>):</div>
-<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;                _git_config_global(<span class="stringliteral">&#39;credential.helper &quot;cache --timeout=3600&quot;&#39;</span>)</div>
-<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;            </div>
-<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;            <span class="comment"># Push default</span></div>
-<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;            <span class="keywordflow">if</span> build.match_version(git_version, <span class="stringliteral">&#39;1.7.11&#39;</span>):</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;                _git_config_global(<span class="stringliteral">&#39;push.default simple&#39;</span>)</div>
-<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;                _git_config_global(<span class="stringliteral">&#39;push.default upstream&#39;</span>)</div>
-<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;              </div>
-<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;            <span class="comment"># TODO: Git under Proxy              </span></div>
-<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;            <span class="comment"># sudo git config --system http.proxy http://&lt;proxy-hostname&gt;:&lt;proxy-port&gt;&quot;</span></div>
-<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;            </div>
-<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;            git_ok = <span class="keyword">True</span></div>
-<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;            git_conf = subprocess.check_output(<span class="stringliteral">&#39;git config --list&#39;</span>, shell=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;            git_conf.strip()</div>
-<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;            git_conf = git_conf.decode()</div>
-<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;            print(git_conf)</div>
-<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;            print(<span class="stringliteral">&#39;Git [OK]&#39;</span>)</div>
-<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;        <span class="keywordflow">except</span> (subprocess.CalledProcessError, AdminError) <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;            print(<span class="stringliteral">&#39;Git [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
-<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;            </div>
-<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;        <span class="comment"># Configure WWW</span></div>
-<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;        <span class="keywordflow">try</span>:</div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;            www.setup()</div>
-<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;            print(<span class="stringliteral">&#39;WWW [OK]&#39;</span>)</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;        <span class="keywordflow">except</span> AdminError <span class="keyword">as</span> e:</div>
-<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;            print(<span class="stringliteral">&#39;WWW [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
+<div class="line"><a name="l00681"></a><span class="lineno">  681</span>&#160;            <span class="comment"># Restart nginx server</span></div>
+<div class="line"><a name="l00682"></a><span class="lineno">  682</span>&#160;            shell.restart_init_service(<span class="stringliteral">&#39;nginx&#39;</span>)</div>
+<div class="line"><a name="l00683"></a><span class="lineno">  683</span>&#160;            </div>
+<div class="line"><a name="l00684"></a><span class="lineno">  684</span>&#160;            </div>
+<div class="line"><a name="l00685"></a><span class="lineno">  685</span>&#160;        <span class="comment">## Disable nginx server</span></div>
+<div class="line"><a name="l00686"></a><span class="lineno">  686</span>&#160;        <span class="comment">#</span></div>
+<div class="line"><a name="l00687"></a><span class="lineno">  687</span>&#160;        <span class="comment"># @param site site (absolute) path</span></div>
+<div class="line"><a name="l00688"></a><span class="lineno">  688</span>&#160;        <span class="comment"># @param upstream upstream host address (uWSGI gateway)</span></div>
+<div class="line"><a name="l00689"></a><span class="lineno">  689</span>&#160;        <span class="comment"># @exception ValueError - site name NOT absolute path</span></div>
+<div class="line"><a name="l00690"></a><span class="lineno">  690</span>&#160;        <span class="comment"># @exception AdminError(subprocess.CalledProcessError) - shell `sudo ln -sf` or `sudo /etc/init.d` error</span></div>
+<div class="line"><a name="l00691"></a><span class="lineno">  691</span>&#160;        @classmethod</div>
+<div class="line"><a name="l00692"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">  692</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">disable</a>(cls, site=None, upstream=None):</div>
+<div class="line"><a name="l00693"></a><span class="lineno">  693</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> site.startswith(<span class="stringliteral">&#39;/&#39;</span>):</div>
+<div class="line"><a name="l00694"></a><span class="lineno">  694</span>&#160;                <span class="keywordflow">raise</span> ValueError(<span class="stringliteral">&#39;site name should be absolute path&#39;</span>)</div>
+<div class="line"><a name="l00695"></a><span class="lineno">  695</span>&#160;                </div>
+<div class="line"><a name="l00696"></a><span class="lineno">  696</span>&#160;            shell.remove(cls._site_enable_path())</div>
+<div class="line"><a name="l00697"></a><span class="lineno">  697</span>&#160;            </div>
+<div class="line"><a name="l00698"></a><span class="lineno">  698</span>&#160;            <span class="comment"># Stop uWSGI gateway</span></div>
+<div class="line"><a name="l00699"></a><span class="lineno">  699</span>&#160;            <span class="keywordflow">if</span> upstream <span class="keywordflow">is</span> <span class="keywordflow">not</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00700"></a><span class="lineno">  700</span>&#160;                www.uwsgi.stop(site)</div>
+<div class="line"><a name="l00701"></a><span class="lineno">  701</span>&#160;                </div>
+<div class="line"><a name="l00702"></a><span class="lineno">  702</span>&#160;            <span class="comment"># Restart nginx server</span></div>
+<div class="line"><a name="l00703"></a><span class="lineno">  703</span>&#160;            shell.restart_init_service(<span class="stringliteral">&#39;nginx&#39;</span>)</div>
+<div class="line"><a name="l00704"></a><span class="lineno">  704</span>&#160;        </div>
+<div class="line"><a name="l00705"></a><span class="lineno">  705</span>&#160;        </div>
+<div class="line"><a name="l00706"></a><span class="lineno">  706</span>&#160;        <span class="comment">## Return path of available site by name</span></div>
+<div class="line"><a name="l00707"></a><span class="lineno">  707</span>&#160;        <span class="comment">#</span></div>
+<div class="line"><a name="l00708"></a><span class="lineno">  708</span>&#160;        <span class="comment"># @param site_name site name</span></div>
+<div class="line"><a name="l00709"></a><span class="lineno">  709</span>&#160;        <span class="comment"># @return path of given site</span></div>
+<div class="line"><a name="l00710"></a><span class="lineno">  710</span>&#160;        @classmethod</div>
+<div class="line"><a name="l00711"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">  711</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">_site_avail_path</a>(cls, site_name):</div>
+<div class="line"><a name="l00712"></a><span class="lineno">  712</span>&#160;            <span class="keywordflow">return</span> os.path.join(cls.site_avail_root, site_name)</div>
+<div class="line"><a name="l00713"></a><span class="lineno">  713</span>&#160;        </div>
+<div class="line"><a name="l00714"></a><span class="lineno">  714</span>&#160;       </div>
+<div class="line"><a name="l00715"></a><span class="lineno">  715</span>&#160;        <span class="comment">## Return path of enabled site by name</span></div>
+<div class="line"><a name="l00716"></a><span class="lineno">  716</span>&#160;        <span class="comment">#</span></div>
+<div class="line"><a name="l00717"></a><span class="lineno">  717</span>&#160;        <span class="comment"># @param site_name site name</span></div>
+<div class="line"><a name="l00718"></a><span class="lineno">  718</span>&#160;        <span class="comment"># @return path of given site</span></div>
+<div class="line"><a name="l00719"></a><span class="lineno">  719</span>&#160;        @classmethod</div>
+<div class="line"><a name="l00720"></a><span class="lineno"><a class="line" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">  720</a></span>&#160;        <span class="keyword">def </span><a class="code" href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">_site_enable_path</a>(cls, site_name=None):</div>
+<div class="line"><a name="l00721"></a><span class="lineno">  721</span>&#160;            <span class="keywordflow">if</span> site_name <span class="keywordflow">is</span> <span class="keywordtype">None</span>:</div>
+<div class="line"><a name="l00722"></a><span class="lineno">  722</span>&#160;                site_name = <span class="stringliteral">&#39;default&#39;</span></div>
+<div class="line"><a name="l00723"></a><span class="lineno">  723</span>&#160;            <span class="keywordflow">return</span> os.path.join(cls.site_enable_root, site_name)</div>
+<div class="line"><a name="l00724"></a><span class="lineno">  724</span>&#160;            </div>
+<div class="line"><a name="l00725"></a><span class="lineno">  725</span>&#160;</div>
+<div class="line"><a name="l00726"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">  726</a></span>&#160;<span class="keyword">def </span><a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=False):</div>
+<div class="line"><a name="l00727"></a><span class="lineno">  727</span>&#160;    <span class="stringliteral">&#39;&#39;&#39;Setup Linux.</span></div>
+<div class="line"><a name="l00728"></a><span class="lineno">  728</span>&#160;<span class="stringliteral">    </span></div>
+<div class="line"><a name="l00729"></a><span class="lineno">  729</span>&#160;<span class="stringliteral">    @param quick True if quick setup.</span></div>
+<div class="line"><a name="l00730"></a><span class="lineno">  730</span>&#160;<span class="stringliteral">    @todo Git under Proxy</span></div>
+<div class="line"><a name="l00731"></a><span class="lineno">  731</span>&#160;<span class="stringliteral">    &#39;&#39;&#39;</span></div>
+<div class="line"><a name="l00732"></a><span class="lineno">  732</span>&#160;    <span class="comment"># Determine current system type</span></div>
+<div class="line"><a name="l00733"></a><span class="lineno">  733</span>&#160;    sys_type = platform.system()</div>
+<div class="line"><a name="l00734"></a><span class="lineno">  734</span>&#160;    <span class="keywordflow">if</span> sys_type == <span class="stringliteral">&#39;Linux&#39;</span>:</div>
+<div class="line"><a name="l00735"></a><span class="lineno">  735</span>&#160;        linux_distribution = platform.linux_distribution()</div>
+<div class="line"><a name="l00736"></a><span class="lineno">  736</span>&#160;        sys_type += (<span class="stringliteral">&#39;/&#39;</span> + linux_distribution[0])</div>
+<div class="line"><a name="l00737"></a><span class="lineno">  737</span>&#160;        <span class="keywordflow">if</span> sys_type.endswith(<span class="stringliteral">&#39;Ubuntu&#39;</span>):  <span class="comment"># Linux/Ubuntu</span></div>
+<div class="line"><a name="l00738"></a><span class="lineno">  738</span>&#160;            <span class="keywordflow">if</span> float(linux_distribution[1]) &gt;= 14.04:</div>
+<div class="line"><a name="l00739"></a><span class="lineno">  739</span>&#160;                <span class="comment"># Ubuntu 14.04 specific features here</span></div>
+<div class="line"><a name="l00740"></a><span class="lineno">  740</span>&#160;                <span class="keywordflow">pass</span></div>
+<div class="line"><a name="l00741"></a><span class="lineno">  741</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00742"></a><span class="lineno">  742</span>&#160;        sys.exit(<span class="stringliteral">&#39;Unsupported system {0}&#39;</span>.format(sys_type))</div>
+<div class="line"><a name="l00743"></a><span class="lineno">  743</span>&#160;        </div>
+<div class="line"><a name="l00744"></a><span class="lineno">  744</span>&#160;    <span class="keywordflow">if</span> sys_type.endswith(<span class="stringliteral">&#39;Ubuntu&#39;</span>):</div>
+<div class="line"><a name="l00745"></a><span class="lineno">  745</span>&#160;        <span class="comment"># Install/Update core packages</span></div>
+<div class="line"><a name="l00746"></a><span class="lineno">  746</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00747"></a><span class="lineno">  747</span>&#160;            <span class="comment"># Skip updating index files of package system to reduce</span></div>
+<div class="line"><a name="l00748"></a><span class="lineno">  748</span>&#160;            <span class="comment"># testing time.</span></div>
+<div class="line"><a name="l00749"></a><span class="lineno">  749</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> quick:</div>
+<div class="line"><a name="l00750"></a><span class="lineno">  750</span>&#160;                shell.shell(<span class="stringliteral">&#39;sudo apt-get update&#39;</span>)</div>
+<div class="line"><a name="l00751"></a><span class="lineno">  751</span>&#160;</div>
+<div class="line"><a name="l00752"></a><span class="lineno">  752</span>&#160;            pkgs = [<span class="stringliteral">&#39;sudo&#39;</span>, <span class="stringliteral">&#39;apt&#39;</span>, <span class="stringliteral">&#39;apt-utils&#39;</span>, \</div>
+<div class="line"><a name="l00753"></a><span class="lineno">  753</span>&#160;                    <span class="stringliteral">&#39;bash&#39;</span>, <span class="stringliteral">&#39;python3&#39;</span>, <span class="stringliteral">&#39;coreutils&#39;</span>, \</div>
+<div class="line"><a name="l00754"></a><span class="lineno">  754</span>&#160;                    <span class="stringliteral">&#39;vim&#39;</span>, <span class="stringliteral">&#39;git&#39;</span>, <span class="stringliteral">&#39;doxygen&#39;</span>, <span class="stringliteral">&#39;wget&#39;</span>, \</div>
+<div class="line"><a name="l00755"></a><span class="lineno">  755</span>&#160;                    <span class="stringliteral">&#39;nginx&#39;</span>, <span class="stringliteral">&#39;build-essential&#39;</span>, </div>
+<div class="line"><a name="l00756"></a><span class="lineno">  756</span>&#160;                    <span class="stringliteral">&#39;python3-pip&#39;</span>, <span class="stringliteral">&#39;python3-dev&#39;</span>]</div>
+<div class="line"><a name="l00757"></a><span class="lineno">  757</span>&#160;            shell.shell(<span class="stringliteral">&#39;sudo apt-get install &#39;</span> + <span class="stringliteral">&#39; &#39;</span>.join(pkgs))</div>
+<div class="line"><a name="l00758"></a><span class="lineno">  758</span>&#160;            </div>
+<div class="line"><a name="l00759"></a><span class="lineno">  759</span>&#160;            <span class="comment"># Skip updating pip packages to reduce testing time.</span></div>
+<div class="line"><a name="l00760"></a><span class="lineno">  760</span>&#160;            <span class="keywordflow">if</span> <span class="keywordflow">not</span> quick:</div>
+<div class="line"><a name="l00761"></a><span class="lineno">  761</span>&#160;                pip_pkgs = [<span class="stringliteral">&#39;virtualenv&#39;</span>, <span class="stringliteral">&#39;Django&#39;</span>, <span class="stringliteral">&#39;uwsgi&#39;</span>]</div>
+<div class="line"><a name="l00762"></a><span class="lineno">  762</span>&#160;                <span class="keywordflow">for</span> p <span class="keywordflow">in</span> pip_pkgs:</div>
+<div class="line"><a name="l00763"></a><span class="lineno">  763</span>&#160;                    shell.shell(<span class="stringliteral">&#39;sudo pip3 install --upgrade &#39;</span> + p)</div>
+<div class="line"><a name="l00764"></a><span class="lineno">  764</span>&#160;        <span class="keywordflow">except</span> AdminError <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00765"></a><span class="lineno">  765</span>&#160;            sys.exit(<span class="stringliteral">&#39;Failed to install core packages: {0}&#39;</span>.format(e))</div>
+<div class="line"><a name="l00766"></a><span class="lineno">  766</span>&#160;        print(<span class="stringliteral">&#39;System updated [OK]&#39;</span>)</div>
+<div class="line"><a name="l00767"></a><span class="lineno">  767</span>&#160;            </div>
+<div class="line"><a name="l00768"></a><span class="lineno">  768</span>&#160;        vimrc_ok = <span class="keyword">False</span></div>
+<div class="line"><a name="l00769"></a><span class="lineno">  769</span>&#160;        git_ok = <span class="keyword">False</span></div>
+<div class="line"><a name="l00770"></a><span class="lineno">  770</span>&#160;            </div>
+<div class="line"><a name="l00771"></a><span class="lineno">  771</span>&#160;        <span class="comment"># Symbolic link vimrc, backup it if already existing.</span></div>
+<div class="line"><a name="l00772"></a><span class="lineno">  772</span>&#160;        print(<span class="stringliteral">&#39;\n*** vimrc ***&#39;</span>)</div>
+<div class="line"><a name="l00773"></a><span class="lineno">  773</span>&#160;        vimrc = os.path.expanduser(<span class="stringliteral">&#39;~/.vimrc&#39;</span>)</div>
+<div class="line"><a name="l00774"></a><span class="lineno">  774</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00775"></a><span class="lineno">  775</span>&#160;            <span class="keywordflow">if</span> os.path.lexists(vimrc):</div>
+<div class="line"><a name="l00776"></a><span class="lineno">  776</span>&#160;                old_vimrc = vimrc + <span class="stringliteral">&#39;.old&#39;</span></div>
+<div class="line"><a name="l00777"></a><span class="lineno">  777</span>&#160;                shell.remove(old_vimrc)</div>
+<div class="line"><a name="l00778"></a><span class="lineno">  778</span>&#160;                os.rename(vimrc, old_vimrc)</div>
+<div class="line"><a name="l00779"></a><span class="lineno">  779</span>&#160;            myvimrc = os.path.join(os.getcwd(), <span class="stringliteral">&#39;_setup&#39;</span>, <span class="stringliteral">&#39;vimrc&#39;</span>)</div>
+<div class="line"><a name="l00780"></a><span class="lineno">  780</span>&#160;            shell.symlink(myvimrc, vimrc)</div>
+<div class="line"><a name="l00781"></a><span class="lineno">  781</span>&#160;            vimrc_ok = <span class="keyword">True</span></div>
+<div class="line"><a name="l00782"></a><span class="lineno">  782</span>&#160;            print(<span class="stringliteral">&#39;Vimrc [OK]&#39;</span>)</div>
+<div class="line"><a name="l00783"></a><span class="lineno">  783</span>&#160;        <span class="keywordflow">except</span> OSError <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00784"></a><span class="lineno">  784</span>&#160;            print(<span class="stringliteral">&#39;Vimrc [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
+<div class="line"><a name="l00785"></a><span class="lineno">  785</span>&#160;            </div>
+<div class="line"><a name="l00786"></a><span class="lineno">  786</span>&#160;        <span class="comment"># Configure bashrc</span></div>
+<div class="line"><a name="l00787"></a><span class="lineno">  787</span>&#160;        <span class="keyword">def </span>_set_EDITOR_to_Vim(vim_ok):</div>
+<div class="line"><a name="l00788"></a><span class="lineno">  788</span>&#160;            <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00789"></a><span class="lineno">  789</span>&#160;                with open(os.path.expanduser(<span class="stringliteral">&#39;~/.bashrc&#39;</span>), <span class="stringliteral">&#39;a&#39;</span>) <span class="keyword">as</span> f:</div>
+<div class="line"><a name="l00790"></a><span class="lineno">  790</span>&#160;                    <span class="keywordflow">if</span> vimrc_ok:</div>
+<div class="line"><a name="l00791"></a><span class="lineno">  791</span>&#160;                        <span class="comment"># Set default editor to Vim</span></div>
+<div class="line"><a name="l00792"></a><span class="lineno">  792</span>&#160;                        f.write(<span class="stringliteral">&#39;\nexport EDITOR=vim&#39;</span>)</div>
+<div class="line"><a name="l00793"></a><span class="lineno">  793</span>&#160;                        print(<span class="stringliteral">&#39;Set default editor to Vim [OK]&#39;</span>)</div>
+<div class="line"><a name="l00794"></a><span class="lineno">  794</span>&#160;                    shell.shell(<span class="stringliteral">&#39;. ~/.bashrc&#39;</span>)</div>
+<div class="line"><a name="l00795"></a><span class="lineno">  795</span>&#160;            <span class="keywordflow">except</span> IOError <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00796"></a><span class="lineno">  796</span>&#160;                print(<span class="stringliteral">&#39;Failed to set default editor to Vim: {0}&#39;</span>.format(e), file=sys.stderr)</div>
+<div class="line"><a name="l00797"></a><span class="lineno">  797</span>&#160;            <span class="keywordflow">except</span> subprocess.CalledProcessError <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00798"></a><span class="lineno">  798</span>&#160;                print(<span class="stringliteral">&#39;Failed to reload bashrc: {0}&#39;</span>.format(e), file=sys.stderr)</div>
+<div class="line"><a name="l00799"></a><span class="lineno">  799</span>&#160;</div>
+<div class="line"><a name="l00800"></a><span class="lineno">  800</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00801"></a><span class="lineno">  801</span>&#160;            <span class="keywordflow">if</span> os.environ[<span class="stringliteral">&#39;EDITOR&#39;</span>] != <span class="stringliteral">&#39;vim&#39;</span>:</div>
+<div class="line"><a name="l00802"></a><span class="lineno">  802</span>&#160;                _set_EDITOR_to_Vim(vim_ok)</div>
+<div class="line"><a name="l00803"></a><span class="lineno">  803</span>&#160;        <span class="keywordflow">except</span> KeyError:</div>
+<div class="line"><a name="l00804"></a><span class="lineno">  804</span>&#160;            _set_EDITOR_to_Vim(vim_ok)</div>
+<div class="line"><a name="l00805"></a><span class="lineno">  805</span>&#160;                        </div>
+<div class="line"><a name="l00806"></a><span class="lineno">  806</span>&#160;        <span class="comment"># Configure Git</span></div>
+<div class="line"><a name="l00807"></a><span class="lineno">  807</span>&#160;        <span class="comment">#</span></div>
+<div class="line"><a name="l00808"></a><span class="lineno">  808</span>&#160;        <span class="comment"># @see http://www.git-scm.com/book/</span></div>
+<div class="line"><a name="l00809"></a><span class="lineno">  809</span>&#160;        <span class="comment"># @see http://gitref.org/</span></div>
+<div class="line"><a name="l00810"></a><span class="lineno">  810</span>&#160;        <span class="comment"># @since Git 1.7</span></div>
+<div class="line"><a name="l00811"></a><span class="lineno">  811</span>&#160;        print(<span class="stringliteral">&#39;\n*** Git ***&#39;</span>)</div>
+<div class="line"><a name="l00812"></a><span class="lineno">  812</span>&#160;        <span class="keyword">def </span>_git_config(conf):</div>
+<div class="line"><a name="l00813"></a><span class="lineno">  813</span>&#160;            shell.shell(<span class="stringliteral">&#39;git config &#39;</span> + conf)</div>
+<div class="line"><a name="l00814"></a><span class="lineno">  814</span>&#160;        <span class="keyword">def </span>_git_config_global(conf):</div>
+<div class="line"><a name="l00815"></a><span class="lineno">  815</span>&#160;            _git_config(<span class="stringliteral">&#39;--global &#39;</span>+conf)</div>
+<div class="line"><a name="l00816"></a><span class="lineno">  816</span>&#160;</div>
+<div class="line"><a name="l00817"></a><span class="lineno">  817</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00818"></a><span class="lineno">  818</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.eol lf&#39;</span>)</div>
+<div class="line"><a name="l00819"></a><span class="lineno">  819</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.autocrlf input&#39;</span>)</div>
+<div class="line"><a name="l00820"></a><span class="lineno">  820</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.fileMode false&#39;</span>)</div>
+<div class="line"><a name="l00821"></a><span class="lineno">  821</span>&#160;            _git_config_global(<span class="stringliteral">&#39;core.ui auto&#39;</span>)</div>
+<div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;            <span class="keywordflow">if</span> vimrc_ok:</div>
+<div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160;                _git_config_global(<span class="stringliteral">&#39;core.editor vim&#39;</span>)</div>
+<div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;                _git_config_global(<span class="stringliteral">&#39;diff.tool vimdiff&#39;</span>)</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;                _git_config_global(<span class="stringliteral">&#39;merge.tool vimdiff&#39;</span>)</div>
+<div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;                </div>
+<div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;            git_version = subprocess.check_output(<span class="stringliteral">&#39;git version&#39;</span>, shell=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;            git_version = git_version.decode()  <span class="comment"># byte =&gt; str</span></div>
+<div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;            git_version = build.decode_version(git_version, prefix=<span class="stringliteral">&#39;git version&#39;</span>)</div>
+<div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;            print(git_version, file=sys.stderr)</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;            </div>
+<div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;            <span class="comment"># Password cache (Git v1.7.10+)</span></div>
+<div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160;            <span class="keywordflow">if</span> build.match_version(git_version, <span class="stringliteral">&#39;1.7.10&#39;</span>):</div>
+<div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;                _git_config_global(<span class="stringliteral">&#39;credential.helper &quot;cache --timeout=3600&quot;&#39;</span>)</div>
+<div class="line"><a name="l00835"></a><span class="lineno">  835</span>&#160;            </div>
+<div class="line"><a name="l00836"></a><span class="lineno">  836</span>&#160;            <span class="comment"># Push default</span></div>
+<div class="line"><a name="l00837"></a><span class="lineno">  837</span>&#160;            <span class="keywordflow">if</span> build.match_version(git_version, <span class="stringliteral">&#39;1.7.11&#39;</span>):</div>
+<div class="line"><a name="l00838"></a><span class="lineno">  838</span>&#160;                _git_config_global(<span class="stringliteral">&#39;push.default simple&#39;</span>)</div>
+<div class="line"><a name="l00839"></a><span class="lineno">  839</span>&#160;            <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00840"></a><span class="lineno">  840</span>&#160;                _git_config_global(<span class="stringliteral">&#39;push.default upstream&#39;</span>)</div>
+<div class="line"><a name="l00841"></a><span class="lineno">  841</span>&#160;              </div>
+<div class="line"><a name="l00842"></a><span class="lineno">  842</span>&#160;            <span class="comment"># TODO: Git under Proxy              </span></div>
+<div class="line"><a name="l00843"></a><span class="lineno">  843</span>&#160;            <span class="comment"># sudo git config --system http.proxy http://&lt;proxy-hostname&gt;:&lt;proxy-port&gt;&quot;</span></div>
+<div class="line"><a name="l00844"></a><span class="lineno">  844</span>&#160;            </div>
+<div class="line"><a name="l00845"></a><span class="lineno">  845</span>&#160;            git_ok = <span class="keyword">True</span></div>
+<div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160;            git_conf = subprocess.check_output(<span class="stringliteral">&#39;git config --list&#39;</span>, shell=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;            git_conf.strip()</div>
+<div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160;            git_conf = git_conf.decode()</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;            print(git_conf)</div>
+<div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;            print(<span class="stringliteral">&#39;Git [OK]&#39;</span>)</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;        <span class="keywordflow">except</span> (subprocess.CalledProcessError, AdminError) <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;            print(<span class="stringliteral">&#39;Git [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
 <div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160;            </div>
-<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;            </div>
-<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;<span class="comment">## Configuration file.</span></div>
-<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;<span class="comment">#</span></div>
-<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;<span class="comment"># ## Usage</span></div>
-<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;<span class="comment">#</span></div>
-<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;<span class="comment"># &lt;pre&gt;&lt;code&gt;</span></div>
-<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;<span class="comment">#     import os</span></div>
-<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;<span class="comment">#     import sys</span></div>
-<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;<span class="comment">#     import admin</span></div>
+<div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;        <span class="comment"># Configure WWW</span></div>
+<div class="line"><a name="l00855"></a><span class="lineno">  855</span>&#160;        <span class="keywordflow">try</span>:</div>
+<div class="line"><a name="l00856"></a><span class="lineno">  856</span>&#160;            www.setup()</div>
+<div class="line"><a name="l00857"></a><span class="lineno">  857</span>&#160;            print(<span class="stringliteral">&#39;WWW [OK]&#39;</span>)</div>
+<div class="line"><a name="l00858"></a><span class="lineno">  858</span>&#160;        <span class="keywordflow">except</span> AdminError <span class="keyword">as</span> e:</div>
+<div class="line"><a name="l00859"></a><span class="lineno">  859</span>&#160;            print(<span class="stringliteral">&#39;WWW [FAILED]: {0}&#39;</span>.format(e), file=sys.stderr)</div>
+<div class="line"><a name="l00860"></a><span class="lineno">  860</span>&#160;            </div>
+<div class="line"><a name="l00861"></a><span class="lineno">  861</span>&#160;            </div>
+<div class="line"><a name="l00862"></a><span class="lineno">  862</span>&#160;<span class="comment">## Configuration file.</span></div>
 <div class="line"><a name="l00863"></a><span class="lineno">  863</span>&#160;<span class="comment">#</span></div>
-<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;<span class="comment">#     configs = {&#39;PROJECT_NAME&#39;: &#39;\&quot;AAA\&quot;&#39;,</span></div>
-<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;<span class="comment">#           &#39;PROJECT_NUMBER&#39;: &#39;1.2.3&#39;}</span></div>
-<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;<span class="comment">#     try:</span></div>
-<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;<span class="comment">#         with open(os.path.join(os.getcwd(), &#39;Doxyfile&#39;), &#39;r+&#39;) as f:</span></div>
-<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;<span class="comment">#             config_file = admin.ConfigFile(f)</span></div>
-<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;<span class="comment">#             config_file.set(configs)</span></div>
-<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<span class="comment">#         except IOError as e:</span></div>
-<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<span class="comment">#             print(&#39;error&#39;, file=sys.stderr)</span></div>
-<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;<span class="comment"># &lt;/code&gt;&lt;/pre&gt;</span></div>
-<div class="line"><a name="l00873"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html">  873</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html">ConfigFile</a>(object):</div>
-<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;</div>
-<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;    <span class="comment">## Parse configuration file.</span></div>
-<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;    <span class="comment">#</span></div>
-<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;    <span class="comment"># @param config_file configuration file object</span></div>
-<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;    <span class="comment"># @param sep separator for option/value pair</span></div>
-<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;    <span class="comment"># @param comments comments leading character</span></div>
-<div class="line"><a name="l00880"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">  880</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">__init__</a>(self, config_file, sep=&#39;=&#39;, comments=&#39;#&#39;):</div>
-<div class="line"><a name="l00881"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">  881</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">_config_file</a> = config_file</div>
-<div class="line"><a name="l00882"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">  882</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">_sep</a> = sep</div>
-<div class="line"><a name="l00883"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">  883</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">_comments</a> = comments</div>
-<div class="line"><a name="l00884"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">  884</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a> = OrderedDict()</div>
-<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> config_file:</div>
-<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;            <span class="comment"># Skip blank line or comments</span></div>
-<div class="line"><a name="l00887"></a><span class="lineno">  887</span>&#160;            <span class="keywordflow">if</span> line.strip() == <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">or</span> line.startswith(comments):</div>
-<div class="line"><a name="l00888"></a><span class="lineno">  888</span>&#160;                <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00889"></a><span class="lineno">  889</span>&#160;                </div>
-<div class="line"><a name="l00890"></a><span class="lineno">  890</span>&#160;            <span class="comment"># Get &quot;OPTION = value&quot;</span></div>
-<div class="line"><a name="l00891"></a><span class="lineno">  891</span>&#160;            pair = line.split(sep)</div>
-<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;            self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a>[pair[0].strip()] = pair[1].strip()</div>
-<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;                </div>
-<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;    </div>
-<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;    <span class="comment">## Get value of specific option.</span></div>
-<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;    <span class="comment">#</span></div>
-<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;    <span class="comment"># @param option option name</span></div>
-<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;    <span class="comment"># @return option value</span></div>
-<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;    <span class="comment"># @exception KeyError - no optinon exists</span></div>
-<div class="line"><a name="l00900"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">  900</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">get</a>(self, option):</div>
-<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a>[option]</div>
-<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;        </div>
-<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;        </div>
-<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;    <span class="comment">## Set value of specific option.</span></div>
-<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;    <span class="comment">#</span></div>
-<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;    <span class="comment"># @param pairs Pairs of option name-value.</span></div>
-<div class="line"><a name="l00907"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">  907</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">set</a>(self, pairs):</div>
-<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;        self._config_file.seek(0)</div>
-<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;        lines = []</div>
-<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">_config_file</a>:</div>
-<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;            <span class="comment"># Skip blank line or comments</span></div>
-<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;            <span class="keywordflow">if</span> line.strip() == <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">or</span> line.startswith(self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">_comments</a>):</div>
-<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;                lines.append(line)</div>
-<div class="line"><a name="l00914"></a><span class="lineno">  914</span>&#160;                <span class="keywordflow">continue</span></div>
-<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;                </div>
-<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;            <span class="comment"># Set option</span></div>
-<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;            pair = line.split(self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">_sep</a>)</div>
-<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;            option = pair[0].strip()</div>
-<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;            <span class="keywordflow">if</span> option <span class="keywordflow">in</span> pairs:</div>
-<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                pair[1] = <span class="stringliteral">&#39; &#39;</span> + pairs[option] + <span class="stringliteral">&#39;\n&#39;</span></div>
-<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;                line = self._sep.join(pair)</div>
-<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;                del pairs[option] <span class="comment"># Reduce size of pairs for better performance</span></div>
-<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;            </div>
-<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;            lines.append(line)</div>
-<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;        </div>
-<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;        <span class="comment"># Update configuration file</span></div>
-<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;        self._config_file.seek(0)</div>
-<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;        self._config_file.writelines(lines)</div>
-<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;            </div>
-<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;      </div>
-<div class="line"><a name="l00931"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">  931</a></span>&#160;<span class="keyword">def </span><a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>():</div>
-<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;    sys.exit(<span class="stringliteral">&#39;Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|doc&#39;</span>.format(sys.argv[0]))</div>
-<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;        </div>
-<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;                </div>
-<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
-<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;    <span class="keywordflow">if</span> len(sys.argv) &lt; 2:</div>
-<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;       <a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>()</div>
-<div class="line"><a name="l00938"></a><span class="lineno">  938</span>&#160;       </div>
-<div class="line"><a name="l00939"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a5ed72260a120fc91cfd491f424eeb883">  939</a></span>&#160;    option = sys.argv[1]</div>
-<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;</div>
-<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;    <span class="keywordflow">if</span> option == <span class="stringliteral">&#39;setup&#39;</span>:</div>
-<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>()</div>
-<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;</div>
-<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;quick-setup&#39;</span>:</div>
-<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00946"></a><span class="lineno">  946</span>&#160;        </div>
-<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;run-uwsgi&#39;</span>:</div>
-<div class="line"><a name="l00948"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a88f927a5e67d8ccf759fd256f58a9411">  948</a></span>&#160;        app = sys.argv[2]</div>
-<div class="line"><a name="l00949"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a6320eb02d5f6324a82fe70a83901b014">  949</a></span>&#160;        addr = sys.argv[3]</div>
-<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;        www.uwsgi.run(app, addr)</div>
-<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;        </div>
-<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;stop-uwsgi&#39;</span>:</div>
-<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;        app = sys.argv[2]</div>
-<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;        www.uwsgi.stop(app)</div>
-<div class="line"><a name="l00955"></a><span class="lineno">  955</span>&#160;        </div>
-<div class="line"><a name="l00956"></a><span class="lineno">  956</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;init-run-uwsgi&#39;</span>:</div>
-<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;        app = sys.argv[2]</div>
-<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;        addr = sys.argv[3]</div>
-<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;        www.uwsgi.run(app, addr, init=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;        </div>
-<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;enable-nginx&#39;</span>:</div>
-<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;        app = sys.argv[2]</div>
-<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;        <span class="keywordflow">if</span> len(sys.argv) == 4:</div>
-<div class="line"><a name="l00964"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#ae04b67153bc11f5b3a23e4fd760832fb">  964</a></span>&#160;            upstream = sys.argv[3]</div>
-<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;            www.nginx.enable(app, upstream=upstream)</div>
-<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;            www.nginx.enable(app)</div>
-<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;        </div>
-<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;disable-nginx&#39;</span>:</div>
+<div class="line"><a name="l00864"></a><span class="lineno">  864</span>&#160;<span class="comment"># ## Usage</span></div>
+<div class="line"><a name="l00865"></a><span class="lineno">  865</span>&#160;<span class="comment">#</span></div>
+<div class="line"><a name="l00866"></a><span class="lineno">  866</span>&#160;<span class="comment"># &lt;pre&gt;&lt;code&gt;</span></div>
+<div class="line"><a name="l00867"></a><span class="lineno">  867</span>&#160;<span class="comment">#     import os</span></div>
+<div class="line"><a name="l00868"></a><span class="lineno">  868</span>&#160;<span class="comment">#     import sys</span></div>
+<div class="line"><a name="l00869"></a><span class="lineno">  869</span>&#160;<span class="comment">#     import admin</span></div>
+<div class="line"><a name="l00870"></a><span class="lineno">  870</span>&#160;<span class="comment">#</span></div>
+<div class="line"><a name="l00871"></a><span class="lineno">  871</span>&#160;<span class="comment">#     configs = {&#39;PROJECT_NAME&#39;: &#39;\&quot;AAA\&quot;&#39;,</span></div>
+<div class="line"><a name="l00872"></a><span class="lineno">  872</span>&#160;<span class="comment">#           &#39;PROJECT_NUMBER&#39;: &#39;1.2.3&#39;}</span></div>
+<div class="line"><a name="l00873"></a><span class="lineno">  873</span>&#160;<span class="comment">#     try:</span></div>
+<div class="line"><a name="l00874"></a><span class="lineno">  874</span>&#160;<span class="comment">#         with open(os.path.join(os.getcwd(), &#39;Doxyfile&#39;), &#39;r+&#39;) as f:</span></div>
+<div class="line"><a name="l00875"></a><span class="lineno">  875</span>&#160;<span class="comment">#             config_file = admin.ConfigFile(f)</span></div>
+<div class="line"><a name="l00876"></a><span class="lineno">  876</span>&#160;<span class="comment">#             config_file.set(configs)</span></div>
+<div class="line"><a name="l00877"></a><span class="lineno">  877</span>&#160;<span class="comment">#         except IOError as e:</span></div>
+<div class="line"><a name="l00878"></a><span class="lineno">  878</span>&#160;<span class="comment">#             print(&#39;error&#39;, file=sys.stderr)</span></div>
+<div class="line"><a name="l00879"></a><span class="lineno">  879</span>&#160;<span class="comment"># &lt;/code&gt;&lt;/pre&gt;</span></div>
+<div class="line"><a name="l00880"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html">  880</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html">ConfigFile</a>(object):</div>
+<div class="line"><a name="l00881"></a><span class="lineno">  881</span>&#160;</div>
+<div class="line"><a name="l00882"></a><span class="lineno">  882</span>&#160;    <span class="comment">## Parse configuration file.</span></div>
+<div class="line"><a name="l00883"></a><span class="lineno">  883</span>&#160;    <span class="comment">#</span></div>
+<div class="line"><a name="l00884"></a><span class="lineno">  884</span>&#160;    <span class="comment"># @param config_file configuration file object</span></div>
+<div class="line"><a name="l00885"></a><span class="lineno">  885</span>&#160;    <span class="comment"># @param sep separator for option/value pair</span></div>
+<div class="line"><a name="l00886"></a><span class="lineno">  886</span>&#160;    <span class="comment"># @param comments comments leading character</span></div>
+<div class="line"><a name="l00887"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">  887</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">__init__</a>(self, config_file, sep=&#39;=&#39;, comments=&#39;#&#39;):</div>
+<div class="line"><a name="l00888"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">  888</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">_config_file</a> = config_file</div>
+<div class="line"><a name="l00889"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">  889</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">_sep</a> = sep</div>
+<div class="line"><a name="l00890"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">  890</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">_comments</a> = comments</div>
+<div class="line"><a name="l00891"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">  891</a></span>&#160;        self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a> = OrderedDict()</div>
+<div class="line"><a name="l00892"></a><span class="lineno">  892</span>&#160;        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> config_file:</div>
+<div class="line"><a name="l00893"></a><span class="lineno">  893</span>&#160;            <span class="comment"># Skip blank line or comments</span></div>
+<div class="line"><a name="l00894"></a><span class="lineno">  894</span>&#160;            <span class="keywordflow">if</span> line.strip() == <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">or</span> line.startswith(comments):</div>
+<div class="line"><a name="l00895"></a><span class="lineno">  895</span>&#160;                <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00896"></a><span class="lineno">  896</span>&#160;                </div>
+<div class="line"><a name="l00897"></a><span class="lineno">  897</span>&#160;            <span class="comment"># Get &quot;OPTION = value&quot;</span></div>
+<div class="line"><a name="l00898"></a><span class="lineno">  898</span>&#160;            pair = line.split(sep)</div>
+<div class="line"><a name="l00899"></a><span class="lineno">  899</span>&#160;            self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a>[pair[0].strip()] = pair[1].strip()</div>
+<div class="line"><a name="l00900"></a><span class="lineno">  900</span>&#160;                </div>
+<div class="line"><a name="l00901"></a><span class="lineno">  901</span>&#160;    </div>
+<div class="line"><a name="l00902"></a><span class="lineno">  902</span>&#160;    <span class="comment">## Get value of specific option.</span></div>
+<div class="line"><a name="l00903"></a><span class="lineno">  903</span>&#160;    <span class="comment">#</span></div>
+<div class="line"><a name="l00904"></a><span class="lineno">  904</span>&#160;    <span class="comment"># @param option option name</span></div>
+<div class="line"><a name="l00905"></a><span class="lineno">  905</span>&#160;    <span class="comment"># @return option value</span></div>
+<div class="line"><a name="l00906"></a><span class="lineno">  906</span>&#160;    <span class="comment"># @exception KeyError - no optinon exists</span></div>
+<div class="line"><a name="l00907"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">  907</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">get</a>(self, option):</div>
+<div class="line"><a name="l00908"></a><span class="lineno">  908</span>&#160;        <span class="keywordflow">return</span> self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">_config</a>[option]</div>
+<div class="line"><a name="l00909"></a><span class="lineno">  909</span>&#160;        </div>
+<div class="line"><a name="l00910"></a><span class="lineno">  910</span>&#160;        </div>
+<div class="line"><a name="l00911"></a><span class="lineno">  911</span>&#160;    <span class="comment">## Set value of specific option.</span></div>
+<div class="line"><a name="l00912"></a><span class="lineno">  912</span>&#160;    <span class="comment">#</span></div>
+<div class="line"><a name="l00913"></a><span class="lineno">  913</span>&#160;    <span class="comment"># @param pairs Pairs of option name-value.</span></div>
+<div class="line"><a name="l00914"></a><span class="lineno"><a class="line" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">  914</a></span>&#160;    <span class="keyword">def </span><a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">set</a>(self, pairs):</div>
+<div class="line"><a name="l00915"></a><span class="lineno">  915</span>&#160;        self._config_file.seek(0)</div>
+<div class="line"><a name="l00916"></a><span class="lineno">  916</span>&#160;        lines = []</div>
+<div class="line"><a name="l00917"></a><span class="lineno">  917</span>&#160;        <span class="keywordflow">for</span> line <span class="keywordflow">in</span> self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">_config_file</a>:</div>
+<div class="line"><a name="l00918"></a><span class="lineno">  918</span>&#160;            <span class="comment"># Skip blank line or comments</span></div>
+<div class="line"><a name="l00919"></a><span class="lineno">  919</span>&#160;            <span class="keywordflow">if</span> line.strip() == <span class="stringliteral">&#39;&#39;</span> <span class="keywordflow">or</span> line.startswith(self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">_comments</a>):</div>
+<div class="line"><a name="l00920"></a><span class="lineno">  920</span>&#160;                lines.append(line)</div>
+<div class="line"><a name="l00921"></a><span class="lineno">  921</span>&#160;                <span class="keywordflow">continue</span></div>
+<div class="line"><a name="l00922"></a><span class="lineno">  922</span>&#160;                </div>
+<div class="line"><a name="l00923"></a><span class="lineno">  923</span>&#160;            <span class="comment"># Set option</span></div>
+<div class="line"><a name="l00924"></a><span class="lineno">  924</span>&#160;            pair = line.split(self.<a class="code" href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">_sep</a>)</div>
+<div class="line"><a name="l00925"></a><span class="lineno">  925</span>&#160;            option = pair[0].strip()</div>
+<div class="line"><a name="l00926"></a><span class="lineno">  926</span>&#160;            <span class="keywordflow">if</span> option <span class="keywordflow">in</span> pairs:</div>
+<div class="line"><a name="l00927"></a><span class="lineno">  927</span>&#160;                pair[1] = <span class="stringliteral">&#39; &#39;</span> + pairs[option] + <span class="stringliteral">&#39;\n&#39;</span></div>
+<div class="line"><a name="l00928"></a><span class="lineno">  928</span>&#160;                line = self._sep.join(pair)</div>
+<div class="line"><a name="l00929"></a><span class="lineno">  929</span>&#160;                del pairs[option] <span class="comment"># Reduce size of pairs for better performance</span></div>
+<div class="line"><a name="l00930"></a><span class="lineno">  930</span>&#160;            </div>
+<div class="line"><a name="l00931"></a><span class="lineno">  931</span>&#160;            lines.append(line)</div>
+<div class="line"><a name="l00932"></a><span class="lineno">  932</span>&#160;        </div>
+<div class="line"><a name="l00933"></a><span class="lineno">  933</span>&#160;        <span class="comment"># Update configuration file</span></div>
+<div class="line"><a name="l00934"></a><span class="lineno">  934</span>&#160;        self._config_file.seek(0)</div>
+<div class="line"><a name="l00935"></a><span class="lineno">  935</span>&#160;        self._config_file.writelines(lines)</div>
+<div class="line"><a name="l00936"></a><span class="lineno">  936</span>&#160;            </div>
+<div class="line"><a name="l00937"></a><span class="lineno">  937</span>&#160;      </div>
+<div class="line"><a name="l00938"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">  938</a></span>&#160;<span class="keyword">def </span><a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>():</div>
+<div class="line"><a name="l00939"></a><span class="lineno">  939</span>&#160;    sys.exit(<span class="stringliteral">&#39;Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|doc&#39;</span>.format(sys.argv[0]))</div>
+<div class="line"><a name="l00940"></a><span class="lineno">  940</span>&#160;        </div>
+<div class="line"><a name="l00941"></a><span class="lineno">  941</span>&#160;                </div>
+<div class="line"><a name="l00942"></a><span class="lineno">  942</span>&#160;<span class="keywordflow">if</span> __name__ == <span class="stringliteral">&#39;__main__&#39;</span>:</div>
+<div class="line"><a name="l00943"></a><span class="lineno">  943</span>&#160;    <span class="keywordflow">if</span> len(sys.argv) &lt; 2:</div>
+<div class="line"><a name="l00944"></a><span class="lineno">  944</span>&#160;       <a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>()</div>
+<div class="line"><a name="l00945"></a><span class="lineno">  945</span>&#160;       </div>
+<div class="line"><a name="l00946"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a5ed72260a120fc91cfd491f424eeb883">  946</a></span>&#160;    option = sys.argv[1]</div>
+<div class="line"><a name="l00947"></a><span class="lineno">  947</span>&#160;</div>
+<div class="line"><a name="l00948"></a><span class="lineno">  948</span>&#160;    <span class="keywordflow">if</span> option == <span class="stringliteral">&#39;setup&#39;</span>:</div>
+<div class="line"><a name="l00949"></a><span class="lineno">  949</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>()</div>
+<div class="line"><a name="l00950"></a><span class="lineno">  950</span>&#160;</div>
+<div class="line"><a name="l00951"></a><span class="lineno">  951</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;quick-setup&#39;</span>:</div>
+<div class="line"><a name="l00952"></a><span class="lineno">  952</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00953"></a><span class="lineno">  953</span>&#160;        </div>
+<div class="line"><a name="l00954"></a><span class="lineno">  954</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;run-uwsgi&#39;</span>:</div>
+<div class="line"><a name="l00955"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a88f927a5e67d8ccf759fd256f58a9411">  955</a></span>&#160;        app = sys.argv[2]</div>
+<div class="line"><a name="l00956"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a6320eb02d5f6324a82fe70a83901b014">  956</a></span>&#160;        addr = sys.argv[3]</div>
+<div class="line"><a name="l00957"></a><span class="lineno">  957</span>&#160;        www.uwsgi.run(app, addr)</div>
+<div class="line"><a name="l00958"></a><span class="lineno">  958</span>&#160;        </div>
+<div class="line"><a name="l00959"></a><span class="lineno">  959</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;stop-uwsgi&#39;</span>:</div>
+<div class="line"><a name="l00960"></a><span class="lineno">  960</span>&#160;        app = sys.argv[2]</div>
+<div class="line"><a name="l00961"></a><span class="lineno">  961</span>&#160;        www.uwsgi.stop(app)</div>
+<div class="line"><a name="l00962"></a><span class="lineno">  962</span>&#160;        </div>
+<div class="line"><a name="l00963"></a><span class="lineno">  963</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;init-run-uwsgi&#39;</span>:</div>
+<div class="line"><a name="l00964"></a><span class="lineno">  964</span>&#160;        app = sys.argv[2]</div>
+<div class="line"><a name="l00965"></a><span class="lineno">  965</span>&#160;        addr = sys.argv[3]</div>
+<div class="line"><a name="l00966"></a><span class="lineno">  966</span>&#160;        www.uwsgi.run(app, addr, init=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00967"></a><span class="lineno">  967</span>&#160;        </div>
+<div class="line"><a name="l00968"></a><span class="lineno">  968</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;enable-nginx&#39;</span>:</div>
+<div class="line"><a name="l00969"></a><span class="lineno">  969</span>&#160;        app = sys.argv[2]</div>
 <div class="line"><a name="l00970"></a><span class="lineno">  970</span>&#160;        <span class="keywordflow">if</span> len(sys.argv) == 4:</div>
-<div class="line"><a name="l00971"></a><span class="lineno">  971</span>&#160;            app = sys.argv[2]</div>
-<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;            upstream = sys.argv[3]</div>
-<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;            www.nginx.disable(site=app, upstream=upstream)</div>
-<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;        <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;            www.nginx.disable()</div>
-<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;            </div>
-<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;doc&#39;</span>:</div>
-<div class="line"><a name="l00978"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a311ce11d8285f485768151b9d757e478">  978</a></span>&#160;        project_path = sys.argv[2]</div>
-<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;        build.doxygen(project_path)</div>
-<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;        </div>
-<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;test&#39;</span>:</div>
-<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=<span class="keyword">True</span>)</div>
-<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;        </div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;        <span class="comment"># single app on uWSGI</span></div>
-<div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;        time.sleep(2)</div>
-<div class="line"><a name="l00986"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a86733f8848ca96c56cf7c51370ebc7bd">  986</a></span>&#160;        test_app = os.path.realpath(<span class="stringliteral">&#39;_setup/hello_uwsgi_app.py&#39;</span>)</div>
-<div class="line"><a name="l00987"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a48db396eb86a22a960bba5ce65c12651">  987</a></span>&#160;        test_addr = <span class="stringliteral">&#39;:8000&#39;</span></div>
-<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;        www.uwsgi.run(test_app, test_addr)</div>
-<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;        time.sleep(2)</div>
-<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;        www.uwsgi.stop(test_app)</div>
-<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;        </div>
-<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;        <span class="comment"># (Django) site on uWSGI</span></div>
-<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;        time.sleep(2)</div>
-<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;        test_app = os.path.expanduser(<span class="stringliteral">&#39;~/zl&#39;</span>)</div>
-<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;        www.uwsgi.run(test_app, test_addr)</div>
-<div class="line"><a name="l00996"></a><span class="lineno">  996</span>&#160;        time.sleep(2)</div>
-<div class="line"><a name="l00997"></a><span class="lineno">  997</span>&#160;        www.uwsgi.stop(test_app)</div>
-<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;        </div>
-<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;        build.doxygen(<span class="stringliteral">&#39;.&#39;</span>)</div>
-<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;        </div>
-<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;    <span class="keywordflow">else</span>:</div>
-<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>() </div>
-<div class="ttc" id="namespaceadmin_html_a8edf8d50d5e47a6d8859c560c28ebb36"><div class="ttname"><a href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">admin._usage</a></div><div class="ttdeci">def _usage</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00931">admin.py:931</a></div></div>
+<div class="line"><a name="l00971"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#ae04b67153bc11f5b3a23e4fd760832fb">  971</a></span>&#160;            upstream = sys.argv[3]</div>
+<div class="line"><a name="l00972"></a><span class="lineno">  972</span>&#160;            www.nginx.enable(app, upstream=upstream)</div>
+<div class="line"><a name="l00973"></a><span class="lineno">  973</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00974"></a><span class="lineno">  974</span>&#160;            www.nginx.enable(app)</div>
+<div class="line"><a name="l00975"></a><span class="lineno">  975</span>&#160;        </div>
+<div class="line"><a name="l00976"></a><span class="lineno">  976</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;disable-nginx&#39;</span>:</div>
+<div class="line"><a name="l00977"></a><span class="lineno">  977</span>&#160;        <span class="keywordflow">if</span> len(sys.argv) == 4:</div>
+<div class="line"><a name="l00978"></a><span class="lineno">  978</span>&#160;            app = sys.argv[2]</div>
+<div class="line"><a name="l00979"></a><span class="lineno">  979</span>&#160;            upstream = sys.argv[3]</div>
+<div class="line"><a name="l00980"></a><span class="lineno">  980</span>&#160;            www.nginx.disable(site=app, upstream=upstream)</div>
+<div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;        <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;            www.nginx.disable()</div>
+<div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160;            </div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;doc&#39;</span>:</div>
+<div class="line"><a name="l00985"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a311ce11d8285f485768151b9d757e478">  985</a></span>&#160;        project_path = sys.argv[2]</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;        build.doxygen(project_path)</div>
+<div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;        </div>
+<div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160;    <span class="keywordflow">elif</span> option == <span class="stringliteral">&#39;test&#39;</span>:</div>
+<div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">_setup</a>(quick=<span class="keyword">True</span>)</div>
+<div class="line"><a name="l00990"></a><span class="lineno">  990</span>&#160;        </div>
+<div class="line"><a name="l00991"></a><span class="lineno">  991</span>&#160;        <span class="comment"># unit test</span></div>
+<div class="line"><a name="l00992"></a><span class="lineno">  992</span>&#160;        shell.shell(<span class="stringliteral">&#39;python3 test_admin.py&#39;</span>)</div>
+<div class="line"><a name="l00993"></a><span class="lineno">  993</span>&#160;        </div>
+<div class="line"><a name="l00994"></a><span class="lineno">  994</span>&#160;        <span class="comment"># single app on uWSGI</span></div>
+<div class="line"><a name="l00995"></a><span class="lineno">  995</span>&#160;        time.sleep(2)</div>
+<div class="line"><a name="l00996"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a86733f8848ca96c56cf7c51370ebc7bd">  996</a></span>&#160;        test_app = os.path.realpath(<span class="stringliteral">&#39;_setup/hello_uwsgi_app.py&#39;</span>)</div>
+<div class="line"><a name="l00997"></a><span class="lineno"><a class="line" href="../../d5/d4c/namespaceadmin.html#a48db396eb86a22a960bba5ce65c12651">  997</a></span>&#160;        test_addr = <span class="stringliteral">&#39;:8000&#39;</span></div>
+<div class="line"><a name="l00998"></a><span class="lineno">  998</span>&#160;        www.uwsgi.run(test_app, test_addr)</div>
+<div class="line"><a name="l00999"></a><span class="lineno">  999</span>&#160;        time.sleep(2)</div>
+<div class="line"><a name="l01000"></a><span class="lineno"> 1000</span>&#160;        www.uwsgi.stop(test_app)</div>
+<div class="line"><a name="l01001"></a><span class="lineno"> 1001</span>&#160;        </div>
+<div class="line"><a name="l01002"></a><span class="lineno"> 1002</span>&#160;        <span class="comment"># (Django) site on uWSGI</span></div>
+<div class="line"><a name="l01003"></a><span class="lineno"> 1003</span>&#160;        time.sleep(2)</div>
+<div class="line"><a name="l01004"></a><span class="lineno"> 1004</span>&#160;        test_app = os.path.expanduser(<span class="stringliteral">&#39;~/zl&#39;</span>)</div>
+<div class="line"><a name="l01005"></a><span class="lineno"> 1005</span>&#160;        www.uwsgi.run(test_app, test_addr)</div>
+<div class="line"><a name="l01006"></a><span class="lineno"> 1006</span>&#160;        time.sleep(2)</div>
+<div class="line"><a name="l01007"></a><span class="lineno"> 1007</span>&#160;        www.uwsgi.stop(test_app)</div>
+<div class="line"><a name="l01008"></a><span class="lineno"> 1008</span>&#160;        </div>
+<div class="line"><a name="l01009"></a><span class="lineno"> 1009</span>&#160;        build.doxygen(<span class="stringliteral">&#39;.&#39;</span>)</div>
+<div class="line"><a name="l01010"></a><span class="lineno"> 1010</span>&#160;        </div>
+<div class="line"><a name="l01011"></a><span class="lineno"> 1011</span>&#160;    <span class="keywordflow">else</span>:</div>
+<div class="line"><a name="l01012"></a><span class="lineno"> 1012</span>&#160;        <a class="code" href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">_usage</a>() </div>
+<div class="ttc" id="namespaceadmin_html_a8edf8d50d5e47a6d8859c560c28ebb36"><div class="ttname"><a href="../../d5/d4c/namespaceadmin.html#a8edf8d50d5e47a6d8859c560c28ebb36">admin._usage</a></div><div class="ttdeci">def _usage</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00938">admin.py:938</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html">admin.shell</a></div><div class="ttdoc">Linux shell tools. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00070">admin.py:70</a></div></div>
-<div class="ttc" id="classadmin_1_1www_1_1nginx_html_a97b2603a64e0758b3d548bc1971dcc4e"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">admin.www.nginx.disable</a></div><div class="ttdeci">def disable</div><div class="ttdoc">Disable nginx server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00688">admin.py:688</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_ada03146a25635d360b9994efcd3eb6ce"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">admin.ConfigFile._config_file</a></div><div class="ttdeci">_config_file</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00881">admin.py:881</a></div></div>
+<div class="ttc" id="classadmin_1_1www_1_1nginx_html_a97b2603a64e0758b3d548bc1971dcc4e"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a97b2603a64e0758b3d548bc1971dcc4e">admin.www.nginx.disable</a></div><div class="ttdeci">def disable</div><div class="ttdoc">Disable nginx server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00692">admin.py:692</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_ada03146a25635d360b9994efcd3eb6ce"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#ada03146a25635d360b9994efcd3eb6ce">admin.ConfigFile._config_file</a></div><div class="ttdeci">_config_file</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00888">admin.py:888</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a5200a0188543eaaa2eb33fc295da0733"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a5200a0188543eaaa2eb33fc295da0733">admin.shell.eintr_retry</a></div><div class="ttdeci">def eintr_retry</div><div class="ttdoc">Restart a system call interrupted by EINTR. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00237">admin.py:237</a></div></div>
 <div class="ttc" id="classadmin_1_1AdminError_html_a2712ee3b794fa425e6e0eac6a1524749"><div class="ttname"><a href="../../df/dee/classadmin_1_1AdminError.html#a2712ee3b794fa425e6e0eac6a1524749">admin.AdminError.__init__</a></div><div class="ttdeci">def __init__</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00045">admin.py:45</a></div></div>
 <div class="ttc" id="classadmin_1_1www_1_1uwsgi_html_ab5860b95c90e736ad96fb7273efa10a5"><div class="ttname"><a href="../../db/de4/classadmin_1_1www_1_1uwsgi.html#ab5860b95c90e736ad96fb7273efa10a5">admin.www.uwsgi.run</a></div><div class="ttdeci">def run</div><div class="ttdoc">Run (or Reload) uWSGI server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00457">admin.py:457</a></div></div>
 <div class="ttc" id="classadmin_1_1build_html_a119269530e1f9f01afc87834d21d722b"><div class="ttname"><a href="../../d8/dff/classadmin_1_1build.html#a119269530e1f9f01afc87834d21d722b">admin.build.match_version</a></div><div class="ttdeci">def match_version</div><div class="ttdoc">Match the specific version. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00295">admin.py:295</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_a01f801b702c4cb7e322a8dee7943f5ff"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">admin.ConfigFile.__init__</a></div><div class="ttdeci">def __init__</div><div class="ttdoc">Parse configuration file. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00880">admin.py:880</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_a01f801b702c4cb7e322a8dee7943f5ff"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a01f801b702c4cb7e322a8dee7943f5ff">admin.ConfigFile.__init__</a></div><div class="ttdeci">def __init__</div><div class="ttdoc">Parse configuration file. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00887">admin.py:887</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a9cc97c2976b95fbcfa88b314803aa2bf"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a9cc97c2976b95fbcfa88b314803aa2bf">admin.shell.symlink</a></div><div class="ttdeci">def symlink</div><div class="ttdoc">Create a symbolic link pointing to source named link_name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00172">admin.py:172</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_a5a5c415d13ee87e1a03c9f64231a4fc9"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">admin.ConfigFile._config</a></div><div class="ttdeci">_config</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00884">admin.py:884</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_a5a5c415d13ee87e1a03c9f64231a4fc9"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a5a5c415d13ee87e1a03c9f64231a4fc9">admin.ConfigFile._config</a></div><div class="ttdeci">_config</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00891">admin.py:891</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_ab6f38a2fae6ea2cc870c1de2d6cb6017"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#ab6f38a2fae6ea2cc870c1de2d6cb6017">admin.shell.restart_init_service</a></div><div class="ttdeci">def restart_init_service</div><div class="ttdoc">Restart init service. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00205">admin.py:205</a></div></div>
 <div class="ttc" id="classadmin_1_1build_html_a265731c57c5b23175db096bf8a76e236"><div class="ttname"><a href="../../d8/dff/classadmin_1_1build.html#a265731c57c5b23175db096bf8a76e236">admin.build.decode_version</a></div><div class="ttdeci">def decode_version</div><div class="ttdoc">Decode version information string. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00275">admin.py:275</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a539012368a068a40cd347acbe49989d5"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a539012368a068a40cd347acbe49989d5">admin.shell.chown</a></div><div class="ttdeci">def chown</div><div class="ttdoc">Change owner user and group of the given path. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00093">admin.py:93</a></div></div>
 <div class="ttc" id="classadmin_1_1www_1_1nginx_html"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html">admin.www.nginx</a></div><div class="ttdoc">nginx server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00567">admin.py:567</a></div></div>
-<div class="ttc" id="classadmin_1_1www_1_1nginx_html_af4bc4f7da3d2c56ba8e4b61b16052394"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">admin.www.nginx._site_enable_path</a></div><div class="ttdeci">def _site_enable_path</div><div class="ttdoc">Return path of enabled site by name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00713">admin.py:713</a></div></div>
+<div class="ttc" id="classadmin_1_1www_1_1nginx_html_af4bc4f7da3d2c56ba8e4b61b16052394"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#af4bc4f7da3d2c56ba8e4b61b16052394">admin.www.nginx._site_enable_path</a></div><div class="ttdeci">def _site_enable_path</div><div class="ttdoc">Return path of enabled site by name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00720">admin.py:720</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a79f2a3efc85b54c29621697087299778"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a79f2a3efc85b54c29621697087299778">admin.shell.cpu_cores</a></div><div class="ttdeci">def cpu_cores</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00251">admin.py:251</a></div></div>
 <div class="ttc" id="classadmin_1_1AdminError_html_ab64b4ac0bacc03d3f5d4dc556a493445"><div class="ttname"><a href="../../df/dee/classadmin_1_1AdminError.html#ab64b4ac0bacc03d3f5d4dc556a493445">admin.AdminError.__str__</a></div><div class="ttdeci">def __str__</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00049">admin.py:49</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a088a4609cf54f76ee4c838eea157fbc9"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a088a4609cf54f76ee4c838eea157fbc9">admin.shell.read_lines</a></div><div class="ttdeci">def read_lines</div><div class="ttdoc">Read specific line(s) with line number(s). </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00216">admin.py:216</a></div></div>
 <div class="ttc" id="namespaceadmin_html_ae1dbeff3e935d67ed99b95eb814c9a11"><div class="ttname"><a href="../../d5/d4c/namespaceadmin.html#ae1dbeff3e935d67ed99b95eb814c9a11">admin.update_seq_type</a></div><div class="ttdeci">def update_seq_type</div><div class="ttdoc">Update type of all elements in specific sequence. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00057">admin.py:57</a></div></div>
 <div class="ttc" id="classadmin_1_1www_html"><div class="ttname"><a href="../../d6/dae/classadmin_1_1www.html">admin.www</a></div><div class="ttdoc">WWW (Internet) tools. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00403">admin.py:403</a></div></div>
 <div class="ttc" id="classadmin_1_1AdminError_html"><div class="ttname"><a href="../../df/dee/classadmin_1_1AdminError.html">admin.AdminError</a></div><div class="ttdoc">admin error </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00044">admin.py:44</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_a3a60d1611c929d782773d73d339454ab"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">admin.ConfigFile.get</a></div><div class="ttdeci">def get</div><div class="ttdoc">Get value of specific option. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00900">admin.py:900</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_a3a60d1611c929d782773d73d339454ab"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3a60d1611c929d782773d73d339454ab">admin.ConfigFile.get</a></div><div class="ttdeci">def get</div><div class="ttdoc">Get value of specific option. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00907">admin.py:907</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_ad4f8d9280283a993eec0bc5dcade6d99"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#ad4f8d9280283a993eec0bc5dcade6d99">admin.shell.remove</a></div><div class="ttdeci">def remove</div><div class="ttdoc">Remove path entry. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00124">admin.py:124</a></div></div>
-<div class="ttc" id="classadmin_1_1www_1_1nginx_html_a6d55a9d2645ebdd32a86f07caa30e54f"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">admin.www.nginx.enable</a></div><div class="ttdeci">def enable</div><div class="ttdoc">Setup nginx. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00584">admin.py:584</a></div></div>
+<div class="ttc" id="classadmin_1_1www_1_1nginx_html_a6d55a9d2645ebdd32a86f07caa30e54f"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#a6d55a9d2645ebdd32a86f07caa30e54f">admin.www.nginx.enable</a></div><div class="ttdeci">def enable</div><div class="ttdoc">Setup nginx. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00585">admin.py:585</a></div></div>
 <div class="ttc" id="classadmin_1_1build_html_add65d88734d0ae6b83e8c31cff366b68"><div class="ttname"><a href="../../d8/dff/classadmin_1_1build.html#add65d88734d0ae6b83e8c31cff366b68">admin.build.doxygen</a></div><div class="ttdeci">def doxygen</div><div class="ttdoc">Generate documentation for codes under Git by Doxygen. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00317">admin.py:317</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html">admin.ConfigFile</a></div><div class="ttdoc">Configuration file. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00873">admin.py:873</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html">admin.ConfigFile</a></div><div class="ttdoc">Configuration file. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00880">admin.py:880</a></div></div>
 <div class="ttc" id="classadmin_1_1AdminError_html_a2d3933c27c7f643bf649f9f208f35c72"><div class="ttname"><a href="../../df/dee/classadmin_1_1AdminError.html#a2d3933c27c7f643bf649f9f208f35c72">admin.AdminError.error</a></div><div class="ttdeci">error</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00046">admin.py:46</a></div></div>
 <div class="ttc" id="classadmin_1_1www_1_1uwsgi_html_a01b2b5c841e2da98a5e88286de95bd05"><div class="ttname"><a href="../../db/de4/classadmin_1_1www_1_1uwsgi.html#a01b2b5c841e2da98a5e88286de95bd05">admin.www.uwsgi.stop</a></div><div class="ttdeci">def stop</div><div class="ttdoc">Stop uWSGI server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00546">admin.py:546</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a20ba085e92f2f4a9332d8d9c95ce7aa1"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a20ba085e92f2f4a9332d8d9c95ce7aa1">admin.shell.stop_init_service</a></div><div class="ttdeci">def stop_init_service</div><div class="ttdoc">Stop init service. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00196">admin.py:196</a></div></div>
-<div class="ttc" id="classadmin_1_1www_1_1nginx_html_aca978777776a324a0c3ac506100da002"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">admin.www.nginx._site_avail_path</a></div><div class="ttdeci">def _site_avail_path</div><div class="ttdoc">Return path of available site by name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00704">admin.py:704</a></div></div>
+<div class="ttc" id="classadmin_1_1www_1_1nginx_html_aca978777776a324a0c3ac506100da002"><div class="ttname"><a href="../../dc/db8/classadmin_1_1www_1_1nginx.html#aca978777776a324a0c3ac506100da002">admin.www.nginx._site_avail_path</a></div><div class="ttdeci">def _site_avail_path</div><div class="ttdoc">Return path of available site by name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00711">admin.py:711</a></div></div>
 <div class="ttc" id="classadmin_1_1build_html"><div class="ttname"><a href="../../d8/dff/classadmin_1_1build.html">admin.build</a></div><div class="ttdoc">Build tools. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00265">admin.py:265</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a2ffff5c7d8eb2d2cc174df10ac1523b2"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a2ffff5c7d8eb2d2cc174df10ac1523b2">admin.shell.shell</a></div><div class="ttdeci">def shell</div><div class="ttdoc">Run shell command without output. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00077">admin.py:77</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_ac15829b16933412a7db88d3dacdcf345"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">admin.ConfigFile._comments</a></div><div class="ttdeci">_comments</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00883">admin.py:883</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_ac15829b16933412a7db88d3dacdcf345"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#ac15829b16933412a7db88d3dacdcf345">admin.ConfigFile._comments</a></div><div class="ttdeci">_comments</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00890">admin.py:890</a></div></div>
 <div class="ttc" id="classadmin_1_1www_1_1uwsgi_html_aefa1ab9824e26e8da07141806cd69ed7"><div class="ttname"><a href="../../db/de4/classadmin_1_1www_1_1uwsgi.html#aefa1ab9824e26e8da07141806cd69ed7">admin.www.uwsgi._pidfile</a></div><div class="ttdeci">def _pidfile</div><div class="ttdoc">Return uWSGI pid file from app name. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00557">admin.py:557</a></div></div>
 <div class="ttc" id="classadmin_1_1www_html_a7a25fbce0b213fb06adc0e8602a980d7"><div class="ttname"><a href="../../d6/dae/classadmin_1_1www.html#a7a25fbce0b213fb06adc0e8602a980d7">admin.www.setup</a></div><div class="ttdeci">def setup</div><div class="ttdoc">Setup WWW. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00419">admin.py:419</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_a05413f3b3760fe95cf8038c400cb2b4f"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">admin.ConfigFile.set</a></div><div class="ttdeci">def set</div><div class="ttdoc">Set value of specific option. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00907">admin.py:907</a></div></div>
-<div class="ttc" id="namespaceadmin_html_a56bda7fa84a9e893fdeb0d8acd29e89b"><div class="ttname"><a href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">admin._setup</a></div><div class="ttdeci">def _setup</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00719">admin.py:719</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_a05413f3b3760fe95cf8038c400cb2b4f"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a05413f3b3760fe95cf8038c400cb2b4f">admin.ConfigFile.set</a></div><div class="ttdeci">def set</div><div class="ttdoc">Set value of specific option. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00914">admin.py:914</a></div></div>
+<div class="ttc" id="namespaceadmin_html_a56bda7fa84a9e893fdeb0d8acd29e89b"><div class="ttname"><a href="../../d5/d4c/namespaceadmin.html#a56bda7fa84a9e893fdeb0d8acd29e89b">admin._setup</a></div><div class="ttdeci">def _setup</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00726">admin.py:726</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_adcdf00aa6acc1cf519ece418ce14a7f1"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#adcdf00aa6acc1cf519ece418ce14a7f1">admin.shell.mkdir</a></div><div class="ttdeci">def mkdir</div><div class="ttdoc">Create a directory or directories recursively. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00155">admin.py:155</a></div></div>
 <div class="ttc" id="classadmin_1_1www_1_1uwsgi_html"><div class="ttname"><a href="../../db/de4/classadmin_1_1www_1_1uwsgi.html">admin.www.uwsgi</a></div><div class="ttdoc">uWSGI server. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00436">admin.py:436</a></div></div>
 <div class="ttc" id="classadmin_1_1shell_html_a432e79bf26b0adb3e7fcf2f13f96229e"><div class="ttname"><a href="../../de/d16/classadmin_1_1shell.html#a432e79bf26b0adb3e7fcf2f13f96229e">admin.shell.start_init_service</a></div><div class="ttdeci">def start_init_service</div><div class="ttdoc">Start init service. </div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00187">admin.py:187</a></div></div>
-<div class="ttc" id="classadmin_1_1ConfigFile_html_a3f7db562c59049e6a3b28b1fdfafa63e"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">admin.ConfigFile._sep</a></div><div class="ttdeci">_sep</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00882">admin.py:882</a></div></div>
+<div class="ttc" id="classadmin_1_1ConfigFile_html_a3f7db562c59049e6a3b28b1fdfafa63e"><div class="ttname"><a href="../../d0/d8b/classadmin_1_1ConfigFile.html#a3f7db562c59049e6a3b28b1fdfafa63e">admin.ConfigFile._sep</a></div><div class="ttdeci">_sep</div><div class="ttdef"><b>Definition:</b> <a href="../../da/d7c/admin_8py_source.html#l00889">admin.py:889</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Wed Sep 17 2014 16:22:57 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Thu Sep 18 2014 10:03:09 for admin-linux by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="../../doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

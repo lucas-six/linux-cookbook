@@ -20,7 +20,7 @@ limitations under the License.
 
 import admin
 from admin import shell
-from admin import version
+from admin import build
 import unittest
             
             
@@ -54,8 +54,8 @@ class AdminShellTestCase(unittest.TestCase):
             
             
         def test_ShellError(self):
-            with self.assertRaises(shell.ShellError):
-                raise shell.ShellError(KeyError)
+            with self.assertRaises(admin.AdminError):
+                raise admin.AdminError(KeyError)
                 
                 
         def test_cpu_cores(self):
@@ -87,8 +87,8 @@ class AdminShellTestCase(unittest.TestCase):
                     self.assertEqual(line, '')
     
     
-class AdminVersionTestCase(unittest.TestCase):
-        '''Test Case of admin.version module.
+class AdminBuildTestCase(unittest.TestCase):
+        '''Test Case of admin.build module.
         '''
         def setUp(self):
             self.version_info = 'Python 2.7.8'
@@ -99,35 +99,35 @@ class AdminVersionTestCase(unittest.TestCase):
             pass
                 
                 
-        def test_decode(self):
-            v = version.decode(self.version_info, self.version_prefix)
-            self.assertIsInstance(v, version.Version)
+        def test_decode_version(self):
+            v = build.decode_version(self.version_info, self.version_prefix)
+            self.assertIsInstance(v, build.Version)
             self.assertEqual(v.major, 2)
             self.assertEqual(v.minor, 7)
             self.assertEqual(v.patch, 8)
         
         
         def test_match(self):
-            v = version.decode(self.version_info, self.version_prefix)
-            self.assertTrue(version.match(v, '2.7.8'))
-            self.assertTrue(version.match(v, '2.7.6'))
-            self.assertFalse(version.match(v, '2.7.9'))
-            self.assertTrue(version.match(v, '2.6.8'))
-            self.assertTrue(version.match(v, '2.6.6'))
-            self.assertTrue(version.match(v, '2.6.9'))
-            self.assertFalse(version.match(v, '2.8.8'))
-            self.assertFalse(version.match(v, '2.8.6'))
-            self.assertFalse(version.match(v, '2.8.9'))
-            self.assertTrue(version.match(v, '1.7.8'))
-            self.assertTrue(version.match(v, '1.8.8'))
-            self.assertTrue(version.match(v, '1.6.8'))
-            self.assertTrue(version.match(v, '1.7.6'))
-            self.assertTrue(version.match(v, '1.7.9'))
-            self.assertFalse(version.match(v, '3.7.8'))
-            self.assertFalse(version.match(v, '3.8.8'))
-            self.assertFalse(version.match(v, '3.6.8'))
-            self.assertFalse(version.match(v, '3.7.6'))
-            self.assertFalse(version.match(v, '3.7.9'))
+            v = build.decode_version(self.version_info, self.version_prefix)
+            self.assertTrue(build.match_version(v, '2.7.8'))
+            self.assertTrue(build.match_version(v, '2.7.6'))
+            self.assertFalse(build.match_version(v, '2.7.9'))
+            self.assertTrue(build.match_version(v, '2.6.8'))
+            self.assertTrue(build.match_version(v, '2.6.6'))
+            self.assertTrue(build.match_version(v, '2.6.9'))
+            self.assertFalse(build.match_version(v, '2.8.8'))
+            self.assertFalse(build.match_version(v, '2.8.6'))
+            self.assertFalse(build.match_version(v, '2.8.9'))
+            self.assertTrue(build.match_version(v, '1.7.8'))
+            self.assertTrue(build.match_version(v, '1.8.8'))
+            self.assertTrue(build.match_version(v, '1.6.8'))
+            self.assertTrue(build.match_version(v, '1.7.6'))
+            self.assertTrue(build.match_version(v, '1.7.9'))
+            self.assertFalse(build.match_version(v, '3.7.8'))
+            self.assertFalse(build.match_version(v, '3.8.8'))
+            self.assertFalse(build.match_version(v, '3.6.8'))
+            self.assertFalse(build.match_version(v, '3.7.6'))
+            self.assertFalse(build.match_version(v, '3.7.9'))
             
                 
 if __name__ == '__main__':

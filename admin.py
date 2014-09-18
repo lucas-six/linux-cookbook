@@ -512,7 +512,7 @@ class www(object):
                 os.chdir(top_dir)
                 shell.shell('django-admin.py startproject ' + app_name)
                 os.chdir(app_name)
-                shell.shell('python manage.py migrate')
+                shell.shell('python3 manage.py migrate')
                 os.chdir('..')
 
             # Generate uwsgi init script
@@ -753,14 +753,14 @@ def _setup(quick=False):
                     'bash', 'python3', 'coreutils', \
                     'vim', 'git', 'doxygen', 'wget', \
                     'nginx', 'build-essential', 
-                    'python-pip', 'python-dev', 'python-virtualenv']
-            pip_pkgs = ['Django', 'uwsgi']
+                    'python3-pip', 'python3-dev']
             shell.shell('sudo apt-get install ' + ' '.join(pkgs))
             
             # Skip updating pip packages to reduce testing time.
             if not quick:
+                pip_pkgs = ['virtualenv', 'django', 'uwsgi']
                 for p in pip_pkgs:
-                    shell.shell('sudo pip install --upgrade ' + p)
+                    shell.shell('sudo pip3 install --upgrade ' + p)
         except AdminError as e:
             sys.exit('Failed to install core packages: {0}'.format(e))
         print('System updated [OK]')
@@ -987,6 +987,9 @@ if __name__ == '__main__':
         
     elif option == 'test':
         _setup(quick=True)
+        
+        # unit test
+        shell.shell('python3 test_admin.py')
         
         # single app on uWSGI
         time.sleep(2)

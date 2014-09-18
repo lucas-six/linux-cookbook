@@ -81,7 +81,7 @@ path of given site
 \end{DoxyReturn}
 
 
-Definition at line 704 of file admin.\-py.
+Definition at line 711 of file admin.\-py.
 
 \hypertarget{classadmin_1_1www_1_1nginx_af4bc4f7da3d2c56ba8e4b61b16052394}{\index{admin\-::www\-::nginx@{admin\-::www\-::nginx}!\-\_\-site\-\_\-enable\-\_\-path@{\-\_\-site\-\_\-enable\-\_\-path}}
 \index{\-\_\-site\-\_\-enable\-\_\-path@{\-\_\-site\-\_\-enable\-\_\-path}!admin::www::nginx@{admin\-::www\-::nginx}}
@@ -105,7 +105,7 @@ path of given site
 \end{DoxyReturn}
 
 
-Definition at line 713 of file admin.\-py.
+Definition at line 720 of file admin.\-py.
 
 \hypertarget{classadmin_1_1www_1_1nginx_a97b2603a64e0758b3d548bc1971dcc4e}{\index{admin\-::www\-::nginx@{admin\-::www\-::nginx}!disable@{disable}}
 \index{disable@{disable}!admin::www::nginx@{admin\-::www\-::nginx}}
@@ -122,19 +122,21 @@ Disable nginx server.
 
 
 \begin{DoxyParams}{Parameters}
-{\em site} & site path \\
+{\em site} & site (absolute) path \\
 \hline
 {\em upstream} & upstream host address (u\-W\-S\-G\-I gateway) \\
 \hline
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
+{\em Value\-Error} & -\/ site name N\-O\-T absolute path \\
+\hline
 {\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo ln -\/sf} or {\ttfamily sudo /etc/init.d} error \\
 \hline
 \end{DoxyExceptions}
 
 
-Definition at line 688 of file admin.\-py.
+Definition at line 692 of file admin.\-py.
 
 \hypertarget{classadmin_1_1www_1_1nginx_a6d55a9d2645ebdd32a86f07caa30e54f}{\index{admin\-::www\-::nginx@{admin\-::www\-::nginx}!enable@{enable}}
 \index{enable@{enable}!admin::www::nginx@{admin\-::www\-::nginx}}
@@ -154,7 +156,7 @@ Setup nginx.
 
 
 \begin{DoxyParams}{Parameters}
-{\em site} & site path \\
+{\em site} & site (absolute) path \\
 \hline
 {\em port} & site port number \\
 \hline
@@ -165,6 +167,8 @@ Setup nginx.
 \end{DoxyParams}
 
 \begin{DoxyExceptions}{Exceptions}
+{\em Value\-Error} & -\/ site name N\-O\-T absolute path \\
+\hline
 {\em I\-O\-Error} & -\/ site configuration file error \\
 \hline
 {\em Admin\-Error(subprocess.\-Called\-Process\-Error)} & -\/ shell {\ttfamily sudo mv} error \\
@@ -174,7 +178,7 @@ Setup nginx.
 \end{DoxyExceptions}
 
 
-Definition at line 584 of file admin.\-py.
+Definition at line 585 of file admin.\-py.
 
 
 

@@ -1,4 +1,4 @@
-.TH "admin.www.nginx" 3 "Wed Sep 17 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
+.TH "admin.www.nginx" 3 "Thu Sep 18 2014" "Version 0.0.0" "admin-linux" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
@@ -93,7 +93,7 @@ path of given site
 .PP
 
 .PP
-Definition at line 704 of file admin\&.py\&.
+Definition at line 711 of file admin\&.py\&.
 .SS "def admin\&.www\&.nginx\&._site_enable_path (cls, site_name = \fCNone\fP)\fC [private]\fP"
 
 .PP
@@ -111,7 +111,7 @@ path of given site
 .PP
 
 .PP
-Definition at line 713 of file admin\&.py\&.
+Definition at line 720 of file admin\&.py\&.
 .SS "def admin\&.www\&.nginx\&.disable (cls, site = \fCNone\fP, upstream = \fCNone\fP)"
 
 .PP
@@ -119,19 +119,21 @@ Disable nginx server\&.
 .PP
 \fBParameters:\fP
 .RS 4
-\fIsite\fP site path 
+\fIsite\fP site (absolute) path 
 .br
 \fIupstream\fP upstream host address (uWSGI gateway) 
 .RE
 .PP
 \fBExceptions:\fP
 .RS 4
+\fIValueError\fP - site name NOT absolute path 
+.br
 \fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo ln -sf\fP or \fCsudo /etc/init\&.d\fP error 
 .RE
 .PP
 
 .PP
-Definition at line 688 of file admin\&.py\&.
+Definition at line 692 of file admin\&.py\&.
 .SS "def admin\&.www\&.nginx\&.enable (cls, site, port = \fC80\fP, name = \fC'localhost'\fP, upstream = \fCNone\fP, proxy = \fC':8080'\fP)"
 
 .PP
@@ -139,7 +141,7 @@ Setup nginx\&.
 .PP
 \fBParameters:\fP
 .RS 4
-\fIsite\fP site path 
+\fIsite\fP site (absolute) path 
 .br
 \fIport\fP site port number 
 .br
@@ -150,6 +152,8 @@ Setup nginx\&.
 .PP
 \fBExceptions:\fP
 .RS 4
+\fIValueError\fP - site name NOT absolute path 
+.br
 \fIIOError\fP - site configuration file error 
 .br
 \fIAdminError(subprocess\&.CalledProcessError)\fP - shell \fCsudo mv\fP error 
@@ -159,7 +163,7 @@ Setup nginx\&.
 .PP
 
 .PP
-Definition at line 584 of file admin\&.py\&.
+Definition at line 585 of file admin\&.py\&.
 .SH "Member Data Documentation"
 .PP 
 .SS "string admin\&.www\&.nginx\&.site_avail_root = '/etc/\fBnginx\fP/sites-available'\fC [static]\fP"
