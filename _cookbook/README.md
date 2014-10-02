@@ -3,60 +3,11 @@ cookbook
 
 Cookbook
 
-- [Linux User](#linux-user)
 - [Bash Guide](#bash-guide)
 - [Regular Expression](#regular-expression)
 - [Doxygen Guide](#doxygen-guide)
 - [Git Workflow](#git-workflow)
 - [Git Server](#git-server)
-
-## Linux User
-
-```bash
-# Network Interface
-#
-# NOTE: `ifconfig` uses **obsolete** kernel interface `ioctl()` to get full
-# address information, which limits hardware addresses to 8 bytes!
-ip addr show [dev <if-dev>]                       # ifconfig
-netstat -ie                                       # ifconfig
-sudo ip addr add <ipv4>[/<prefix>] dev <if-dev>   # sudo ifconfig <if-dev> add <ipv4>
-sudo ip addr del <ipv4>/<prefix=32> dev <if-dev>  # sudo ifconfig <if-dev> del <ipv4>
-sudo ip link set <if-dev> up|down                 # sudo ifconfig <if-dev> up|down
-sudo ip addr add 192.168.0.77/24 dev eth0         # sudo ifconfig eth0 192.168.0.77 netmask 255.255.255.0
-
-# Network Routing
-#
-# NOTE: `route` is **obsolete**. use `ip route` instead.
-ip route show [dev <if-dev>]                        # route
-netstat -re                                         # route
-sudo ip route add default via <ipv4> dev <if-dev>   # sudo route add default dev <if-dev>
-sudo ip route add|del 192.168.0.77/24 dev eth0      # sudo route add|del -net 192.168.0.77/24 dev eth0
-
-# Network Troubleshooting
-ping <ip>                                                       # check connection status
-sudo sysctl -w net.ipv4.icmp_echo_ignore_all=1                  # Disable ping (temporary)
-sudo echo 'net.ipv4.icmp_echo_ignore_all=1' >> /etc/sysctl.conf # Disable ping (permanent)
-dig
-traceroute <ip>                                                 # trace routing
-```
-
-### Network Configuration
-
-```
-# Debian: /etc/network/interfaces
-auto lo
-iface lo inet loopback
-
-auto eth0
-iface eth0 inet static
-	address 192.168.1.2
-	netmask 255.255.255.0
-	gateway 192.168.1.1
-	dns-nameservers <DNS-IP-1> <DNS-IP-2> ...
-
-auto eth1
-iface eth1 inet dhcp
-```
 
 ## Bash Guide
 
