@@ -1,7 +1,31 @@
-admin-linux
-==================
+# Linux Cookbook
 
-Admin Linux
+<section align="center">
+  <img src="https://leven-cn.github.io/linux-cookbook/imgs/linux-logo.svg"
+    alt="Linux Logo" width="250" height="250" style="text-align:center;" title="Linux Logo">
+  <br><br>
+  <p>
+    <a href="https://github.com/leven-cn/linux-cookbook/actions/workflows/lint.yml">
+      <img src="https://github.com/leven-cn/linux-cookbook/actions/workflows/lint.yml/badge.svg"
+      alt="GitHub Actions - lint" style="max-width:100%;">
+    </a>
+    <a href="https://github.com/pre-commit/pre-commit">
+      <img src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white"
+      alt="pre-commit" style="max-width:100%;">
+    </a>
+  </p>
+  <p>Recipes for <code>Linux</code>.
+  Hands-on command/script examples, snippets and guides for daily work.</p>
+  <p><a href="https://leven-cn.github.io/linux-cookbook/">https://leven-cn.github.io/linux-cookbook/</a></p>
+</section>
+
+<!-- markdownlint-disable line-length -->
+
+## Recipes
+
+## More Details
+
+<!-- markdownlint-enable line-length -->
 
 ## STEP 0
 
@@ -40,24 +64,7 @@ echo "iface eth1 inet dhcp" >> /etc/network/interfaces
 
 ## User Guide
 
-**STEP 1**: Install Git
-
 ```bash
-# Debian/Ubuntu
-sudo apt-get update
-sudo apt-get install git
-```
-
-**STEP 2**: Setup
-
-```bash
-git config --global user.name "Li Yun"                # replace with your name
-git config --global user.email leven.cn@gmail.com     # replace with your email address
-
-cd ~                                                  # choose your own path
-git clone https://github.com/leven-cn/admin-linux.git
-
-cd admin-linux
 python3 admin.py setup|quick-setup
 ```
 
