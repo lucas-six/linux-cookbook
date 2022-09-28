@@ -15,7 +15,7 @@
     </a>
   </p>
   <p>Recipes for <code>Linux</code>.
-  Hands-on command/script examples, snippets and guides for daily work.</p>
+  Hands-on system administration examples and guides for daily work.</p>
   <p><a href="https://leven-cn.github.io/linux-cookbook/">https://leven-cn.github.io/linux-cookbook/</a></p>
 </section>
 
