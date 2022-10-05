@@ -31,4 +31,4 @@ docker run \
 
 ## References
 
-- [Docker Hub: MongoDB](https://hub.docker.com/_/mongo)
+- [Docker Hub: PostgreSQL](https://hub.docker.com/_/postgres)
