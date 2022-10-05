@@ -3,6 +3,7 @@ docker run \
     -d \
     --network ly-devel --network-alias postgresql \
     --platform "linux/amd64" \
+    -p 5432:5432 \
     -e POSTGRES_PASSWORD=123456 \
     -v ly-postgresql-data:/var/lib/postgresql/data \
     -v "$PWD/postgresql.conf":/etc/postgresql/postgresql.conf \
