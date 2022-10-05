@@ -15,7 +15,7 @@
 | --- | --- | --- |
 | Start Year  | 2007, Linux 2.6.20+ | 2003 |
 | Future Direction  | Server Virtualization | Desktop Virtualization |
-| Cloud Service | AWS (2017+): C5+, Alibaba Cloud, Tencent Cloud | Oracle Cloud, IBM Softlayer |
+| Cloud Service | AWS (2017+): C5+, Alibaba Cloud (阿里云), Tencent Cloud (腾讯云) | Oracle Cloud, IBM Softlayer |
 
 ## KVM (Kernel-based VM)
 
