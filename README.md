@@ -23,6 +23,7 @@
 
 ## Recipes
 
+- [`curl`](https://leven-cn.github.io/linux-cookbook/recipes/curl)
 - [Docker Basic Usage](https://leven-cn.github.io/linux-cookbook/recipes/docker_basic)
 - [Docker: PostgreSQL](https://leven-cn.github.io/linux-cookbook/recipes/docker_postgresql)
 

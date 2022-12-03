@@ -52,6 +52,8 @@ docker run \
     --name pgadmin4 dpage/pgadmin4
 ```
 
+NOTE: host = `host.docker.internal`
+
 ## References
 
 - [Docker Hub: PostgreSQL](https://hub.docker.com/_/postgres)
