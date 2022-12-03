@@ -1,9 +1,9 @@
 # Docker: PostgreSQL
 
-## Configuartion
+## Configuration
 
 ```bash
-docker run -i --rm postgres:14 cat /usr/share/postgresql/postgresql.conf.sample > <x>-postgresql.conf
+docker run -i --rm postgres:14 cat /usr/share/postgresql/postgresql.conf.sample > postgresql.conf
 ```
 
 ```ini
