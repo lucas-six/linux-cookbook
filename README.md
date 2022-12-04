@@ -37,7 +37,7 @@
 ## User Guide
 
 ```bash
-python3 admin.py setup|quick-setup
+python3 admin.py setup
 ```
 
 **STEP 3**: Build projects
