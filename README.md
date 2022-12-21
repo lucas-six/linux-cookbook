@@ -37,6 +37,7 @@
 ### Web
 
 - [URL, URI, URN](https://leven-cn.github.io/linux-cookbook/more/web/uri_url_urn)
+- [HTTP Basic](https://leven-cn.github.io/linux-cookbook/more/web/http_basic)
 - [HTTP Caching](https://leven-cn.github.io/linux-cookbook/more/web/http_caching)
 - [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/more/web/http_range)
 
