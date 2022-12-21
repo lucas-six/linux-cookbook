@@ -94,6 +94,8 @@ Content-Type: application/octet-stream
 -r 0-1024
 ```
 
+See [HTTP Range on Linux Cookbook](https://leven-cn.github.io/linux-cookbook/recipes/http_range).
+
 ## Referer
 
 ```bash
