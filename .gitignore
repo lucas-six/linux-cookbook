@@ -1,5 +1,7 @@
 # Python
 *.py[co]
+.mypy_cache/
+.pytest_cache/
 
 # Mac OS X
 .DS_Store
