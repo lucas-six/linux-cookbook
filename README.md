@@ -23,20 +23,22 @@
 
 ## Recipes
 
-- [`curl`](https://leven-cn.github.io/linux-cookbook/recipes/curl)
-- [`httpie` (CLI & GUI)](https://leven-cn.github.io/linux-cookbook/recipes/httpie)
+- HTTP Client
+  - [`curl`](https://leven-cn.github.io/linux-cookbook/recipes/curl)
+  - [`httpie`](https://leven-cn.github.io/linux-cookbook/recipes/httpie)
 - [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/recipes/ubuntu_setup)
 - [Docker Basic Usage](https://leven-cn.github.io/linux-cookbook/recipes/docker_basic)
 - [Docker: PostgreSQL](https://leven-cn.github.io/linux-cookbook/recipes/docker_postgresql)
 
-### HTTP
-
-- [HTTP Caching](https://leven-cn.github.io/linux-cookbook/recipes/http_caching)
-- [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/recipes/http_range)
-
 ## More Details
 
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/more/virtualization)
+
+### Web
+
+- [URL, URI, URN](https://leven-cn.github.io/linux-cookbook/more/web/uri_url_urn)
+- [HTTP Caching](https://leven-cn.github.io/linux-cookbook/more/web/http_caching)
+- [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/more/web/http_range)
 
 <!-- markdownlint-enable line-length -->
 
