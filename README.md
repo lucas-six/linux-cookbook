@@ -31,6 +31,7 @@
 
 ### HTTP
 
+- [HTTP Caching](https://leven-cn.github.io/linux-cookbook/recipes/http_caching)
 - [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/recipes/http_range)
 
 ## More Details
