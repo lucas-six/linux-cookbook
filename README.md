@@ -25,6 +25,7 @@
 
 - [`curl`](https://leven-cn.github.io/linux-cookbook/recipes/curl)
 - [`httpie` (CLI & GUI)](https://leven-cn.github.io/linux-cookbook/recipes/httpie)
+- [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/recipes/ubuntu_setup)
 - [Docker Basic Usage](https://leven-cn.github.io/linux-cookbook/recipes/docker_basic)
 - [Docker: PostgreSQL](https://leven-cn.github.io/linux-cookbook/recipes/docker_postgresql)
 

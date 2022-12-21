@@ -8,7 +8,7 @@
     - build tools
     - www tools
     - ConfigFile
-    - Setup Linux (server)
+    - Setup WWW (server)
 
 
 Copyright 2014 Li Yun <leven.cn@gmail.com>
@@ -35,7 +35,6 @@ import stat
 import subprocess
 import sys
 import time
-import unittest
 from collections import OrderedDict, namedtuple
 
 
@@ -739,152 +738,6 @@ server {{\n\
             return os.path.join(cls.site_enable_root, site_name)
 
 
-def _setup():
-    '''Setup Linux.
-
-    @todo Git under Proxy
-    '''
-    # Determine current system type
-    sys_type = platform.system()
-    if sys_type == 'Linux':
-        linux_distribution = platform.linux_distribution()
-        sys_type += '/' + linux_distribution[0]
-        if sys_type.endswith('Ubuntu'):  # Linux/Ubuntu
-            if float(linux_distribution[1]) >= 14.04:
-                # Ubuntu 14.04 specific features here
-                pass
-    else:
-        sys.exit('Unsupported system {0}'.format(sys_type))
-
-    if sys_type.endswith('Ubuntu'):
-        # Install/Update core packages
-        try:
-            shell.shell('sudo apt-get update')
-
-            pkgs = [
-                'sudo',
-                'apt',
-                'apt-utils',
-                'bash',
-                'python3',
-                'coreutils',
-                'vim',
-                'git',
-                'doxygen',
-                'wget',
-                'nginx',
-                'build-essential',
-                'python3-pip',
-                'python3-dev',
-            ]
-            shell.shell('sudo apt-get install ' + ' '.join(pkgs))
-
-            pip_pkgs = ['virtualenv', 'django', 'uwsgi']
-            for p in pip_pkgs:
-                shell.shell('sudo pip3 install --upgrade ' + p)
-        except AdminError as e:
-            sys.exit('Failed to install core packages: {0}'.format(e))
-        print('System updated [OK]')
-
-        vimrc_ok = False
-        git_ok = False
-
-        # Symbolic link vimrc, backup it if already existing.
-        print('\n*** vimrc ***')
-        vimrc = os.path.expanduser('~/.vimrc')
-        try:
-            if os.path.lexists(vimrc):
-                old_vimrc = vimrc + '.old'
-                shell.remove(old_vimrc)
-                os.rename(vimrc, old_vimrc)
-            myvimrc = os.path.join(os.getcwd(), '_setup', 'vimrc')
-            shell.symlink(myvimrc, vimrc)
-            vimrc_ok = True
-            print('Vimrc [OK]')
-        except OSError as e:
-            print('Vimrc [FAILED]: {0}'.format(e), file=sys.stderr)
-
-        # Configure bashrc
-        def _set_EDITOR_to_Vim(vim_ok):
-            try:
-                with open(os.path.expanduser('~/.bashrc'), 'a') as f:
-                    if vimrc_ok:
-                        # Set default editor to Vim
-                        f.write('\nexport EDITOR=vim')
-                        print('Set default editor to Vim [OK]')
-                    shell.shell('. ~/.bashrc')
-            except IOError as e:
-                print(
-                    'Failed to set default editor to Vim: {0}'.format(e),
-                    file=sys.stderr,
-                )
-            except subprocess.CalledProcessError as e:
-                print('Failed to reload bashrc: {0}'.format(e), file=sys.stderr)
-
-        try:
-            if os.environ['EDITOR'] != 'vim':
-                _set_EDITOR_to_Vim(vim_ok)
-        except KeyError:
-            _set_EDITOR_to_Vim(vim_ok)
-
-        # Configure Git
-        #
-        # @see http://www.git-scm.com/book/
-        # @see http://gitref.org/
-        # @since Git 1.7
-        print('\n*** Git ***')
-
-        def _git_config(conf):
-            shell.shell('git config ' + conf)
-
-        def _git_config_global(conf):
-            _git_config('--global ' + conf)
-
-        try:
-            _git_config_global('core.eol lf')
-            _git_config_global('core.autocrlf input')
-            _git_config_global('core.fileMode false')
-            _git_config_global('core.ui auto')
-            if vimrc_ok:
-                _git_config_global('core.editor vim')
-                _git_config_global('diff.tool vimdiff')
-                _git_config_global('merge.tool vimdiff')
-
-            git_version = subprocess.check_output('git version', shell=True)
-            git_version = git_version.decode()  # byte => str
-            git_version = build.decode_version(git_version, prefix='git version')
-            print(git_version, file=sys.stderr)
-
-            # Password cache (Git v1.7.10+)
-            if build.match_version(git_version, '1.7.10'):
-                _git_config_global('credential.helper "cache --timeout=3600"')
-
-            # Push default
-            if build.match_version(git_version, '1.7.11'):
-                _git_config_global('push.default simple')
-            else:
-                _git_config_global('push.default upstream')
-
-            # TODO: Git under Proxy
-            # sudo git config --system http.proxy http://<proxy-hostname>:<proxy-port>"
-
-            git_ok = True
-            git_conf = subprocess.check_output('git config --list', shell=True)
-            git_conf.strip()
-            git_conf = git_conf.decode()
-            print(git_conf)
-            print('Git [OK]')
-        except (subprocess.CalledProcessError, AdminError) as e:
-            print('Git [FAILED]: {0}'.format(e), file=sys.stderr)
-
-        # Configure WWW
-        try:
-            www.setup()
-            print('WWW [OK]')
-        except AdminError as e:
-            print('WWW [FAILED]: {0}'.format(e), file=sys.stderr)
-
-
 ## Configuration file.
 #
 # ## Usage
@@ -961,7 +814,7 @@ class ConfigFile(object):
 
 def _usage():
     sys.exit(
-        'Usage: python {0} quick-setup|setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|doc'.format(
+        'Usage: python {0} setup|run-uwsgi|stop-uwsgi|init-run-uwsgi|enable-nginx|disable-nginx|doc'.format(
             sys.argv[0]
         )
     )
@@ -974,7 +827,7 @@ if __name__ == '__main__':
     option = sys.argv[1]
 
     if option == 'setup':
-        _setup()
+        www.setup()
 
     elif option == 'run-uwsgi':
         app = sys.argv[2]
@@ -1011,11 +864,6 @@ if __name__ == '__main__':
         build.doxygen(project_path)
 
     elif option == 'test':
-        _setup(quick=True)
-
-        # unit test
-        shell.shell('python3 test_admin.py')
-
         # single app on uWSGI
         time.sleep(2)
         test_app = os.path.realpath('_setup/hello_uwsgi_app.py')
