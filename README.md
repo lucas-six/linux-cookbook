@@ -45,6 +45,7 @@
 
 - [HTTP Basic](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_basic)
 - [HTTP Connection Management](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_connection)
+- [HTTP Cookie](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_cookie)
 - [HTTP Authentication](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_authentication)
 - [HTTP Caching](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_caching)
 - [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_range)
