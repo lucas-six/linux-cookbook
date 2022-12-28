@@ -21,6 +21,12 @@
 
 <!-- markdownlint-disable line-length -->
 
+## System Administration
+
+- [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
+- [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
+- [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
+
 ## Networking
 
 - [Endianness](https://leven-cn.github.io/linux-cookbook/cookbook/net/endianness)
@@ -56,13 +62,8 @@
 
 ## Recipes
 
-- [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/recipes/ubuntu_setup)
 - [Docker Basic Usage](https://leven-cn.github.io/linux-cookbook/recipes/docker_basic)
 - [Docker: PostgreSQL](https://leven-cn.github.io/linux-cookbook/recipes/docker_postgresql)
-
-## More Details
-
-- [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/more/virtualization)
 
 <!-- markdownlint-enable line-length -->
 

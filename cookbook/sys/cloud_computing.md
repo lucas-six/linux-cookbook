@@ -44,8 +44,8 @@
 
 | Category | Service | Core Technology | AWS | Alibaba Cloud (阿里云) |
 | --- | --- | --- | --- | --- |
-| Compute | virtual machine (VM) | [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/more/virtualization): CPU and Memory | EC2 (Elstic Compute Cloud) | ECS (Elastic Compute Service) |
-| Compute | container | [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/more/virtualization): CPU and Memory | EC2 (Elstic Compute Cloud) | ECS (Elastic Compute Service) |
+| Compute | virtual machine (VM) | [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization): CPU and Memory | EC2 (Elstic Compute Cloud) | ECS (Elastic Compute Service) |
+| Compute | container | [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization): CPU and Memory | EC2 (Elstic Compute Cloud) | ECS (Elastic Compute Service) |
 | Stograge | block storage | | EBS (Elatic Block Storage) | |
 | Stograge | object storage | | S3 (Simple Storge Service) | OSS (Object Storage Service) |
 
