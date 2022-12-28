@@ -52,7 +52,7 @@ apt install software-properties-common
 add-apt-repository ppa:deadsnakes/ppa
 apt update
 apt autoremove
-apt install python3.9 python3.9-dev
+apt install python3.10 python3.10-dev
 ```
 
 ### Install from source code
@@ -75,18 +75,4 @@ make altinstall
 
 pip3 install --upgrade pip pipx pipenv argcomplete
 activate-global-python-argcomplete
-```
-
-```conf
-# /etc/pip.conf
-
-[global]
-#index-url = https://pypi.douban.com/simple
-index-url = https://mirrors.aliyun.com/pypi/simple/
-
-[install]
-trusted-host = mirrors.aliyun.com
-
-[list]
-format = columns
 ```
