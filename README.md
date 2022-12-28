@@ -66,6 +66,7 @@
   - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl)
   - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
   - `Postman`
+- [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
 ## Recipes
 
