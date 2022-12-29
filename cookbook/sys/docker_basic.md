@@ -66,12 +66,15 @@ docker run --network <network-name> <image-name>:<image-tag>
 
 ### Build Images: `Dockerfile`
 
-```docker
+```dockerfile
 # syntax=docker/dockerfile:1
 FROM <image-name>:<image-tag>
+LABEL org.opencontainers.image.authors="leven.cn@gmail.com"
 
 RUN <shell-commands && ...>
 
+VOLUME ["<persistent-data-container-path>", ...]
+ENV <env_var>=<value>
 WORKDIR <container-working-path>
 
 COPY <host-file> <container-file>
@@ -85,12 +88,14 @@ Run:
 ```bash
 cd <docker-working-path>
 docker build -t <image-name>:<image-tag> .
+docker scan <image-name>:<image-tag>
 
 docker run \
     -d \
-    -v $PWD:<container-working-path> \
+    -v <persistent-data-host-path=$PWD>:<persistent-data-container-path> \
     -p <host-port>:<container-port> \
-    [--name <docker-name>] <image-name>:<image-tag>
+    [--name <docker-name>] \
+    <image-name>:<image-tag>
 ```
 
 ## References
