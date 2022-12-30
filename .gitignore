@@ -11,6 +11,9 @@
 *.data
 *.log
 
+# Docker
+docker-volumes/
+
 # Doxygen
 Doxyfile*
 

@@ -59,6 +59,7 @@ docker run -v [<host-path>|<volume-name>]:<container-path> <image-name>:<image-t
 ### Networking
 
 ```bash
+docker network list
 docker network create <network-name>
 
 docker run --network <network-name> <image-name>:<image-tag>
