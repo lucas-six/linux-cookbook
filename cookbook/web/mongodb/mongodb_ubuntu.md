@@ -57,6 +57,7 @@ systemLog:
   destination: file
   logAppend: true
   path: /var/log/mongodb/mongod.log
+  timeStampFormat: iso8601-utc
 
 net:
   port: 27017
@@ -64,9 +65,6 @@ net:
 
 processManagement:
   timeZoneInfo: /usr/share/zoneinfo
-
-security:
-  authorization: enabled  # 启动认证
 ```
 
 ```bash
@@ -74,4 +72,39 @@ chown -R mongodb:mongodb </var/lib/mongodb>
 
 systemctl enable|disable mongod
 systemctl start|stop|restart|status mongod
+```
+
+### Standaone Authentication
+
+```yaml
+# /etc/mongod.conf
+
+security:
+  authorization: enabled  # 启动认证
+```
+
+### Replica Set
+
+```yaml
+# /etc/mongod.conf
+
+net:
+  bindIp: localhost,10.0.0.1,10.0.0.2
+
+replication:
+  replSetName: <replica-set-name>
+```
+
+#### Keyfile Authentication
+
+```bash
+openssl rand -base64 756 > <key>.key
+chmod 0400 <key>.key
+```
+
+```yaml
+# /etc/mongod.conf
+
+security:
+  keyFile: <path/to/keyfile.key>
 ```
