@@ -1,0 +1,110 @@
+# MongoDB on Ubuntu
+
+## Installation
+
+**NOTE**: **`XFS`** filesystem is strongly recommended with the `WiredTiger` storage engine.
+
+```bash
+apt install apt apt-utils python-apt-common python3-apt wget gnupg systemd
+
+# for v4.4
+# wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
+# echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
+
+# for 5.0
+wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+
+apt update
+apt install mongodb-org
+```
+
+## Configuration
+
+```conf
+# /etc/sysctl.d/30-mongodb.conf
+
+vm.swappiness = 0
+vm.overcommit_memory = 1
+net.core.somaxconn = 4096
+net.core.netdev_max_backlog = 4096
+net.ipv4.tcp_max_syn_backlog = 4096
+```
+
+```bash
+systemctl restart procps.service
+```
+
+```conf
+# /etc/security/limits.d/mongodb.conf
+
+mongodb  soft  nofile  65535
+mongodb  hard  nofile  65535
+```
+
+```yml
+# /etc/mongod.conf
+
+storage:
+  dbPath: </var/lib/mongodb>
+  journal:
+    enabled: true
+  # wiredTiger:
+  #   engineConfig:
+  #     cacheSizeGB: 2
+
+systemLog:
+  destination: file
+  logAppend: true
+  path: /var/log/mongodb/mongod.log
+  timeStampFormat: iso8601-utc
+
+net:
+  port: 27017
+  bindIp: 127.0.0.1  # 0.0.0.0 for all, :: for IPv6
+
+processManagement:
+  timeZoneInfo: /usr/share/zoneinfo
+```
+
+```bash
+chown -R mongodb:mongodb </var/lib/mongodb>
+
+systemctl enable|disable mongod
+systemctl start|stop|restart|status mongod
+```
+
+### Standaone Authentication
+
+```yaml
+# /etc/mongod.conf
+
+security:
+  authorization: enabled  # 启动认证
+```
+
+### Replica Set
+
+```yaml
+# /etc/mongod.conf
+
+net:
+  bindIp: localhost,10.0.0.1,10.0.0.2
+
+replication:
+  replSetName: <replica-set-name>
+```
+
+#### Keyfile Authentication
+
+```bash
+openssl rand -base64 756 > <key>.key
+chmod 0400 <key>.key
+```
+
+```yaml
+# /etc/mongod.conf
+
+security:
+  keyFile: <path/to/keyfile.key>
+```

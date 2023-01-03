@@ -37,7 +37,6 @@
 ### Container (容器)
 
 - [Docker: Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/sys/docker_basic)
-- [Docker: MongoDB](https://leven-cn.github.io/linux-cookbook/cookbook/sys/docker_mongodb)
 
 ## Networking (网络)
 
@@ -72,6 +71,12 @@
   - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
   - `Postman`
 - [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
+
+## MongoDB
+
+- [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
+- [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
+- [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
 
 ## Recipes
 
