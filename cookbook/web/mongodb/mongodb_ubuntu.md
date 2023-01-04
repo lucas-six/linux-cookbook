@@ -95,6 +95,19 @@ replication:
   replSetName: <replica-set-name>
 ```
 
+```bash
+mongosh
+
+> rs.initiate( {
+  _id : "<replica-set-name>",
+  members: [
+    { _id: 0, host: "<ip1>:27017" },
+    { _id: 1, host: "<ip2>:27017" },
+    { _id: 2, host: "<ip3>:27017" }
+  ]
+})
+```
+
 #### Keyfile Authentication
 
 ```bash
@@ -107,4 +120,43 @@ chmod 0400 <key>.key
 
 security:
   keyFile: <path/to/keyfile.key>
+```
+
+## Initialization
+
+```bash
+mongosh
+
+# Super Admin (Standalone)
+> db.createUser(
+{
+  user: "<super_admin_name>",
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "userAdminAnyDatabase", db: "admin" },
+    { role: "readWriteAnyDatabase", db: "admin" }
+  ]
+})
+
+# Super Admin (Replica Set)
+> db.createUser(
+{
+  user: "<super_admin_name>",
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "userAdminAnyDatabase", db: "admin" },
+    { role: "readWriteAnyDatabase", db: "admin" },
+    { role: "clusterAdmin", db: "admin" }
+  ]
+})
+
+# DB Owner
+> db.createUser(
+{
+  user: "<db_owner_name>",
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "dbOwner", db: "<db_name>" }
+  ]
+})
 ```
