@@ -31,6 +31,7 @@
 ## System Administration (系统管理)
 
 - [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
+- [SSH Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh_config)
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
 
