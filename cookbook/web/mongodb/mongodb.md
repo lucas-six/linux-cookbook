@@ -17,10 +17,14 @@ Distributed Document Database (分布式文档数据库)
 
 ## Fundamental Concepts (基础概念)
 
-### Content Schemata (内容结构)
+### Schema
 
 - `database` (数据库)
 - `collection` (集合)
+  - `index` (索引)
+    - Unique Indexes
+    - [TTL Indexes](https://www.mongodb.com/docs/v6.0/core/index-ttl/)
+  - [Capped Collections](https://www.mongodb.com/docs/v6.0/core/capped-collections/): fixed size, FIFO
 - `document` (文档): **BSON**
 - `field` (字段)
 
@@ -28,9 +32,9 @@ Distributed Document Database (分布式文档数据库)
 
 - `standalone` (单节点)
 - `replica set` (副本集)
-- `sharded-cluster` (集群)
+- `sharded cluster` (分片集群)
 
-### Multiple Storage Engines (多存储引擎)
+### Storage Engines (存储引擎)
 
 - `WiredTiger`
 - In-Memory
@@ -54,3 +58,7 @@ Distributed Document Database (分布式文档数据库)
 - ~~`timestamp`~~ (for internal MongoDB use, use `date` instead)
 - ~~`undefined`~~
 - ~~`symbol`~~
+
+## References
+
+- [MongoDB Documentation](https://www.mongodb.com/docs/)

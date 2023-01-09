@@ -73,11 +73,15 @@
   - `Postman`
 - [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
-## MongoDB
+### MongoDB
 
 - [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
 - [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
 - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
+
+### Nginx
+
+- [Nginx on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_ubuntu)
 
 ## Recipes
 
@@ -99,12 +103,6 @@ python3 admin.py run-uwsgi <app-path> <address>
 python3 admin.py stop-uwsgi <app-path>
 python3 admin.py init-run-uwsgi <app-path> <address>
 tail -f /var/log/uwsgi/<app-name>.log
-
-# nginx
-python3 admin.py enable-nginx <app-path> [<upstream-address>]
-python3 admin.py disable-nginx [<app-path> <upstream-address>]
-tail -f /var/log/nginx/access.log
-tail -f /var/log/nginx/error.log
 
 # doc
 python admin.py doc <project-path>
