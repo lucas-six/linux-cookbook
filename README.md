@@ -48,6 +48,7 @@
 - TCP Connect Timeout (*handshaking timeout*)
   - [Client Side](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_client)
   - [Server Side](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_server)
+- [TCP `listen()` Queue](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_listen_queue)
 - [TCP Nodelay (Nagle's Algorithm)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_nodelay)
 - [TCP Quick ACK (Disable Delayed ACKs, 禁用延迟确认)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_quickack)
 - [TCP Keep Alive](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_keepalive)
