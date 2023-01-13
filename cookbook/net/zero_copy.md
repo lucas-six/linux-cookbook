@@ -46,6 +46,8 @@ but need to send some header data in front of the file contents,
 you will find it useful to employ the `TCP_CORK` option,
 to minimize the number of packets and to tune performance.
 
+This option can be combined with `TCP_NODELAY` only since Linux *2.5.71*.
+
 The original Linux `sendfile()` system call was not designed to handle large file offsets.
 Consequently, Linux 2.4 added `sendfile64()`, with a wider type for the `offset` argument.
 The glibc `sendfile()` wrapper function transparently deals with the kernel differences.
@@ -81,6 +83,8 @@ Since Linux *2.4*:
 http {
 ...
     sendfile  on;
+    tcp_nopush  on;
+    tcp_nodelay  on;
 ...
 }
 
@@ -101,3 +105,4 @@ location /bigfile/ {
 - [Linux Programmer's Manual - `mmap`(2)](https://manpages.debian.org/bullseye/manpages-dev/mmap.2.en.html)
 - [Linux Programmer's Manual - `sendfile`(2)](https://manpages.debian.org/bullseye/manpages-dev/sendfile.2.en.html)
 - [Linux Programmer's Manual - `tcp`(7) - `TCP_CORK`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#TCP_CORK)
+- [Linux Programmer's Manual - `tcp`(7) - `TCP_NODELAY`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#TCP_NODELAY)
