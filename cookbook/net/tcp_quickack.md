@@ -13,7 +13,7 @@ once again enter/leave quickack mode depending on internal protocol
 processing and factors such as delayed ack timeouts occurring and data
 transfer. This option should not be used in code intended to be portable.
 
-Since Linux 2.4.4.
+Since Linux *2.4.4*.
 
 ## Python Recipes
 
