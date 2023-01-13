@@ -84,6 +84,7 @@
 - [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
 - [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
 - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
+- MongoDB GUI: **Mongo Compass**
 
 ### Nginx
 
@@ -92,6 +93,8 @@
 ### Redis
 
 - [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_setup)
+- Redis GUI: **RedisInsight** (Official), ~~Redis Desktop Manager~~, Another Redis Desktop Manager
+- [Redis CLI - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_usage_basic)
 
 ## Recipes
 
