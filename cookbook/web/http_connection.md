@@ -7,9 +7,9 @@
 - Reduce *TCP connect time* (*handshaking time*)
   - [reduce **`tcp_syn_retries`** (**`TCP_SYNCNT`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_client)
   - [reduce **`tcp_synack_retries`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_server)
+- [Enable **Persistent Connection** (**TCP Keep-Alive**, **`SO_KEEPALIVE`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_keepalive)
 - [Disable *Nagle Algorithm*, enable **`TCP_NODELAY`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_nodelay)
 - [Disable *Delayed ACK*, enable **TCP Quick ACK** (**`TCP_QUICKACK`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_quickack)
-- [Enable **Persistent Connection** (**TCP Keep-Alive**, **`SO_KEEPALIVE`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_keepalive)
 - [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_rfc1337)
 
 ### Keep-Alive
