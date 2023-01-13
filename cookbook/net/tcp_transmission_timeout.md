@@ -34,6 +34,10 @@ new_RTTd = (1 - β) × (old_RTTd) + β × |RTTs - new_RTT_sample|, 0 <= β < 1 (
 
 See [RFC 6298](https://datatracker.ietf.org/doc/html/rfc6298.html).
 
+## Python Recipes
+
+- [TCP Transmission Timeout - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_transmission_timeout)
+
 ## References
 
 <!-- markdownlint-disable line-length -->

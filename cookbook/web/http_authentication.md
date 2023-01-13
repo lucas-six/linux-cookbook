@@ -62,8 +62,8 @@ Authorization: Basic <base64-str>
 
 ```nginx
 location /status {
-    auth_basic           "Access to the staging site";
-    auth_basic_user_file /etc/apache2/.htpasswd;
+    auth_basic            "Access to the staging site";
+    auth_basic_user_file  /etc/apache2/.htpasswd;
 }
 ```
 
