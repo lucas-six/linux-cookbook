@@ -102,6 +102,7 @@
 - Redis Python API:
   - Sync: **`redis-py`**
   - Async: **`aioredis`**
+  - ORM: *`pyton-redis-orm`*
 
 ## Recipes
 
