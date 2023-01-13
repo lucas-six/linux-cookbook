@@ -1,6 +1,6 @@
 # TCP Keep Alive
 
-## OS Configuration
+## OS Configuration (Linux)
 
 ### `tcp_keepalive_time`
 
