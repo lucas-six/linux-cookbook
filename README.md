@@ -76,7 +76,7 @@
 - HTTP Client
   - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl)
   - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
-  - `Postman`
+  - `Postman` (GUI)
 - [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
 ### MongoDB
@@ -84,6 +84,11 @@
 - [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
 - [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
 - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
+- MongoDB CLI: **`mongosh`**
+- MongoDB GUI: **Mongo Compass**
+- MongoDB *Python API*
+  - Sync: **`pymongo`**
+  - Async: **`motor`**
 
 ### Nginx
 
@@ -92,6 +97,12 @@
 ### Redis
 
 - [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_setup)
+- [Redis CLI **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_usage_basic)
+- Redis GUI: **RedisInsight** (Official), ~~Redis Desktop Manager~~, Another Redis Desktop Manager
+- Redis Python API:
+  - Sync: **`redis-py`**
+  - Async: **`aioredis`**
+  - ORM: *`pyton-redis-orm`*
 
 ## Recipes
 

@@ -174,8 +174,3 @@ mongodb://<user>:<pwd>@<ip>:<port=27017>/<db_name>?authMechanism=SCRAM-SHA-256&c
 ```url
 mongodb://<user>:<pwd>@<ip1>:<port=27017>,<ip2>:<port=27017>,<ip3>:<port=27017>/<db_name>?replicaSet=<rs-name>&authMechanism=SCRAM-SHA-256&maxPoolSize=4096&connectTimeoutMS=3500
 ```
-
-### Python
-
-- `pymongo`: Sync API
-- `motor`: Async API
