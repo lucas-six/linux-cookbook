@@ -70,8 +70,8 @@
 - [HTTP Basic](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_basic)
 - [HTTP Connection Management](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_connection)
 - [HTTP Cookie](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_cookie)
-- [HTTP Authentication](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_authentication)
-- [HTTP Caching](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_caching)
+- [HTTP Authentication: `WWW-Authenticate`, `Authorization`, `Proxy-Authenticate`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_authentication)
+- [HTTP Caching: `Cache-Control`, ~~`Expires`~~, `ETag`, `Vary`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_caching)
 - [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_range)
 - HTTP Client
   - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl)
@@ -88,6 +88,10 @@
 ### Nginx
 
 - [Nginx on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_ubuntu)
+
+### Redis
+
+- [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_setup)
 
 ## Recipes
 

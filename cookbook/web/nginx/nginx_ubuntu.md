@@ -54,13 +54,6 @@ systemctl enable|disable nginx
 systemctl start|stop|restart|status nginx
 ```
 
-### Basic Auth
-
-```bash
-apt install apache2-utils  # 安装htpasswd
-htpasswd -bc /etc/nginx/<htpasswd.users> <用户名> <密码>
-```
-
 ## vHost Configuration
 
 ```nginx
@@ -145,6 +138,20 @@ server {
     listen  80;
     server_name  <domain.name>;
     return  301 https://$host$request_uri;
+}
+```
+
+### Basic Auth
+
+```bash
+apt install apache2-utils  # 安装htpasswd
+htpasswd -bc /etc/nginx/<htpasswd.users> <用户名> <密码>
+```
+
+```nginx
+location /status {
+    auth_basic           "Access to the staging site";
+    auth_basic_user_file  /etc/apache2/.htpasswd;
 }
 ```
 
