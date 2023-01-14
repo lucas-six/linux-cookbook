@@ -31,7 +31,7 @@
 ## System Administration (系统管理)
 
 - [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
-- [SSH Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh_config)
+- [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh)
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
 
@@ -77,6 +77,8 @@
   - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl)
   - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
   - `Postman` (GUI)
+  - Python API
+    - `urllib` (built-in), [*`requests`*](https://requests.readthedocs.io/en/latest/) (sync io), [**`aiohttp`**](https://docs.aiohttp.org/en/stable/) (asyncio)
 - [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
 ### MongoDB
@@ -84,11 +86,11 @@
 - [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
 - [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
 - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
-- MongoDB CLI: **`mongosh`**
-- MongoDB GUI: **Mongo Compass**
-- MongoDB *Python API*
-  - Sync: **`pymongo`**
-  - Async: **`motor`**
+- CLI: **`mongosh`**
+- GUI: **Mongo Compass**
+- [Python API](https://www.mongodb.com/docs/drivers/python/)
+  - Sync: [**`pymongo`**](https://www.mongodb.com/docs/drivers/pymongo/)
+  - Async: [**`motor`**](https://www.mongodb.com/docs/drivers/motor/)
 
 ### Nginx
 
@@ -97,11 +99,11 @@
 ### Redis
 
 - [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_setup)
-- [Redis CLI **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_usage_basic)
-- Redis GUI: **RedisInsight** (Official), ~~Redis Desktop Manager~~, Another Redis Desktop Manager
-- Redis Python API:
-  - Sync: **`redis-py`**
-  - Async: **`aioredis`**
+- [CLI: **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_usage_basic)
+- GUI: [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official), ~~Redis Desktop Manager~~, *Another Redis Desktop Manager*
+- Python API:
+  - Sync: [**`redis-py`**](https://redis.readthedocs.io/en/latest/)
+  - Async: [**`aioredis`**](https://aioredis.readthedocs.io/en/latest/)
   - ORM: *`pyton-redis-orm`*
 
 ## Recipes

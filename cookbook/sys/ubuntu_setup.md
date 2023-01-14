@@ -44,6 +44,14 @@ mkdir /mnt/<point>
 mount -a
 ```
 
+## `limits.conf`
+
+```ini
+# /etc/pam.d/su
+
+session    required   pam_limits.so
+```
+
 ## Python
 
 ### Install by `apt`
@@ -125,4 +133,22 @@ net.ipv4.tcp_window_scaling = 1
 
 ```bash
 sysctl -p
+```
+
+## Git
+
+```bash
+apt install git git-man
+
+sudo git config --system init.defaultBranch main
+sudo git config --system color.ui true
+sudo git config --system core.fileMode true
+sudo git config --system core.autocrlf input
+sudo git config --system core.editor vim
+sudo git config --system diff.tool vimdiff
+sudo git config --system credential.helper store
+sudo git config --system pull.rebase false
+sudo git config --system push.default simple
+sudo git config --system help.autocorrect 1
+sudo git config --system gui.encoding utf-8
 ```
