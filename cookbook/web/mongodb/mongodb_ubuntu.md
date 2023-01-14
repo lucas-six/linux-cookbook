@@ -62,6 +62,7 @@ systemLog:
 net:
   port: 27017
   bindIp: 127.0.0.1  # 0.0.0.0 for all, :: for IPv6
+#  maxIncomingConnections: 65536
 
 processManagement:
   timeZoneInfo: /usr/share/zoneinfo
