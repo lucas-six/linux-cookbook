@@ -20,10 +20,12 @@ including the correct **`Authorization`** or **`Proxy-Authorization`** header.
 ## Authentication schemes
 
 - **Basic**: *base64*-encoded credentials. See [RFC 7617 - The 'Basic' HTTP Authentication Scheme (2015.9)](https://www.rfc-editor.org/rfc/rfc7617).
+
 - **Digest**: *SHA-256* algorithm credentials. See [RFC 7616 - HTTP Digest Access Authentication (2015.9)](https://www.rfc-editor.org/rfc/rfc7616).
 
-- Bearer:
-See RFC 6750, bearer tokens to access OAuth 2.0-protected resources
+- **Bearer** (also called **token**): bearer tokens to access **OAuth 2.0** (with bearer format *JWT*).
+See [RFC 6750 - The OAuth 2.0 Authorization Framework: Bearer Token Usage](https://www.rfc-editor.org/rfc/rfc6750.html)
+and [Swagger - Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/).
 
 - HOBA
 See RFC 7486, Section 3, HTTP Origin-Bound Authentication, digital-signature-based
@@ -101,6 +103,7 @@ See [RFC 7616 - HTTP Digest Access Authentication (2015.9)](https://www.rfc-edit
 - [RFC 9110 - HTTP Semantics (2022.6)](https://www.rfc-editor.org/rfc/rfc9110)
 - [RFC 9112 - HTTP/1.1 (2022.6)](https://www.rfc-editor.org/rfc/rfc9112)
 - [W3C - HTTP - Hypertext Transfer Protocol](https://www.w3.org/Protocols/)
+- [Swagger - Bearer Authentication](https://swagger.io/docs/specification/authentication/bearer-authentication/)
 - [Wikipedia - HTTP](https://en.wikipedia.org/wiki/Hypertext%20Transfer%20Protocol)
 - [Wikipedia - HTTPS](https://en.wikipedia.org/wiki/HTTPS)
 
