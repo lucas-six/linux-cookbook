@@ -94,7 +94,8 @@
 
 ### Nginx
 
-- [Nginx on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_ubuntu)
+- [Nginx Installation](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_installation)
+- [Nginx Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_configuration)
 
 ### Redis
 
