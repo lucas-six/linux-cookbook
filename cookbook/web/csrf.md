@@ -29,9 +29,17 @@ or
 </form>
 ```
 
-### 3. XSS Prevention
+### 3. Nginx `valid_referer`
+
+See [Nginx Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_configuration).
+
+### 4. XSS Prevention
+
+Cross Site Scripting, XSS (跨站脚本攻击)
+
+See [Nginx Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_configuration).
 
 ## References
 
-- [MDN - CSRF](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
-- [Wikipedia - Cross-site request forgery](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+- [CSRF on MDN](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
+- [Cross-site request forgery on Wikipedia](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
