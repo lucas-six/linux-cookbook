@@ -4,9 +4,20 @@
 
 ### PFS with DH
 
+![TLS False Start](https://leven-cn.github.io/linux-cookbook/imgs/tls-false-start.png)
+
 ```bash
 # Perfect Forward Secrecy, PFS with Diffie-Hellman, DH algorithm
 openssl dhparam -out /etc/nginx/ssl_dh.params 4096
+```
+
+```conf
+# /etc/nginx/nginx.conf
+
+# support for TLS False Start
+# enable Forward Secrecy
+ssl_prefer_server_ciphers on;  # 缓解 BEAST 攻击
+ssl_dhparam ssl_dh.params;  # Perfect Forward Secrecy, PFS with Diffie-Hellman, DH algorithm
 ```
 
 ### TCP Fast-Open
@@ -19,6 +30,29 @@ net.ipv4.tcp_fastopen = 3
 
 ```bash
 systemctl restart procps.service
+```
+
+### `zstd` Support
+
+```conf
+# /etc/nginx/nginx.conf
+# --add-module=/path/to/zstd-nginx-module
+
+http {
+    zstd on;
+    zstd_dict_file /path/to/dict;
+    # zstd_types text/html;
+    # zstd_comp_level 11;
+    # zstd_min_length 256;  # in bytes
+    # zstd_buffers 32 4k | 16 8k;
+    # zstd_static off;
+}
+```
+
+### TLS False Start / Forward Secrecy
+
+```conf
+
 ```
 
 ### Validate Configuration
@@ -75,17 +109,8 @@ server {
         access_log  off;
         expires max;
     }
-    location /dj-static/admin {
-        access_log  off;
-        alias /var/spool/nginx/tanxun-root/admin;
-        expires max;
-    }
-    location /dj-static/rest_framework {
-        access_log  off;
-        alias /var/spool/nginx/tanxun-root/rest_framework;
-        expires max;
-    }
 
+    # API
     location ~* ^/(api) {
         proxy_pass  http://127.0.0.1:8000;
     }
@@ -134,6 +159,24 @@ location /status {
 }
 ```
 
+### Django Admin Static
+
+```conf
+# conf.d/vhost.conf
+
+location /dj-static/admin {
+    access_log  off;
+    alias /var/spool/nginx/tanxun-root/admin;
+    expires max;
+}
+location /dj-static/rest_framework {
+    access_log  off;
+    alias /var/spool/nginx/tanxun-root/rest_framework;
+    expires max;
+}
+```
+
 ## References
 
 - [Nginx Documentation](https://nginx.org/en/docs/)
+- [Forward Secrecy on Wikipedia](https://en.wikipedia.org/wiki/Forward_secrecy)
