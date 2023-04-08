@@ -62,7 +62,7 @@ Authorization: Basic <base64-str>
 
 ## Nginx Conf
 
-```nginx
+```conf
 location /status {
     auth_basic            "Access to the staging site";
     auth_basic_user_file  /etc/apache2/.htpasswd;
