@@ -78,7 +78,21 @@ server {
     ssl_certificate      /etc/nginx/ssl/xxx.pem;
     ssl_certificate_key  /etc/nginx/ssl/xxx.key;
 
-    add_header  X-Content-Type-Options nosniff;
+    # CSRF
+    # HTTP Referer header
+    # https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers
+    valid_referers none blocked server_names 127.0.0.1 *.<domain.name>;
+    # referer_hash_max_size 2048;
+    # referer_hash_bucket_size 64;
+    if ($invalid_referer) {
+        # rewrite   ^/   https://$host;
+        return 403;
+    }
+
+    # XSS Prevention
+    add_header X-Frame-Options 'SAMEORIGIN';  # 只允许本网站的frame嵌套
+    add_header X-XSS-Protection '1; mode=block';  # 开启XSS过滤器
+    add_header X-Content-Type-Options 'nosniff';  # 禁止嗅探文件类型
 
     client_max_body_size  75M;  # max upload size
 
@@ -180,3 +194,4 @@ location /dj-static/rest_framework {
 
 - [Nginx Documentation](https://nginx.org/en/docs/)
 - [Forward Secrecy on Wikipedia](https://en.wikipedia.org/wiki/Forward_secrecy)
+- [Nginx `valid_referers`](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers)
