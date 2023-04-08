@@ -28,7 +28,7 @@ for example:
 ```http
 GET / HTTP/1.1
 HOST: www.example.com
-Accept: */*åå
+Accept: */*
 
 hello world
 ```
@@ -46,6 +46,7 @@ for example:
 
 ```http
 HTTP/1.1 200 OK
+Date: Sun, 17 Sep 2000 00:01:05 GMT
 Content-Type: plain/text
 Content-Length: 11
 
@@ -75,17 +76,24 @@ See [RFC 2046 - Multipurpose Internet Mail Extensions (MIME) Part Two: Media Typ
 ### Request
 
 ```http
-Accept-Encoding: br;q=1, gzip;q=0.5, deflate;q=0.1
+Accept-Encoding: zstd;q=1, br;q=0.8, gzip;q=0.5, deflate;q=0.1
 ```
+
+**`q`** means **quality value**, also called **weight**, range from `0.0` to `1.1`.
+
+**`zstd`** means **Zstd** algorithm, open source by Facebook in 2016.
+
+**`br`** means **Brotli** algorithm, created by Google in 2015.
+
+More to see [Compression on Linux Cookbook](/linux-cookbook/cookbook/general/compression).
 
 ### Response
 
 ```http
+Content-Encoding: zstd
 Content-Encoding: br
 Content-Encoding: gzip
 ```
-
-**`br`** means *Brotli* algorithm, created by Google in 2015.
 
 ## Transfer Encoding
 
