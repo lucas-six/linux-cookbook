@@ -28,6 +28,10 @@
 - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_iso_8601)
 - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_rfc_3339)
 
+## General
+
+- [Compression (压缩)](https://leven-cn.github.io/linux-cookbook/cookbook/general/compression)
+
 ## System Administration (系统管理)
 
 - [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
