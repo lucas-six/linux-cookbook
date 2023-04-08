@@ -9,7 +9,7 @@ hostnamectl set-hostname <hostname>
 
 apt update
 apt install apt apt-utils apt-transport-https
-apt install coreutils sudo bash vim openssh-server colordiff tar gzip bzip2 wget curl git \
+apt install coreutils sudo bash vim openssh-server colordiff tar gzip bzip2 zstd wget wget2 curl git \
     systemd cron tzdata python3 ca-certificates procps psmisc htop \
     binutils make openssl rsync lsof make gcc
 apt autoremove
@@ -152,3 +152,7 @@ sudo git config --system push.default simple
 sudo git config --system help.autocorrect 1
 sudo git config --system gui.encoding utf-8
 ```
+
+## References
+
+- [GNU Wget2 on GitLab](https://gitlab.com/gnuwget/wget2)
