@@ -31,7 +31,8 @@
 ## General
 
 - [Compression (压缩)](https://leven-cn.github.io/linux-cookbook/cookbook/general/compression)
-- [Archive: `tar`]([https](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive))
+- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
+- [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
 
 ## System Administration (系统管理)
 
