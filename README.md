@@ -23,10 +23,10 @@
 
 ## Date & Time
 
-### Representation of Dates and Times
-
-- [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_iso_8601)
-- [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_rfc_3339)
+- Representation
+  - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_iso_8601)
+  - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_rfc_3339)
+- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/time/date-cli)
 
 ## General
 
