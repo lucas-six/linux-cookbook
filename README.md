@@ -30,8 +30,8 @@
 
 ## General
 
+- [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
 - [Compression (压缩)](https://leven-cn.github.io/linux-cookbook/cookbook/general/compression)
-- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
 - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/general/grep)
 - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/general/join-files)
@@ -39,6 +39,7 @@
 ## System Administration (系统管理)
 
 - [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
+- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
 - [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh)
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
@@ -114,6 +115,17 @@
   - Sync: [**`redis-py`**](https://redis.readthedocs.io/en/latest/)
   - Async: [**`aioredis`**](https://aioredis.readthedocs.io/en/latest/)
   - ORM: *`pyton-redis-orm`*
+
+## Recommended Readings
+
+<!-- markdownlint-disable line-length -->
+
+- [LinuxCommmand.org](https://linuxcommand.org/)
+- [The Linux Command Line, Fifth Internet Edition](https://linuxcommand.org/tlcl.php)
+- [Filesystem Hierarchy Standard Specification Series](https://refspecs.linuxfoundation.org/fhs.shtml)
+- Book: Evi Nemeth, Garth Snyder, Trent R. Hein. *UNIX and Linux System Administration Handbook, Fifth Edition* (2018) ISBN: 978-0-13-427755-4
+
+<!-- markdownlint-enble line-length -->
 
 ## Recipes
 
