@@ -21,13 +21,6 @@
 
 <!-- markdownlint-disable line-length -->
 
-## Date & Time
-
-- Representation
-  - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_iso_8601)
-  - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/time/fmt_rfc_3339)
-- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/time/date-cli)
-
 ## General
 
 - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
@@ -35,6 +28,12 @@
 - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/general/grep)
 - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/general/join-files)
+
+### Date & Time
+
+- [Representation of Date & Time - ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general/datetime_fmt_iso_8601)
+- [Representation of Date & Time - RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general/datetime_fmt_rfc_3339)
+- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/general/date-cli)
 
 ## System Administration (系统管理)
 
