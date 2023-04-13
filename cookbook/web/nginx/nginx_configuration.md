@@ -148,6 +148,11 @@ server {
     location ~/.env {
         return 444;
     }
+
+    # HEAD
+    if ($request_method ~ ^(HEAD)$ ) {
+        return 200 "All OK";
+    }
 }
 
 server {
