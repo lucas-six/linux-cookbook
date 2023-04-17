@@ -15,6 +15,5 @@ Thus, **DONOT** use `SO_REUSEADDR` on UDP.
 
 ## References
 
-- [Linux Programmer's Manual - `bind`(2)](https://manpages.debian.org/bullseye/manpages-dev/bind.2.en.html)
-- [Linux Programmer's Manual - socket(7)](https://manpages.debian.org/bullseye/manpages/socket.7.en.html)
-- [Linux Programmer's Manual - socket(7) - `SO_REUSEADDR`](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_REUSEADDR)
+- [`bind`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/bind.2.en.html)
+- [`SO_REUSEADDR` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_REUSEADDR)

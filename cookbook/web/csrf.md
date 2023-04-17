@@ -41,5 +41,5 @@ See [Nginx Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/web
 
 ## References
 
-- [CSRF on MDN](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
-- [Cross-site request forgery on Wikipedia](https://en.wikipedia.org/wiki/Cross-site_request_forgery)
+- [CSRF - MDN](https://developer.mozilla.org/en-US/docs/Glossary/CSRF)
+- [Cross-site request forgery - Wikipedia](https://en.wikipedia.org/wiki/Cross-site_request_forgery)

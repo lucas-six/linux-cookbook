@@ -155,4 +155,4 @@ sudo git config --system gui.encoding utf-8
 
 ## References
 
-- [GNU Wget2 on GitLab](https://gitlab.com/gnuwget/wget2)
+- [GNU Wget2 - GitLab](https://gitlab.com/gnuwget/wget2)

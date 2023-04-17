@@ -151,6 +151,6 @@ R/INTERVAL
 
 ## References
 
-- [Wikipedia - ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+- [ISO 8601 - Wikipedia](https://en.wikipedia.org/wiki/ISO_8601)
 - [ISO 8601-1:2009](https://www.iso.org/obp/ui/#iso:std:iso:8601:-1:ed-1:v1:en)
 - [ISO 8601-2:2009](https://www.iso.org/obp/ui/#iso:std:iso:8601:-2:ed-1:v1:en)

@@ -23,8 +23,10 @@
 
 ## General
 
+- Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/general/setup_ubuntu)
 - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
 - [Compression (压缩)](https://leven-cn.github.io/linux-cookbook/cookbook/general/compression)
+- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
 - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/general/grep)
 - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/general/join-files)
@@ -37,8 +39,6 @@
 
 ## System Administration (系统管理)
 
-- [Setup Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ubuntu_setup)
-- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
 - [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh)
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
@@ -68,6 +68,7 @@
 - [TCP Slow Start (慢启动)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_slowstart)
 - [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_rfc1337)
 - [TCP Selective ACK (SACK)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_sack)
+- [TCP Fast Open (TFO)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_fastopen)
 
 ## Web
 
@@ -122,7 +123,9 @@
 - [LinuxCommmand.org](https://linuxcommand.org/)
 - [The Linux Command Line, Fifth Internet Edition](https://linuxcommand.org/tlcl.php)
 - [Filesystem Hierarchy Standard Specification Series](https://refspecs.linuxfoundation.org/fhs.shtml)
-- Book: Evi Nemeth, Garth Snyder, Trent R. Hein. *UNIX and Linux System Administration Handbook, Fifth Edition* (2018) ISBN: 978-0-13-427755-4
+- Book: *UNIX and Linux System Administration Handbook, Fifth Edition* (2018)
+- Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
+- Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
 
 <!-- markdownlint-enble line-length -->
 

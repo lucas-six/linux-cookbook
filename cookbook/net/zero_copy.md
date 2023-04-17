@@ -83,8 +83,6 @@ Since Linux *2.4*:
 http {
 ...
     sendfile  on;
-    tcp_nopush  on;
-    tcp_nodelay  on;
 ...
 }
 
@@ -100,9 +98,7 @@ location /bigfile/ {
 ## References
 
 - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
-- [Linux Programmer's Manual - `read`(2)](https://manpages.debian.org/bullseye/manpages-dev/read.2.en.html)
-- [Linux Programmer's Manual - `write`(2)](https://manpages.debian.org/bullseye/manpages-dev/write.2.en.html)
-- [Linux Programmer's Manual - `mmap`(2)](https://manpages.debian.org/bullseye/manpages-dev/mmap.2.en.html)
-- [Linux Programmer's Manual - `sendfile`(2)](https://manpages.debian.org/bullseye/manpages-dev/sendfile.2.en.html)
-- [Linux Programmer's Manual - `tcp`(7) - `TCP_CORK`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#TCP_CORK)
-- [Linux Programmer's Manual - `tcp`(7) - `TCP_NODELAY`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#TCP_NODELAY)
+- [`read`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/read.2.en.html)
+- [`write`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/write.2.en.html)
+- [`mmap`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/mmap.2.en.html)
+- [`sendfile`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/sendfile.2.en.html)

@@ -16,9 +16,9 @@
 
 ## References
 
-- [Gzip on Wikipedia](https://en.wikipedia.org/wiki/Gzip)
+- [Gzip - Wikipedia](https://en.wikipedia.org/wiki/Gzip)
 - [Brotli.org](https://brotli.org/)
-- [Brotli on GitHub](https://github.com/google/brotli)
-- [Brotli on Google Research](https://research.google/pubs/pub47824/)
-- [Zstd on GitHub](https://github.com/facebook/zstd)
+- [Brotli - GitHub](https://github.com/google/brotli)
+- [Brotli - Google Research](https://research.google/pubs/pub47824/)
+- [Zstd - GitHub](https://github.com/facebook/zstd)
 - [RFC 8478 - Zstandard Compression and the application/zstd Media Type (2018)](https://datatracker.ietf.org/doc/html/rfc8478)

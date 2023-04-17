@@ -40,4 +40,4 @@ e.g., *big-endian* in a communications channel transmits the most significant bi
 
 ## References
 
-- [Wikipedia - Endianness](https://en.wikipedia.org/wiki/Endianness)
+- [Endianness - Wikipedia](https://en.wikipedia.org/wiki/Endianness)

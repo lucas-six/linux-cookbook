@@ -42,6 +42,6 @@ systemctl start|stop|restart|status nginx
 
 - [Install on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
 - [Nginx Documentation](https://nginx.org/en/docs/)
-- [Nginx Wiki - Pitfalls](http://wiki.nginx.org/Pitfalls)
-- [Nginx Wiki - Quick Start](http://wiki.nginx.org/QuickStart)
-- [Nginx Wiki - Configuration](http://wiki.nginx.org/Configuration)
+- [Pitfalls - Nginx Wiki](http://wiki.nginx.org/Pitfalls)
+- [Quick Start - Nginx Wiki](http://wiki.nginx.org/QuickStart)
+- [Configuration - Nginx Wiki](http://wiki.nginx.org/Configuration)

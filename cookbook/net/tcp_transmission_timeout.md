@@ -42,14 +42,12 @@ See [RFC 6298](https://datatracker.ietf.org/doc/html/rfc6298.html).
 
 <!-- markdownlint-disable line-length -->
 
-- [Linux Programmer's Manual - `recv`(2)](https://manpages.debian.org/bullseye/manpages-dev/recv.2.en.html)
-- [Linux Programmer's Manual - `send`(2)](https://manpages.debian.org/bullseye/manpages-dev/send.2.en.html)
-- [Linux Programmer's Manual - socket(7)](https://manpages.debian.org/bullseye/manpages/socket.7.en.html)
-- [Linux Programmer's Manual - socket(7) - `SO_RCVTIMEO`](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_RCVTIMEO)
-- [Linux Programmer's Manual - socket(7) - `SO_SNDTIMEO`](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_SNDTIMEO)
-- [Linux Programmer's Manual - tcp(7)](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html)
-- [Linux Programmer's Manual - tcp(7) - `tcp_retries1`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries1)
-- [Linux Programmer's Manual - tcp(7) - `tcp_retries2`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries2)
+- [`recv`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/recv.2.en.html)
+- [`send`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/send.2.en.html)
+- [`SO_RCVTIMEO` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_RCVTIMEO)
+- [`SO_SNDTIMEO` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_SNDTIMEO)
+- [`tcp_retries1` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries1)
+- [`tcp_retries2` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries2)
 - [RFC 6298 - Computing TCP's Retransmission Timer](https://datatracker.ietf.org/doc/html/rfc6298.html)
 
 <!-- markdownlint-enable line-length -->
