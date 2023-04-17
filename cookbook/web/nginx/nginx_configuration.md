@@ -178,6 +178,16 @@ location /status {
 }
 ```
 
+### TCP Fast Open
+
+```conf
+# conf.d/vhost.conf
+
+server {
+    443 ssl fastopen=3;
+}
+```
+
 ### Django Admin Static
 
 ```conf
@@ -198,5 +208,5 @@ location /dj-static/rest_framework {
 ## References
 
 - [Nginx Documentation](https://nginx.org/en/docs/)
-- [Forward Secrecy on Wikipedia](https://en.wikipedia.org/wiki/Forward_secrecy)
+- [Forward Secrecy - Wikipedia](https://en.wikipedia.org/wiki/Forward_secrecy)
 - [Nginx `valid_referers`](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers)

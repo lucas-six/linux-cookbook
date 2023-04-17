@@ -166,6 +166,12 @@ curl -C - -L --parallel --parallel-max 100 --max-time 30 --retry 3 -o <download-
 -O <url1> -O <url2>
 ```
 
+## TCP Fast Open
+
+```bash
+curl --tcp-fastopen <url>
+```
+
 ## API
 
 - *C*: **`libcurl`**

@@ -126,7 +126,7 @@ Content-Language: zh-Hans
 
 <!-- markdownlint-disable line-length -->
 
-- [MDN - HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP)
+- [HTTP - MDN](https://developer.mozilla.org/en-US/docs/Web/HTTP)
 - David Gourley & Brian Totty. *HTTP: The Definitive Guide* (2002) ISBN: 978-1-56592-509-0 (《HTTP权威指南》)
 - [RFC 9112 - HTTP/1.1 (2022.6)](https://www.rfc-editor.org/rfc/rfc9112)
 (Obsolete [RFC 2068](https://www.rfc-editor.org/rfc/rfc2068 "Hypertext Transfer Protocol -- HTTP/1.1 (1997.1)"),
@@ -141,8 +141,8 @@ Content-Language: zh-Hans
 (Obsolete [RFC 2646](https://www.rfc-editor.org/rfc/rfc2646 "The Text/Plain Format Parameter (1999)"))
 - [RFC 5147 - URI Fragment Identifiers for the text/plain Media Type (2008.4)](https://www.rfc-editor.org/rfc/rfc5147)
 - [RFC 6657 - Update to MIME regarding "charset" Parameter Handling in Textual Media Types (2012.7)](https://www.rfc-editor.org/rfc/rfc6657)
-- [W3C - HTTP - Hypertext Transfer Protocol](https://www.w3.org/Protocols/)
-- [Wikipedia - HTTP](https://en.wikipedia.org/wiki/Hypertext%20Transfer%20Protocol)
-- [Wikipedia - HTTPS](https://en.wikipedia.org/wiki/HTTPS)
+- [HTTP - Hypertext Transfer Protocol - W3C](https://www.w3.org/Protocols/)
+- [HTTP- Wikipedia](https://en.wikipedia.org/wiki/Hypertext%20Transfer%20Protocol)
+- [HTTPS - Wikipedia](https://en.wikipedia.org/wiki/HTTPS)
 
 <!-- markdownlint-enable line-length -->

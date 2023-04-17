@@ -24,14 +24,16 @@ apt install mongodb-org
 ```conf
 # /etc/sysctl.d/30-mongodb.conf
 
-vm.swappiness = 0
+vm.swappiness = 1
 vm.overcommit_memory = 1
+vm.zone_reclaim_mode = 0
 net.core.somaxconn = 4096
 net.core.netdev_max_backlog = 4096
 net.ipv4.tcp_max_syn_backlog = 4096
 ```
 
 ```bash
+sysctl -p
 systemctl restart procps.service
 ```
 
@@ -49,7 +51,9 @@ storage:
   dbPath: </var/lib/mongodb>
   journal:
     enabled: true
-  # wiredTiger:
+  wiredTiger:
+    collectionConfig:
+      blockCompressor: zstd
   #   engineConfig:
   #     cacheSizeGB: 2
 
@@ -68,8 +72,35 @@ processManagement:
   timeZoneInfo: /usr/share/zoneinfo
 ```
 
+```ini
+# /etc/systemd/system/disable-transparent-huge-pages.service
+
+[Unit]
+Description=Disable Transparent Huge Pages (THP)
+DefaultDependencies=no
+After=sysinit.target local-fs.target
+Before=mongod.service
+[Service]
+Type=oneshot
+ExecStart=/bin/sh -c 'echo never | tee /sys/kernel/mm/transparent_hugepage/enabled > /dev/null'
+[Install]
+WantedBy=basic.target
+```
+
+```ini
+# /lib/systemd/system/mongod.service
+
+ExecStart=/usr/bin/numactl --interleave=all /usr/bin/mongod --config /etc/mongod.conf
+```
+
 ```bash
 chown -R mongodb:mongodb </var/lib/mongodb>
+
+systemctl daemon-reload
+
+systemctl start disable-transparent-huge-pages
+cat /sys/kernel/mm/transparent_hugepage/enabled  # never
+systemctl enable disable-transparent-huge-pages
 
 systemctl enable|disable mongod
 systemctl start|stop|restart|status mongod

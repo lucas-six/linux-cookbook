@@ -76,8 +76,7 @@ See [TCP `listen()` Queue - Python Cookbook](https://leven-cn.github.io/python-c
 
 ## References
 
-- [Linux Programmer's Manual - `listen`(2)](https://manpages.debian.org/bullseye/manpages-dev/listen.2.en.html)
-- [Linux Programmer's Manual - `accept`(2)](https://manpages.debian.org/bullseye/manpages-dev/accept.2.en.html)
-- [Linux Programmer's Manual - tcp(7)](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html)
-- [Linux Programmer's Manual - tcp(7) - `tcp_max_syn_backlog`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_keepalive_time)
+- [`listen`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/listen.2.en.html)
+- [`accept`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/accept.2.en.html)
+- [`tcp_max_syn_backlog` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_keepalive_time)
 - [RFC 793 - TRANSMISSION CONTROL PROTOCOL (1981.9)](https://www.rfc-editor.org/rfc/rfc793)

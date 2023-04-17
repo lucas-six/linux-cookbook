@@ -38,8 +38,7 @@ See [TCP Connect Timeout (Client Side) - Python Cookbook](https://leven-cn.githu
 
 <!-- markdownlint-disable line-length -->
 
-- [Linux Programmer's Manual - tcp(7)](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html)
-- [Linux Programmer's Manual - tcp(7) - `tcp_syn_retries`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_syn_retries)
+- [`tcp_syn_retries` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_syn_retries)
 - [RFC 6298 - Computing TCP's Retransmission Timer](https://datatracker.ietf.org/doc/html/rfc6298.html)
 
 <!-- markdownlint-enable line-length -->
