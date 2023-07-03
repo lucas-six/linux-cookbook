@@ -13,8 +13,12 @@ echo 3 > /proc/sys/net/ipv4/tcp_fastopen
 ## NGINX configuration
 
 ```ini
+http {
+    tcp_fastopen on;
+}
+
 server {
-    listen  443 ssl openfast=3 http2 default_server;
+    listen  443 ssl fastopen=3 http2 default_server;
 }
 ```
 

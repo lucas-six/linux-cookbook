@@ -65,16 +65,16 @@ apt install software-properties-common
 add-apt-repository ppa:deadsnakes/ppa
 apt update
 apt autoremove
-apt install python3.10 python3.10-dev
+apt install python3.11 python3.11-dev
 ```
 
 ### Install from source code
 
 ```bash
 cd /tmp
-wget https://www.python.org/ftp/python/3.10.9/Python-3.10.9.tgz
-tar xzf Python-3.10.9.tgz
-cd python-3.10.9
+wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz
+tar xzf Python-3.11.4.tgz
+cd python-3.11.4
 ./configure --prefix=/usr --enable-optimizations
 make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
 make altinstall
@@ -83,7 +83,7 @@ make altinstall
 ### Configuration
 
 ```bash
-# update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1
+# update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
 # update-alternatives --config python
 
 pip3 install --upgrade pip pipx pipenv argcomplete
@@ -121,6 +121,7 @@ net.ipv4.tcp_slow_start_after_idle = 0
 net.ipv4.tcp_retries1 = 3
 net.ipv4.tcp_retries2 = 5
 net.ipv4.tcp_window_scaling = 1
+# net.ipv4.tcp_fastopen = 3
 ; net.ipv4.tcp_fin_timeout = 3  # 60
 ; net.ipv4.tcp_tw_reuse = 1  # 0
 ; net.ipv4.tcp_tw_recycle = 1  # 0
