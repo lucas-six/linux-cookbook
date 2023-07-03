@@ -15,7 +15,7 @@
     </a>
   </p>
   <p>Recipes for <code>Linux</code>.
-  Hands-on system administration examples and guides for daily work.</p>
+  Hands-on system administration and development examples and guides for daily work.</p>
   <p><a href="https://leven-cn.github.io/linux-cookbook/">https://leven-cn.github.io/linux-cookbook/</a></p>
 </section>
 
@@ -123,6 +123,8 @@
 - [LinuxCommmand.org](https://linuxcommand.org/)
 - [The Linux Command Line, Fifth Internet Edition](https://linuxcommand.org/tlcl.php)
 - [Filesystem Hierarchy Standard Specification Series](https://refspecs.linuxfoundation.org/fhs.shtml)
+- [Manpages - Debian](https://manpages.debian.org/bullseye/manpages/index.html)
+- [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
 - Book: *UNIX and Linux System Administration Handbook, Fifth Edition* (2018)
 - Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
 - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
