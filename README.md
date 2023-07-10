@@ -21,25 +21,29 @@
 
 <!-- markdownlint-disable line-length -->
 
-## General
+## Quick Start
 
-- Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/general/setup_ubuntu)
+- Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/setup_ubuntu)
 - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
-- [Compression (压缩)](https://leven-cn.github.io/linux-cookbook/cookbook/general/compression)
-- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/general/archive)
+- [GNU Coreutils: `coreutils`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/coreutils)
+  - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/join-files)
+- [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/ssh)
 - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/general/grep)
-- [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/general/join-files)
+
+### Archive & Compression
+
+- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
+- [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/compression_algorithms)
 
 ### Date & Time
 
-- [Representation of Date & Time - ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general/datetime_fmt_iso_8601)
-- [Representation of Date & Time - RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general/datetime_fmt_rfc_3339)
-- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/general/date-cli)
+- [Representation of Date & Time - ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_iso_8601)
+- [Representation of Date & Time - RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_rfc_3339)
+- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/date)
 
 ## System Administration (系统管理)
 
-- [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/sys/ssh)
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
 
