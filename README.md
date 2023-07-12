@@ -27,20 +27,24 @@
 - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
 - [GNU Coreutils: `coreutils`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/coreutils)
   - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/join-files)
+  - [Date & Time: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/date)
+- [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/find)
+- [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/grep)
 - [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/ssh)
-- [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/general/find)
-- [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/general/grep)
+
+### Date & Time Format
+
+- [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_iso_8601)
+- [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_rfc_3339)
 
 ### Archive & Compression
 
 - [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
 - [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/compression_algorithms)
 
-### Date & Time
+## General
 
-- [Representation of Date & Time - ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_iso_8601)
-- [Representation of Date & Time - RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_rfc_3339)
-- [Date & Time in Command Line: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/date)
+- [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/general/amdahl_law)
 
 ## System Administration (系统管理)
 

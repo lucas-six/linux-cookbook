@@ -1,4 +1,4 @@
-# Date & Time in Command Line: `date`
+# Date & Time: `date`
 
 ## Recipes
 
@@ -21,3 +21,8 @@ date <+format>
     %n - newline ('\n')
     %t - tab ('\t')
 ```
+
+## Date & Time Format
+
+- [Representation of Date & Time - ISO 8601 Format](datetime_fmt_iso_8601)
+- [Representation of Date & Time - RFC 3339 Format](datetime_fmt_rfc_3339)
