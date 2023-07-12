@@ -34,6 +34,7 @@
 | `chmod` | Change access permissions |
 | `touch` | Change file timestamps |
 | `truncate` | Shrink or extend the size of a file |
+| `date` | Print or set system date and time. See [Date & Time](date) |
 | `env` | Run a command in a modified environment |
 | `kill` | Send a signal to processes |
 | `sleep` | Delay for a specified time |
