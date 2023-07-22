@@ -19,15 +19,23 @@
   <p><a href="https://leven-cn.github.io/linux-cookbook/">https://leven-cn.github.io/linux-cookbook/</a></p>
 </section>
 
+**Linux** (`/ˈlinʊks/` LEEN-uuks or `/ˈlɪnʊks/` LIN-uuks)
+is a family of open-source *Unix-like operating systems* based on the Linux kernel,
+an operating system kernel first released on *September 17, 1991*, by *Linus Torvalds*.
+
 <!-- markdownlint-disable line-length -->
 
 ## Quick Start
 
+- [Linux Distributions](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/linux_distributions)
 - Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/setup_ubuntu)
 - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
+- [Python Cookbook](https://leven-cn.github.io/python-cookbook/)
+- [Linux Filesystem Hierarchy Standard (FHS)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/linux_fhs)
 - [GNU Coreutils: `coreutils`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/coreutils)
   - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/join-files)
   - [Date & Time: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/date)
+- [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/env)
 - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/find)
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/grep)
 - [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/ssh)
@@ -42,14 +50,14 @@
 - [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
 - [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/compression_algorithms)
 
-## General
-
-- [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/general/amdahl_law)
-
 ## System Administration (系统管理)
 
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
+
+### Performance
+
+- [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/sys_admin/amdahl_law)
 
 ### Container (容器)
 
@@ -134,7 +142,11 @@
 - [Manpages - Debian](https://manpages.debian.org/bullseye/manpages/index.html)
 - [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
 - Book: *UNIX and Linux System Administration Handbook, Fifth Edition* (2018)
+- Book: *The C Programming Language, Second Edition* (1989)
+- Book: *C: A Reference Manual, Fifth Edition* (2002)
 - Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
+- [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
+- Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
 
 <!-- markdownlint-enble line-length -->
