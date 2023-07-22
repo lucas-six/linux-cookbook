@@ -47,3 +47,4 @@
 ## References
 
 - [GNU Coreutils Manual](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
+- [Coreutils - Debian Wiki](https://wiki.debian.org/coreutils)

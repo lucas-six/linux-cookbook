@@ -1,47 +1,38 @@
-cookbook
-==================
-
-Cookbook
-
-- [Doxygen Guide](#doxygen-guide)
-
-## Doxygen Guide
+# Doxygen Guide
 
 More details on Doxygen, please refer to the on-line manual:
 
-    http://www.stack.nl/~dimitri/doxygen/manual/
+<http://www.stack.nl/~dimitri/doxygen/manual/>
 
-**STEP 1**: Doc code
+## STEP 1: Doc code
 
 ```python
-# Python code
 ## <function-or-method-description>.
 #
 # @param <param-name> <param-description>
 # @return <return-name> <return-description>
 # @exception <exception-name> <exception-description>
+# @warning <warning-messages>
+# @todo <things to be done>
+# @deprecated
+# @see <reference to others>
+# @since <version>
 def func_or_method():
-	'''<function-or-method-description>.
-	'''
-	# func or method definition
-'''
-@warning <warning-messages>
-@todo <things to be done>
-@deprecated
-@see <reference to others>
-@since <version>
-'''
+    """<function-or-method-description>.
+    """
+    # func or method definition
+    pass
 ```
 
-**STEP 2**: Generate Doxygen configuration file
+## STEP 2: Generate Doxygen configuration file
 
 ```bash
 doxygen -g Doxyfile
 ```
 
-**STEP 3**: Update Doxygen configuration file
+## STEP 3: Update Doxygen configuration file
 
-```
+```ini
 PROJECT_NAME =
 PROJECT_NUMBER =
 PROJECT_BRIEF =
@@ -70,7 +61,7 @@ GENERATE_MAN = YES
 MAN_LINKS = YES
 ```
 
-**STEP 4**: Generate documentation
+## STEP 4: Generate documentation
 
 ```bash
 doxygen Doxyfile
