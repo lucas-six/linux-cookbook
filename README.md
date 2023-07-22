@@ -50,6 +50,19 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
 - [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/compression_algorithms)
 
+## General Concepts
+
+- [Data Type](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/data_type)
+- [Character (字符)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/char)
+- [Character Encoding (字符编码)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/char_encoding)
+  - [ASCII](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/ascii)
+  - [Unicode](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/unicode)
+  - [UTF-8](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/utf_8)
+  - [Mojibake](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/Mojibake)
+- [String (字符串)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/str)
+- [Line Break: **CRLF**](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/crlf)
+- [Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
+
 ## System Administration (系统管理)
 
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
@@ -142,8 +155,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Manpages - Debian](https://manpages.debian.org/bullseye/manpages/index.html)
 - [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
 - Book: *UNIX and Linux System Administration Handbook, Fifth Edition* (2018)
-- Book: *The C Programming Language, Second Edition* (1989)
-- Book: *C: A Reference Manual, Fifth Edition* (2002)
+- C Programming Language
+  - Book: *The C Programming Language, Second Edition* (1989)
+  - Book: *C: A Reference Manual, Fifth Edition* (2002)
+  - Book: *The C Standard Library* (1992)
 - Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
 - [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
 - Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
