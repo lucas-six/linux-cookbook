@@ -63,6 +63,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Line Break: **CRLF**](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/crlf)
 - [Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
 
+## Programming
+
+- [Standard I/O (in C)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio)
+
 ## System Administration (系统管理)
 
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
