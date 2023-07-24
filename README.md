@@ -40,11 +40,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/grep)
 - [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/ssh)
 
-### Date & Time Format
-
-- [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_iso_8601)
-- [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/datetime_fmt_rfc_3339)
-
 ### Archive & Compression
 
 - [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
@@ -62,7 +57,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [String (字符串)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/str)
 - [End of Line (EOL): **CRLF**](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/eol_crlf)
 - [Input/Output (I/O)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/io)
-- [Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
+- Time
+  - [Computer Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
+  - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_iso_8601)
+  - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_rfc_3339)
 
 ## Programming
 
@@ -158,7 +156,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [LinuxCommmand.org](https://linuxcommand.org/)
 - [The Linux Command Line, Fifth Internet Edition](https://linuxcommand.org/tlcl.php)
 - [Filesystem Hierarchy Standard Specification Series](https://refspecs.linuxfoundation.org/fhs.shtml)
-- [Manpages - Debian](https://manpages.debian.org/bullseye/manpages/index.html)
+- [Manpages - Debian](https://manpages.debian.org/bookworm/manpages/index.html)
 - [The Linux Kernel documentation](https://www.kernel.org/doc/html/latest/index.html)
 - Book: *UNIX and Linux System Administration Handbook, Fifth Edition* (2018)
 - C Programming Language
@@ -169,7 +167,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
 - Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
-- [Debian (Bookworm) Manpages](https://manpages.debian.org/bookworm/manpages-dev/index.html)
 
 <!-- markdownlint-enble line-length -->
 
