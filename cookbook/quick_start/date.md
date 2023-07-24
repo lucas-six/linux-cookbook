@@ -24,5 +24,5 @@ date <+format>
 
 ## Date & Time Format
 
-- [Representation of Date & Time - ISO 8601 Format](datetime_fmt_iso_8601)
-- [Representation of Date & Time - RFC 3339 Format](datetime_fmt_rfc_3339)
+- [Representation of Date & Time - ISO 8601 Format](../general_concepts/datetime_fmt_iso_8601)
+- [Representation of Date & Time - RFC 3339 Format](../general_concepts/datetime_fmt_rfc_3339)
