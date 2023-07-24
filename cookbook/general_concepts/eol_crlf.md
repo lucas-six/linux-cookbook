@@ -1,4 +1,4 @@
-# CRLF
+# End of Line (EOL): CRLF
 
 **CRLF**, `/ker'l*f/`, sometimes `/kru'l*f/` or `/C-R-L-F/`,
 a **carriage return** (**CR**, ASCII `13`) followed by a **line feed** (**LF**, ASCII `10`).
@@ -13,5 +13,5 @@ moves the cursor down to the next line without returning to the beginning of the
 - **CRLF** = A *CR* immediately followed by a *LF* (**`\r\n`**, *`0x0D0A`*) -
 moves the cursor down to the next line and then to the beginning of the line.
 
-Unix/Linux uses just **line feed** (**CR**) as its line terminator.
-While Windows and DOS uses **CRLF** to indicate the end-of-line (end-of-paragraph).
+Unix/Linux and new macOS use just **line feed** (**CR**) as its line terminator.
+While Windows/DOS and HTTP use **CRLF** to indicate the end-of-line (end-of-paragraph).

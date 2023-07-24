@@ -60,12 +60,14 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [UTF-8](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/utf_8)
   - [Mojibake](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/Mojibake)
 - [String (字符串)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/str)
-- [Line Break: **CRLF**](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/crlf)
+- [End of Line (EOL): **CRLF**](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/eol_crlf)
+- [Input/Output (I/O)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/io)
 - [Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
 
 ## Programming
 
 - [Standard I/O (in C)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio)
+- [UNIX I/O (system call)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/syscall_io)
 
 ## System Administration (系统管理)
 
@@ -167,6 +169,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
 - Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
 - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
+- [Debian (Bookworm) Manpages](https://manpages.debian.org/bookworm/manpages-dev/index.html)
 
 <!-- markdownlint-enble line-length -->
 
