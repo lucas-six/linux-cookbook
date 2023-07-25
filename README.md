@@ -66,6 +66,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [Standard I/O (in C)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio)
 - [UNIX I/O (system call)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/syscall_io)
+- [File Metadata](https://leven-cn.github.io/linux-cookbook/cookbook/programming/file_metadata)
 
 ## System Administration (系统管理)
 

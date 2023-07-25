@@ -76,7 +76,7 @@ const int STDOUT_FILENO = 1
 const int STDERR_FILENO = 2
 ```
 
-### `open()`
+### `open()`, `create()`, `openat()`
 
 ```c
 #include <sys/types.h>
@@ -101,6 +101,30 @@ int open(char *pathname, int flags, mode_t mode);
 
 /* open(pathname, O_WRONLY|O_CREAT|O_TRUNC, mode); */
 int creat(const char *pathname, mode_t mode);
+
+#define _POSIX_C_SOURCE >= 200809L  // glibc 2.10+
+#define _ATFILE_SOURCE              // glibc 2.10-
+int openat(int dirfd, const char *pathname, int flags);
+int openat(int dirfd, const char *pathname, int flags, mode_t mode);
+```
+
+### `openat2()`
+
+```c
+#include <fcntl.h>          /* Definition of O_* and S_* constants */
+#include <linux/openat2.h>  /* Definition of RESOLVE_* constants */
+#include <sys/syscall.h>    /* Definition of SYS_* constants */
+#include <unistd.h>
+
+/**
+openat() extension.
+
+This system call is Linux-specific, since Linux 5.6.
+*/
+struct open_how how = { .flags = O_RDWR,
+                        .resolve = RESOLVE_IN_ROOT };
+long syscall(SYS_openat2, int dirfd, const char *pathname,
+             struct open_how *how, size_t size);
 ```
 
 ### `close()`
@@ -183,12 +207,61 @@ off_t lseek(int fd, off_t offset, int whence);
 off64_t lseek64(int fd, off64_t offset, int whence);
 ```
 
+## Python APIs
+
+### `sys.stdin`, `sys.stdout`, `sys.stderr`
+
+```python
+import sys
+
+sys.stdin
+sys.stdout
+sys.stderr
+```
+
+### `os.open()`, `os.close()`, `os.closerange()`
+
+```python
+import os
+
+os.open(path, flags, mode=0o777, *, dir_fd=None)
+
+os.close(fd: int)
+os.closerange(fd_low: int, fd_high: int, /)
+```
+
+### `os.read()`, `os.write()`, `os.readv()`, `os.writev()`, `os.lseek()`
+
+```python
+import os
+from collection.abc import Sequence
+from typing import Literal
+
+os.read(fd: int, n: int, /) -> bytes
+os.write(fd: int, buf: bytes, /) -> int
+
+# os.sysconf('SC_IOV_MAX') to set a limit on the number of buffers.
+os.readv(fd: int, buffers: Sequence[bytes], /) -> int
+os.writev(fd: int, buffers: Sequence[bytes], /) -> int
+
+os.lseek(fd: int, pos: int, how: Literal[os.SEEK_SET, os.SEEK_CUR, os.SEEK_END], /)
+```
+
 ## References
 
 - Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
-- [`open`, `create`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/open.2.en.html)
+- [`open`, `create`, `openat`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/open.2.en.html)
+- [`openat2`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/openat2.2.en.html)
 - [`close`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/close.2.en.html)
 - [`read`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/read.2.en.html)
 - [`write`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/write.2.en.html)
 - [`lseek`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/lseek.2.en.html)
 - [`lseek64`(3) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/lseek64.3.en.html)
+- [`os.open()` - Python](https://docs.python.org/3/library/os.html#os.open)
+- [`os.close()` - Python](https://docs.python.org/3/library/os.html#os.close)
+- [`os.closerange()` - Python](https://docs.python.org/3/library/os.html#os.closerange)
+- [`os.read()` - Python](https://docs.python.org/3/library/os.html#os.read)
+- [`os.write()` - Python](https://docs.python.org/3/library/os.html#os.write)
+- [`os.readv()` - Python](https://docs.python.org/3/library/os.html#os.readv)
+- [`os.writev()` - Python](https://docs.python.org/3/library/os.html#os.writev)
+- [`os.lseek()` - Python](https://docs.python.org/3/library/os.html#os.lseek)
