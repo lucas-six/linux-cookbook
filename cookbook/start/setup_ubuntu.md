@@ -9,9 +9,13 @@ hostnamectl set-hostname <hostname>
 
 apt update
 apt install apt apt-utils apt-transport-https
-apt install coreutils sudo bash vim openssh-server colordiff tar gzip bzip2 zstd wget wget2 curl git \
-    systemd cron tzdata python3 ca-certificates procps psmisc htop \
-    binutils make openssl rsync lsof make gcc
+apt install bash coreutils sudo vim openssh-server tzdata python3 \
+    openssl ca-certificates \
+    diffutils colordiff \
+    tar gzip bzip2 zstd \
+    wget wget2 curl \
+    systemd cron procps psmisc htop \
+    git binutils make rsync lsof make gcc
 apt autoremove
 systemctl restart sshd cron
 
@@ -76,7 +80,8 @@ wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz
 tar xzf Python-3.11.4.tgz
 cd python-3.11.4
 ./configure --prefix=/usr --enable-optimizations
-make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
+# make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
+make -j$(nproc)
 make altinstall
 ```
 

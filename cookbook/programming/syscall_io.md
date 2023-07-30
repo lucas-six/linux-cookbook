@@ -1,4 +1,4 @@
-# UNIX I/O (System call I/O)
+# UNIX I/O (System call)
 
 ## C Recipes
 
@@ -64,7 +64,7 @@ if ((fd = open(pathname, O_RDWR, 0)) != -1)
 }
 ```
 
-## System Call Signature
+## System Call Prototype
 
 ### `stdin`, `stdout`, `stderr`
 
@@ -219,12 +219,13 @@ sys.stdout
 sys.stderr
 ```
 
-### `os.open()`, `os.close()`, `os.closerange()`
+### `os.open()`, `os.fdopen()`, `os.close()`, `os.closerange()`
 
 ```python
 import os
+from pathlib import Path
 
-os.open(path, flags, mode=0o777, *, dir_fd=None)
+os.open(path: Path | str, flags, mode=0o777, *, dir_fd: int | None = None)
 
 os.close(fd: int)
 os.closerange(fd_low: int, fd_high: int, /)
@@ -258,6 +259,7 @@ os.lseek(fd: int, pos: int, how: Literal[os.SEEK_SET, os.SEEK_CUR, os.SEEK_END],
 - [`lseek`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/lseek.2.en.html)
 - [`lseek64`(3) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/lseek64.3.en.html)
 - [`os.open()` - Python](https://docs.python.org/3/library/os.html#os.open)
+- [`os.fdopen()` - Python](https://docs.python.org/3/library/os.html#os.fdopen)
 - [`os.close()` - Python](https://docs.python.org/3/library/os.html#os.close)
 - [`os.closerange()` - Python](https://docs.python.org/3/library/os.html#os.closerange)
 - [`os.read()` - Python](https://docs.python.org/3/library/os.html#os.read)
