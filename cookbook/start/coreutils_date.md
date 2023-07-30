@@ -1,4 +1,4 @@
-# Date & Time: `date`
+# Date & Time: `date` (GNU `coreutils`)
 
 ## Recipes
 
@@ -26,3 +26,8 @@ date <+format>
 
 - [Representation of Date & Time - ISO 8601 Format](../general_concepts/datetime_fmt_iso_8601)
 - [Representation of Date & Time - RFC 3339 Format](../general_concepts/datetime_fmt_rfc_3339)
+
+## References
+
+- [GNU Coreutils Manual](https://www.gnu.org/software/coreutils/manual/html_node/index.html)
+- [Coreutils - Debian Wiki](https://wiki.debian.org/coreutils)

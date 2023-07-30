@@ -1,4 +1,4 @@
-# Standard I/O
+# Standard I/O (Standard C Library): File
 
 ## C Recipes
 
@@ -24,7 +24,7 @@ if (fp = fopen(filename, "w") != NULL) {
 }
 ```
 
-## C Function Signature
+## C Function Prototype
 
 ```c
 #include <stdio.h>

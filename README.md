@@ -27,23 +27,27 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ## Quick Start
 
-- [Linux Distributions](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/linux_distributions)
-- Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/setup_ubuntu)
-- [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
-- [Python Cookbook](https://leven-cn.github.io/python-cookbook/)
-- [Linux Filesystem Hierarchy Standard (FHS)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/linux_fhs)
-- [GNU Coreutils: `coreutils`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/coreutils)
-  - [Join Files](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/join-files)
-  - [Date & Time: `date`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/date)
-- [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/env)
-- [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/find)
-- [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/grep)
-- [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/ssh)
-
-### Archive & Compression
-
-- [Archive: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/archive)
-- [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/quick_start/compression_algorithms)
+- [Linux Distributions](https://leven-cn.github.io/linux-cookbook/cookbook/start/linux_distributions)
+- Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/start/setup_ubuntu)
+- [Basic Usage (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/basic)
+- File & Directory
+  - [File & Directory: Access & Permission & Digest (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/file_dir)
+  - [Join Files: `join` (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/join-files)
+  - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/start/find)
+  - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/start/grep)
+  - [Linux Filesystem Hierarchy Standard (FHS)](https://leven-cn.github.io/linux-cookbook/cookbook/start/linux_fhs)
+- [Date & Time: `date` (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_date)
+- Process Management
+  - [Process (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_process)
+- [System Information (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_sysinfo)
+- [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/start/env)
+- Diff: `diff`, `colordiff`
+- [Archive & Compression: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/start/archive)
+- Network: `wget`, [GNU `wget2`](https://gitlab.com/gnuwget/wget2), `curl`
+- Scripts
+  - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
+  - [Python Cookbook](https://leven-cn.github.io/python-cookbook/)
+- [OpenSSH](https://leven-cn.github.io/linux-cookbook/cookbook/start/ssh)
 
 ## General Concepts
 
@@ -61,10 +65,12 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Computer Time](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/time)
   - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_iso_8601)
   - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_rfc_3339)
+- [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/compression_algorithms)
 
-## Programming
+## System Programming (系统编程)
 
-- [Standard I/O (in C)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio)
+- [Standard I/O (standard C library): File](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_file)
+- [Standard I/O (standard C library): Directory](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_dir)
 - [UNIX I/O (system call)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/syscall_io)
 - [File Metadata](https://leven-cn.github.io/linux-cookbook/cookbook/programming/file_metadata)
 
@@ -75,7 +81,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ### Performance
 
-- [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/sys_admin/amdahl_law)
+- [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/admin/amdahl_law)
 
 ### Container (容器)
 

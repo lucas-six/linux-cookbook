@@ -1,14 +1,10 @@
-# `coreutils` - GNU Coreutils
+# File & Directory (GNU `coreutils`)
 
-## Most Frequently Used (Cheat Sheet)
+## Access
 
 | Command | Comment |
 | --- | --- |
-| `echo` | Print a line of text |
-| `who` | Print who is currently logged in |
-| `whoami` | Print effective user name |
 | `pwd` | Print working directory |
-| `id` | Print user identity |
 | `ls` | List directory contents |
 | `cp` | Copy files and directories |
 | `mv` | Move (rename) files |
@@ -25,24 +21,24 @@
 | `tail` | Output the last part of files |
 | `wc` | Print newline, word, and byte counts |
 | `join` | Join lines on a common field. See [Join Files](join-files) |
-| `base64` | Transform data into printable data |
-| ~~`md5sum`~~ | Print or check MD5 digests |
-| `sha1sum` | Print or check SHA-1 digests |
-| `sha224sum`, `sha256sum`, `sha384sum` and `sha512sum` | Print or check SHA-2 digests |
+| `touch` | Change file timestamps |
+| `truncate` | Shrink or extend the size of a file |
+
+## Permission
+
+| Command | Comment |
+| --- | --- |
 | `chown` | Change file owner and group |
 | `chgrp` | Change group ownership |
 | `chmod` | Change access permissions |
-| `touch` | Change file timestamps |
-| `truncate` | Shrink or extend the size of a file |
-| `date` | Print or set system date and time. See [Date & Time](date) |
-| `env` | Run a command in a modified environment |
-| `kill` | Send a signal to processes |
-| `sleep` | Delay for a specified time |
-| `timeout` | Run a command with a time limit |
-| `nohup` | Run a command immune to hangups |
-| `df` | Report file system space usage |
-| `hostname` | Print or set system name |
-| `uname` | Print system information |
+
+## Digest
+
+| Command | Comment |
+| --- | --- |
+| ~~`md5sum`~~ | Print or check MD5 digests |
+| `sha1sum` | Print or check SHA-1 digests |
+| `sha224sum`, `sha256sum`, `sha384sum` and `sha512sum` | Print or check SHA-2 digests |
 
 ## References
 
