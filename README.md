@@ -37,6 +37,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/start/grep)
   - [Linux Filesystem Hierarchy Standard (FHS)](https://leven-cn.github.io/linux-cookbook/cookbook/start/linux_fhs)
 - [Date & Time: `date` (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_date)
+- [Time Zone](https://leven-cn.github.io/linux-cookbook/cookbook/start/tz)
 - [Process Control](https://leven-cn.github.io/linux-cookbook/cookbook/start/proc)
 - [System Information (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_sysinfo)
 - [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/start/env)
