@@ -14,7 +14,8 @@ apt install bash coreutils sudo vim openssh-server tzdata python3 \
     diffutils colordiff \
     tar gzip bzip2 zstd \
     wget wget2 curl \
-    systemd cron procps psmisc htop \
+    procps htop psmisc \
+    systemd cron \
     git binutils make rsync lsof make gcc
 apt autoremove
 systemctl restart sshd cron

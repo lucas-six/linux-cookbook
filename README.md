@@ -30,15 +30,14 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Linux Distributions](https://leven-cn.github.io/linux-cookbook/cookbook/start/linux_distributions)
 - Setup: [Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/start/setup_ubuntu)
 - [Basic Usage (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/basic)
-- File & Directory
+- I/O: File & Directory
   - [File & Directory: Access & Permission & Digest (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/file_dir)
   - [Join Files: `join` (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/join-files)
   - [Search Files: `find`](https://leven-cn.github.io/linux-cookbook/cookbook/start/find)
   - [Search File Contents: `grep`](https://leven-cn.github.io/linux-cookbook/cookbook/start/grep)
   - [Linux Filesystem Hierarchy Standard (FHS)](https://leven-cn.github.io/linux-cookbook/cookbook/start/linux_fhs)
 - [Date & Time: `date` (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_date)
-- Process Management
-  - [Process (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_process)
+- [Process Control](https://leven-cn.github.io/linux-cookbook/cookbook/start/proc)
 - [System Information (GNU `coreutils`)](https://leven-cn.github.io/linux-cookbook/cookbook/start/coreutils_sysinfo)
 - [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/start/env)
 - Diff: `diff`, `colordiff`
@@ -66,6 +65,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [ISO 8601 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_iso_8601)
   - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_rfc_3339)
 - [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/compression_algorithms)
+- [Process](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/proc)
 
 ## System Programming (系统编程)
 

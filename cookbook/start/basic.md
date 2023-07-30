@@ -10,7 +10,7 @@
 | `id` | Print user identity |
 | `base64` | Transform data into printable data |
 | `date` | Print or set system date and time. See [Date & Time](coreutils_date) |
-| `env` | Run a command in a modified environment |
+| `env` | Run a command in a modified environment. See[Environment Variables](env) |
 
 ## References
 
