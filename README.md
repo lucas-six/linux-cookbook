@@ -70,6 +70,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ## System Programming (系统编程)
 
+- [Git Cookbook](https://leven-cn.github.io/git-cookbook/)
 - [Standard I/O (standard C library): File](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_file)
 - [Standard I/O (standard C library): Directory](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_dir)
 - [UNIX I/O (system call)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/syscall_io)
