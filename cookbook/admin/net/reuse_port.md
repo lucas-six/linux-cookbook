@@ -28,9 +28,9 @@ having multiple processes compete to receive datagrams on the same socket.
 
 ## Python Recipes
 
-- [Reuse Port - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/reuse_port)
+- [Reuse Port - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/reuse_port)
 
 ## References
 
-- [`bind`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/bind.2.en.html)
-- [`SO_REUSEPORT` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_REUSEPORT)
+- [`bind`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/bind.2.en.html)
+- [`SO_REUSEPORT` - socket(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/socket.7.en.html#SO_REUSEPORT)

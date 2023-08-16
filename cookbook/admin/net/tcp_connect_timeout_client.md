@@ -12,7 +12,7 @@ Before Linux *3.7*, the default value was *`5`*,
 which (in conjunction with calculation based on other kernel parameters)
 corresponded to approximately *180 seconds*.
 
-See [Linux - `tcp_syn_retries`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_syn_retries)
+See [`tcp_syn_retries` - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_syn_retries)
 
 ## OS Configuration
 
@@ -38,7 +38,7 @@ See [TCP Connect Timeout (Client Side) - Python Cookbook](https://leven-cn.githu
 
 <!-- markdownlint-disable line-length -->
 
-- [`tcp_syn_retries` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_syn_retries)
+- [`tcp_syn_retries` - tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_syn_retries)
 - [RFC 6298 - Computing TCP's Retransmission Timer](https://datatracker.ietf.org/doc/html/rfc6298.html)
 
 <!-- markdownlint-enable line-length -->

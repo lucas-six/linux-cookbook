@@ -36,18 +36,18 @@ See [RFC 6298](https://datatracker.ietf.org/doc/html/rfc6298.html).
 
 ## Python Recipes
 
-- [TCP Transmission Timeout - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_transmission_timeout)
+- [TCP Transmission Timeout - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_transmission_timeout)
 
 ## References
 
 <!-- markdownlint-disable line-length -->
 
-- [`recv`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/recv.2.en.html)
-- [`send`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/send.2.en.html)
-- [`SO_RCVTIMEO` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_RCVTIMEO)
-- [`SO_SNDTIMEO` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_SNDTIMEO)
-- [`tcp_retries1` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries1)
-- [`tcp_retries2` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_retries2)
+- [`recv`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/recv.2.en.html)
+- [`send`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/send.2.en.html)
+- [`SO_RCVTIMEO` - socket(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/socket.7.en.html#SO_RCVTIMEO)
+- [`SO_SNDTIMEO` - socket(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/socket.7.en.html#SO_SNDTIMEO)
+- [`tcp_retries1` - tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_retries1)
+- [`tcp_retries2` - tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_retries2)
 - [RFC 6298 - Computing TCP's Retransmission Timer](https://datatracker.ietf.org/doc/html/rfc6298.html)
 
 <!-- markdownlint-enable line-length -->

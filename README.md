@@ -43,7 +43,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Environment Variables](https://leven-cn.github.io/linux-cookbook/cookbook/start/env)
 - Diff: `diff`, `colordiff`
 - [Archive & Compression: `tar`](https://leven-cn.github.io/linux-cookbook/cookbook/start/archive)
-- Network: `wget`, [GNU `wget2`](https://gitlab.com/gnuwget/wget2), `curl`
+- Network: `wget`, [GNU `wget2`](https://gitlab.com/gnuwget/wget2), [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/start/curl)
 - Scripts
   - [Bash Cookbook](https://leven-cn.github.io/bash-cookbook/)
   - [Python Cookbook](https://leven-cn.github.io/python-cookbook/)
@@ -67,10 +67,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [RFC 3339 Format](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/datetime_fmt_rfc_3339)
 - [Compression Algorithms (压缩算法)](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/compression_algorithms)
 - [Process](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/proc)
+- [URL, URI, URN](https://leven-cn.github.io/linux-cookbook/cookbook/general_concepts/uri_url_urn)
 
 ## System Programming (系统编程)
 
-- [Git Cookbook](https://leven-cn.github.io/git-cookbook/)
 - [Standard I/O (standard C library): File](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_file)
 - [Standard I/O (standard C library): Directory](https://leven-cn.github.io/linux-cookbook/cookbook/programming/stdio_dir)
 - [UNIX I/O (system call)](https://leven-cn.github.io/linux-cookbook/cookbook/programming/syscall_io)
@@ -81,6 +81,35 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Virtualization (虚拟化)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/virtualization)
 - [Cloud Computing (云计算)](https://leven-cn.github.io/linux-cookbook/cookbook/sys/cloud_computing)
 
+### Network
+
+- [TCP/UDP Reuse Port: `SO_REUSEPORT`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/reuse_port)
+- [TCP/UDP (Recv/Send) Buffer Size: `SO_RCVBUF`, `SO_SNDBUF`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/buffer_size)
+
+#### TCP
+
+- TCP Connect Timeout (*handshaking timeout*)
+  - [Client Side](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_connect_timeout_client)
+  - [Server Side](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_connect_timeout_server)
+- [TCP `listen()` Queue](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_listen_queue)
+- [TCP Reuse Address: `SO_REUSEADDR`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_reuse_address)
+- [TCP Keep Alive: `SO_KEEPALIVE`, `TCP_KEEPIDLE`, `TCP_KEEPCNT`, `TCP_KEEPINTVL`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_keepalive)
+- [TCP Nodelay (Nagle's Algorithm): `TCP_NODELAY`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_nodelay)
+- [TCP Transmission Timeout: `SO_RCVTIMEO`, `SO_SNDTIMEO`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_transmission_timeout)
+
+### MongoDB
+
+- [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_overview)
+- Server
+  - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_ubuntu)
+  - [MongoDB TLS](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_tls)
+- Client
+  - CLI: **`mongosh`**: [MongoDB Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
+  - GUI: **Mongo Compass**
+  - [Python API](https://www.mongodb.com/docs/drivers/python/)
+    - Sync: [**`pymongo`**](https://www.mongodb.com/docs/drivers/pymongo/)
+    - Async: [**`motor`**](https://www.mongodb.com/docs/drivers/motor/)
+
 ### Performance
 
 - [Amdahl's Law](https://leven-cn.github.io/linux-cookbook/cookbook/admin/amdahl_law)
@@ -89,32 +118,27 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [Docker: Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/sys/docker_basic)
 
+## DevOps
+
+- [Git Cookbook](https://leven-cn.github.io/git-cookbook/)
+- Python: [`pipenv`](https://leven-cn.github.io/python-cookbook/cookbook/build/pkg/pipenv)
+  - [Project](https://leven-cn.github.io/python-cookbook/cookbook/build/project): `black`, `isort`, `mypy`, `pylint`
+  - [Deploy with Docker](https://leven-cn.github.io/python-cookbook/cookbook/build/deploy/docker)
+
 ## Networking (网络)
 
 - [Endianness](https://leven-cn.github.io/linux-cookbook/cookbook/net/endianness)
-- [TCP/UDP Reuse Port: `SO_REUSEPORT`](https://leven-cn.github.io/linux-cookbook/cookbook/net/reuse_port)
-- [TCP/UDP (Recv/Send) Buffer Size: `SO_RCVBUF`, `SO_SNDBUF`](https://leven-cn.github.io/linux-cookbook/cookbook/net/buffer_size)
 - [Zero-Copy: `mmap()`, `sendfile()`, `TCP_CORK`](https://leven-cn.github.io/linux-cookbook/cookbook/net/zero_copy)
 
 ### TCP
 
-- TCP Connect Timeout (*handshaking timeout*)
-  - [Client Side](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_client)
-  - [Server Side](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_server)
-- [TCP Reuse Address: `SO_REUSEADDR`](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_reuse_address)
-- [TCP `listen()` Queue](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_listen_queue)
-- [TCP Keep Alive: `SO_KEEPALIVE`, `TCP_KEEPIDLE`, `TCP_KEEPCNT`, `TCP_KEEPINTVL`](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_keepalive)
-- [TCP Nodelay (Nagle's Algorithm): `TCP_NODELAY`](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_nodelay)
 - [TCP Quick ACK (Disable Delayed ACKs, 禁用延迟确认)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_quickack)
-- [TCP Transmission Timeout: `SO_RCVTIMEO`, `SO_SNDTIMEO`](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_transmission_timeout)
 - [TCP Slow Start (慢启动)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_slowstart)
 - [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_rfc1337)
 - [TCP Selective ACK (SACK)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_sack)
 - [TCP Fast Open (TFO)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_fastopen)
 
 ## Web
-
-- [URL, URI, URN](https://leven-cn.github.io/linux-cookbook/cookbook/web/uri_url_urn)
 
 ### HTTP
 
@@ -125,7 +149,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [HTTP Caching: `Cache-Control`, ~~`Expires`~~, `ETag`, `Vary`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_caching)
 - [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_range)
 - HTTP Client
-  - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl)
+  - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/start/curl)
   - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
   - `Postman` (GUI)
   - Python API
@@ -134,14 +158,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ### MongoDB
 
-- [MongoDB: Overview](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb)
 - [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
-- [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_ubuntu)
-- CLI: **`mongosh`**
-- GUI: **Mongo Compass**
-- [Python API](https://www.mongodb.com/docs/drivers/python/)
-  - Sync: [**`pymongo`**](https://www.mongodb.com/docs/drivers/pymongo/)
-  - Async: [**`motor`**](https://www.mongodb.com/docs/drivers/motor/)
 
 ### Nginx
 
@@ -172,10 +189,18 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - Book: *The C Programming Language, Second Edition* (1989)
   - Book: *C: A Reference Manual, Fifth Edition* (2002)
   - Book: *The C Standard Library* (1992)
-- Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
-- [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
-- Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
-- Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
+- Computer System, OS and System Development
+  - Book: *Computer Systems: A Programmer's Perspective, Third Edition* (2016)
+  - [Paper: *The UNIX Time-Sharing System*. (*Communications of The ACM*, 1974)](https://www.scs.stanford.edu/nyu/04fa/sched/readings/unix.pdf)
+  - Book: [*Operating Systems: Three Easy Pieces* v1.00](https://pages.cs.wisc.edu/~remzi/OSTEP/)
+  - Book: *Advanced Programming in the UNIX Environment, 3rd Edition.* (2013)
+- URL
+  - [URL Living Standard](https://url.spec.whatwg.org)
+  - [RFC 3986 - Uniform Resource Identifier (URI): Generic Syntax](https://www.rfc-editor.org/rfc/rfc3986)
+  - [`curl` Home](https://curl.se)
+  - [cURL Cookbook](https://catonmat.net/cookbooks/curl)
+- System Services
+  - [MongoDB Documentation](https://www.mongodb.com/docs/)
 
 <!-- markdownlint-enble line-length -->
 
