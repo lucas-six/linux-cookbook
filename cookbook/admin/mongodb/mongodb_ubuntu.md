@@ -5,7 +5,9 @@
 **NOTE**: **`XFS`** filesystem is strongly recommended with the `WiredTiger` storage engine.
 
 ```bash
-apt install apt apt-utils python-apt-common python3-apt wget gnupg systemd
+apt install apt apt-utils apt-transport-https \
+        python-apt-common python3-apt
+apt install wget gnupg systemd
 
 # for v4.4
 # wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
@@ -143,8 +145,8 @@ mongosh
 #### Keyfile Authentication
 
 ```bash
-openssl rand -base64 756 > <key>.key
-chmod 0400 <key>.key
+openssl rand -base64 756 > <key-name>.key
+chmod 0400 <key-name>.key
 ```
 
 ```yaml
@@ -152,57 +154,4 @@ chmod 0400 <key>.key
 
 security:
   keyFile: <path/to/keyfile.key>
-```
-
-## Initialization
-
-```bash
-mongosh
-
-# Super Admin (Standalone)
-> db.createUser(
-{
-  user: "<super_admin_name>",
-  pwd: passwordPrompt(),
-  roles: [
-    { role: "userAdminAnyDatabase", db: "admin" },
-    { role: "readWriteAnyDatabase", db: "admin" }
-  ]
-})
-
-# Super Admin (Replica Set)
-> db.createUser(
-{
-  user: "<super_admin_name>",
-  pwd: passwordPrompt(),
-  roles: [
-    { role: "userAdminAnyDatabase", db: "admin" },
-    { role: "readWriteAnyDatabase", db: "admin" },
-    { role: "clusterAdmin", db: "admin" }
-  ]
-})
-
-# DB Owner
-> db.createUser(
-{
-  user: "<db_owner_name>",
-  pwd: passwordPrompt(),
-  roles: [
-    { role: "dbOwner", db: "<db_name>" }
-  ]
-})
-```
-
-## Client Usage
-
-### Standalone URL
-
-```url
-mongodb://<user>:<pwd>@<ip>:<port=27017>/<db_name>?authMechanism=SCRAM-SHA-256&connectTimeoutMS=3500
-```
-
-### Replica Set URL
-
-```url
-mongodb://<user>:<pwd>@<ip1>:<port=27017>,<ip2>:<port=27017>,<ip3>:<port=27017>/<db_name>?replicaSet=<rs-name>&authMechanism=SCRAM-SHA-256&maxPoolSize=4096&connectTimeoutMS=3500
 ```

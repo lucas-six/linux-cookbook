@@ -8,15 +8,16 @@
 hostnamectl set-hostname <hostname>
 
 apt update
-apt install apt apt-utils apt-transport-https
+apt install apt apt-utils apt-transport-https \
+        python-apt-common python3-apt
 apt install bash coreutils sudo vim openssh-server tzdata python3 \
-    openssl ca-certificates \
-    diffutils colordiff \
-    tar gzip bzip2 zstd \
-    wget wget2 curl \
-    procps htop psmisc \
-    systemd cron \
-    git binutils make rsync lsof make gcc
+        openssl ca-certificates \
+        diffutils colordiff \
+        tar gzip bzip2 zstd \
+        wget wget2 curl \
+        procps htop psmisc \
+        systemd cron \
+        git binutils make rsync lsof make gcc
 apt autoremove
 systemctl restart sshd cron
 
@@ -140,24 +141,6 @@ net.ipv4.tcp_window_scaling = 1
 
 ```bash
 sysctl -p
-```
-
-## Git
-
-```bash
-apt install git git-man
-
-sudo git config --system init.defaultBranch main
-sudo git config --system color.ui true
-sudo git config --system core.fileMode true
-sudo git config --system core.autocrlf input
-sudo git config --system core.editor vim
-sudo git config --system diff.tool vimdiff
-sudo git config --system credential.helper store
-sudo git config --system pull.rebase false
-sudo git config --system push.default simple
-sudo git config --system help.autocorrect 1
-sudo git config --system gui.encoding utf-8
 ```
 
 ## References

@@ -6,7 +6,7 @@ The **`tcp_synack_retries`** variable. Since Linux *2.2*.
 
 The maximum number of times a `SYN`/`ACK` segment for a passive TCP connection will be retransmitted.
 This number should not be higher than *`255`*.
-See [Linux - `tcp_synack_retries`](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_synack_retries)
+See [`tcp_synack_retries` - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_synack_retries)
 
 ## OS Configuration
 
@@ -32,8 +32,9 @@ See [TCP Connect Timeout (Server Side) - Python Cookbook](https://leven-cn.githu
 
 <!-- markdownlint-disable line-length -->
 
-- [`accept`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/accept.2.en.html)
-- [`tcp_synack_retries` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#tcp_synack_retries)
+- [`accept`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/accept.2.en.html)
+- [`tcp_synack_retries` - tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#tcp_synack_retries)
+- [tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html)
 - [RFC 6298 - Computing TCP's Retransmission Timer](https://datatracker.ietf.org/doc/html/rfc6298.html)
 
 <!-- markdownlint-enable line-length -->

@@ -11,9 +11,10 @@ Thus, **DONOT** use `SO_REUSEADDR` on UDP.
 
 ## Python Recipes
 
-- [TCP Reuse Address - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_reuse_address)
+- [TCP Reuse Address - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_reuse_address)
 
 ## References
 
-- [`bind`(2) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages-dev/bind.2.en.html)
-- [`SO_REUSEADDR` - socket(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/socket.7.en.html#SO_REUSEADDR)
+- [`bind`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/bind.2.en.html)
+- [`SO_REUSEADDR` - socket(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/socket.7.en.html#SO_REUSEADDR)
+- [socket(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/socket.7.en.html)
