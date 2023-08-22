@@ -11,7 +11,7 @@ Thus, **DONOT** use `SO_REUSEADDR` on UDP.
 
 ## Python Recipes
 
-- [TCP Reuse Address - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_reuse_address)
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 

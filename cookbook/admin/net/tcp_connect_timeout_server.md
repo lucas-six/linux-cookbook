@@ -24,9 +24,17 @@ sysctl -w net.ipv4.tcp_synack_retries = 2
 icsk->icsk_rto = min(icsk->icsk_rto << 1, TCP_RTO_MAX)
 ```
 
+```python
+timeout = 1
+while tcp_synack_retries:
+    tcp_synack_retries -= 1
+    timeout += 2 ** (tcp_synack_retries - r)
+return timeout
+```
+
 ## Python Examples or Recipes
 
-See [TCP Connect Timeout (Server Side) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_connect_timeout_server).
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 

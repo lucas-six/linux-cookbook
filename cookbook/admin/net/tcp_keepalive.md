@@ -62,7 +62,7 @@ See [`tcp_keepalive_intvl` - tcp(7) - Debian Manpages](https://manpages.debian.o
 
 ## Python Recipes
 
-- [TCP Keep Alive - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_keepalive)
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 
