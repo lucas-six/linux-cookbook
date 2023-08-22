@@ -28,7 +28,7 @@ having multiple processes compete to receive datagrams on the same socket.
 
 ## Python Recipes
 
-- [Reuse Port - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/reuse_port)
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 

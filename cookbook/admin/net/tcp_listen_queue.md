@@ -72,7 +72,7 @@ or make the change permanently in **`/etc/sysctl.conf`**.
 
 ## Python Examples or Recipes
 
-See [TCP `listen()` Queue - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_listen_queue).
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 
