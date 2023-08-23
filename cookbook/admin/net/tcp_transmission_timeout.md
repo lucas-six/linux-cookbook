@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The **`tcp_retries1`** and `tcp_retries2` variable. Since Linux *2.2*.
+The **`tcp_retries1`** and **`tcp_retries2`** variable. Since Linux *2.2*.
 
 ## System Configuration (Linux)
 
@@ -14,7 +14,7 @@ net.ipv4.tcp_retries1 = 3
 $ cat /proc/sys/net/ipv4/tcp_retries2
 15
 $ sysctl net.ipv4.tcp_retries2
-net.ipv4.tcp_retries1 = 15
+net.ipv4.tcp_retries2 = 15
 
 sysctl -w net.ipv4.tcp_retries1 = 3
 sysctl -w net.ipv4.tcp_retries2 = 5
@@ -36,7 +36,7 @@ See [RFC 6298](https://datatracker.ietf.org/doc/html/rfc6298.html).
 
 ## Python Recipes
 
-- [TCP Transmission Timeout - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_transmission_timeout)
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 
