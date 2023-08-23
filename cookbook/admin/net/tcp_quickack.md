@@ -17,13 +17,13 @@ Since Linux *2.4.4*.
 
 ## Python Recipes
 
-- [TCP Quick ACK (Disable Delayed ACKs, 延迟确认) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_quickack)
+- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 
 <!-- markdownlint-disable line-length -->
 
-- [`TCP_QUICKACK` - tcp(7) - Linux Programmer's Manual](https://manpages.debian.org/bullseye/manpages/tcp.7.en.html#TCP_QUICKACK)
-- [RFC 813 - WINDOW AND ACKNOWLEDGEMENT STRATEGY IN TCP (1982.7)](https://www.rfc-editor.org/rfc/rfc813) (Obsoleted)
+- [`TCP_QUICKACK` - tcp(7) - Debian Manpages](https://manpages.debian.org/bookworm/manpages/tcp.7.en.html#TCP_QUICKACK)
+- [RFC 813 - WINDOW AND ACKNOWLEDGEMENT STRATEGY IN TCP (1982.7)](https://datatracker.ietf.org/doc/html/rfc813.html) (Obsoleted)
 
 <!-- markdownlint-enable line-length -->

@@ -32,7 +32,7 @@ icsk->icsk_rto = min(icsk->icsk_rto << 1, TCP_RTO_MAX)
 
 ## Python Examples or Recipes
 
-See [TCP Connect Timeout (Client Side) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/socket/tcp_connect_timeout_client).
+- [TCP Client (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_client_ipv4)
 
 ## References
 
