@@ -98,6 +98,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [TCP Nodelay (Nagle's Algorithm): `TCP_NODELAY`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_nodelay)
 - [TCP Transmission Timeout: `SO_RCVTIMEO`, `SO_SNDTIMEO`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_transmission_timeout)
 - [TCP Quick ACK (Disable Delayed ACKs, 禁用延迟确认)](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_quickack)
+- [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_rfc1337)
 
 ### MongoDB
 
@@ -127,6 +128,23 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Project](https://leven-cn.github.io/python-cookbook/cookbook/build/project): `black`, `isort`, `mypy`, `pylint`
   - [Deploy with Docker](https://leven-cn.github.io/python-cookbook/cookbook/build/deploy/docker)
 
+## Web
+
+### HTTP
+
+- [HTTP Basic](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_basic)
+- [HTTP Connection Management](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_connection)
+- [HTTP Cookie](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_cookie)
+- [HTTP Authentication: `WWW-Authenticate`, `Authorization`, `Proxy-Authenticate`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_authentication)
+- [HTTP Caching: `Cache-Control`, ~~`Expires`~~, `ETag`, `Vary`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_caching)
+- [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http/http_range)
+
+#### HTTP Client
+
+- [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/start/curl)
+- [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
+- `Postman` (GUI)
+
 ## Networking (网络)
 
 - [Zero-Copy: `mmap()`, `sendfile()`, `TCP_CORK`](https://leven-cn.github.io/linux-cookbook/cookbook/net/zero_copy)
@@ -134,26 +152,13 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 ### TCP
 
 - [TCP Slow Start (慢启动)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_slowstart)
-- [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_rfc1337)
 - [TCP Selective ACK (SACK)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_sack)
 - [TCP Fast Open (TFO)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_fastopen)
 
-## Web
+## Web2
 
 ### HTTP
 
-- [HTTP Basic](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_basic)
-- [HTTP Connection Management](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_connection)
-- [HTTP Cookie](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_cookie)
-- [HTTP Authentication: `WWW-Authenticate`, `Authorization`, `Proxy-Authenticate`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_authentication)
-- [HTTP Caching: `Cache-Control`, ~~`Expires`~~, `ETag`, `Vary`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_caching)
-- [HTTP Range Requests: `Range`](https://leven-cn.github.io/linux-cookbook/cookbook/web/http_range)
-- HTTP Client
-  - [`curl`](https://leven-cn.github.io/linux-cookbook/cookbook/start/curl)
-  - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
-  - `Postman` (GUI)
-  - Python API
-    - `urllib` (built-in), [*`requests`*](https://requests.readthedocs.io/en/latest/) (sync io), [**`aiohttp`**](https://docs.aiohttp.org/en/stable/) (asyncio)
 - [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
 ### MongoDB
@@ -199,6 +204,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [RFC 3986 - Uniform Resource Identifier (URI): Generic Syntax](https://www.rfc-editor.org/rfc/rfc3986)
   - [`curl` Home](https://curl.se)
   - [cURL Cookbook](https://catonmat.net/cookbooks/curl)
+- Book: *HTTP: The Definitive Guide* (2002)
 - System Services
   - [MongoDB Documentation](https://www.mongodb.com/docs/)
 

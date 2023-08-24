@@ -7,7 +7,7 @@
 - GUI App
 - plugin support
 
-See [`curl` - Linux Cookbook](https://leven-cn.github.io/linux-cookbook/cookbook/web/curl).
+See [`curl` - Linux Cookbook](https://leven-cn.github.io/linux-cookbook/cookbook/start/curl).
 
 ## Installation
 

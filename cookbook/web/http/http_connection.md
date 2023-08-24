@@ -4,13 +4,26 @@
 
 ## TCP
 
-- Reduce *TCP connect time* (*handshaking time*)
-  - [reduce **`tcp_syn_retries`** (**`TCP_SYNCNT`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_client)
-  - [reduce **`tcp_synack_retries`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_connect_timeout_server)
-- [Enable **Persistent Connection** (**TCP Keep-Alive**, **`SO_KEEPALIVE`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_keepalive)
-- [Disable *Nagle Algorithm*, enable **`TCP_NODELAY`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_nodelay)
-- [Disable *Delayed ACK*, enable **TCP Quick ACK** (**`TCP_QUICKACK`**)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_quickack)
-- [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_rfc1337)
+```ini
+# sysctl.conf
+
+# reduce TCP connect time (handshaking time)
+net.ipv4.tcp_syn_retries           = 2  # reduce it (`socket.TCP_SYNCNT`)
+net.ipv4.tcp_synack_retries        = 2  # reduce it
+
+# TCP Keep-Alive
+net.ipv4.tcp_keepalive_time        = 1800  # default 7200 (since Linux 2.2)
+net.ipv4.tcp_keepalive_probes      = 9  # default 9 (since Linux 2.2)
+net.ipv4.tcp_keepalive_intvl       = 15
+
+# enable TCP RFC-1337
+net.ipv4.tcp_rfc1337               = 1
+```
+
+- [Enable **Persistent Connection** (*TCP Keep-Alive*, *`socket.SO_KEEPALIVE`*)](../../admin/net/tcp_keepalive)
+- [Disable *Nagle Algorithm*, enable *`socket.TCP_NODELAY`*](../../admin/net/tcp_nodelay)
+- [Disable *Delayed ACK*, enable **TCP Quick ACK** (*`socket.TCP_QUICKACK`*)](../../admin/net/tcp_quickack)
+- [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](../../admin/net/tcp_rfc1337)
 
 ### Keep-Alive
 
@@ -22,6 +35,12 @@ Proxy-Connection: keep-alive
 
 Connection: close
 ```
+
+## More
+
+- TCP connect time (*handshaking time*)
+  - [**`tcp_syn_retries`** (`TCP_SYNCNT`) for client](../../admin/net/tcp_connect_timeout_client)
+  - [**`tcp_synack_retries`** for server](../../admin/net/tcp_connect_timeout_server)
 
 ## References
 

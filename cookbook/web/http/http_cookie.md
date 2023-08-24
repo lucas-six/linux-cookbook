@@ -46,7 +46,7 @@ See [RFC 6265 - HTTP State Management Mechanism (2011.4)](https://datatracker.ie
 
 ## Python Examples and Recipes
 
-- [HTTP Cookie (Server Side) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/web/http_cookie)
+- [HTTP Cookie (Server Side) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/web/http_cookie)
 
 ## References
 

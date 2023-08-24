@@ -85,7 +85,7 @@ Accept-Encoding: zstd;q=1, br;q=0.8, gzip;q=0.5, deflate;q=0.1
 
 **`br`** means **Brotli** algorithm, created by Google in 2015.
 
-More to see [Compression on Linux Cookbook](/linux-cookbook/cookbook/general/compression).
+More to see [Compression on Linux Cookbook](../general_concepts/compression_algorithms).
 
 ### Response
 
