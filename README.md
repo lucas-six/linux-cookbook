@@ -86,6 +86,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [TCP/UDP Reuse Port: `SO_REUSEPORT`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/reuse_port)
 - [TCP/UDP (Recv/Send) Buffer Size: `SO_RCVBUF`, `SO_SNDBUF`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/buffer_size)
+- [Zero-Copy: `mmap()`, `sendfile()`, `TCP_CORK`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/zero_copy)
 
 #### TCP
 
@@ -99,6 +100,9 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [TCP Transmission Timeout: `SO_RCVTIMEO`, `SO_SNDTIMEO`](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_transmission_timeout)
 - [TCP Quick ACK (Disable Delayed ACKs, 禁用延迟确认)](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_quickack)
 - [Fix *TIME-WAIT Assassination Hazards* (TIME-WAIT 暗杀), enable **`tcp_rfc1337`**](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_rfc1337)
+- [TCP Slow Start (慢启动)](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_slowstart)
+- [TCP Fast Open (TFO)](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_fastopen)
+- [TCP Selective ACK (SACK)](https://leven-cn.github.io/linux-cookbook/cookbook/admin/net/tcp_sack)
 
 ### MongoDB
 
@@ -109,9 +113,15 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - Client
   - CLI: **`mongosh`**: [MongoDB Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
   - GUI: **Mongo Compass**
-  - [Python API](https://www.mongodb.com/docs/drivers/python/)
-    - Sync: [**`pymongo`**](https://www.mongodb.com/docs/drivers/pymongo/)
-    - Async: [**`motor`**](https://www.mongodb.com/docs/drivers/motor/)
+
+### Redis
+
+- [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
+- [CLI: **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
+- GUI
+  - [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official)
+  - ~~Redis Desktop Manager~~
+  - *Another Redis Desktop Manager*
 
 ### Performance
 
@@ -119,7 +129,9 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ### Container (容器)
 
-- [Docker: Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/sys/docker_basic)
+- [Docker: Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
+- [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
+- [PostgreSQL in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/admin/docker/postgresql)
 
 ## DevOps
 
@@ -129,6 +141,8 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Deploy with Docker](https://leven-cn.github.io/python-cookbook/cookbook/build/deploy/docker)
 
 ## Web
+
+- [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
 
 ### HTTP
 
@@ -145,40 +159,16 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [`httpie`](https://leven-cn.github.io/linux-cookbook/cookbook/web/httpie)
 - `Postman` (GUI)
 
-## Networking (网络)
-
-- [Zero-Copy: `mmap()`, `sendfile()`, `TCP_CORK`](https://leven-cn.github.io/linux-cookbook/cookbook/net/zero_copy)
-
-### TCP
-
-- [TCP Slow Start (慢启动)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_slowstart)
-- [TCP Selective ACK (SACK)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_sack)
-- [TCP Fast Open (TFO)](https://leven-cn.github.io/linux-cookbook/cookbook/net/tcp_fastopen)
-
-## Web2
-
-### HTTP
-
-- [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/csrf)
-
-### MongoDB
-
-- [MongoDB (Standalone) in Docker](https://leven-cn.github.io/linux-cookbook/cookbook/web/mongodb/mongodb_standalone_docker)
-
 ### Nginx
 
 - [Nginx Installation](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_installation)
-- [Nginx Configuration](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_configuration)
-
-### Redis
-
-- [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_setup)
-- [CLI: **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/web/redis/redis_usage_basic)
-- GUI: [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official), ~~Redis Desktop Manager~~, *Another Redis Desktop Manager*
-- Python API:
-  - Sync: [**`redis-py`**](https://redis.readthedocs.io/en/latest/)
-  - Async: [**`aioredis`**](https://aioredis.readthedocs.io/en/latest/)
-  - ORM: *`pyton-redis-orm`*
+- [Nginx Configuration: Global](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_conf_global)
+- [Nginx Configuration: vHost](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/nginx_conf_vhost)
+- [Nginx Configuration: TCP Fast Open](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/fastopen)
+- [Nginx Configuration: WebSocket](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/websocket)
+- [Nginx Configuration: CSRF (跨站请求伪造)](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/csrf)
+- [Nginx Configuration: XSS (跨站脚本攻击)](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/xss)
+- [Nginx Configuration: `zstd`](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/zstd)
 
 ## Recommended Readings
 
@@ -207,30 +197,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - Book: *HTTP: The Definitive Guide* (2002)
 - System Services
   - [MongoDB Documentation](https://www.mongodb.com/docs/)
-
-<!-- markdownlint-enble line-length -->
-
-## Recipes
-
-- [Docker: PostgreSQL](https://leven-cn.github.io/linux-cookbook/recipes/docker_postgresql)
+  - [Redis Home](https://redis.io)
+  - [Docker Home](https://www.docker.com)
+  - [DockerHub Home](https://hub.docker.com)
+  - [Nginx Documentation](https://nginx.org/en/docs/)
+  - [PostgreSQL Home](https://www.postgresql.org/)
 
 <!-- markdownlint-enable line-length -->
-
-## User Guide
-
-```bash
-python3 admin.py setup
-```
-
-**STEP 3**: Build projects
-
-```bash
-# uWSGI
-python3 admin.py run-uwsgi <app-path> <address>
-python3 admin.py stop-uwsgi <app-path>
-python3 admin.py init-run-uwsgi <app-path> <address>
-tail -f /var/log/uwsgi/<app-name>.log
-
-# doc
-python admin.py doc <project-path>
-```

@@ -107,9 +107,6 @@ kernel.sysrq = 1
 
 net.core.somaxconn = 4096
 net.core.netdev_max_backlog = 4096
-
-net.ipv4.tcp_rmem = 4096 131072 6291456
-net.ipv4.tcp_wmem = 4096 16384 4194304
 net.ipv4.neigh.default.gc_stale_time = 120
 
 # see details in https://help.aliyun.com/knowledge_detail/39428.html
@@ -120,15 +117,15 @@ net.ipv4.conf.lo.arp_announce = 2
 net.ipv4.conf.all.arp_announce = 2
 
 # see details in https://help.aliyun.com/knowledge_detail/41334.html
-net.ipv4.tcp_max_tw_buckets = 5000
-net.ipv4.tcp_syncookies = 1
 net.ipv4.tcp_max_syn_backlog = 4096
+net.ipv4.tcp_syn_retries = 2
 net.ipv4.tcp_synack_retries = 2
-net.ipv4.tcp_slow_start_after_idle = 0
 net.ipv4.tcp_retries1 = 3
 net.ipv4.tcp_retries2 = 5
 net.ipv4.tcp_window_scaling = 1
-# net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_max_tw_buckets = 5000
+net.ipv4.tcp_syncookies = 1
 ; net.ipv4.tcp_fin_timeout = 3  # 60
 ; net.ipv4.tcp_tw_reuse = 1  # 0
 ; net.ipv4.tcp_tw_recycle = 1  # 0

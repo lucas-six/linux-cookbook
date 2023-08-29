@@ -30,6 +30,14 @@ having multiple processes compete to receive datagrams on the same socket.
 
 - [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
+## NGINX Configurations
+
+```conf
+server {
+    listen 443 ssl reuseport;
+}
+```
+
 ## References
 
 - [`bind`(2) - Debian Manpages](https://manpages.debian.org/bookworm/manpages-dev/bind.2.en.html)

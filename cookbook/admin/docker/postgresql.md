@@ -1,4 +1,4 @@
-# Docker: PostgreSQL
+# PostgreSQL in Docker
 
 ## Configuration
 

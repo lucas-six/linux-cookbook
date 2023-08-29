@@ -1,11 +1,15 @@
 # TCP Fast Open (TFO)
 
-Since Linux *2.6.34*. (RFC 7413)
+Since Linux *3.6* (Client) and *3.7* (Server). (RFC 7413)
 
 ## System Configuration
 
 ```bash
-sysctl -w net.ipv4.tcp_fastopen = 3  # 1 by default
+# 0 - disable
+# 1 - enabled by clients (default)
+# 2 - enabled by servers
+# 3 - enabled by both of clients and servers
+sysctl -w net.ipv4.tcp_fastopen = 3
 
 echo 3 > /proc/sys/net/ipv4/tcp_fastopen
 ```
@@ -18,7 +22,7 @@ http {
 }
 
 server {
-    listen  443 ssl fastopen=3 http2 default_server;
+    listen 443 ssl fastopen=3;
 }
 ```
 
@@ -27,7 +31,11 @@ server {
 ```python
 import socket
 
-sock.setsockopt(socket.SOL_SOCKET, socket.TCP_FASTOPEN, 3)
+# Server
+sock.setsockopt(socket.SOL_SOCKET, socket.TCP_FASTOPEN, 2)
+
+# Client
+sock.sendto(data, socket.MSG_FASTOPEN, addr)
 ```
 
 ## `curl` Recipe
