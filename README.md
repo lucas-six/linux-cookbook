@@ -111,17 +111,23 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [MongoDB on Ubuntu](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_ubuntu)
   - [MongoDB TLS](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_tls)
 - Client
-  - CLI: **`mongosh`**: [MongoDB Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
+  - [CLI: `mongosh` Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
   - GUI: **Mongo Compass**
 
 ### Redis
 
 - [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
-- [CLI: **`redis-cli`** - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
+- [CLI: `redis-cli` - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
 - GUI
   - [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official)
   - ~~Redis Desktop Manager~~
   - *Another Redis Desktop Manager*
+
+### PostgreSQL
+
+- [PostgreSQL - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
+- [CLI: `psql` - Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
+- GUI (Official): `pgadmin4`
 
 ### Performance
 
