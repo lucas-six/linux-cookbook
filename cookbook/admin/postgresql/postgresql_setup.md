@@ -16,7 +16,7 @@ apt install apt apt-utils python-apt-common python3-apt systemd
 apt install curl ca-certificates gnupg
 curl https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -
 apt update
-apt install postgresql-12 libpq-dev
+apt install postgresql-16 libpq-dev
 ```
 
 ### CentOS
@@ -25,12 +25,12 @@ apt install postgresql-12 libpq-dev
 
 ```bash
 # Client
-dnf install -y postgresql12 postgresql12-devel
+dnf install -y postgresql16 postgresql16-devel
 
 # Server
-dnf install -y postgresql12-server systemd
-/usr/pgsql-12/bin/postgresql-12-setup initdb
-systemctl enable postgresql-12
+dnf install -y postgresql16-server systemd
+/usr/pgsql-16/bin/postgresql-16-setup initdb
+systemctl enable postgresql-16
 ```
 
 #### Official Repo
@@ -41,6 +41,10 @@ dnf makecache
 
 # 禁用不必要的源
 dnf module list postgresql
+dnf config-manager --disable pgdg15
+dnf config-manager --disable pgdg14
+dnf config-manager --disable pgdg13
+dnf config-manager --disable pgdg12
 dnf config-manager --disable pgdg11
 dnf config-manager --disable pgdg10
 dnf config-manager --disable pgdg96
@@ -48,28 +52,28 @@ dnf config-manager --disable pgdg95
 dnf module disable postgresql  # 禁用系统自带的源
 
 # Client
-dnf install -y postgresql12 postgresql12-devel
+dnf install -y postgresql16 postgresql16-devel
 
 # Server
-dnf install -y postgresql12-server postgresql12-contrib systemd
-/usr/pgsql-12/bin/postgresql-12-setup initdb
-systemctl enable postgresql-12
+dnf install -y postgresql16-server postgresql16-contrib systemd
+/usr/pgsql-16/bin/postgresql-16-setup initdb
+systemctl enable postgresql-16
 ```
 
 ```bash
 # /etc/bashrc
 
-export PATH="/usr/pgsql-12/bin:$PATH"
+export PATH="/usr/pgsql-16/bin:$PATH"
 ```
 
 ```bash
-systemctl start postgresql-12
+systemctl start postgresql-16
 ```
 
 ## Configuration
 
 ```conf
-# /etc/postgresql/12/main/postgresql.conf
+# /etc/postgresql/16/main/postgresql.conf
 
 #listen_addresses = 'localhost'  # '*' for all
 #port = 5432
@@ -82,7 +86,7 @@ client_encoding = 'UTF8'
 ```
 
 ```ini
-# /etc/postgresql/12/main/pg_hba.conf
+# /etc/postgresql/16/main/pg_hba.conf
 
 host all all 127.0.0.1/32 scram-sha-256
 

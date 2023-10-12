@@ -3,11 +3,15 @@
 ## Basic
 
 ```conf
-# conf.d/vhost.conf
+upstream xxx_servers {
+    ip_hash;
+    #server unix:///tmp/app.sock;
+    server 127.0.0.1:1234 weight=1 max_fails=3;
+}
 
 server {
     listen 443 ssl reuseport default_server;
-    http2: on;
+    http2 on;
     server_name <domain.name>;
 
     access_log  /var/log/nginx/xxx.access.log main;
@@ -16,6 +20,7 @@ server {
     ssl_certificate      /etc/nginx/ssl/xxx.pem;
     ssl_certificate_key  /etc/nginx/ssl/xxx.key;
 
+    add_header X-Content-Type-Options nosniff;
     client_max_body_size  75M;  # max upload size
 
     root  /var/spool/nginx/xxx-root;
@@ -48,13 +53,19 @@ server {
 
     # API
     location ~* ^/(api) {
-        proxy_pass  http://127.0.0.1:8000;
+        access_log off;
+        proxy_pass http://127.0.0.1:8000;
+    }
+    location ~* ^/(api2) {
+        access_log off;
+        uwsgi_pass xxx_servers;
+        include uwsgi_params;
     }
 
     # Kibana
     location /_kibana {
-        access_log  off;
-        proxy_pass  http://kibana_servers/;
+        access_log off;
+        proxy_pass http://kibana_servers/;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection 'upgrade';
         proxy_cache_bypass $http_upgrade;
