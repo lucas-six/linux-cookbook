@@ -116,7 +116,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ### Redis
 
-- [Redis - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
+- [Redis Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
 - [CLI: `redis-cli` - Basic Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
 - GUI
   - [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official)
@@ -128,6 +128,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [PostgreSQL - Setup](https://leven-cn.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
 - [CLI: `psql` - Usage](https://leven-cn.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
 - GUI (Official): `pgadmin4`
+
+### RabbitMQ
+
+- [RabbitMQ Setup on Ubuntu / Debian](https://leven-cn.github.io/linux-cookbook/cookbook/admin/rabbitmq/rabbitmq_setup_ubuntu)
 
 ### Performance
 
