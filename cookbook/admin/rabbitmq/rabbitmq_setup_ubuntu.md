@@ -82,7 +82,6 @@ RABBITMQ_LOG_BASE=/var/log/rabbitmq
 ```bash
 systemctl start rabbitmq
 rabbitmq-plugins enable rabbitmq_management
-rabbitmq-plugins enable rabbitmq_mqtt
 
 rabbitmqctl add_user <username> <password>
 rabbitmqctl set_user_tags <username> administrator
@@ -91,6 +90,56 @@ rabbitmqctl list_users
 
 systemctl enable|disable rabbitmq
 systemctl start|stop|restart|status rabbitmq
+```
+
+### MQTT
+
+```bash
+rabbitmq-plugins enable rabbitmq_mqtt
+```
+
+```ini
+mqtt.listeners.tcp.default = 1883
+
+# IPv4/IPv6
+#mqtt.listeners.tcp.1 = 127.0.0.1:1883
+#mqtt.listeners.tcp.2 = ::1:1883
+
+#mqtt.tcp_listen_options.backlog = 4096
+#mqtt.tcp_listen_options.recbuf  = 131072
+#mqtt.tcp_listen_options.sndbuf  = 131072
+
+#mqtt.tcp_listen_options.keepalive = true
+#mqtt.tcp_listen_options.nodelay   = true
+
+#mqtt.tcp_listen_options.exit_on_close = true
+#mqtt.tcp_listen_options.send_timeout  = 120
+
+## Default MQTT with TLS port is 8883
+# mqtt.listeners.ssl.default = 8883
+#ssl_options.cacertfile = /path/to/ca_certificate.pem
+#ssl_options.certfile   = /path/to/server_certificate.pem
+#ssl_options.keyfile    = /path/to/server_key.pem
+#ssl_options.verify     = verify_peer
+#ssl_options.fail_if_no_peer_cert  = true
+
+# anonymous connections, if allowed, will use the default
+# credentials specified here
+mqtt.allow_anonymous  = true
+mqtt.default_user     = guest
+mqtt.default_pass     = guest
+
+mqtt.vhost            = /
+mqtt.exchange         = amq.topic
+# 24 hours by default
+mqtt.subscription_ttl = 86400000
+mqtt.prefetch         = 10
+
+## use DETS (disk-based) store for retained messages
+# `rabbit_mqtt_retained_msg_store_ets` for RAM-based
+mqtt.retained_message_store = rabbit_mqtt_retained_msg_store_dets
+## only used by DETS store
+mqtt.retained_message_store_dets_sync_interval = 2000
 ```
 
 ## References

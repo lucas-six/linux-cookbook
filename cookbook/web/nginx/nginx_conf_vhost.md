@@ -55,10 +55,14 @@ server {
     location ~* ^/(api) {
         access_log off;
         proxy_pass http://127.0.0.1:8000;
+
+        add_header 'Access-Control-Allow-Credentials' 'true' always;
+        add_header 'Access-Control-Allow-Origin' '$http_origin' always;
+        add_header 'Access-Control-Allow-Headers' 'Authorization,DNT,User-Agent,Keep-Alive,Content-Type,accept,origin,X-Requested-With' always;
     }
-    location ~* ^/(api2) {
+    location ~* ^/(uwsgi_api) {
         access_log off;
-        uwsgi_pass xxx_servers;
+        uwsgi_pass uwsgi_servers;
         include uwsgi_params;
     }
 
@@ -83,8 +87,13 @@ server {
     }
 
     # HEAD
-    if ($request_method ~ ^(HEAD)$ ) {
+    if ($request_method ~ ^(HEAD)$) {
         return 200 "All OK";
+    }
+
+    # OPTIONS
+    if ($request_method = OPTIONS) {
+        return 200;
     }
 }
 
