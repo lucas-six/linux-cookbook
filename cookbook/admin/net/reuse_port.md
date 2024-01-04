@@ -12,11 +12,11 @@ This provides improved load distribution as compared to traditional techniques
 such using a single `accept()`ing thread that distributes connections,
 or having multiple threads that compete to `accept()` from the same socket.
 
-![socket SO_REUSEPORT](https://leven-cn.github.io/linux-cookbook/imgs/socket_SO_REUSEPORT.png)
+![socket SO_REUSEPORT](https://lucas-six.github.io/linux-cookbook/imgs/socket_SO_REUSEPORT.png)
 
 In kernel, hash algorithms are used:
 
-![socket SO_REUSEPORT using hash algorithms](https://leven-cn.github.io/linux-cookbook/imgs/socket_SO_REUSEPORT_hash.png)
+![socket SO_REUSEPORT using hash algorithms](https://lucas-six.github.io/linux-cookbook/imgs/socket_SO_REUSEPORT_hash.png)
 
 ## UDP
 
@@ -28,7 +28,7 @@ having multiple processes compete to receive datagrams on the same socket.
 
 ## Python Recipes
 
-- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
+- [TCP Server (IPv4) - Python Cookbook](https://lucas-six.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## NGINX Configurations
 

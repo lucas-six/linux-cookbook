@@ -13,7 +13,7 @@ Original algorithm was described in [RFC 896 - Congestion Control in IP/TCP Inte
 
 ## Python Examples or Recipes
 
-- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
+- [TCP Server (IPv4) - Python Cookbook](https://lucas-six.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 
