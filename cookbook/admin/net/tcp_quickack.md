@@ -17,7 +17,7 @@ Since Linux *2.4.4*.
 
 ## Python Recipes
 
-- [TCP Server (IPv4) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
+- [TCP Server (IPv4) - Python Cookbook](https://lucas-six.github.io/python-cookbook/cookbook/core/net/tcp_server_ipv4)
 
 ## References
 

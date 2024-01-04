@@ -31,13 +31,13 @@ or
 
 ### 3. Nginx `valid_referer`
 
-See [Nginx Configuration: Valid Referer](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/csrf).
+See [Nginx Configuration: Valid Referer](https://lucas-six.github.io/linux-cookbook/cookbook/web/nginx/csrf).
 
 ### 4. XSS Prevention
 
 Cross Site Scripting, XSS (跨站脚本攻击)
 
-See [Nginx Configuration: Cross Site Scripting, XSS (跨站脚本攻击)](https://leven-cn.github.io/linux-cookbook/cookbook/web/nginx/xss).
+See [Nginx Configuration: Cross Site Scripting, XSS (跨站脚本攻击)](https://lucas-six.github.io/linux-cookbook/cookbook/web/nginx/xss).
 
 ## References
 

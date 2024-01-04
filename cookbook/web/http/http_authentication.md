@@ -15,7 +15,7 @@ by including an **`Authorization`** or **`Proxy-Authorization`** request header 
 and will then issue the request
 including the correct **`Authorization`** or **`Proxy-Authorization`** header.
 
-![HTTP Authentication Sequence Diagram](https://leven-cn.github.io/linux-cookbook/imgs/http-auth-sequence-diagram-noalpha.png)
+![HTTP Authentication Sequence Diagram](https://lucas-six.github.io/linux-cookbook/imgs/http-auth-sequence-diagram-noalpha.png)
 
 ## Authentication schemes
 

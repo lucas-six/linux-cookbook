@@ -91,19 +91,15 @@ mongodb://<user>:<pwd>@<ip1>:<port=27017>,<ip2>:<port=27017>,<ip3>:<port=27017>/
 ### Create Database Admin
 
 ```bash
-> use <dbname>
-> db.createUser( { user: '<username>', pwd: passwordPrompt(), roles: ['dbOwner'] } )
-
-# OR:
-
+> use admin
 > db.createUser({
-    user: "<db_owner_name>",
-    pwd: passwordPrompt(),
-    roles:
-        [
-            { role: "dbOwner", db: "<db_name>" }
-        ]
-})
+  user: '<username>',
+  pwd: passwordPrompt(),
+  roles: [
+    { role: "dbOwner",
+      db: "<db_name>"
+    }
+  ]})
 ```
 
 ### Delete Users

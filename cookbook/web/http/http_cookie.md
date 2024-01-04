@@ -31,7 +31,7 @@ Set-Cookie: id=a3fWa; Max-Age=300; Secure; HttpOnly; SameSite=Strict; csrftoken=
 - **`Secure`**: only for https
 - **`HttpOnly`**: disallow JavaScript *`Document.cookie`* API.
 - **`SameSite`**: **`Strict`** for same origin, **`Lax`** (default) for link following
-(See [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://leven-cn.github.io/python-cookbook/more/web/csrf))
+(See [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](https://lucas-six.github.io/python-cookbook/more/web/csrf))
 - **`Max-Age`** / **`Expires`**: cache
 
 ## Request
@@ -46,7 +46,7 @@ See [RFC 6265 - HTTP State Management Mechanism (2011.4)](https://datatracker.ie
 
 ## Python Examples and Recipes
 
-- [HTTP Cookie (Server Side) - Python Cookbook](https://leven-cn.github.io/python-cookbook/cookbook/web/http_cookie)
+- [HTTP Cookie (Server Side) - Python Cookbook](https://lucas-six.github.io/python-cookbook/cookbook/web/http_cookie)
 
 ## References
 
