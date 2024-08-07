@@ -65,7 +65,7 @@ redis  hard  nofile  65535
 ```conf
 # /etc/redis/redis.conf
 
-#bind 0.0.0.0
+#bind * -::*
 protected-mode yes
 #tcp-backlog <4096>
 appendonly yes
@@ -85,6 +85,16 @@ systemctl start|stop|restart|status redis-server
 # CentOS
 systemctl enable|disable redis
 systemctl start|stop|restart|status redis
+```
+
+### `RedisJson` Module
+
+```conf
+# /etc/redis/redis.conf
+
+# RedisJson
+loadmodule /path/to/librejson.dylib  # macOS
+loadmodule /path/to/librejson.so     # Linux
 ```
 
 ## References
