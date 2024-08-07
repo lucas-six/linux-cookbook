@@ -104,6 +104,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [TCP Fast Open (TFO)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/net/tcp_fastopen)
 - [TCP Selective ACK (SACK)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/net/tcp_sack)
 
+#### TLS
+
+- [Self-Signed TLS](https://lucas-six.github.io/linux-cookbook/cookbook/admin/net/self_tls)
+
 ### MongoDB
 
 - [MongoDB: Overview](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_overview)
