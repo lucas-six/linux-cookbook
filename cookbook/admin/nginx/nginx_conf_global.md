@@ -1,16 +1,10 @@
 # NGINX Global Configurations
 
-```bash
-ln -s nginx.conf /etc/nginx/nginx.conf
-nginx -t
-```
-
 ## Basic
 
 ```conf
 # For more information on configuration, see:
 #   * Official English Documentation: http://nginx.org/en/docs/
-#   * Official Russian Documentation: http://nginx.org/ru/docs/
 
 user nginx;
 worker_processes auto;
@@ -80,7 +74,7 @@ http {
     proxy_set_header    X-Real-IP          $remote_addr;
     proxy_set_header    X-Forwarded-For    $proxy_add_x_forwarded_for;
     proxy_set_header    X-Forwarded-Proto  $scheme;
-    proxy_connect_timeout  1s;
+    proxy_connect_timeout  2s;
     proxy_ignore_client_abort off;
     proxy_buffering     on;
     proxy_buffer_size   16k;
@@ -89,7 +83,7 @@ http {
     proxy_max_temp_file_size  2048m;
 
     # uWSGI
-    uwsgi_connect_timeout 1s;
+    uwsgi_connect_timeout 2s;
     uwsgi_ignore_client_abort off;
     uwsgi_buffering on;
     uwsgi_buffer_size 16k;
@@ -98,7 +92,7 @@ http {
     uwsgi_temp_file_write_size 32k;
 
     # FastCGI
-    fastcgi_connect_timeout  1s;
+    fastcgi_connect_timeout  2s;
     fastcgi_ignore_client_abort off;
     fastcgi_buffering on;
     fastcgi_buffer_size 16k;
@@ -115,6 +109,11 @@ http {
 
     include /etc/nginx/conf.d/*.conf;
 }
+```
+
+```bash
+ln -s nginx.conf /etc/nginx/nginx.conf
+nginx -t
 ```
 
 ## PFS with DH
@@ -176,4 +175,4 @@ http {
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
+- [NGINX Documentation](https://nginx.org/en/docs/)
