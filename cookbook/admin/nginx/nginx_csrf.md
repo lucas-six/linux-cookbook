@@ -1,4 +1,4 @@
-# NGINX Configuration: CSRF (跨站请求伪造)
+# NGINX: CSRF (跨站请求伪造)
 
 ## Recipes
 
@@ -19,9 +19,9 @@ server {
 
 ## More
 
-- [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](../csrf)
+- [Cross-Site Request Forgery (CSRF) (跨站请求伪造)](../../web/csrf)
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
-- [Nginx `valid_referers`](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers)
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [NGINX `valid_referers`](https://nginx.org/en/docs/http/ngx_http_referer_module.html#valid_referers)

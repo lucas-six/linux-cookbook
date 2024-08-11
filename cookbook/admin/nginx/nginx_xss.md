@@ -1,4 +1,4 @@
-# NGINX Configuration: XSS (跨站脚本攻击)
+# NGINX: XSS (跨站脚本攻击)
 
 ## Recipes
 
@@ -13,8 +13,8 @@ server {
 
 ## More
 
-- [Cross Site Scripting, XSS (跨站脚本攻击)](../csrf)
+- [Cross Site Scripting, XSS (跨站脚本攻击)](../../web/csrf)
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
+- [NGINX Documentation](https://nginx.org/en/docs/)

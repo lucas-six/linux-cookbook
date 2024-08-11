@@ -1,4 +1,4 @@
-# NGINX Configuration: TCP Fast-Open
+# NGINX: TCP Fast-Open
 
 ## Recipes
 
@@ -28,4 +28,4 @@ server {
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
+- [NGINX Documentation](https://nginx.org/en/docs/)

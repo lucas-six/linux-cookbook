@@ -29,15 +29,15 @@ or
 </form>
 ```
 
-### 3. Nginx `valid_referer`
+### 3. NGINX `valid_referer`
 
-See [Nginx Configuration: Valid Referer](https://lucas-six.github.io/linux-cookbook/cookbook/web/nginx/csrf).
+See [NGINX: Valid Referer - Linux Cookbook](../admin/nginx/nginx_csrf).
 
 ### 4. XSS Prevention
 
 Cross Site Scripting, XSS (跨站脚本攻击)
 
-See [Nginx Configuration: Cross Site Scripting, XSS (跨站脚本攻击)](https://lucas-six.github.io/linux-cookbook/cookbook/web/nginx/xss).
+See [NGINX: Cross Site Scripting, XSS (跨站脚本攻击) - Linux Cookbook](../admin/nginx/nginx_xss).
 
 ## References
 

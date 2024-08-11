@@ -1,4 +1,4 @@
-# Nginx Installation
+# NGINX Installation
 
 ## Ubuntu
 
@@ -30,18 +30,8 @@ apt update
 apt install nginx
 ```
 
-## Run
-
-```bash
-ln -s nginx.conf /etc/nginx/.
-systemctl enable|disable nginx
-systemctl start|stop|restart|status nginx
-```
-
 ## References
 
-- [Install on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
-- [Nginx Documentation](https://nginx.org/en/docs/)
-- [Pitfalls - Nginx Wiki](http://wiki.nginx.org/Pitfalls)
-- [Quick Start - Nginx Wiki](http://wiki.nginx.org/QuickStart)
-- [Configuration - Nginx Wiki](http://wiki.nginx.org/Configuration)
+- [Install NGINX on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
+- [NGINX Documentation](https://nginx.org/en/docs/)
+- [NGINX Product Documentation](https://docs.nginx.com/)

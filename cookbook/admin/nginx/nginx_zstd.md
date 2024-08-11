@@ -1,4 +1,4 @@
-# NGINX Configuration: `zstd`
+# NGINX: `zstd` Support
 
 ## Recipes
 
@@ -24,4 +24,4 @@ http {
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
+- [NGINX Documentation](https://nginx.org/en/docs/)

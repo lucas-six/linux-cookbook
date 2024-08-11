@@ -145,5 +145,5 @@ location /dj-static/rest_framework {
 
 ## References
 
-- [Nginx Documentation](https://nginx.org/en/docs/)
+- [NGINX Documentation](https://nginx.org/en/docs/)
 - [Forward Secrecy - Wikipedia](https://en.wikipedia.org/wiki/Forward_secrecy)
