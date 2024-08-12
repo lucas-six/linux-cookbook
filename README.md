@@ -110,7 +110,9 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 ### NGINX
 
-- [NGINX Installation](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_installation)
+- [Install NGINX on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
+- [NGINX Community Documentation](https://nginx.org/en/docs/)
+- [NGINX Product Documentation](https://docs.nginx.com/)
 - [NGINX Configuration: Global](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_global)
 - [NGINX Configuration: vHost](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_vhost)
 - [NGINX: TCP Fast Open](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_fastopen)
@@ -223,13 +225,14 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Docker Home](https://www.docker.com)
   - [DockerHub Home](https://hub.docker.com)
 - NGINX
-  - [NGINX Documentation](https://nginx.org/en/docs/)
+  - [NGINX Community Documentation](https://nginx.org/en/docs/)
   - [NGINX Product Documentation](https://docs.nginx.com/)
+  - [NGINX Unit Homepage](https://unit.nginx.org/)
 - [Redis Home](https://redis.io)
 - [MongoDB Documentation](https://www.mongodb.com/docs/)
 - [PostgreSQL Home](https://www.postgresql.org/)
 - [MQTT Home](https://mqtt.org/)
-  - [EMQ](https://emqtt.io) | [EMQX](https://www.emqx.io/zh)
+  - [EMQ](https://emqtt.io) \| [EMQX](https://www.emqx.io/zh)
   - [MQTT Guide](https://www.emqx.com/zh/mqtt-guide)
 - [RabbitMQ Home](https://www.rabbitmq.com/)
 
