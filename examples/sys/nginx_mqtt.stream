@@ -1,0 +1,30 @@
+# MQTT
+#
+# https://docs.emqx.com/zh/emqx/latest/deploy/cluster/lb-nginx.html
+#
+# Optimizing MQTT Deployments in Enterprise Environments with NGINX Plus:
+# https://www.f5.com/company/blog/nginx/optimizing-mqtt-deployments-in-enterprise-environments-nginx-plus
+
+upstream mqtt_servers {
+    # down：表示当前的 server 暂时不参与负载
+    # max_fails：允许请求失败的次数；默认为 1
+    # fail_timeout：失败超时时间，默认 10s, max_fails 达到次数后暂停的请求时间
+    # backup：其它所有的非backup机器down或者忙的时候，请求backup机器
+
+    hash $remote_addr consistent;
+    server 127.0.0.1:1883 weight=1 max_fails=2 fail_timeout=10s;
+    #server emqx2-cluster.emqx.io:1883 down;
+    #server emqx3-cluster.emqx.io:1883 backup;
+}
+
+server {
+    listen 1883;
+    proxy_pass mqtt_servers;
+
+    # 启用此项时，对应后端监听器也需要启用 proxy_protocol
+    proxy_protocol on;
+    proxy_connect_timeout 3s;
+    # 默认心跳时间为 10 分钟
+    proxy_timeout 1800s;
+    proxy_buffer_size 3M;
+}

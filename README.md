@@ -112,7 +112,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [Install NGINX on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
 - [NGINX Community Documentation](https://nginx.org/en/docs/)
-- [NGINX Product Documentation](https://docs.nginx.com/)
 - [NGINX Configuration: Global](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_global)
 - [NGINX Configuration: vHost](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_vhost)
 - [NGINX: TCP Fast Open](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_fastopen)
@@ -120,8 +119,10 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [NGINX: CSRF (跨站请求伪造)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_csrf)
 - [NGINX: XSS (跨站脚本攻击)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_xss)
 - [NGINX: `zstd` Support](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_zstd)
-- NGINX Plus (commercial)
 - [NGINX Unit Homepage](https://unit.nginx.org/)
+- [NGINX Product Documentation](https://docs.nginx.com/)
+  - [NGINX Agent](https://docs.nginx.com/nginx-agent/)
+  - NGINX Plus (commercial)
 
 ### MongoDB
 
@@ -225,8 +226,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Docker Home](https://www.docker.com)
   - [DockerHub Home](https://hub.docker.com)
 - NGINX
-  - [NGINX Community Documentation](https://nginx.org/en/docs/)
-  - [NGINX Product Documentation](https://docs.nginx.com/)
   - [NGINX Unit Homepage](https://unit.nginx.org/)
 - [Redis Home](https://redis.io)
 - [MongoDB Documentation](https://www.mongodb.com/docs/)

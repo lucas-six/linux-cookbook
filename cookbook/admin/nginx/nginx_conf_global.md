@@ -128,10 +128,24 @@ openssl dhparam -out /etc/nginx/ssl_dh.params 4096
 ```conf
 http {
     # support for TLS False Start
-    # enable Forward Secrecy
-    ssl_prefer_server_ciphers on;  # 缓解 BEAST 攻击
-    ssl_dhparam ssl_dh.params;  # Perfect Forward Secrecy, PFS with Diffie-Hellman, DH algorithm
+    # enable Perfect Forward Secrecy (PFS)
+    ssl_prefer_server_ciphers on; # 缓解 BEAST 攻击
+    ssl_dhparam ssl_dh.params; # PFS with Diffie-Hellman, DH algorithm
 }
+```
+
+## OCSP Stapling
+
+```conf
+# enable OCSP Stapling
+# [RFC 6960 - OCSP](https://www.rfc-editor.org/rfc/rfc6960)
+# [NGINX `ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling)
+ssl_stapling on;
+ssl_stapling_verify on;
+resolver 8.8.8.8 8.8.4.4 216.146.35.35 216.146.36.36 valid=600s; # a resolution of the OCSP responder hostname, `valid` means cache expire time
+#ssl_stapling_file /etc/nginx/ssl/stapling_file.ocsp; # offline
+#ssl_trusted_certificate /path/to/xxx.pem; # If the ssl_certificate file does not contain intermediate certificates
+#resolver_timeout 2s；# resolver_timeout表示网络超时时间
 ```
 
 ## Log
@@ -175,4 +189,8 @@ http {
 
 ## References
 
+<!-- markdownlint-disable line-length -->
+
 - [NGINX Documentation](https://nginx.org/en/docs/)
+- [RFC 6960 - X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP](https://www.rfc-editor.org/rfc/rfc6960)([RFC 8954 - OCSP Nonce Extension](https://www.rfc-editor.org/rfc/rfc8954)Updated)
+- [NGINX `ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling)
