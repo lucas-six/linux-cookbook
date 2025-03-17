@@ -112,7 +112,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [Install NGINX on Ubuntu](https://nginx.org/en/linux_packages.html#Ubuntu)
 - [NGINX Community Documentation](https://nginx.org/en/docs/)
-- [NGINX Product Documentation](https://docs.nginx.com/)
 - [NGINX Configuration: Global](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_global)
 - [NGINX Configuration: vHost](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_conf_vhost)
 - [NGINX: TCP Fast Open](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_fastopen)
@@ -120,8 +119,15 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [NGINX: CSRF (跨站请求伪造)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_csrf)
 - [NGINX: XSS (跨站脚本攻击)](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_xss)
 - [NGINX: `zstd` Support](https://lucas-six.github.io/linux-cookbook/cookbook/admin/nginx/nginx_zstd)
-- NGINX Plus (commercial)
 - [NGINX Unit Homepage](https://unit.nginx.org/)
+- [NGINX Product Documentation](https://docs.nginx.com/)
+  - [NGINX Agent](https://docs.nginx.com/nginx-agent/)
+  - NGINX Plus (commercial)
+
+### Container (容器)
+
+- [Docker: Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
+- [MongoDB (Standalone) in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
 
 ### MongoDB
 
@@ -145,6 +151,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 ### PostgreSQL
 
 - [PostgreSQL - Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
+- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_docker)
 - [CLI: `psql` - Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
 - GUI (Official): `pgadmin4`
 
@@ -156,15 +163,13 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [EMQX](https://www.emqx.io/zh)
 
+### Service Discovery
+
+- [mDNS: `avahi`](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mdns/avahi)
+
 ### Performance
 
 - [Amdahl's Law](https://lucas-six.github.io/linux-cookbook/cookbook/admin/amdahl_law)
-
-### Container (容器)
-
-- [Docker: Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
-- [MongoDB (Standalone) in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
-- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/postgresql)
 
 ## DevOps
 
@@ -225,8 +230,6 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [Docker Home](https://www.docker.com)
   - [DockerHub Home](https://hub.docker.com)
 - NGINX
-  - [NGINX Community Documentation](https://nginx.org/en/docs/)
-  - [NGINX Product Documentation](https://docs.nginx.com/)
   - [NGINX Unit Homepage](https://unit.nginx.org/)
 - [Redis Home](https://redis.io)
 - [MongoDB Documentation](https://www.mongodb.com/docs/)

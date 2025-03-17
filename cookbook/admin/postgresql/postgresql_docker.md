@@ -3,15 +3,18 @@
 ## Configuration
 
 ```bash
-docker run -i --rm postgres:14 cat /usr/share/postgresql/postgresql.conf.sample > postgresql.conf
+docker run -i --rm postgres:16 cat /usr/share/postgresql/postgresql.conf.sample > postgresql.conf
 ```
 
 ```ini
 # postgresql.conf
 
 listen_addresses = '*'
-max_connections  = 200
+max_connections  = 4096
 shared_buffers = 256MB
+client_encoding = 'UTF8'
+#default_transaction_isolation = 'read committed'
+#timezone = 'UTC'
 ```
 
 ## Run Server
