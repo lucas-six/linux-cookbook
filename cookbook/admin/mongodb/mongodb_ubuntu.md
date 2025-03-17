@@ -4,30 +4,7 @@
 
 **NOTE**: **`XFS`** filesystem is strongly recommended with the `WiredTiger` storage engine.
 
-```bash
-apt install apt apt-utils apt-transport-https \
-        python-apt-common python3-apt
-apt install wget gnupg systemd
-
-# for v4.4
-# wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | sudo apt-key add -
-# echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/4.4 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.4.list
-
-# for 5.0
-# wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
-# echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-5.0.list
-
-# for 6.0
-wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-
-# for 7.0
-wget -qO - https://www.mongodb.org/static/pgp/server-7.0.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/7.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-7.0.list
-
-apt update
-apt install mongodb-org
-```
+- [Install MongoDB Community Edition on Ubuntu](https://www.mongodb.com/zh-cn/docs/manual/tutorial/install-mongodb-on-ubuntu/#std-label-install-mdb-community-ubuntu)
 
 ## Configuration
 
@@ -45,7 +22,7 @@ net.ipv4.tcp_max_syn_backlog = 40960
 
 ```bash
 sysctl -p
-systemctl restart procps.service
+sysctl --system
 ```
 
 ```conf
@@ -99,13 +76,31 @@ WantedBy=basic.target
 ```
 
 ```bash
-apt install numactl
+apt install -y numactl
 ```
 
 ```ini
 # /lib/systemd/system/mongod.service
 
 ExecStart=/usr/bin/numactl --interleave=all /usr/bin/mongod --config /etc/mongod.conf
+```
+
+```ini
+# /etc/logrotate.d/mongodb
+
+/var/log/mongodb/*.log {
+        daily
+        missingok
+        rotate 30
+        compress
+        delaycompress
+        notifempty
+        create 640 mongodb adm
+        sharedscripts
+        postrotate
+                kill -SIGUSR1 $(systemctl show --property MainPID --value mongod)
+        endscript
+}
 ```
 
 ```bash
@@ -161,9 +156,9 @@ mongosh
 #### Keyfile Authentication
 
 ```bash
-openssl rand -base64 756 > <key-name>.key
-chown mongodb:mongodb <key-name>.key
-chmod 0400 <key-name>.key
+openssl rand -base64 756 > mongodb.key
+chown mongodb:mongodb mongodb.key
+chmod 0400 mongodb.key
 ```
 
 ```yaml

@@ -124,6 +124,11 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [NGINX Agent](https://docs.nginx.com/nginx-agent/)
   - NGINX Plus (commercial)
 
+### Container (容器)
+
+- [Docker: Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
+- [MongoDB (Standalone) in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
+
 ### MongoDB
 
 - [MongoDB: Overview](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_overview)
@@ -146,6 +151,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 ### PostgreSQL
 
 - [PostgreSQL - Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
+- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_docker)
 - [CLI: `psql` - Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
 - GUI (Official): `pgadmin4`
 
@@ -157,15 +163,13 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 
 - [EMQX](https://www.emqx.io/zh)
 
+### Service Discovery
+
+- [mDNS: `avahi`](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mdns/avahi)
+
 ### Performance
 
 - [Amdahl's Law](https://lucas-six.github.io/linux-cookbook/cookbook/admin/amdahl_law)
-
-### Container (容器)
-
-- [Docker: Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
-- [MongoDB (Standalone) in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
-- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/postgresql)
 
 ## DevOps
 
