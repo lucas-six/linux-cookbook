@@ -25,7 +25,7 @@ shared_buffers = 256MB  # 128MB
 
 client_encoding = 'UTF8'
 #default_transaction_isolation = 'read committed'
-#timezone = 'UTC'
+#timezone = 'Etc/UTC'
 ```
 
 ```ini
@@ -39,4 +39,18 @@ host all all all　　       scram-sha-256
 ```bash
 systemctl enable|disable postgresql
 systemctl start|stop|restart|status postgresql
+```
+
+```bash
+su - postgres
+psql
+
+# list users
+> \du
+
+# set password for superuser 'postgres'.
+> ALTER USER postgres WITH PASSWORD 'PASSWORD';
+
+# quit
+> \q
 ```
