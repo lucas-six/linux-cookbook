@@ -46,8 +46,8 @@ host    all             all             ::1/128                 scram-sha-256
 ```
 
 ```bash
-systemctl enable|disable postgresql
-systemctl start|stop|restart|status postgresql
+systemctl enable|disable postgresql@16
+systemctl start|stop|restart|status postgresql@16
 ```
 
 ```bash
