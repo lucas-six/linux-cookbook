@@ -16,12 +16,15 @@ See [Download PostgreSQL](https://www.postgresql.org/download/).
 ```conf
 # /etc/postgresql/16/main/postgresql.conf
 
-#listen_addresses = 'localhost'  # '*' for all
+listen_addresses = '*'  # 'localhost' by default, '*' for all
 #port = 5432
-max_connections = 4096
+max_connections = 100  # 100 by default
 password_encryption = scram-sha-256  # md5 or scram-sha-256
 
-shared_buffers = 256MB  # 128MB
+shared_buffers = 256MB  # 1/4 or 1/2 of physical RAM
+
+work_mem = 16MB  # 1/16 of shared_buffers
+max_wal_size = 1GB  # 1/2 of shared_buffers, but not less than 1GB
 
 client_encoding = 'UTF8'
 #default_transaction_isolation = 'read committed'
@@ -31,9 +34,15 @@ client_encoding = 'UTF8'
 ```ini
 # /etc/postgresql/16/main/pg_hba.conf
 
-host all all 127.0.0.1/32 scram-sha-256
+# Unix domain socket, 'peer' by default
+local   all             all                                     trust
 
-host all all all　　       scram-sha-256
+# IPv4
+host    all             all             127.0.0.1/32            scram-sha-256
+host    all             lucas           0.0.0.0/0               scram-sha-256
+
+# IPv6
+host    all             all             ::1/128                 scram-sha-256
 ```
 
 ```bash
