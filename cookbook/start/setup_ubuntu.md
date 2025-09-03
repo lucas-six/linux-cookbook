@@ -1,6 +1,10 @@
 # Setup Ubuntu
 
-`20.04` LTS
+`24.04` LTS
+
+```bash
+lsb_release -a
+```
 
 ## Start
 
@@ -8,20 +12,13 @@
 hostnamectl set-hostname <hostname>
 
 apt update
-apt install apt apt-utils apt-transport-https \
-        python-apt-common python3-apt
-apt install bash coreutils sudo vim openssh-server tzdata python3 \
-        openssl ca-certificates \
-        diffutils colordiff \
-        tar gzip bzip2 zstd \
-        wget wget2 curl \
-        procps htop psmisc \
-        systemd cron \
-        git binutils make rsync lsof make gcc
-apt autoremove
-systemctl restart sshd cron
+apt list --upgradable
 
-ssh-keygen -t rsa -b 4096 -C "<hostname>" -f "$PWD/.ssh/id_rsa" -N ""
+apt install colordiff wget2
+apt autoremove
+
+ssh-keygen
+#ssh-keygen -t rsa -b 4096 -C "<hostname>" -f "$PWD/.ssh/id_rsa" -N ""
 ```
 
 ## Disk Partition (XFS)
@@ -50,14 +47,6 @@ mkdir /mnt/<point>
 mount -a
 ```
 
-## `limits.conf`
-
-```ini
-# /etc/pam.d/su
-
-session    required   pam_limits.so
-```
-
 ## Python
 
 ### Install by `apt`
@@ -71,16 +60,16 @@ apt install software-properties-common
 add-apt-repository ppa:deadsnakes/ppa
 apt update
 apt autoremove
-apt install python3.11 python3.11-dev
+apt install python3.12 python3.12-dev
 ```
 
 ### Install from source code
 
 ```bash
 cd /tmp
-wget https://www.python.org/ftp/python/3.11.4/Python-3.11.4.tgz
-tar xzf Python-3.11.4.tgz
-cd python-3.11.4
+wget https://www.python.org/ftp/python/3.12.10/Python-3.12.10.tgz
+tar xzf Python-3.12.10.tgz
+cd python-3.12.10
 ./configure --prefix=/usr --enable-optimizations
 # make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
 make -j$(nproc)
@@ -90,10 +79,10 @@ make altinstall
 ### Configuration
 
 ```bash
-# update-alternatives --install /usr/bin/python python /usr/bin/python3.11 1
+# update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
 # update-alternatives --config python
 
-pip3 install --upgrade pip pipx pipenv argcomplete
+pip3 install --upgrade pip argcomplete
 activate-global-python-argcomplete
 ```
 

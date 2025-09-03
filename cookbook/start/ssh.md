@@ -7,11 +7,11 @@
 ### PubKey
 
 ```bash
+# ED25519: 椭圆曲线算法 (by default)
+ssh-keygen -t ed25519 -C "<comment>" -N ""
+
 # RSA-4096
 ssh-keygen -t rsa -b 4096 -C "<comment>" -N ""
-
-# ED25519: 椭圆曲线算法
-ssh-keygen -t ed25519 -C "<comment>" -N ""
 ```
 
 ### Client Configuration
