@@ -67,9 +67,9 @@ apt install build-essential cpp zlib1g-dev libncurses5-dev libgdbm-dev libnss3-d
     libssl-dev libreadline-dev libffi-dev libsqlite3-dev libbz2-dev uuid-dev
 
 cd /tmp
-wget https://www.python.org/ftp/python/3.12.12/Python-3.12.12.tgz
-tar xzf Python-3.12.12.tgz
-cd python-3.12.12
+wget https://www.python.org/ftp/python/3.13.8/Python-3.13.8.tgz
+tar xzf Python-3.13.8.tgz
+cd Python-3.13.8
 ./configure --prefix=/usr --enable-optimizations
 # make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
 make -j$(nproc)
@@ -79,7 +79,7 @@ make altinstall
 ### Configuration
 
 ```bash
-# update-alternatives --install /usr/bin/python python /usr/bin/python3.12 1
+# update-alternatives --install /usr/bin/python python /usr/bin/python3.13 1
 # update-alternatives --config python
 
 pip3 install --upgrade pip argcomplete

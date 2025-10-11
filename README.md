@@ -174,8 +174,8 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 ## DevOps
 
 - [Git Cookbook](https://lucas-six.github.io/git-cookbook/)
-- Python: [`pipenv`](https://lucas-six.github.io/python-cookbook/cookbook/build/pkg/pipenv)
-  - [Project](https://lucas-six.github.io/python-cookbook/cookbook/build/project): `black`, `isort`, `mypy`, `pylint`
+- Python
+  - [Project](https://lucas-six.github.io/python-cookbook/cookbook/build/project): `uv`, `ruff`, `mypy`, `pytest`
   - [Deploy with Docker](https://lucas-six.github.io/python-cookbook/cookbook/build/deploy/docker)
 
 ## Web
