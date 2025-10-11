@@ -41,9 +41,9 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Process Control](https://lucas-six.github.io/linux-cookbook/cookbook/start/proc)
 - [System Information (GNU `coreutils`)](https://lucas-six.github.io/linux-cookbook/cookbook/start/coreutils_sysinfo)
 - [Environment Variables](https://lucas-six.github.io/linux-cookbook/cookbook/start/env)
-- Diff: `diff`, `colordiff`
+- Diff: `diff`, **`colordiff`**
 - [Archive & Compression: `tar`](https://lucas-six.github.io/linux-cookbook/cookbook/start/archive)
-- Network: `wget`, [GNU `wget2`](https://gitlab.com/gnuwget/wget2), [`curl`](https://lucas-six.github.io/linux-cookbook/cookbook/start/curl)
+- Network: `wget`, [GNU **`wget2`**](https://gitlab.com/gnuwget/wget2), [`curl`](https://lucas-six.github.io/linux-cookbook/cookbook/start/curl)
 - Scripts
   - [Bash Cookbook](https://lucas-six.github.io/bash-cookbook/)
   - [Python Cookbook](https://lucas-six.github.io/python-cookbook/)
