@@ -153,7 +153,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [PostgreSQL - Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
 - [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_docker)
 - [CLI: `psql` - Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
-- GUI (Official): `pgadmin4`
+- GUI (Official): **`pgadmin4`**
 
 ### RabbitMQ
 

@@ -1,5 +1,9 @@
 # Docker: Basic Usage
 
+## Installation
+
+- [Ubuntu](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
+
 ## Basic Usage
 
 ```bash
@@ -46,7 +50,7 @@ EXPOSE <container-port>[/udp]
 
 ```bash
 cd <docker-working-path>
-docker build -t <image-name>:<image-tag> .
+docker build [-f <dockerfile-path=Dockerfile>] -t <image-name>:<image-tag> .
 docker scan <image-name>:<image-tag>
 
 docker run \
@@ -94,4 +98,5 @@ docker attach <container-id>
 
 ## References
 
-- [Docker](https://www.docker.com)
+- [Docker Home](https://www.docker.com)
+- [Docker Documentation](https://docs.docker.com)
