@@ -12,13 +12,13 @@ docker pull <image-name>:<image-tag>
 docker rmi <image-name>:<image-tag>
 
 docker ps -a
-docker run -it [--name <docker-name>] <image-name>:<image-tag>
+docker run -it [--name <container-name>] [--env-file <environment-file-path>] <image-name>:<image-tag>
 docker run \
     -d \
     -w <container-working-path> \
     -p <host-port>:<container-port>[/[tcp|udp]] \
     -e <environment-variable-name>=<environment-variable-value> \
-    [--name <docker-name>] <image-name>:<image-tag>
+    [--name <container-name>] [--env-file <environment-file-path>] <image-name>:<image-tag>
 
 docker start [-i] [-a] <container-id>
 docker stop|kill <container-id>
@@ -39,10 +39,10 @@ LABEL org.opencontainers.image.authors="lucassix.lee@gmail.com"
 RUN <shell-commands && ...>
 
 VOLUME ["<persistent-data-container-path>", ...]
-ENV <env_var>=<value>
+ENV <env_var>=<value> ...
 WORKDIR <container-working-path>
 
-COPY <host-file> <container-file>
+COPY [--from=<image-name>:<image-tag>OR<image-alias>] [--chown=<user>:<group>] <source-file> ... <destination-file>
 CMD ["<command>", ...]
 
 EXPOSE <container-port>[/udp]
@@ -57,7 +57,8 @@ docker run \
     -d \
     -v <persistent-data-host-path=$PWD>:<persistent-data-container-path> \
     -p <host-port>:<container-port> \
-    [--name <docker-name>] \
+    [--name <container-name>] \
+    [--env-file <environment-file-path>] \
     <image-name>:<image-tag>
 ```
 
