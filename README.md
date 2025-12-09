@@ -176,7 +176,7 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Git Cookbook](https://lucas-six.github.io/git-cookbook/)
 - Python
   - [Project](https://lucas-six.github.io/python-cookbook/cookbook/build/project): `uv`, `ruff`, `mypy`, `pytest`
-  - [Deploy with Docker](https://lucas-six.github.io/python-cookbook/cookbook/build/deploy/docker)
+  - [Deploy Python Application with Docker (Python Cookbook)](https://lucas-six.github.io/python-cookbook/cookbook/build/deploy/docker)
 
 ## Web
 
