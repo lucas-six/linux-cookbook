@@ -16,9 +16,13 @@ docker run -it [--name <container-name>] [--env-file <environment-file-path>] <i
 docker run \
     -d \
     -w <container-working-path> \
+    --network=host \
     -p <host-port>:<container-port>[/[tcp|udp]] \
     -e <environment-variable-name>=<environment-variable-value> \
-    [--name <container-name>] [--env-file <environment-file-path>] <image-name>:<image-tag>
+    [--env-file <environment-file-path>] \
+    [--name <container-name>] <image-name>:<image-tag>
+
+docker logs -f <container-name-or-container-id>
 
 docker start [-i] [-a] <container-id>
 docker stop|kill <container-id>
