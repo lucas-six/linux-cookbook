@@ -130,7 +130,7 @@ http {
     # support for TLS False Start
     # enable Perfect Forward Secrecy (PFS)
     ssl_prefer_server_ciphers on; # 缓解 BEAST 攻击
-    ssl_dhparam ssl_dh.params; # PFS with Diffie-Hellman, DH algorithm
+    ssl_dhparam /etc/nginx/ssl_dh.params; # PFS with Diffie-Hellman, DH algorithm
 }
 ```
 
@@ -192,5 +192,5 @@ http {
 <!-- markdownlint-disable line-length -->
 
 - [NGINX Documentation](https://nginx.org/en/docs/)
-- [RFC 6960 - X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP](https://www.rfc-editor.org/rfc/rfc6960)([RFC 8954 - OCSP Nonce Extension](https://www.rfc-editor.org/rfc/rfc8954)Updated)
+- [RFC 6960 - X.509 Internet Public Key Infrastructure Online Certificate Status Protocol - OCSP](https://www.rfc-editor.org/rfc/rfc6960) ([RFC 8954 - OCSP Nonce Extension](https://www.rfc-editor.org/rfc/rfc8954) Updated)
 - [NGINX `ngx_http_ssl_module`](https://nginx.org/en/docs/http/ngx_http_ssl_module.html#ssl_stapling)
