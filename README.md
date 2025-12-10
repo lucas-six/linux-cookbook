@@ -155,13 +155,12 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [CLI: `psql` - Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
 - GUI (Official): **`pgadmin4`**
 
-### RabbitMQ
+### Message Queue (消息队列)
 
-- [RabbitMQ Setup on Ubuntu / Debian](https://lucas-six.github.io/linux-cookbook/cookbook/admin/rabbitmq/rabbitmq_setup_ubuntu)
-
-### EMQX
-
-- [EMQX](https://www.emqx.io/zh)
+- [RabbitMQ](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mq/rabbitmq)
+- Kafka
+- RocketMQ
+- [EMQX (MQTT Broker)](https://www.emqx.io/zh)
 
 ### Service Discovery
 
