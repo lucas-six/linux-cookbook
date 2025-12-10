@@ -72,7 +72,14 @@ rabbitmq-plugins enable rabbitmq_management
 # management.ssl.cacertfile = /path/to/ca_certificate.pem
 # management.ssl.certfile   = /path/to/server_certificate.pem
 # management.ssl.keyfile    = /path/to/server_key.pem
+## This key must only be used if private key is password protected
+# management.ssl.password   = bunnies
+
+management.ssl.versions.1 = tlsv1.3
+management.ssl.versions.2 = tlsv1.2
 ```
+
+See [Reverse proxy (Nginx or Apache)](https://www.rabbitmq.com/docs/management#nginx)
 
 ```bash
 rabbitmqctl add_user <username> <password>
@@ -161,3 +168,4 @@ mqtt.retained_message_store_dets_sync_interval = 2000
 
 - [RabbitMQ Home](https://www.rabbitmq.com/)
 - [RabbitMQ Configuration Example (GitHub)](https://github.com/rabbitmq/rabbitmq-server/blob/main/deps/rabbit/docs/rabbitmq.conf.example)
+- [Reverse proxy (Nginx or Apache)](https://www.rabbitmq.com/docs/management#nginx)
