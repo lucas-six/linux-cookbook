@@ -129,6 +129,22 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - [Docker: Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/docker_basic)
 - [MongoDB (Standalone) in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/docker/mongodb_standalone)
 
+### PostgreSQL
+
+- [PostgreSQL - Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
+- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_docker)
+- [**`psql`** : CLI](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
+- **`pgadmin4`**: GUI (Official)
+
+### Redis
+
+- [**Redis** Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
+- [**`redis-cli`**: CLI](https://lucas-six.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
+- GUI
+  - [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official)
+  - ~~Redis Desktop Manager~~
+  - Another Redis Desktop Manager
+
 ### MongoDB
 
 - [MongoDB: Overview](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_overview)
@@ -136,31 +152,15 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
   - [MongoDB on Ubuntu](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_ubuntu)
   - [MongoDB TLS](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_tls)
 - Client
-  - [CLI: `mongosh` Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
+  - [**`mongosh`**: CLI](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mongodb/mongodb_usage)
   - GUI: **Mongo Compass**
-
-### Redis
-
-- [Redis Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/redis/redis_setup)
-- [CLI: `redis-cli` - Basic Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/redis/redis_usage_basic)
-- GUI
-  - [**RedisInsight**](https://redis.com/redis-enterprise/redis-insight/) (Official)
-  - ~~Redis Desktop Manager~~
-  - *Another Redis Desktop Manager*
-
-### PostgreSQL
-
-- [PostgreSQL - Setup](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_setup)
-- [PostgreSQL in Docker](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_docker)
-- [CLI: `psql` - Usage](https://lucas-six.github.io/linux-cookbook/cookbook/admin/postgresql/postgresql_usage)
-- GUI (Official): **`pgadmin4`**
 
 ### Message Queue (消息队列)
 
-- [RabbitMQ](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mq/rabbitmq)
+- [**RabbitMQ**](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mq/rabbitmq)
 - Kafka
 - RocketMQ
-- [EMQX (MQTT Broker)](https://www.emqx.io/zh)
+- [**EMQX** (MQTT Broker)](https://www.emqx.io/zh)
 
 ### Service Discovery
 
