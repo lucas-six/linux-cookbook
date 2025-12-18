@@ -162,6 +162,13 @@ an operating system kernel first released on *September 17, 1991*, by *Linus Tor
 - RocketMQ
 - [**EMQX** (MQTT Broker)](https://www.emqx.io/zh)
 
+### Storage (存储)
+
+- Object Storage (对象存储)
+  - Cloud: **Amazon S3**, **Google Cloud Storage**, **Aliyun OSS**
+  - On-premises: **MinIO**, **SeaweedFS**
+- Block Storage (块存储)
+
 ### Service Discovery
 
 - [mDNS: `avahi`](https://lucas-six.github.io/linux-cookbook/cookbook/admin/mdns/avahi)
