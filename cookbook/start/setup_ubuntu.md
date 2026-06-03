@@ -67,9 +67,9 @@ apt install build-essential cpp zlib1g-dev libncurses5-dev libgdbm-dev libnss3-d
     libssl-dev libreadline-dev libffi-dev libsqlite3-dev libbz2-dev uuid-dev
 
 cd /tmp
-wget https://www.python.org/ftp/python/3.13.8/Python-3.13.8.tgz
-tar xzf Python-3.13.8.tgz
-cd Python-3.13.8
+wget https://www.python.org/ftp/python/3.13.13/Python-3.13.13.tgz
+tar xzf Python-3.13.13.tgz
+cd Python-3.13.13
 ./configure --prefix=/usr --enable-optimizations
 # make -j$(cat /proc/cpuinfo | grep processor | uniq | wc -l)
 make -j$(nproc)
@@ -82,8 +82,8 @@ make altinstall
 # update-alternatives --install /usr/bin/python python /usr/bin/python3.13 1
 # update-alternatives --config python
 
-pip3 install --upgrade pip argcomplete
-activate-global-python-argcomplete
+#pip3 install --upgrade pip argcomplete
+#activate-global-python-argcomplete
 ```
 
 ## `sysctl`
@@ -96,7 +96,7 @@ kernel.sysrq = 1
 
 net.core.somaxconn = 4096
 net.core.netdev_max_backlog = 4096
-#net.ipv4.neigh.default.gc_stale_time = 60
+# net.ipv4.neigh.default.gc_stale_time = 60
 
 # see details in https://help.aliyun.com/knowledge_detail/39428.html
 net.ipv4.conf.all.rp_filter = 0
@@ -109,16 +109,29 @@ net.ipv4.conf.all.arp_announce = 2
 net.ipv4.tcp_max_syn_backlog = 4096
 net.ipv4.tcp_syn_retries = 2
 net.ipv4.tcp_synack_retries = 2
-#net.ipv4.tcp_retries1 = 3
-#net.ipv4.tcp_retries2 = 5
+# net.ipv4.tcp_retries1 = 3
+# net.ipv4.tcp_retries2 = 5
 net.ipv4.tcp_window_scaling = 1
 net.ipv4.tcp_slow_start_after_idle = 0
-net.ipv4.tcp_max_tw_buckets = 32768
 net.ipv4.tcp_syncookies = 1
-# net.ipv4.tcp_fin_timeout = 3  # 60
-# net.ipv4.tcp_tw_reuse = 1  # 0
-# net.ipv4.tcp_tw_recycle = 1  # 0
 # net.ipv4.tcp_keepalive_time = 60  # 7200
+
+# Enable Explicit Congestion Notification (ECN), by Cloud/VPS hosts
+net.ipv4.tcp_ecn = 1  
+
+# `tcp_tw_recycle` kernel parameter was removed in Linux kernel 4.12 (released in 2017).
+# 
+# Why it was removed
+# ------------------------------------------------------------
+# tcp_tw_recycle was eliminated because it caused serious issues with NAT and load
+# balancers — particularly when multiple clients behind the same NAT device connect to a # server. The timestamp-based recycling mechanism could reject legitimate connections
+# from those clients.
+#net.ipv4.tcp_tw_recycle = 1
+
+# Safe alternatives for TIME_WAIT optimization
+net.ipv4.tcp_tw_reuse = 1          # Reuse TIME_WAIT sockets for new connections (safe)
+net.ipv4.tcp_fin_timeout = 15      # Reduce TIME_WAIT duration (default 60)
+# net.ipv4.tcp_max_tw_buckets = 16384 # Limit total TIME_WAIT sockets
 
 # net.ipv6.conf.all.disable_ipv6 = 1
 # net.ipv6.conf.default.disable_ipv6 = 1
